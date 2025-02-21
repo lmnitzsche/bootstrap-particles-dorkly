@@ -1,7 +1,23 @@
-/*!
-* Start Bootstrap - Business Frontpage v5.0.9 (https://startbootstrap.com/template/business-frontpage)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-business-frontpage/blob/master/LICENSE)
-*/
-// This file is intentionally blank
-// Use this file to add JavaScript to your project
+document.addEventListener("DOMContentLoaded", function() {
+    particlesJS("particles-js", {
+        "particles": {
+            "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
+            "color": { "value": "#ffffff" },
+            "shape": { "type": "circle" },
+            "opacity": { "value": 0.5, "random": true },
+            "size": { "value": 3, "random": true },
+            "move": { "speed": 2, "direction": "none", "out_mode": "out" }
+        },
+        "interactivity": {
+            "events": {
+                "onhover": { "enable": true, "mode": "repulse" },
+                "onclick": { "enable": true, "mode": "push" }
+            },
+            "modes": {
+                "repulse": { "distance": 100 },
+                "push": { "particles_nb": 4 }
+            }
+        },
+        "retina_detect": true
+    });
+});
