@@ -259,6 +259,89 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover {
   text-decoration: none;
 }
 
+
+.testimonials-wrap {
+  padding: 40px 0;
+}
+.heading-section {
+  text-align: center;
+}
+.sub-heading {
+  font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    display: block;
+    font-weight: 600;
+    color: #0d6efd;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.heading-section h2 {
+  font-size: 28px;
+    font-weight: 600;
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+.testimonial-box {
+    display: block;
+    position: relative;
+    padding: 30px 20px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.03);
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .08);
+}
+.user-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    position: relative;
+  min-width: 80px;
+  background-size: 100%;
+}
+.carousel-testimonial .item {
+  padding: 30px 10px;
+}
+.quote {
+  position: absolute;
+    top: -23px;
+    color: #0d6efd;
+    font-size: 27px;
+}
+.name {
+  margin-bottom: 0;
+    line-height: 14px;
+    font-size: 17px;
+    font-weight: 500;
+}
+.position {
+  color: #adadad;
+  font-size: 14px;
+}
+.carousel-testimonial .owl-nav {
+  text-align: center;
+}
+.carousel-testimonial .owl-nav button.owl-next, 
+.carousel-testimonial .owl-nav button.owl-prev {
+    padding: 0 12px !important;
+}
+.carousel-testimonial .owl-nav button {
+  outline: none;
+  padding: 0;
+}
+.carousel-testimonial .owl-nav button.owl-next span, 
+.carousel-testimonial .owl-nav button.owl-prev span {
+  display: block;
+    font-size: 40px;
+    width: 25px;
+    height: 25px;
+    vertical-align: 0px;
+    line-height: 16px;
+}
+.carousel-testimonial .owl-nav button.owl-next.disabled, 
+.carousel-testimonial .owl-nav button.owl-prev.disabled {
+  opacity: 0.5;
+}
+
 pre,
 code,
 kbd,

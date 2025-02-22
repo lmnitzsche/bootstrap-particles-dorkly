@@ -12,8 +12,18 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.1/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <!------ Rotating Testimonials ---------->
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
+        <!------ Rotating Testimonials ---------->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-light bg-part">
             <div class="container px-5">
@@ -38,8 +48,8 @@
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-6">
                             <div class="text-center my-5">
-                                <h1 class="text-black mb-2">Sit back and watch your social media <strong>thrive</strong></h1>
-                                <p class="lead text-black mb-4">Experience a hands-off, full-service approach to social media marketing. From content creation to posting and continuous optimization, our expert team takes care of everything so you can focus on running your business.</p>
+                                <h1 class="text-black mb-2">Sit back and watch your customer base <strong>grow</strong></h1>
+                                <p class="lead text-black mb-4">Experience a full-service social media solution that creates, posts, and optimizes engaging content tailored to your business—so whether you're a local gym, boutique, or larger enterprise, you can focus on what you do best.</p>
                                 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
                                     <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#form">Book Your Free Consultation</a>
                                     <a class="btn btn-secondary btn-lg px-4" href="#features">Discover Our Process</a>
@@ -184,33 +194,142 @@
         </section>
         <!-- Testimonials section-->
         <section id="test" class="py-5 border-bottom">
-            <div class="container px-5 my-5 px-5">
-                <div class="text-center mb-5">
-                    <h2 class="fw-bolder">Success stories from businesses that trust us to handle it all</h2>
-                </div>
-                <div class="row gx-5 justify-content-center">
-                    <div class="col-lg-6">
-                        <!-- Testimonial 1-->
-                        <div class="card mb-4">
-                            <div class="card-body p-4">
-                                <div class="d-flex">
-                                    <div class="flex-shrink-0"><i class="bi bi-chat-right-quote-fill text-primary fs-1"></i></div>
-                                    <div class="ms-4">
-                                        <p class="mb-1">Since working with this team, my engagement and reach have skyrocketed. They completely transformed my brand’s social media presence.</p>
-                                        <div class="small text-muted">- Brian Weissmann, NWA Pinball, Rogers, AR</div>
-                                    </div>
+            <div class="testimonials-wrap">
+                <div class="container">
+                    <div class="heading-section">
+                        <span class="sub-heading">Testimonials</span>
+                        <h2>Success stories from businesses that trust us to handle it all</h2>
+                    </div>
+                    <div class="carousel-testimonial owl-carousel">
+                        <div class="item">
+                            <div class="testimonial-box d-flex">
+                                <div class="user-img" style="background-image: url(https://randomuser.me/api/portraits/men/82.jpg)">
+                                </div>
+                                <div class="text pl-4">
+                                    <span class="quote"><i class="fa fa-quote-left"></i></span>
+                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                    <p class="name">Mark Huff</p>
+                                    <span class="position">Businesswoman</span>
                                 </div>
                             </div>
                         </div>
-                        <!-- Testimonial 2-->
-                        <div class="card">
-                            <div class="card-body p-4">
-                                <div class="d-flex">
-                                    <div class="flex-shrink-0"><i class="bi bi-chat-right-quote-fill text-primary fs-1"></i></div>
-                                    <div class="ms-4">
-                                        <p class="mb-1">The hands-off social media management I needed. I get top-quality posts without lifting a finger!</p>
-                                        <div class="small text-muted">- Lacy Monroe, Influencer, Carbondale, IL</div>
-                                    </div>
+                        <div class="item">
+                            <div class="testimonial-box d-flex">
+                                <div class="user-img" style="background-image: url(https://randomuser.me/api/portraits/men/83.jpg)">
+                                </div>
+                                <div class="text pl-4">
+                                    <span class="quote"><i class="fa fa-quote-left"></i></span>
+                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                    <p class="name">Rodel Golez</p>
+                                    <span class="position">Businesswoman</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial-box d-flex">
+                                <div class="user-img" style="background-image: url(https://randomuser.me/api/portraits/men/84.jpg)">
+                                </div>
+                                <div class="text pl-4">
+                                    <span class="quote"><i class="fa fa-quote-left"></i></span>
+                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                    <p class="name">Ken Bosh</p>
+                                    <span class="position">Businesswoman</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial-box d-flex">
+                                <div class="user-img" style="background-image: url(https://randomuser.me/api/portraits/men/85.jpg)">
+                                </div>
+                                <div class="text pl-4">
+                                    <span class="quote"><i class="fa fa-quote-left"></i></span>
+                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                    <p class="name">Racky Henderson</p>
+                                    <span class="position">Father</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial-box d-flex">
+                                <div class="user-img" style="background-image: url(https://randomuser.me/api/portraits/men/86.jpg)">
+                                </div>
+                                <div class="text pl-4">
+                                    <span class="quote"><i class="fa fa-quote-left"></i></span>
+                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                    <p class="name">Henry Dee</p>
+                                    <span class="position">Businesswoman</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial-box d-flex">
+                                <div class="user-img" style="background-image: url(https://randomuser.me/api/portraits/men/87.jpg)">
+                                </div>
+                                <div class="text pl-4">
+                                    <span class="quote"><i class="fa fa-quote-left"></i></span>
+                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                    <p class="name">Mark Huff</p>
+                                    <span class="position">Businesswoman</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial-box d-flex">
+                                <div class="user-img" style="background-image: url(https://randomuser.me/api/portraits/men/88.jpg)">
+                                </div>
+                                <div class="text pl-4">
+                                    <span class="quote"><i class="fa fa-quote-left"></i></span>
+                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                    <p class="name">Rodel Golez</p>
+                                    <span class="position">Businesswoman</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial-box d-flex">
+                                <div class="user-img" style="background-image: url(https://randomuser.me/api/portraits/men/89.jpg)">
+                                </div>
+                                <div class="text pl-4">
+                                    <span class="quote"><i class="fa fa-quote-left"></i></span>
+                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                    <p class="name">Ken Bosh</p>
+                                    <span class="position">Businesswoman</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial-box d-flex">
+                                <div class="user-img" style="background-image: url(https://randomuser.me/api/portraits/men/90.jpg)">
+                                </div>
+                                <div class="text pl-4">
+                                    <span class="quote"><i class="fa fa-quote-left"></i></span>
+                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                    <p class="name">Racky Henderson</p>
+                                    <span class="position">Father</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial-box d-flex">
+                                <div class="user-img" style="background-image: url(https://randomuser.me/api/portraits/men/91.jpg)">
+                                </div>
+                                <div class="text pl-4">
+                                    <span class="quote"><i class="fa fa-quote-left"></i></span>
+                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                    <p class="name">Henry Dee</p>
+                                    <span class="position">Businesswoman</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial-box d-flex">
+                                <div class="user-img" style="background-image: url(https://randomuser.me/api/portraits/men/92.jpg)">
+                                </div>
+                                <div class="text pl-4">
+                                    <span class="quote"><i class="fa fa-quote-left"></i></span>
+                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                    <p class="name">Mark Huff</p>
+                                    <span class="position">Businesswoman</span>
                                 </div>
                             </div>
                         </div>
@@ -223,8 +342,8 @@
             <div class="container px-5 my-5 px-5">
                 <div class="text-center mb-5">
                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i></div>
-                    <h2 class="fw-bolder">Ready for a full service social media transformation?</h2>
-                    <p class="lead mb-0">Reach out today to get started!</p>
+                    <h2 class="fw-bolder">Ready to Drive Real Business Growth?</h2>
+                    <p class="lead mb-0">  Let us boost your digital presence and attract high-quality customers—so you can focus on what you do best. Get in touch today and see how our end-to-end solution can elevate your business.</p>
                 </div>
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-6">
