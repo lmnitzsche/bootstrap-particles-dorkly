@@ -162,7 +162,7 @@ p {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: #0a192f; /* Fallback background */
+  background: rgba(var(--bs-light-rgb)); /* Fallback background */
   z-index: 0;
 }
 .content {
@@ -8168,7 +8168,7 @@ textarea.form-control-lg {
 
 .bg-part {
   --bs-bg-opacity: 1;
-  background-color: #0a192f !important;
+  background-color: rgba(var(--bs-light-rgb)) !important;
 }
 
 .bg-black {

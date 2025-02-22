@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
     particlesJS("particles-js", {
         "particles": {
-            "number": { "value": 200, "density": { "enable": true, "value_area": 800 } },
-            "color": { "value": "#ffffff" },
+            "number": { "value": 600, "density": { "enable": true, "value_area": 800 } },
+            "color": { "value": "#0d6efd" },
             "shape": { "type": "circle" },
-            "opacity": { "value": 0.5, "random": true },
+            "opacity": { "value": 1, "random": true, },
             "size": { "value": 3, "random": true },
             "move": { "speed": 2, "direction": "none", "out_mode": "out" }
         },
