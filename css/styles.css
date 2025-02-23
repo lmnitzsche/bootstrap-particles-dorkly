@@ -10968,3 +10968,11 @@ textarea.form-control-lg {
   .tok {
     color: black;
   }
+  .gradient-text {
+  /* A vertical gradient from a strong blue to a lighter blue */
+  background: linear-gradient(180deg, #0dcaf0, #0d6efd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  }
+  
+  
