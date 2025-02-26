@@ -24,15 +24,59 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
-        <!-- Responsive navbar-->
+        <!-- Responsive Navbar with Search Bar and Icons -->
         <nav id="start" class="navbar navbar-expand-lg navbar-light bg-part">
             <div class="container px-5">
+                <!-- Logo -->
                 <a class="navbar-brand text-black" href="#start">
-                    <img src="assets/logo1.png" alt="full-service social media management logo" height="45">
+                    <img src="assets/logo1.png" alt="Nietzsche and Company Logo" height="45">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <!-- Navbar Toggle Button (Mobile) -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <!-- Search Bar (Functional) -->
+                <form class="d-flex ms-3 search-form" id="searchBar">
+                    <input class="form-control me-2 search-input" type="text" placeholder="Search..." aria-label="Search">
+                    <button class="btn btn-outline-primary search-btn" type="submit"><i class="bi bi-search"></i></button>
+                </form>
+
+                <!-- Navbar Links -->
+                <div class="collapse navbar-collapse order-lg-2 order-1" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-none d-lg-flex">
+                        <!-- Services -->
+                        <li class="nav-item">
+                            <a class="nav-link position-relative" href="#features" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Services">
+                                <i class="bi bi-gear-fill fs-4"></i>
+                            </a>
+                        </li>
+
+                        <!-- Packages -->
+                        <li class="nav-item">
+                            <a class="nav-link position-relative" href="#price" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Packages">
+                                <i class="bi bi-box-seam fs-4"></i>
+                            </a>
+                        </li>
+
+                        <!-- Testimonials -->
+                        <li class="nav-item">
+                            <a class="nav-link position-relative" href="#test" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Testimonials">
+                                <i class="bi bi-chat-left-quote-fill fs-4"></i>
+                            </a>
+                        </li>
+
+                        <!-- Contact -->
+                        <li class="nav-item">
+                            <a class="nav-link position-relative" href="#form" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Contact">
+                                <i class="bi bi-envelope-fill fs-4"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Traditional Dropdown Menu for Mobile -->
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-lg-none">
                         <li class="nav-item"><a class="nav-link" href="#features">Services</a></li>
                         <li class="nav-item"><a class="nav-link" href="#price">Packages</a></li>
                         <li class="nav-item"><a class="nav-link" href="#test">Testimonials</a></li>
@@ -41,6 +85,8 @@
                 </div>
             </div>
         </nav>
+
+
         <!-- Header with Particles.js -->
         <header class="position-relative">
             <div id="particles-js"></div>

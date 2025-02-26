@@ -42,3 +42,31 @@ $('.carousel-testimonial').owlCarousel({
         }
     }
 })
+
+    // Activate Bootstrap tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl, {
+            placement: 'bottom'
+        });
+    });
+
+    // Search Functionality
+    document.querySelector(".search-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+        let query = document.querySelector(".search-input").value.toLowerCase();
+        let sections = ["features", "price", "test", "form"];
+        let found = sections.find(section => section.includes(query));
+
+        if (found) {
+            window.location.href = `#${found}`;
+        } else {
+            alert("Section not found.");
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        if (window.innerWidth <= 991) {
+            document.getElementById("searchBar").style.display = "none";
+        }
+    });

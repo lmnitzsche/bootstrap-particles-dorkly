@@ -10974,5 +10974,76 @@ textarea.form-control-lg {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   }
-  
-  
+
+  /* Search Bar - Facebook Style */
+.search-form {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 200px;
+  transition: width 0.3s ease-in-out;
+}
+
+.search-input:focus {
+  width: 250px;
+}
+
+/* Navbar Icon Styling */
+.navbar-nav .nav-item {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.navbar-nav .nav-link i {
+  color: black;
+  transition: color 0.2s;
+}
+
+.navbar-nav .nav-link:hover i {
+  color: #007bff;
+}
+
+/* Tooltips Below Icons */
+.tooltip {
+  font-size: 14px;
+}
+
+.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+  border-bottom-color: #000 !important;
+}
+
+.tooltip-inner {
+  background-color: #000 !important;
+  color: white !important;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+/* Mobile - Show Traditional Menu */
+@media (max-width: 992px) {
+  .navbar-nav .nav-link i {
+      display: none;
+  }
+}
+
+@media (max-width: 992px) {
+  .navbar-collapse {
+      order: 1;
+  }
+
+  .search-form {
+      order: 2;
+      width: 100%;
+      margin-top: 10px;
+  }
+}
+
+/* Force hide the search bar on mobile */
+@media (max-width: 991px) {
+  #searchBar {
+      display: none !important;
+  }
+}
