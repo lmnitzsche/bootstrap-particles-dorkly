@@ -81,14 +81,21 @@
                             </a>
                         </li>
                     </ul>
-
-                    <!-- Traditional Dropdown Menu for Mobile -->
+                    <!-- Mobile NAV -->
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-lg-none">
-                        <li class="nav-item"><a class="nav-link" href="#features">Our Services</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#test">Case Studies</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#test">Testimonials</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#form">Contact</a></li>
-                    </ul>
+                        <li class="nav-item">
+                            <a class="nav-link dropdown-toggle text-black" href="#" id="servicesDropdown">
+                                Our Services <i class="bi bi-chevron-down ms-2" id="dropdownArrow"></i>
+                            </a>
+                            <div class="dropdown-content" id="dropdownContent">
+                                <a href="/">Social Media Marketing</a>
+                                <a href="/">Geospatial Advertising</a>
+                            </div>
+                        </li>                        
+                        <li class="nav-item"><a class="text-black nav-link" href="#test">Case Studies</a></li>
+                        <li class="nav-item"><a class="text-black nav-link" href="#test">Testimonials</a></li>
+                        <li class="nav-item"><a class="text-black nav-link" href="#form">Contact</a></li>
+                    </ul>                                     
                 </div>
             </div>
         </nav>
@@ -498,6 +505,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <!-- Search Logic JS-->
+        <script src="js/search.js"></script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->

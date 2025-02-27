@@ -51,22 +51,13 @@ $('.carousel-testimonial').owlCarousel({
         });
     });
 
-    // Search Functionality
-    document.querySelector(".search-form").addEventListener("submit", function(event) {
-        event.preventDefault();
-        let query = document.querySelector(".search-input").value.toLowerCase();
-        let sections = ["features", "price", "test", "form"];
-        let found = sections.find(section => section.includes(query));
-
-        if (found) {
-            window.location.href = `#${found}`;
-        } else {
-            alert("Section not found.");
-        }
-    });
-
     document.addEventListener("DOMContentLoaded", function () {
-        if (window.innerWidth <= 991) {
-            document.getElementById("searchBar").style.display = "none";
-        }
+        let dropdown = document.getElementById("servicesDropdown");
+        let dropdownContent = document.getElementById("dropdownContent");
+    
+        dropdown.addEventListener("click", function (e) {
+            e.preventDefault(); // Prevent link from navigating
+            dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block"; // Toggle visibility
+        });
     });
+    
