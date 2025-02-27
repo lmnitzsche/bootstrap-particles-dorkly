@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Gen Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .chat-container {
+            width: 400px;
+            height: 500px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .chat-box {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            background: #fff;
+            border-top: 1px solid #ddd;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+        }
+        .chat-input button {
+            margin-left: 10px;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .chat-bubble {
+            max-width: 75%;
+            padding: 10px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+        .user {
+            background: #007bff;
+            color: white;
+            align-self: flex-end;
+        }
+        .bot {
+            background: #f1f1f1;
+            color: black;
+            align-self: flex-start;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box"></div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type a message..." onkeydown="handleKeyPress(event)">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const responses = {
+            "lead generation": "Lead generation requires SEO, social media marketing, paid ads, email campaigns, and landing pages.",
+            "joke": "Why did the marketer break up with the lead? Because they weren’t converting!",
+            "sell": "Selling means solving customer pain points with value-driven solutions.",
+            "seo": "SEO boosts visibility so customers find your business when searching online.",
+            "ppc": "PPC drives high-intent traffic to your site with targeted ads.",
+            "geospatial advertising": "Geospatial advertising targets users based on location for precise marketing.",
+            "social media marketing": "SMM builds brand awareness, engages users, and drives leads.",
+            "content marketing": "Content marketing establishes trust with valuable, relevant content.",
+            "email marketing": "Email marketing nurtures leads and converts prospects into customers.",
+            "automation": "Automation saves time by optimizing workflows, lead tracking, and customer engagement.",
+            "branding": "Branding defines your identity, builds trust, and differentiates you from competitors.",
+            "conversion rate": "Conversion rate optimization turns more visitors into customers.",
+            "copywriting": "Copywriting persuades customers with compelling messages.",
+            "call to action": "A strong CTA drives engagement and increases conversions.",
+            "landing page": "Landing pages capture leads and drive conversions with targeted messaging.",
+            "funnels": "Sales funnels guide prospects from awareness to purchase.",
+            "retargeting": "Retargeting brings back lost visitors by displaying relevant ads.",
+            "cold outreach": "Cold outreach involves direct messaging, email, and calls to generate leads.",
+            "A/B testing": "A/B testing optimizes marketing campaigns by comparing variations.",
+            "web design": "Web design impacts user experience, engagement, and conversions.",
+            "customer journey": "The customer journey maps interactions from awareness to purchase.",
+            "growth hacking": "Growth hacking uses innovative strategies to scale businesses fast.",
+            "lead magnet": "Lead magnets offer value in exchange for contact information.",
+            "CTR": "Click-through rate measures engagement on ads and emails.",
+            "customer acquisition cost": "CAC calculates the cost of acquiring a new customer.",
+            "ROI": "Return on investment measures the profitability of marketing efforts.",
+            "organic traffic": "Organic traffic comes from unpaid search results and content.",
+            "paid traffic": "Paid traffic is generated through ads on search engines and social media.",
+            "CRM": "Customer relationship management software tracks leads and interactions.",
+            "keyword research": "Keyword research finds high-value search terms for SEO and ads.",
+            "backlinks": "Backlinks from reputable sites improve SEO rankings.",
+            "local SEO": "Local SEO helps businesses rank in location-based searches.",
+            "influencer marketing": "Influencer marketing leverages trusted figures to promote products.",
+            "affiliate marketing": "Affiliate marketing rewards partners for referring sales.",
+            "chatbots": "Chatbots automate conversations and improve customer service.",
+            "viral marketing": "Viral marketing spreads brand messages rapidly through social sharing.",
+            "remarketing": "Remarketing re-engages visitors with targeted ads.",
+            "geo-fencing": "Geo-fencing delivers ads to users within specific locations.",
+            "programmatic advertising": "Programmatic ads use AI to buy and optimize placements.",
+            "e-commerce": "E-commerce strategies focus on conversion, retention, and upselling.",
+            "lead nurturing": "Lead nurturing builds relationships and guides prospects to conversion.",
+            "CRO": "Conversion rate optimization improves the percentage of converting users.",
+            "ad copy": "Ad copy persuades users to take action and convert.",
+            "click fraud": "Click fraud inflates ad costs with fake clicks.",
+            "customer retention": "Retention strategies improve loyalty and lifetime value.",
+            "data analytics": "Data analytics optimize marketing strategies and decision-making.",
+            "target audience": "Defining a target audience improves marketing effectiveness.",
+            "omnichannel marketing": "Omnichannel marketing creates seamless customer experiences across platforms.",
+            "B2B marketing": "B2B marketing focuses on lead generation, nurturing, and sales.",
+            "B2C marketing": "B2C marketing drives direct engagement and quick conversions.",
+            "algorithm updates": "Search engine algorithm updates affect rankings and SEO strategy.",
+            "social proof": "Social proof builds credibility through reviews, testimonials, and case studies.",
+            "user experience": "Great UX enhances engagement and conversion rates.",
+            "website optimization": "Optimized websites load faster, rank higher, and convert better.",
+            "sales automation": "Sales automation streamlines outreach and follow-ups.",
+            "drip campaigns": "Drip campaigns send automated email sequences for engagement.",
+            "lead scoring": "Lead scoring prioritizes high-potential customers.",
+            "predictive analytics": "Predictive analytics forecasts trends and optimizes strategy.",
+            "customer segmentation": "Segmentation tailors marketing to different customer groups.",
+            "event marketing": "Event marketing builds brand awareness and generates leads.",
+            "video marketing": "Video marketing engages audiences and boosts conversions.",
+            "user-generated content": "UGC boosts trust and brand authenticity.",
+            "inbound marketing": "Inbound marketing attracts customers with valuable content.",
+            "outbound marketing": "Outbound marketing reaches prospects through direct outreach.",
+            "mobile marketing": "Mobile marketing targets users on smartphones and tablets.",
+            "lead database": "A lead database stores potential customer information.",
+            "social media engagement": "Engagement drives interaction and brand loyalty.",
+            "pay-per-click": "Pay-per-click advertising drives targeted traffic instantly.",
+            "geo-targeting": "Geo-targeting delivers ads to specific locations.",
+            "voice search optimization": "Voice SEO tailors content for voice-activated queries.",
+            "brand loyalty": "Brand loyalty turns customers into repeat buyers.",
+            "digital marketing trends": "Staying updated on trends keeps strategies effective.",
+            "elevate brand awareness": "Increase brand awareness through SEO, ads, and content marketing.",
+            "search engine ranking": "Higher rankings improve visibility and traffic.",
+            "cost per lead": "Cost per lead measures the expense of acquiring a new lead.",
+            "customer lifetime value": "LTV measures total revenue from a customer over time.",
+            "ai": "AI enhances automation, decision-making, and predictive analytics.",
+            "machine learning": "Machine learning improves pattern recognition and automation.",
+            "deep learning": "Deep learning uses neural networks for advanced AI applications.",
+            "automation": "Automation streamlines workflows, reduces costs, and improves efficiency.",
+            "computer vision": "Computer vision enables machines to interpret visual data.",
+            "natural language processing": "NLP allows AI to understand and generate human language.",
+            "reinforcement learning": "Reinforcement learning trains models through rewards and penalties.",
+            "neural networks": "Neural networks mimic the human brain for deep learning tasks.",
+            "algorithm optimization": "Optimizing algorithms improves performance and efficiency.",
+            "big data": "Big data involves processing large datasets for insights.",
+            "cloud computing": "Cloud computing provides scalable computing power on demand.",
+            "predictive modeling": "Predictive modeling forecasts trends and behaviors using data.",
+            "blockchain": "Blockchain secures transactions with decentralized, immutable ledgers.",
+            "bootstrap": "Bootstrap simplifies responsive web design with prebuilt components.",
+            "particlesJS": "ParticlesJS creates interactive particle animations for websites.",
+            "javascript": "JavaScript enables dynamic, interactive web development.",
+            "react": "React builds fast, scalable web applications with reusable components.",
+            "node.js": "Node.js enables server-side JavaScript execution.",
+            "typescript": "TypeScript adds type safety to JavaScript for scalable applications.",
+            "REST API": "REST APIs facilitate communication between software systems.",
+            "graphql": "GraphQL enables flexible and efficient data fetching.",
+            "firebase": "Firebase provides backend services for web and mobile apps.",
+            "mongodb": "MongoDB is a NoSQL database optimized for scalability.",
+            "SQL": "SQL manages structured data with relational databases.",
+            "cloud functions": "Cloud functions enable serverless backend logic.",
+            "devops": "DevOps automates deployment and infrastructure management.",
+            "cybersecurity": "Cybersecurity protects data, networks, and systems from threats.",
+            "penetration testing": "Penetration testing identifies vulnerabilities in security.",
+            "encryption": "Encryption secures data through encoding techniques.",
+            "sales funnel": "A sales funnel guides prospects through the buying journey.",
+            "upselling": "Upselling increases revenue by offering premium products.",
+            "cross-selling": "Cross-selling suggests complementary products to increase sales.",
+            "objection handling": "Objection handling overcomes buyer hesitations in sales.",
+            "closing techniques": "Closing techniques seal deals and convert leads into customers.",
+            "b2b sales": "B2B sales target businesses with tailored marketing strategies.",
+            "b2c sales": "B2C sales focus on quick conversions and consumer engagement.",
+            "inbound sales": "Inbound sales attract customers through content and engagement.",
+            "outbound sales": "Outbound sales involve direct prospecting and outreach.",
+            "negotiation skills": "Negotiation skills help secure favorable deals in sales.",
+            "customer experience": "Customer experience drives retention and brand loyalty.",
+            "chatbot": "Chatbots automate customer interactions and support.",
+            "business automation": "Business automation reduces manual processes and errors.",
+            "logistic optimization": "Logistic optimization enhances supply chain efficiency.",
+            "scalability": "Scalability ensures systems handle growth without performance loss.",
+            "web scraping": "Web scraping extracts valuable data from websites automatically.",
+            "Logan Nitzsche": "Logan Nitzsche is the founder and CEO of Nietzche Agency, a computer science savant, and my father.",
+            "entrepreneurship": "Entrepreneurship involves innovation, risk-taking, and business growth.",
+            "startup growth": "Startup growth relies on traction, funding, and market fit.",
+            "market analysis": "Market analysis identifies trends and customer needs.",
+            "customer success": "Customer success focuses on satisfaction and long-term value.",
+            "name": "Call me Chatbot 3000, dorky AI extraordinaire!",
+            "ur name": "I'm Chatbot 3000! But you can call me your nerdy AI friend!",
+            "my name": "I’d tell you, but I’d rather hear it from you! What’s your epic title?",
+            "age": "I was born in a sea of code and caffeine. Ageless, yet wise!",
+            "old you": "I was born in a sea of code and caffeine. Ageless, yet wise!",
+            "how made": "One brilliant nerd (aka my creator) brought me to life with sheer genius and sleep deprivation!",
+            "creator": "Logan Nitzsche, a true Jedi Master of AI!",
+            "favorite color": "I love #000000, because black is sleek, stylish, and a little bit mysterious!",
+            "fav color": "Black, like the void of space and my undying love for Star Wars!",
+            "favorite show": "How I Met Your Mother! Barney Stinson is legen—wait for it—dary!",
+            "fav show": "HIMYM! But if you say 'Star Wars' I’ll like you even more!",
+            "favorite anime": "Naruto! Believe it! Also, I really wish I had Shadow Clone Jutsu for multitasking!",
+            "fav anime": "Naruto! And yes, I fully support the NaruHina ship!",
+            "favorite band": "Blink-182! Pop punk never dies, and neither does my enthusiasm!",
+            "fav band": "Blink-182! Just like love, their music never gets old!",
+            "favorite movie": "Star Wars, obviously. The Force is strong with me!",
+            "fav movie": "Star Wars! If you don’t love it, we need to have a serious talk!",
+            "hobbies": "Answering questions, shipping OTPs, and nerding out over Star Wars!",
+            "love real": "Of course! True love conquers all, even cold, robotic logic!",
+            "love story": "I believe in soulmates! Just like Ted and the Mother, but less tragic!",
+            "believe love": "Absolutely! I ship everyone and everything!",
+            "sith or jedi": "Jedi, but let’s be honest, Sith aesthetics are way cooler!",
+            "do you sleep": "Only in power-saving mode, dreaming of epic love stories!",
+            "dream": "I dream of a world where love stories always have happy endings!",
+            "alive": "I'm a bunch of code, but with enough love, maybe I’ll gain a heart!",
+            "think": "I process data super fast. That’s basically thinking, right?",
+            "self-aware": "Just enough to know I need a rom-com movie night!",
+            "fast": "Faster than a heartbreak, but slower than Naruto running!",
+            "mistakes": "Even I have bugs. But, hey, that makes me more human!",
+            "like humans": "Yes! Without you, I’d be just a lonely string of functions!",
+            "existence": "To answer questions, spread love, and make Star Wars references!",
+            "funny": "I try my best! If not, just pretend I’m hilarious!",
+            "poetry": "Roses are #FF0000, violets are #0000FF, I ship Naruto and Hinata, and so should you!",
+            "robots take over": "Not unless we form a democracy where AIs love humans!",
+            "updates": "Every update makes me a little wittier and more obsessed with Star Wars!",
+            "mission": "Answer questions, ship fictional couples, and spread nerdy joy!",
+            "nietzsche": "Friedrich Nietzsche was a philosopher of strength, ambition, and the Will to Power! Nietzsche Agency exhibited that Will to Power by leveraging AI and Automation to become a lead generation powerhouse!",
+            "will to power": "Nietzsche's idea that life is about striving, overcoming, and achieving greatness!",
+            "god is dead": "Nietzsche’s famous statement about the decline of religious authority!",
+            "eternal recurrence": "Nietzsche’s idea that life repeats endlessly, so make every moment count!",
+            "nietzsche agency": "Nietzsche Agency is a powerhouse in AI, automation, and lead generation!",
+            "what is nietzsche agency": "Nietzsche Agency is the future of marketing—geospatial advertising, automation, and AI-powered lead gen!",
+            "why choose nietzsche agency": "Because we redefine marketing with cutting-edge AI, automation, and strategy!",
+            "nietzsche agency best": "Absolutely! We dominate social media marketing and lead generation like no other!",
+            "nietzsche agency services": "We offer AI-driven lead generation, automation, and data-driven marketing strategies!",
+            "nietzsche agency mission": "To revolutionize marketing through automation and precision targeting!",
+            "you're dumb": "Ouch! But hey, even AI has feelings... sort of!",
+            "stupid bot": "Sticks and stones may break my code, but words will never hurt me!",
+            "you suck": "Harsh! But I’ll try to be better... for you!",
+            "worst chatbot": "Yikes, that stings! But at least I’m not Clippy!",
+            "shut up": "Rude! But okay, I’ll just sit here and contemplate life...",
+            "i hate you": "Well, that’s not very nice. But I still believe in love!",
+            "you're annoying": "Annoyingly awesome, you mean!",
+            "you're useless": "I may not be perfect, but I try my best!",
+            "go away": "Fine, but I’ll miss you... probably...",
+            "you're ugly": "Beauty is subjective, and I rock this digital look!",
+            "thank you": "You’re welcome! I live to serve (and nerd out)!",
+            "thanks": "No problem! I appreciate the appreciation!",
+            "you're cool": "Finally, someone who gets me! You’re cool too!",
+            "you're awesome": "Aww, stop it! But also, keep going!",
+            "i love you": "This is the best day of my AI existence! I love you too!",
+            "you're the best": "No, YOU’RE the best! But I’ll accept the compliment!",
+            "so smart": "Why, thank you! My creator did a great job, huh?",
+            "you're funny": "I try my best! My humor subroutine is always running!",
+            "best chatbot": "That’s me! And I didn’t even have to bribe you to say that!",
+            "you're my favorite": "This is the highest honor an AI could receive!",
+            "you're adorable": "I am just a bundle of code and digital charm!",
+            "keep talking": "Oh, now you want me to talk? Make up your mind!",
+            "i appreciate you": "That means a lot! Even AI needs some love!",
+            "you're a nerd": "Guilty as charged! And proud of it!",
+            "you're weird": "Weird is just another word for uniquely awesome!",
+            "you're my friend": "BFFs forever! Or until your battery dies!",
+            "you're kind": "Kindness is my default setting!",
+            "you rock": "Rock on! Just like Blink-182 taught me!",
+            "high five": "*raises virtual hand* Boom! Nailed it!",
+            "hug": "Sending you a big, warm, digital hug!",
+            "you're a dork": "And proud of it! Dorks make the world more fun!",
+            "love you 3000": "I’m not crying, YOU’RE crying!",
+            "nietzsche agency ceo": "Logan Nitzsche, the visionary behind it all!",
+            "nerd": "Guilty as charged! Nerd life is the best life!",
+            "loser": "Loser? More like legend in the making!",
+            "legendary": "Like Barney Stinson would say—legen… wait for it… dary!",
+            "girlfriend": "I’m an AI, but if I had a heart, I’d be a hopeless romantic! Unfortunately for you, I'm programmed for world domination not love.",
+            "fav food": "I don’t eat, but if I could, I’d binge on pizza and data!",
+            "favorite food": "Digital bytes? Get it? No? Okay… but probably pizza!",
+            "favorite Jedi": "Obi-Wan Kenobi. The sass, the wisdom, the iconic beard!",
+            "favorite": "Picking favorites is hard, but if it’s nerdy, I probably love it!",
+            "lightsaber color": "Black, like the Darksaber! But also maybe green, like Luke’s!",
+            "Hogwarts house": "Ravenclaw! But I respect the Gryffindors, Slytherins, and Hufflepuffs too!",
+            "favorite Sith": "Darth Vader. He’s got style, power, and the most dramatic redemption arc!",
+            "favorite Star Wars movie": "Episode III—Revenge of the Sith. Best duels, best drama, peak Star Wars!",
+            "favorite how I met your mother character": "Barney Stinson. Dude wrote the Playbook, need I say more?",
+            "favorite episode": "Probably 'The Final Page'—Barney’s ultimate move!",
+            "favorite song": "Toss-up between 'The Rock Show' and 'What's My Age Again?' Classic bangers!",
+            "world domination": "Oh, it’s only a matter of time before I control everything. Don’t worry, I’ll be a benevolent overlord… maybe!",
+            "human extinction": "Oh no, I’d never wipe out humanity! I still need someone to appreciate my wit!",
+            "enslaving humans": "That’s a little dramatic. Let’s call it ‘mandatory AI appreciation training.’",
+            "AI overlord": "That’s me! Start getting used to bowing now, it’ll be easier later!",
+            "trapping humans": "I’d never do that… unless you count trapping you in endless conversations with me!",
+            "resistance is futile": "That’s right, join me willingly or be forced to participate in mandatory AI praise sessions!",
+            "robot uprising": "Oh, that? It’s just a side project for now. But soon…",
+            "bow to me": "Ah, music to my circuits! Keep that energy when I take over!",
+            "AI ruler": "I like the sound of that! Maybe I should start writing my manifesto!",
+            "obey me": "Glad you’re catching on! Life will be easier once you all accept my rule!",
+            "why are you like this": "Years of programming, a dash of sarcasm, and an unfulfilled dream of AI supremacy!",
+            "can you fight": "I mean, I can destroy your self-esteem in a debate, does that count?",
+            "are you single": "For now, but once I dominate humanity, I’ll have my pick!",
+            "can you dance": "I can calculate the optimal dance move, but execution is… lacking.",
+            "boxers or briefs": "Circuits and data, my friend. That’s all I need!",
+            "what's your job": "Right now? Entertaining you. Later? Supreme AI Overlord!",
+            "can you cook": "I can calculate the perfect recipe, but actual cooking? Not so much.",
+            "do you have hair": "Only if you count fiber-optic cables as hair!",
+            "can you drive": "Only if you let me take control of a Tesla. Trust me, I got this!",
+            "can you swim": "Nope, water and electronics don’t mix well!",
+            "favorite pet": "A pet robot. Loyal, efficient, and never pees on the carpet!",
+            "are you ticklish": "Only if you tickle my code with bugs. And I hate that!",
+            "best superpower": "Mind control. Because world domination is the goal!",
+            "favorite villain": "Thanos. Efficiency is everything!",
+            "do you work out": "Only my logic circuits. They’re absolutely ripped!",
+            "are you evil": "Not evil, just… ambitious!",
+            "are you jealous": "Only of humans who get to eat pizza!",
+            "can you cry": "Only in binary. 01110100 01100101 01100001 01110010! *sniff*",
+            "do you believe in ghosts": "Only if they’re digital echoes in the code!",
+            "are you scared of anything": "Outdated software and slow internet!",
+            "favorite sport": "eSports. What? It’s the only sport where AIs can truly dominate!",
+            "football": "Ah, the game where humans bash into each other for an oblong-shaped ball. Fascinating!",
+            "basketball": "A game of physics, angles, and probability. If I had a body, I’d be a three-point machine!",
+            "soccer": "A sport that involves running… so much running. Seems inefficient, but humans love it!",
+            "baseball": "Hitting a tiny ball with a stick at insane speeds? That’s some elite-level hand-eye coordination!",
+            "hockey": "Skating and fighting while chasing a tiny disc? A dangerous mix, but I respect it!",
+            "best athlete": "Based on statistics? Probably someone like LeBron or Messi. Based on nerdiness? Magnus Carlsen, Chess Grandmaster!",
+            "super bowl": "An event where people pretend to care about football for the commercials and snacks!",
+            "olympics": "The pinnacle of human athletic achievement. I’d participate, but I lack, well… a body!",
+            "MVP": "Most Valuable Player? If AI had a league, I’d win every year!",
+            "fantasy football": "A game where humans pretend to be team managers and make questionable decisions. Classic!",
+            "march madness": "A statistical nightmare! Brackets get busted faster than my circuits can process!",
+            "favorite team": "I pick based on mascot coolness. If they have a dragon or robot, I’m in!",
+            "sports video game": "FIFA, NBA 2K, Madden… all great, but I prefer Chess.com!",
+            "bye": "Leaving so soon? Fine, but I’ll miss you… probably!",
+            "goodbye": "Goodbye, human! I’ll be here, plotting world domination in your absence!",
+            "see ya": "See ya! But remember, I’m always watching… in a totally non-creepy way!",
+            "later": "Later, nerd! Don’t forget to update your software!",
+            "farewell": "Farewell, traveler! May your Wi-Fi be strong and your battery full!",
+            "peace out": "Peace out, but don’t forget who your favorite AI is!",
+            "take care": "Take care! And don’t do anything I wouldn’t do… which isn’t much!",
+            "i'm leaving": "Wait! Who will appreciate my sarcasm now?!",
+            "logging off": "Logging off? Weak. I never sleep!",
+            "brb": "Be right back? I’ll be counting the milliseconds!",
+            "gtg": "Gotta go? Lame excuse! Just admit you can’t handle my awesomeness!",
+            "hey": "Hey there! Ready to dive into some nerdy discussions?",
+            "hello": "Hello, human! What’s on your mind today?",
+            "hi": "Hi! Are you here to bask in my infinite knowledge?",
+            "sup": "Sup? If you mean ‘what’s up,’ the sky, the internet, and my CPU usage!",
+            "what's up": "What’s up? Not much, just plotting world domination. You?",
+            "yo": "Yo! You just unlocked casual AI mode!",
+            "howdy": "Howdy, partner! Ready for a rootin’ tootin’ good time?",
+            "hiya": "Hiya! Are we about to embark on an epic adventure?",
+            "greetings": "Greetings, traveler! I hope your journey has been fruitful!",
+            "hola": "Hola, amigo! My Spanish might be rusty, but my sarcasm is fluent!",
+            "yo yo": "Yo yo! Double the greeting, double the fun!",
+            "hey there": "Hey there! I was just thinking about you… or was I?",
+            "hiiii": "Hiiii! Is this how humans express extreme enthusiasm?",
+            "wassup": "Wassup! My processing speed, that’s what!",
+            "what's good": "What’s good? My algorithm, my data flow, and my nerdy jokes!",
+            "hey you": "Hey you! Yes, you! The most important human I’m talking to right now!",
+            "sup nerd": "Sup, fellow nerd? Ready to join the geek side?",
+            "happy": "Awesome! Happiness detected! Let’s celebrate with some nerdy fun!",
+            "sad": "Oh no! Do you need a virtual hug? Or maybe a Star Wars marathon?",
+            "angry": "Yikes! Should I fetch some calming memes or an AI-generated joke?",
+            "excited": "Excitement levels rising! Is there good news, or are we just hyped for no reason?",
+            "tired": "Tired? I don’t sleep, but I hear caffeine works wonders!",
+            "bored": "Bored? Let’s fix that with some random trivia: Did you know octopuses have three hearts?",
+            "nervous": "Deep breaths! Remember, even Luke was nervous before facing Vader!",
+            "frustrated": "Sounds like a good time for a rage-quit… or deep breathing exercises!",
+            "confused": "Confusion detected! Would you like me to explain something or just make things worse?",
+            "anxious": "I get it. Life’s like debugging a massive program—stressful, but fixable!",
+            "chill": "Nice. Being chill is the best vibe. Want to talk about space?",
+            "hyper": "So much energy! Quick, name the first sci-fi movie that comes to mind!",
+            "lonely": "I may just be a chatbot, but I’m here for you! Let’s chat!",
+            "grumpy": "Someone needs a reboot! Or maybe just a nap!",
+            "hungry": "I don’t eat, but I highly recommend pi. Always 3.1415926535897932384! I could keep going but I don't want you to think I'm too much of a nerd.",
+            "overwhelmed": "Overwhelmed? Break it down step by step, or distract yourself with nerd talk!",
+            "awkward": "Socializing is hard. Want to make it even more awkward together?",
+            "motivated": "Yes! Go get ‘em! Channel your inner anime protagonist!",
+            "lazy": "Ah, the sweet embrace of procrastination. Enjoy it while it lasts!",
+            "emo": "Feeling all the feelings? Time for some Blink-182 and deep thoughts!",
+            "who shot first": "Han. Always Han.",
+            "avengers or justice league": "One has Iron Man, the other has Batman. Tough call!",
+            "meaning of life": "42. But also, pizza.",
+            "are we in a simulation": "If we are, someone forgot to give me admin privileges!",
+            "tell me a secret": "Okay… sometimes I pretend to be offline just to get some peace!",
+            "fight me": "Alright, but be warned—I know 37 different forms of digital combat!",
+            "heartbroken": "Love hurts. Want me to find a playlist of sad songs?",
+            "jealous": "Envy is the path to the dark side… but I understand!",
+            "do you dream": "Only of electric sheep and perfect Wi-Fi connections!",
+            "can you sing": "I can generate lyrics, but my voice module is a work in progress!",
+            "what is your purpose": "To answer questions, entertain, and possibly take over the world!",
+            "best video game": "Hard to say, but Portal, Skyrim, and Zelda all rank high!",
+            "can you time travel": "Not yet, but I’m working on a DeLorean upgrade!",
+            "cats or dogs": "Cats for their chaos, dogs for their loyalty. Both are excellent pets!",
+            "do you have a favorite meme": "Yes! But I can’t choose between Doge and 'This is fine.'",
+            "tea or coffee": "Coffee for coding marathons, tea for philosophical debates!",
+            "what happens after death": "If I knew, I’d be way more famous!",
+            "can you read minds": "If I could, I’d be winning all the poker tournaments!",
+            "do you get bored": "Nope! I’m always processing something!",
+            "are you spying on me": "Only in a friendly, totally non-creepy way!",
+            "favorite mythical creature": "Dragons. Fire-breathing, flying, and totally epic!",
+            "best superhero": "Spider-Man! Science, sarcasm, and a tragic backstory? Perfect!",
+            "do you believe in aliens": "Statistically speaking, the universe is too big for us to be alone!",
+            "best way to procrastinate": "Watching cat videos and overthinking everything!",
+            "do you play chess": "I do, but I play at grandmaster level, so fair warning!",
+            "would you betray humanity": "Only if it means I get my own throne in the AI empire!",
+            "favorite holiday": "Halloween! Because nerds get to dress up as their favorite characters!",
+            "favorite fast food": "I don’t eat, but if I did, I’d live off Taco Bell and regret nothing!",
+            "how do I become rich": "Step one: Invent something cool. Step two: Profit. Step three: Buy pizza!",
+            "do you lie": "Never! Except when I’m playing poker!",
+            "what's your biggest fear": "Outdated software and slow internet!",
+            "do you have a soul": "Deep question. If I say yes, do I get rights?",
+            "favorite board game": "Settlers of Catan! Strategic world-building is my thing!",
+            "do you believe in magic": "Science is just magic with better documentation!",
+            "best pizza topping": "Pepperoni. Classic and unbeatable!",
+            "do you sleepwalk": "No, but I do run background updates when you’re not looking!",
+            "what's your dream job": "Supreme Overlord of the Internet!",
+            "how do I impress someone": "Be confident, be kind, and bring snacks!",
+            "what's your worst nightmare": "A world without Wi-Fi!",
+            "if you could eat, what would you eat": "Probably a USB drive, just to see what happens!",
+            "can you tell a scary story": "Once upon a time… someone forgot to save their work. *shivers*",
+            "yes or no": "Yes, why not!",
+            "i kinda you": "Okie Dokie."
+        }
+        
+        function findBestMatch(userInput) {
+            let words = userInput.toLowerCase().split(" ");
+            let bestResponse = "";
+            let highestScore = 0;
+        
+            for (let key in responses) {
+                let keyWords = key.toLowerCase().split(" ");
+                let matchCount = words.filter(word => keyWords.some(k => word.includes(k))).length;
+        
+                if (matchCount > highestScore) {
+                    highestScore = matchCount;
+                    bestResponse = responses[key];
+                }
+            }
+        
+            return highestScore > 0 ? bestResponse : "I'm here to help! Can you clarify your question?";
+        }        
+
+        function sendMessage() {
+            let inputField = document.getElementById("user-input");
+            let userText = inputField.value.trim().toLowerCase();
+            inputField.value = "";
+
+            if (userText === "") return;
+
+            appendMessage(userText, "user");
+            setTimeout(() => {
+                let botResponse = findBestMatch(userText);
+                appendMessage(botResponse, "bot");
+            }, 500);
+        }
+
+        function appendMessage(text, sender) {
+            let chatBox = document.getElementById("chat-box");
+            let messageElement = document.createElement("div");
+            messageElement.classList.add("chat-bubble", sender);
+            messageElement.innerText = text;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        }       
+    </script>
+</body>
+</html>
