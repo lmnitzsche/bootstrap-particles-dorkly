@@ -77,6 +77,4 @@ $('.carousel-testimonial').owlCarousel({
             }
         });
     });
-
-        
     

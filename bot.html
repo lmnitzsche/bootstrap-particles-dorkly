@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Gen Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .chat-container {
+            width: 400px;
+            height: 500px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .chat-box {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            background: #fff;
+            border-top: 1px solid #ddd;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+        }
+        .chat-input button {
+            margin-left: 10px;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .chat-bubble {
+            max-width: 75%;
+            padding: 10px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+        .user {
+            background: #007bff;
+            color: white;
+            align-self: flex-end;
+        }
+        .bot {
+            background: #f1f1f1;
+            color: black;
+            align-self: flex-start;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box"></div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type a message..." onkeydown="handleKeyPress(event)">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const responses = {
+            "generation": "Lead generation requires a mix of inbound and outbound strategies. You need SEO, social media marketing, paid ads, and strong landing pages.",
+            "joke": "Why did the marketer break up with the lead? Because they weren’t converting!",
+            "sell": "Selling effectively requires knowing your customer’s pain points and addressing them with value-driven solutions.",
+            "seo": "SEO improves your online visibility, ensuring that when people search for relevant keywords, your business appears at the top. More visibility = more leads!",
+            "ppc": "PPC helps by putting your business in front of high-intent users. With well-optimized ads, you can drive targeted traffic that converts.",
+        };
+
+        function findBestMatch(userInput) {
+            let words = userInput.toLowerCase().split(" ");
+            let foundResponses = [];
+            
+            words.forEach(word => {
+                if (responses[word]) {
+                    foundResponses.push(responses[word]);
+                }
+            });
+            
+            if (foundResponses.length > 1) {
+                return foundResponses.join(" \n\n");
+            } else if (foundResponses.length === 1) {
+                return foundResponses[0];
+            } else {
+                return "I'm here to help! Can you clarify your question?";
+            }
+        }
+
+        function sendMessage() {
+            let inputField = document.getElementById("user-input");
+            let userText = inputField.value.trim().toLowerCase();
+            inputField.value = "";
+
+            if (userText === "") return;
+
+            appendMessage(userText, "user");
+            setTimeout(() => {
+                let botResponse = findBestMatch(userText);
+                appendMessage(botResponse, "bot");
+            }, 500);
+        }
+
+        function appendMessage(text, sender) {
+            let chatBox = document.getElementById("chat-box");
+            let messageElement = document.createElement("div");
+            messageElement.classList.add("chat-bubble", sender);
+            messageElement.innerText = text;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        }       
+    </script>
+</body>
+</html>
