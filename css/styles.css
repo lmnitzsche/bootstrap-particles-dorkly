@@ -11105,3 +11105,8 @@ textarea.form-control-lg {
 .nav-item.active i {
   color: #0d6efd !important; /* Make sure the color persists */
 }
+
+.nav-item .nav-link.active {
+  border-bottom: 3px solid #007bff; /* Change the color to match your theme */
+  padding-bottom: 2px; /* Adjust spacing */
+}

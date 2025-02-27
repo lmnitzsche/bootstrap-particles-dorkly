@@ -62,13 +62,21 @@ $('.carousel-testimonial').owlCarousel({
     });
 
     document.addEventListener("DOMContentLoaded", function () {
-        // Get the current page URL
+        const navLinks = document.querySelectorAll(".nav-item .nav-link");
         const currentPage = window.location.pathname.split("/").pop();
-    
-        // If on index.html or root URL, highlight the home icon
+
+        // Highlight home icon if on index.html or root URL
         if (currentPage === "index.html" || currentPage === "") {
             document.getElementById("homeLink").classList.add("active");
         }
+
+        // General logic to underline active icons
+        navLinks.forEach(link => {
+            if (link.href === window.location.href || link.href === window.location.origin + window.location.pathname) {
+                link.classList.add("active");
+            }
+        });
     });
-    
+
+        
     
