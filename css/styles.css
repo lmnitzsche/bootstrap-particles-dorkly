@@ -11089,3 +11089,19 @@ textarea.form-control-lg {
 .dropdown-toggle.open #dropdownArrow {
   transform: rotate(180deg); /* Flip arrow when dropdown is open */
 }
+
+/* Default icon color */
+.nav-item i {
+  color: black; /* Set your default color */
+  transition: color 0.3s ease-in-out;
+}
+
+/* Change color when hovering */
+.nav-item:hover i {
+  color: #0d6efd; /* Bootstrap primary blue */
+}
+
+/* Change color when the link is active (on index.html) */
+.nav-item.active i {
+  color: #0d6efd !important; /* Make sure the color persists */
+}

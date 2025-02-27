@@ -60,4 +60,15 @@ $('.carousel-testimonial').owlCarousel({
             dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block"; // Toggle visibility
         });
     });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the current page URL
+        const currentPage = window.location.pathname.split("/").pop();
+    
+        // If on index.html or root URL, highlight the home icon
+        if (currentPage === "index.html" || currentPage === "") {
+            document.getElementById("homeLink").classList.add("active");
+        }
+    });
+    
     
