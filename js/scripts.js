@@ -70,6 +70,11 @@ $('.carousel-testimonial').owlCarousel({
             document.getElementById("homeLink").classList.add("active");
         }
 
+        // Highlight case studies icon if on case-studies.html
+        if (currentPage === "case-studies.html") {
+            document.getElementById("caseStudiesLink").classList.add("active");
+        }
+
         // General logic to underline active icons
         navLinks.forEach(link => {
             if (link.href === window.location.href || link.href === window.location.origin + window.location.pathname) {

@@ -9,7 +9,7 @@
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="../assets/fav.WEBP" />
         <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../css/styles.css" rel="stylesheet" />
         <!------ Rotating Testimonials ---------->
@@ -28,7 +28,7 @@
         <nav id="start" class="navbar navbar-expand-lg navbar-light bg-part">
             <div class="container px-5">
                 <!-- Logo -->
-                <a class="navbar-brand text-black" href="#start">
+                <a class="navbar-brand text-black" href="../index.html">
                     <img src="../assets/logo1.png" alt="Nietzsche and Company Logo" height="45">
                 </a>
                 <!-- Navbar Toggle Button (Mobile) -->
@@ -61,7 +61,7 @@
                         </li>
 
                         <!-- Case Studies -->
-                        <li class="nav-item">
+                        <li class="nav-item" id="caseStudiesLink">
                             <a class="nav-link position-relative" href="case-studies.html" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Case Studies">
                                 <i class="bi bi-people-fill fs-4"></i>
                             </a>
@@ -101,15 +101,15 @@
         </nav>
 
         <!-- Header with Particles.js -->
-        <header class="position-relative bg-light">
+        <header class="position-relative">
             <div id="particles-js"></div>
             <div class="content">
                 <div class="container px-5">
                     <div class="row gx-5 justify-content-center">
-                        <div class="col-lg-8">
+                        <div class="col-lg-6">
                             <div class="text-center my-5">
-                                <h1 class="display-4 fw-bolder mb-3">Client Success Stories</h1>
-                                <p class="lead text-muted mb-4">Discover how we've helped businesses transform their social media presence into powerful lead generation engines.</p>
+                                <h1 class="text-black mb-2"><strong><i class="gradient-text">Client Success Stories</i></strong></h1>
+                                <p class="lead text-black mb-4">Discover how we've helped businesses transform their social media presence into powerful lead generation engines.</p>
                                 <div class="d-flex justify-content-center gap-3">
                                     <div class="d-flex align-items-center">
                                         <i class="bi bi-graph-up-arrow text-primary fs-3 me-2"></i>
@@ -118,7 +118,7 @@
                                             <div class="small text-muted">Avg. ROI</div>
                                         </div>
                                     </div>
-                                    <div class="vr mx-2"></div>
+                                    <div class="mx-2"></div>
                                     <div class="d-flex align-items-center">
                                         <i class="bi bi-people-fill text-primary fs-3 me-2"></i>
                                         <div class="text-start">
@@ -126,7 +126,7 @@
                                             <div class="small text-muted">Clients</div>
                                         </div>
                                     </div>
-                                    <div class="vr mx-2"></div>
+                                    <div class="mx-2"></div>
                                     <div class="d-flex align-items-center">
                                         <i class="bi bi-trophy-fill text-primary fs-3 me-2"></i>
                                         <div class="text-start">
@@ -134,6 +134,10 @@
                                             <div class="small text-muted">Success Rate</div>
                                         </div>
                                     </div>
+                                </div>
+                                <br>
+                                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                                    <a class="btn btn-primary btn-lg px-4 me-sm-3" href="https://calendly.com/nietzscheandco/consultation">Book Your Free Consultation</a>
                                 </div>
                             </div>
                         </div>
@@ -326,5 +330,7 @@
         <script src="../js/scripts.js"></script>
         <!-- Search Logic JS-->
         <script src="../js/search.js"></script>
+        <!-- Particles JS-->
+        <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     </body>
 </html>
