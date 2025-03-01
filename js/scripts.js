@@ -64,22 +64,33 @@ $('.carousel-testimonial').owlCarousel({
     document.addEventListener("DOMContentLoaded", function () {
         const navLinks = document.querySelectorAll(".nav-item .nav-link");
         const currentPage = window.location.pathname.split("/").pop();
-
+    
+        // Remove active class from all links
+        navLinks.forEach(link => link.classList.remove("active"));
+    
         // Highlight home icon if on index.html or root URL
         if (currentPage === "index.html" || currentPage === "") {
             document.getElementById("homeLink").classList.add("active");
         }
-
+    
         // Highlight case studies icon if on case-studies.html
         if (currentPage === "case-studies.html") {
             document.getElementById("caseStudiesLink").classList.add("active");
         }
-
+    
+        let activeFound = false;
+    
         // General logic to underline active icons
         navLinks.forEach(link => {
             if (link.href === window.location.href || link.href === window.location.origin + window.location.pathname) {
                 link.classList.add("active");
+                activeFound = true;
             }
         });
+    
+        // Default to underlining the "Home" link if no other link is active
+        if (!activeFound) {
+            document.getElementById("homeLink").classList.add("active");
+        }
     });
     
