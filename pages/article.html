@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="article-title">Article - Blyss by DorklyAI</title>
+    <link rel="icon" type="image/x-icon" href="../assets/dorklogo.png" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --blyss-black: #0a0a0a;
+            --blyss-blue: #0d6efd;
+            --blyss-light-blue: #4d94ff;
+            --blyss-white: #ffffff;
+            --blyss-gray: #1a1a1a;
+            --blyss-text: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--blyss-black);
+            color: var(--blyss-text);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        .blyss-nav {
+            background: linear-gradient(180deg, rgba(10,10,10,1) 0%, rgba(10,10,10,0.95) 100%);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(13, 110, 253, 0.2);
+        }
+
+        .blyss-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--blyss-blue) 0%, var(--blyss-light-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: var(--blyss-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--blyss-blue);
+        }
+
+        /* Article Header */
+        .article-header {
+            padding: 4rem 0 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .article-category-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--blyss-blue);
+            color: var(--blyss-white);
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--blyss-white);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .article-author {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .article-featured-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+        }
+
+        /* Article Content */
+        .article-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1rem 4rem;
+        }
+
+        .article-body {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--blyss-text);
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-body h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--blyss-white);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-body h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--blyss-white);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-body ul, .article-body ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .article-body li {
+            margin-bottom: 0.75rem;
+        }
+
+        .article-body strong {
+            color: var(--blyss-white);
+            font-weight: 600;
+        }
+
+        .article-body blockquote {
+            border-left: 4px solid var(--blyss-blue);
+            padding-left: 2rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Share Section */
+        .share-section {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: var(--blyss-gray);
+            border-radius: 15px;
+            border: 1px solid rgba(13, 110, 253, 0.2);
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid var(--blyss-blue);
+            background: rgba(13, 110, 253, 0.1);
+            color: var(--blyss-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .share-btn:hover {
+            background: var(--blyss-blue);
+            color: var(--blyss-white);
+            transform: translateY(-2px);
+        }
+
+        /* Related Articles */
+        .related-articles {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 1rem;
+        }
+
+        .section-header {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--blyss-white);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .article-card {
+            background: var(--blyss-gray);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(13, 110, 253, 0.1);
+            height: 100%;
+            text-decoration: none;
+            display: block;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--blyss-blue);
+            box-shadow: 0 10px 30px rgba(13, 110, 253, 0.2);
+        }
+
+        .article-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .article-card-content {
+            padding: 1.5rem;
+        }
+
+        .article-card-category {
+            display: inline-block;
+            padding: 0.3rem 0.6rem;
+            background: rgba(13, 110, 253, 0.2);
+            color: var(--blyss-blue);
+            border-radius: 5px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .article-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--blyss-white);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        /* Footer */
+        .blyss-footer {
+            background: var(--blyss-gray);
+            padding: 3rem 0 1.5rem;
+            border-top: 1px solid rgba(13, 110, 253, 0.2);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2rem;
+            }
+
+            .article-body {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="blyss-nav">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="blyss.html" class="blyss-logo">Blyss</a>
+                <a href="blyss.html" class="back-link">
+                    <i class="bi bi-arrow-left me-2"></i>Back to Articles
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <article class="article-header container">
+        <span id="category-badge" class="article-category-badge">Loading...</span>
+        <h1 id="main-title" class="article-title">Loading Article...</h1>
+        <div class="article-meta">
+            <span class="article-author">
+                <i class="bi bi-person-circle"></i>
+                <span id="author-name">Author</span>
+            </span>
+            <span>
+                <i class="bi bi-calendar3 me-2"></i>
+                <span id="publish-date">Date</span>
+            </span>
+            <span>
+                <i class="bi bi-clock me-2"></i>
+                <span id="read-time">Time</span>
+            </span>
+        </div>
+    </article>
+
+    <!-- Featured Image -->
+    <div class="container">
+        <img id="featured-image" src="" alt="Article featured image" class="article-featured-image">
+    </div>
+
+    <!-- Article Content -->
+    <div class="article-content">
+        <div id="article-body" class="article-body">
+            <!-- Content will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Share Section -->
+    <div class="share-section container">
+        <h3 style="color: var(--blyss-white); margin-bottom: 1rem;">Share This Article</h3>
+        <div class="share-buttons">
+            <a href="#" class="share-btn" id="share-twitter">
+                <i class="bi bi-twitter"></i> Twitter
+            </a>
+            <a href="#" class="share-btn" id="share-linkedin">
+                <i class="bi bi-linkedin"></i> LinkedIn
+            </a>
+            <a href="#" class="share-btn" id="share-facebook">
+                <i class="bi bi-facebook"></i> Facebook
+            </a>
+            <button class="share-btn" id="share-copy">
+                <i class="bi bi-link-45deg"></i> Copy Link
+            </button>
+        </div>
+    </div>
+
+    <!-- Related Articles -->
+    <section class="related-articles">
+        <h2 class="section-header">Related Articles</h2>
+        <div class="row g-4" id="related-articles-container">
+            <!-- Related articles will be loaded here -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="blyss-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-4 text-center text-lg-start">
+                    <div class="blyss-logo mb-3" style="font-size: 1.8rem;">Blyss</div>
+                    <p style="color: var(--blyss-text); font-size: 0.9rem;">
+                        A publication by DorklyAI exploring the intersection of business, technology, and human thought.
+                    </p>
+                </div>
+                <div class="col-lg-6 mb-4 text-center text-lg-end">
+                    <a href="../index.html" class="btn btn-sm" style="background: var(--blyss-blue); color: white; margin-right: 1rem;">
+                        Visit DorklyAI
+                    </a>
+                    <a href="blyss.html" class="btn btn-sm btn-outline-light">
+                        All Articles
+                    </a>
+                </div>
+            </div>
+            <div class="text-center mt-4 pt-4" style="border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); font-size: 0.9rem;">
+                <p class="mb-0">&copy; 2025 Blyss by DorklyAI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Article Data -->
+    <script src="blyss-data.js"></script>
+    
+    <script>
+        // Get article slug from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleSlug = urlParams.get('article');
+
+        if (articleSlug) {
+            const article = getArticleBySlug(articleSlug);
+            
+            if (article) {
+                // Update page title
+                document.getElementById('article-title').textContent = `${article.title} - Blyss by DorklyAI`;
+                
+                // Update article header
+                document.getElementById('category-badge').textContent = article.category;
+                document.getElementById('main-title').textContent = article.title;
+                document.getElementById('author-name').textContent = article.author;
+                document.getElementById('publish-date').textContent = formatDate(article.date);
+                document.getElementById('read-time').textContent = article.readTime + ' read';
+                
+                // Update featured image
+                document.getElementById('featured-image').src = article.image;
+                document.getElementById('featured-image').alt = article.title;
+                
+                // Update article body
+                document.getElementById('article-body').innerHTML = article.content;
+                
+                // Setup share buttons
+                const currentUrl = window.location.href;
+                const encodedUrl = encodeURIComponent(currentUrl);
+                const encodedTitle = encodeURIComponent(article.title);
+                
+                document.getElementById('share-twitter').href = `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`;
+                document.getElementById('share-linkedin').href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+                document.getElementById('share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+                
+                document.getElementById('share-copy').addEventListener('click', function() {
+                    navigator.clipboard.writeText(currentUrl);
+                    this.innerHTML = '<i class="bi bi-check2"></i> Copied!';
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="bi bi-link-45deg"></i> Copy Link';
+                    }, 2000);
+                });
+                
+                // Load related articles
+                const relatedArticles = getRelatedArticles(article.id, 3);
+                const relatedContainer = document.getElementById('related-articles-container');
+                
+                relatedArticles.forEach(related => {
+                    relatedContainer.innerHTML += `
+                        <div class="col-lg-4 col-md-6">
+                            <a href="article.html?article=${related.slug}" class="article-card">
+                                <img src="${related.image}" alt="${related.title}" class="article-card-image">
+                                <div class="article-card-content">
+                                    <span class="article-card-category">${related.category}</span>
+                                    <h3 class="article-card-title">${related.title}</h3>
+                                    <div style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-top: 1rem;">
+                                        <span>${formatDate(related.date)}</span> • <span>${related.readTime}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    `;
+                });
+            } else {
+                // Article not found
+                document.getElementById('main-title').textContent = 'Article Not Found';
+                document.getElementById('article-body').innerHTML = '<p>Sorry, this article could not be found. <a href="blyss.html" style="color: var(--blyss-blue);">Return to all articles</a>.</p>';
+            }
+        } else {
+            // No article specified, redirect to main page
+            window.location.href = 'blyss.html';
+        }
+    </script>
+</body>
+</html>

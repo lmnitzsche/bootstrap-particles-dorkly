@@ -456,7 +456,7 @@
                     <a href="#" class="nav-link">Theology</a>
                 </div>
                 <a href="../index.html" class="btn btn-sm" style="background: var(--blyss-blue); color: white;">
-                    <i class="bi bi-arrow-left me-2"></i>Back to DorklyAI
+                    <i class="bi bi-arrow-left me-2"></i>DorklyAI
                 </a>
             </div>
         </div>
@@ -505,8 +505,8 @@
     <!-- Latest Articles Grid -->
     <section class="container my-5">
         <h2 class="section-header">Latest Stories</h2>
-        <div class="row g-4">
-            <!-- Article 1 -->
+        <div class="row g-4" id="latest-articles-grid">
+            <!-- Articles will be loaded dynamically -->
             <div class="col-lg-4 col-md-6">
                 <div class="article-card">
                     <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop" alt="Article" class="article-image">
@@ -635,7 +635,8 @@
     <!-- Trending Topics -->
     <section class="container my-5">
         <h2 class="section-header">Trending Topics</h2>
-        <div class="row g-4">
+        <div class="row g-4" id="trending-articles-grid">
+            <!-- Articles will be loaded dynamically -->
             <div class="col-lg-6">
                 <div class="article-card">
                     <img src="https://images.unsplash.com/photo-1559526324-593bc073d938?w=800&h=400&fit=crop" alt="Article" class="article-image">
@@ -725,16 +726,142 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Article Data -->
+    <script src="blyss-data.js"></script>
     
     <script>
+        // Load dynamic content
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFeaturedArticle();
+            loadLatestArticles();
+            loadTrendingArticles();
+        });
+
+        // Load featured article
+        function loadFeaturedArticle() {
+            const featured = getFeaturedArticle();
+            const featuredSection = document.querySelector('.featured-article');
+            
+            featuredSection.innerHTML = `
+                <a href="article.html?article=${featured.slug}" style="text-decoration: none;">
+                    <img src="${featured.image}" alt="${featured.title}">
+                    <div class="featured-overlay">
+                        <span class="featured-category">${featured.category}</span>
+                        <h2 class="featured-title">${featured.title}</h2>
+                        <p class="featured-excerpt">${featured.excerpt}</p>
+                        <div class="featured-meta">
+                            <span><i class="bi bi-calendar3 me-2"></i>${formatDate(featured.date)}</span>
+                            <span><i class="bi bi-clock me-2"></i>${featured.readTime} read</span>
+                            <span><i class="bi bi-person me-2"></i>${featured.author}</span>
+                        </div>
+                    </div>
+                </a>
+            `;
+        }
+
+        // Load latest articles
+        function loadLatestArticles() {
+            const articles = getAllArticles().slice(1, 7); // Skip featured, get next 6
+            const container = document.querySelector('#latest-articles-grid');
+            
+            container.innerHTML = articles.map(article => `
+                <div class="col-lg-4 col-md-6">
+                    <a href="article.html?article=${article.slug}" style="text-decoration: none;">
+                        <div class="article-card">
+                            <img src="${article.image}" alt="${article.title}" class="article-image">
+                            <div class="article-content">
+                                <span class="article-category">${article.category}</span>
+                                <h3 class="article-title">${article.title}</h3>
+                                <p class="article-excerpt">${article.excerpt}</p>
+                                <div class="article-meta">
+                                    <span>${formatDate(article.date)}</span>
+                                    <span class="read-time">
+                                        <i class="bi bi-clock"></i> ${article.readTime}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `).join('');
+        }
+
+        // Load trending articles
+        function loadTrendingArticles() {
+            const trending = getAllArticles().slice(7, 9); // Get 2 more articles
+            const container = document.querySelector('#trending-articles-grid');
+            
+            container.innerHTML = trending.map(article => `
+                <div class="col-lg-6">
+                    <a href="article.html?article=${article.slug}" style="text-decoration: none;">
+                        <div class="article-card">
+                            <img src="${article.image}" alt="${article.title}" class="article-image">
+                            <div class="article-content">
+                                <span class="article-category">${article.category}</span>
+                                <h3 class="article-title">${article.title}</h3>
+                                <p class="article-excerpt">${article.excerpt}</p>
+                                <div class="article-meta">
+                                    <span>${formatDate(article.date)}</span>
+                                    <span class="read-time">
+                                        <i class="bi bi-clock"></i> ${article.readTime}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `).join('');
+        }
+
         // Category filter functionality
+        let currentCategory = 'all';
+        
         document.querySelectorAll('.category-pill').forEach(pill => {
             pill.addEventListener('click', function() {
                 document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
                 this.classList.add('active');
-                // Add filter logic here when connecting to actual content
+                
+                currentCategory = this.dataset.category;
+                filterArticles(currentCategory);
             });
         });
+
+        function filterArticles(category) {
+            const articles = category === 'all' ? getAllArticles().slice(1, 7) : getArticlesByCategory(category).slice(0, 6);
+            const container = document.querySelector('#latest-articles-grid');
+            
+            container.innerHTML = articles.map(article => `
+                <div class="col-lg-4 col-md-6">
+                    <a href="article.html?article=${article.slug}" style="text-decoration: none;">
+                        <div class="article-card">
+                            <img src="${article.image}" alt="${article.title}" class="article-image">
+                            <div class="article-content">
+                                <span class="article-category">${article.category}</span>
+                                <h3 class="article-title">${article.title}</h3>
+                                <p class="article-excerpt">${article.excerpt}</p>
+                                <div class="article-meta">
+                                    <span>${formatDate(article.date)}</span>
+                                    <span class="read-time">
+                                        <i class="bi bi-clock"></i> ${article.readTime}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `).join('');
+
+            // Show message if no articles in category
+            if (articles.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12 text-center">
+                        <p style="color: var(--blyss-text); padding: 3rem;">
+                            No articles found in this category. Check back soon!
+                        </p>
+                    </div>
+                `;
+            }
+        }
 
         // Newsletter form
         document.querySelector('.newsletter-form').addEventListener('submit', function(e) {

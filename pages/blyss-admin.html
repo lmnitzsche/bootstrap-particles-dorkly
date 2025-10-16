@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blyss Admin - Add New Article</title>
+    <link rel="icon" type="image/x-icon" href="../assets/dorklogo.png" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --blyss-black: #0a0a0a;
+            --blyss-blue: #0d6efd;
+            --blyss-light-blue: #4d94ff;
+            --blyss-white: #ffffff;
+            --blyss-gray: #1a1a1a;
+            --blyss-text: #e0e0e0;
+        }
+
+        body {
+            background-color: var(--blyss-black);
+            color: var(--blyss-text);
+            font-family: 'Inter', sans-serif;
+            padding: 2rem 0;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--blyss-gray);
+            border-radius: 15px;
+            padding: 3rem;
+            border: 1px solid rgba(13, 110, 253, 0.2);
+        }
+
+        .admin-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--blyss-blue) 0%, var(--blyss-light-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+        }
+
+        .form-label {
+            color: var(--blyss-white);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control, .form-select {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(13, 110, 253, 0.3);
+            color: var(--blyss-white);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background: rgba(255,255,255,0.08);
+            border-color: var(--blyss-blue);
+            color: var(--blyss-white);
+            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255,255,255,0.4);
+        }
+
+        textarea.form-control {
+            min-height: 300px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: var(--blyss-blue);
+            border: none;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: var(--blyss-light-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 1rem 2rem;
+            font-weight: 600;
+            border-radius: 8px;
+            color: var(--blyss-white);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.15);
+            color: var(--blyss-white);
+        }
+
+        .output-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            border: 1px solid rgba(13, 110, 253, 0.2);
+        }
+
+        .code-output {
+            background: #0d1117;
+            color: #c9d1d9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .alert-info {
+            background: rgba(13, 110, 253, 0.1);
+            border: 1px solid var(--blyss-blue);
+            color: var(--blyss-text);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .form-text {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+        }
+
+        .section-divider {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="admin-container">
+            <h1 class="admin-title">
+                <i class="bi bi-plus-circle me-3"></i>Add New Article
+            </h1>
+            
+            <div class="alert alert-info mb-4">
+                <i class="bi bi-info-circle me-2"></i>
+                <strong>How it works:</strong> Fill out the form below, click "Generate Code", then copy the output and paste it into the <code>blyssArticles</code> array in <code>blyss-data.js</code>
+            </div>
+
+            <form id="articleForm">
+                <div class="row">
+                    <div class="col-md-8 mb-3">
+                        <label for="title" class="form-label">Article Title *</label>
+                        <input type="text" class="form-control" id="title" required placeholder="The Future of AI in Business">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="category" class="form-label">Category *</label>
+                        <select class="form-select" id="category" required>
+                            <option value="">Select category</option>
+                            <option value="Business">Business</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Philosophy">Philosophy</option>
+                            <option value="Theology">Theology</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="author" class="form-label">Author Name *</label>
+                        <input type="text" class="form-control" id="author" required placeholder="Sarah Chen">
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="readTime" class="form-label">Read Time *</label>
+                        <input type="text" class="form-control" id="readTime" required placeholder="8 min">
+                        <small class="form-text">e.g., "8 min"</small>
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="featured" class="form-label">Featured Article?</label>
+                        <select class="form-select" id="featured">
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="excerpt" class="form-label">Excerpt *</label>
+                    <textarea class="form-control" id="excerpt" rows="3" required placeholder="A brief summary that appears on the article cards (150-200 characters)"></textarea>
+                    <small class="form-text">This appears on article cards. Keep it concise and engaging.</small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Featured Image URL *</label>
+                    <input type="url" class="form-control" id="image" required placeholder="https://images.unsplash.com/photo-123456789">
+                    <small class="form-text">Use Unsplash for high-quality images: unsplash.com</small>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="mb-3">
+                    <label for="content" class="form-label">Article Content (HTML) *</label>
+                    <textarea class="form-control" id="content" required placeholder="Enter your article content using HTML tags..."></textarea>
+                    <small class="form-text">
+                        Use HTML tags: &lt;p&gt; for paragraphs, &lt;h2&gt; for headings, &lt;ul&gt;&lt;li&gt; for lists, &lt;strong&gt; for bold
+                    </small>
+                </div>
+
+                <div class="mb-4">
+                    <button type="button" class="btn btn-secondary me-2" onclick="insertSampleContent()">
+                        <i class="bi bi-file-text me-2"></i>Load Sample Content
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="clearForm()">
+                        <i class="bi bi-x-circle me-2"></i>Clear Form
+                    </button>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-code-square me-2"></i>Generate Article Code
+                </button>
+            </form>
+
+            <div class="output-section" id="outputSection" style="display: none;">
+                <h3 style="color: var(--blyss-white); margin-bottom: 1rem;">
+                    <i class="bi bi-clipboard-check me-2"></i>Generated Code
+                </h3>
+                <p style="color: rgba(255,255,255,0.7); margin-bottom: 1rem;">
+                    Copy this code and add it to the <code>blyssArticles</code> array in <code>blyss-data.js</code>:
+                </p>
+                <div class="code-output" id="codeOutput"></div>
+                <button type="button" class="btn btn-primary mt-3" onclick="copyToClipboard()">
+                    <i class="bi bi-clipboard me-2"></i>Copy to Clipboard
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Generate slug from title
+        function generateSlug(title) {
+            return title
+                .toLowerCase()
+                .replace(/[^\w\s-]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/--+/g, '-')
+                .trim();
+        }
+
+        // Get next ID (for display purposes - user should adjust based on actual data)
+        function getNextId() {
+            return Math.floor(Math.random() * 1000) + 100; // Placeholder - user should replace with actual next ID
+        }
+
+        // Handle form submission
+        document.getElementById('articleForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const title = document.getElementById('title').value;
+            const category = document.getElementById('category').value;
+            const author = document.getElementById('author').value;
+            const readTime = document.getElementById('readTime').value;
+            const excerpt = document.getElementById('excerpt').value;
+            const image = document.getElementById('image').value;
+            const content = document.getElementById('content').value;
+            const featured = document.getElementById('featured').value === 'true';
+
+            const slug = generateSlug(title);
+            const id = getNextId();
+            const date = new Date().toISOString().split('T')[0];
+
+            const articleCode = `    {
+        id: ${id}, // IMPORTANT: Replace with next sequential ID
+        title: "${title}",
+        slug: "${slug}",
+        category: "${category}",
+        author: "${author}",
+        date: "${date}",
+        readTime: "${readTime}",
+        excerpt: "${excerpt}",
+        image: "${image}",
+        featured: ${featured},
+        content: \`
+${content}
+        \`
+    }`;
+
+            document.getElementById('codeOutput').textContent = articleCode;
+            document.getElementById('outputSection').style.display = 'block';
+            document.getElementById('outputSection').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Copy to clipboard
+        function copyToClipboard() {
+            const code = document.getElementById('codeOutput').textContent;
+            navigator.clipboard.writeText(code).then(function() {
+                const btn = event.target.closest('button');
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<i class="bi bi-check2 me-2"></i>Copied!';
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                }, 2000);
+            });
+        }
+
+        // Clear form
+        function clearForm() {
+            document.getElementById('articleForm').reset();
+            document.getElementById('outputSection').style.display = 'none';
+        }
+
+        // Insert sample content
+        function insertSampleContent() {
+            document.getElementById('title').value = "The Future of Remote Work in 2025";
+            document.getElementById('category').value = "Business";
+            document.getElementById('author').value = "Alex Johnson";
+            document.getElementById('readTime').value = "7 min";
+            document.getElementById('excerpt').value = "Exploring how hybrid work models are reshaping corporate culture, productivity metrics, and the future of office spaces.";
+            document.getElementById('image').value = "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=500&fit=crop";
+            document.getElementById('featured').value = "false";
+            document.getElementById('content').value = `            <p>The workplace revolution that began in 2020 has evolved into something more nuanced and sustainable. Remote work is no longer a temporary solution—it's a permanent fixture of modern business.</p>
+            
+            <h2>The Hybrid Reality</h2>
+            <p>Companies are discovering that the future isn't fully remote or fully in-office—it's hybrid. This model offers the best of both worlds: focused individual work at home and collaborative energy in the office.</p>
+            
+            <h2>Key Trends for 2025</h2>
+            <ul>
+                <li><strong>Asynchronous Collaboration:</strong> Teams across time zones work seamlessly with proper documentation</li>
+                <li><strong>Results-Based Management:</strong> Focus shifts from hours worked to outcomes delivered</li>
+                <li><strong>Digital-First Culture:</strong> In-person becomes a choice, not a requirement</li>
+                <li><strong>Office Redesign:</strong> Traditional desks replaced by collaboration spaces</li>
+            </ul>
+            
+            <h2>The Productivity Paradox</h2>
+            <p>Data shows remote workers are more productive on individual tasks but innovation suffers without spontaneous interactions. The solution? Intentional in-person time focused on brainstorming and relationship building.</p>
+            
+            <h2>What Leaders Must Do</h2>
+            <p>Success requires investing in collaboration tools, establishing clear communication norms, and trusting employees to manage their own schedules. Micromanagement kills morale in distributed teams.</p>
+            
+            <h2>Looking Ahead</h2>
+            <p>The companies that thrive will be those that embrace flexibility while maintaining strong culture and connection. Remote work isn't about location—it's about outcomes.</p>`;
+        }
+    </script>
+</body>
+</html>
