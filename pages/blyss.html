@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blyss by DorklyAI - Business, Tech & Philosophy</title>
+    <link rel="icon" type="image/x-icon" href="../assets/dorklogo.png" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --blyss-black: #0a0a0a;
+            --blyss-blue: #0d6efd;
+            --blyss-light-blue: #4d94ff;
+            --blyss-white: #ffffff;
+            --blyss-gray: #1a1a1a;
+            --blyss-text: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--blyss-black);
+            color: var(--blyss-text);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .blyss-nav {
+            background: linear-gradient(180deg, rgba(10,10,10,1) 0%, rgba(10,10,10,0.95) 100%);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(13, 110, 253, 0.2);
+        }
+
+        .blyss-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--blyss-blue) 0%, var(--blyss-light-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .nav-link {
+            color: var(--blyss-text) !important;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem !important;
+        }
+
+        .nav-link:hover {
+            color: var(--blyss-blue) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--blyss-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 70%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--blyss-black) 0%, var(--blyss-gray) 100%);
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(13, 110, 253, 0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--blyss-white) 0%, var(--blyss-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--blyss-text);
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Category Pills */
+        .category-pills {
+            padding: 2rem 0;
+            background-color: var(--blyss-gray);
+            border-top: 1px solid rgba(13, 110, 253, 0.1);
+            border-bottom: 1px solid rgba(13, 110, 253, 0.1);
+        }
+
+        .category-pill {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            margin: 0.5rem;
+            background: rgba(13, 110, 253, 0.1);
+            border: 1px solid var(--blyss-blue);
+            border-radius: 50px;
+            color: var(--blyss-blue);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-pill:hover {
+            background: var(--blyss-blue);
+            color: var(--blyss-white);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+        }
+
+        .category-pill.active {
+            background: var(--blyss-blue);
+            color: var(--blyss-white);
+        }
+
+        /* Featured Article */
+        .featured-article {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+            margin: 3rem 0;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .featured-article:hover {
+            transform: scale(1.02);
+        }
+
+        .featured-article img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .featured-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.7) 50%, transparent 100%);
+            padding: 3rem 2rem;
+        }
+
+        .featured-category {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--blyss-blue);
+            color: var(--blyss-white);
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .featured-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--blyss-white);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .featured-excerpt {
+            color: var(--blyss-text);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .featured-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Article Grid */
+        .article-card {
+            background: var(--blyss-gray);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(13, 110, 253, 0.1);
+            height: 100%;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--blyss-blue);
+            box-shadow: 0 10px 30px rgba(13, 110, 253, 0.2);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-category {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            background: rgba(13, 110, 253, 0.2);
+            color: var(--blyss-blue);
+            border-radius: 5px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--blyss-white);
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .article-excerpt {
+            color: var(--blyss-text);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+        }
+
+        .read-time {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--blyss-white);
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blyss-blue) 0%, transparent 100%);
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            background: linear-gradient(135deg, var(--blyss-gray) 0%, var(--blyss-black) 100%);
+            padding: 4rem 0;
+            margin: 4rem 0;
+            border-radius: 20px;
+            border: 1px solid rgba(13, 110, 253, 0.2);
+        }
+
+        .newsletter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--blyss-white);
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(13, 110, 253, 0.3);
+            color: var(--blyss-white);
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+        }
+
+        .newsletter-input:focus {
+            background: rgba(255,255,255,0.08);
+            border-color: var(--blyss-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+            color: var(--blyss-white);
+        }
+
+        .newsletter-btn {
+            background: var(--blyss-blue);
+            color: var(--blyss-white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-btn:hover {
+            background: var(--blyss-light-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+        }
+
+        /* Footer */
+        .blyss-footer {
+            background: var(--blyss-gray);
+            padding: 3rem 0 1.5rem;
+            border-top: 1px solid rgba(13, 110, 253, 0.2);
+            margin-top: 4rem;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--blyss-blue) 0%, var(--blyss-light-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-link {
+            color: var(--blyss-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 0.3rem 0;
+        }
+
+        .footer-link:hover {
+            color: var(--blyss-blue);
+        }
+
+        .social-icons a {
+            color: var(--blyss-text);
+            font-size: 1.5rem;
+            margin: 0 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--blyss-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .featured-title {
+                font-size: 1.8rem;
+            }
+
+            .section-header {
+                font-size: 2rem;
+            }
+
+            .category-pill {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="blyss-nav">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="blyss-logo">Blyss</div>
+                <div class="d-none d-md-flex gap-3">
+                    <a href="#" class="nav-link">Business</a>
+                    <a href="#" class="nav-link">Finance</a>
+                    <a href="#" class="nav-link">Technology</a>
+                    <a href="#" class="nav-link">Philosophy</a>
+                    <a href="#" class="nav-link">Theology</a>
+                </div>
+                <a href="../index.html" class="btn btn-sm" style="background: var(--blyss-blue); color: white;">
+                    <i class="bi bi-arrow-left me-2"></i>Back to DorklyAI
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Blyss</h1>
+            <p class="hero-subtitle">Where Business Meets Brilliance</p>
+            <p style="color: rgba(255,255,255,0.6); max-width: 600px; margin: 0 auto;">
+                Insights on business strategy, financial wisdom, cutting-edge technology, philosophical thought, and theological reflection.
+            </p>
+        </div>
+    </section>
+
+    <!-- Category Pills -->
+    <section class="category-pills">
+        <div class="container text-center">
+            <span class="category-pill active" data-category="all">All Stories</span>
+            <span class="category-pill" data-category="business">Business</span>
+            <span class="category-pill" data-category="finance">Finance</span>
+            <span class="category-pill" data-category="technology">Technology</span>
+            <span class="category-pill" data-category="philosophy">Philosophy</span>
+            <span class="category-pill" data-category="theology">Theology</span>
+        </div>
+    </section>
+
+    <!-- Featured Article -->
+    <section class="container my-5">
+        <div class="featured-article">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&h=900&fit=crop" alt="Featured Article">
+            <div class="featured-overlay">
+                <span class="featured-category">Business</span>
+                <h2 class="featured-title">The Future of AI in Business: Navigating the Intelligence Revolution</h2>
+                <p class="featured-excerpt">How artificial intelligence is reshaping industries, creating new opportunities, and challenging traditional business models in 2025.</p>
+                <div class="featured-meta">
+                    <span><i class="bi bi-calendar3 me-2"></i>Oct 16, 2025</span>
+                    <span><i class="bi bi-clock me-2"></i>8 min read</span>
+                    <span><i class="bi bi-person me-2"></i>Sarah Chen</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Articles Grid -->
+    <section class="container my-5">
+        <h2 class="section-header">Latest Stories</h2>
+        <div class="row g-4">
+            <!-- Article 1 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="article-card">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop" alt="Article" class="article-image">
+                    <div class="article-content">
+                        <span class="article-category">Finance</span>
+                        <h3 class="article-title">Decentralized Finance: The New Frontier</h3>
+                        <p class="article-excerpt">Exploring how blockchain technology is democratizing access to financial services and creating new investment opportunities.</p>
+                        <div class="article-meta">
+                            <span>Oct 15, 2025</span>
+                            <span class="read-time">
+                                <i class="bi bi-clock"></i> 6 min
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 2 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="article-card">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=500&fit=crop" alt="Article" class="article-image">
+                    <div class="article-content">
+                        <span class="article-category">Technology</span>
+                        <h3 class="article-title">Quantum Computing: Beyond the Hype</h3>
+                        <p class="article-excerpt">Understanding the real-world applications and limitations of quantum computing in modern technology.</p>
+                        <div class="article-meta">
+                            <span>Oct 14, 2025</span>
+                            <span class="read-time">
+                                <i class="bi bi-clock"></i> 10 min
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 3 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="article-card">
+                    <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800&h=500&fit=crop" alt="Article" class="article-image">
+                    <div class="article-content">
+                        <span class="article-category">Philosophy</span>
+                        <h3 class="article-title">Stoicism in Modern Leadership</h3>
+                        <p class="article-excerpt">How ancient wisdom shapes contemporary business strategy and executive decision-making.</p>
+                        <div class="article-meta">
+                            <span>Oct 13, 2025</span>
+                            <span class="read-time">
+                                <i class="bi bi-clock"></i> 7 min
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 4 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="article-card">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=500&fit=crop" alt="Article" class="article-image">
+                    <div class="article-content">
+                        <span class="article-category">Business</span>
+                        <h3 class="article-title">Remote Work: The Productivity Paradox</h3>
+                        <p class="article-excerpt">Examining the data behind remote work performance and what it means for organizational culture.</p>
+                        <div class="article-meta">
+                            <span>Oct 12, 2025</span>
+                            <span class="read-time">
+                                <i class="bi bi-clock"></i> 5 min
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 5 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="article-card">
+                    <img src="https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?w=800&h=500&fit=crop" alt="Article" class="article-image">
+                    <div class="article-content">
+                        <span class="article-category">Theology</span>
+                        <h3 class="article-title">Ethics in Artificial Intelligence</h3>
+                        <p class="article-excerpt">A theological perspective on machine consciousness, moral agency, and the future of human-AI relationships.</p>
+                        <div class="article-meta">
+                            <span>Oct 11, 2025</span>
+                            <span class="read-time">
+                                <i class="bi bi-clock"></i> 9 min
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 6 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="article-card">
+                    <img src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=800&h=500&fit=crop" alt="Article" class="article-image">
+                    <div class="article-content">
+                        <span class="article-category">Finance</span>
+                        <h3 class="article-title">ESG Investing: Profit Meets Purpose</h3>
+                        <p class="article-excerpt">How environmental, social, and governance factors are reshaping investment strategies and corporate accountability.</p>
+                        <div class="article-meta">
+                            <span>Oct 10, 2025</span>
+                            <span class="read-time">
+                                <i class="bi bi-clock"></i> 8 min
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container text-center">
+            <h2 class="newsletter-title">Stay Informed</h2>
+            <p class="mb-4" style="color: var(--blyss-text);">Get weekly insights delivered to your inbox. No spam, just brilliance.</p>
+            <form class="newsletter-form">
+                <div class="input-group">
+                    <input type="email" class="form-control newsletter-input" placeholder="Enter your email" required>
+                    <button class="btn newsletter-btn ms-2" type="submit">
+                        Subscribe <i class="bi bi-arrow-right ms-2"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Trending Topics -->
+    <section class="container my-5">
+        <h2 class="section-header">Trending Topics</h2>
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="article-card">
+                    <img src="https://images.unsplash.com/photo-1559526324-593bc073d938?w=800&h=400&fit=crop" alt="Article" class="article-image">
+                    <div class="article-content">
+                        <span class="article-category">Technology</span>
+                        <h3 class="article-title">The Metaverse Economy: Real Value in Virtual Worlds</h3>
+                        <p class="article-excerpt">Understanding the business models powering virtual reality platforms and digital asset marketplaces.</p>
+                        <div class="article-meta">
+                            <span>Oct 9, 2025</span>
+                            <span class="read-time">
+                                <i class="bi bi-clock"></i> 12 min
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="article-card">
+                    <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&h=400&fit=crop" alt="Article" class="article-image">
+                    <div class="article-content">
+                        <span class="article-category">Philosophy</span>
+                        <h3 class="article-title">The Examined Life in the Digital Age</h3>
+                        <p class="article-excerpt">Socratic wisdom meets modern technology: finding meaning in an era of infinite information.</p>
+                        <div class="article-meta">
+                            <span>Oct 8, 2025</span>
+                            <span class="read-time">
+                                <i class="bi bi-clock"></i> 11 min
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="blyss-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-logo mb-3">Blyss</div>
+                    <p style="color: var(--blyss-text); font-size: 0.9rem;">
+                        A publication by DorklyAI exploring the intersection of business, technology, and human thought.
+                    </p>
+                    <div class="social-icons mt-3">
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6 mb-4">
+                    <h5 style="color: var(--blyss-white); font-weight: 600; margin-bottom: 1rem;">Categories</h5>
+                    <a href="#" class="footer-link">Business</a>
+                    <a href="#" class="footer-link">Finance</a>
+                    <a href="#" class="footer-link">Technology</a>
+                    <a href="#" class="footer-link">Philosophy</a>
+                    <a href="#" class="footer-link">Theology</a>
+                </div>
+                <div class="col-lg-2 col-6 mb-4">
+                    <h5 style="color: var(--blyss-white); font-weight: 600; margin-bottom: 1rem;">Company</h5>
+                    <a href="#" class="footer-link">About Us</a>
+                    <a href="#" class="footer-link">Our Team</a>
+                    <a href="#" class="footer-link">Careers</a>
+                    <a href="#" class="footer-link">Contact</a>
+                </div>
+                <div class="col-lg-2 col-6 mb-4">
+                    <h5 style="color: var(--blyss-white); font-weight: 600; margin-bottom: 1rem;">Resources</h5>
+                    <a href="#" class="footer-link">Newsletter</a>
+                    <a href="#" class="footer-link">Podcast</a>
+                    <a href="#" class="footer-link">Events</a>
+                    <a href="#" class="footer-link">Media Kit</a>
+                </div>
+                <div class="col-lg-2 col-6 mb-4">
+                    <h5 style="color: var(--blyss-white); font-weight: 600; margin-bottom: 1rem;">Legal</h5>
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Use</a>
+                    <a href="#" class="footer-link">Cookie Policy</a>
+                </div>
+            </div>
+            <div class="text-center mt-4 pt-4" style="border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); font-size: 0.9rem;">
+                <p class="mb-0">&copy; 2025 Blyss by DorklyAI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Category filter functionality
+        document.querySelectorAll('.category-pill').forEach(pill => {
+            pill.addEventListener('click', function() {
+                document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
+                this.classList.add('active');
+                // Add filter logic here when connecting to actual content
+            });
+        });
+
+        // Newsletter form
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for subscribing! You\'ll receive our next newsletter soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
