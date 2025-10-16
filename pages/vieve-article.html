@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="article-title">Article | Vieve by DorklyAI</title>
+    <link rel="icon" type="image/x-icon" href="../assets/dorklogo.png" />
+    <meta name="description" id="article-description" content="">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --vieve-dark: #0f0f0f;
+            --vieve-purple: #9333ea;
+            --vieve-pink: #ec4899;
+            --vieve-cyan: #06b6d4;
+            --vieve-orange: #f97316;
+            --vieve-green: #10b981;
+            --vieve-white: #ffffff;
+            --vieve-gray: #1a1a1a;
+            --vieve-text: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--vieve-dark);
+            color: var(--vieve-text);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.8;
+        }
+
+        /* Navigation */
+        .vieve-nav {
+            background: linear-gradient(180deg, rgba(15,15,15,1) 0%, rgba(15,15,15,0.95) 100%);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid;
+            border-image: linear-gradient(90deg, var(--vieve-purple), var(--vieve-pink), var(--vieve-cyan)) 1;
+        }
+
+        .vieve-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            background: linear-gradient(135deg, var(--vieve-purple) 0%, var(--vieve-pink) 50%, var(--vieve-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            text-decoration: none;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, var(--vieve-purple), var(--vieve-pink));
+            color: white;
+            font-weight: 700;
+            border-radius: 25px;
+            padding: 0.5rem 1.5rem;
+            border: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+        }
+
+        /* Article Header */
+        .article-header {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .article-category {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background: linear-gradient(135deg, var(--vieve-purple) 0%, var(--vieve-pink) 100%);
+            color: var(--vieve-white);
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1.5px;
+        }
+
+        .article-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            color: var(--vieve-white);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: 1px;
+        }
+
+        .article-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(147, 51, 234, 0.3);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .author-name {
+            color: var(--vieve-pink);
+            font-weight: 700;
+        }
+
+        /* Featured Image */
+        .featured-image {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 3px solid;
+            border-image: linear-gradient(135deg, var(--vieve-purple), var(--vieve-pink), var(--vieve-cyan)) 1;
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Article Content */
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .article-content h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: var(--vieve-white);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, var(--vieve-white) 0%, var(--vieve-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .article-content p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            color: var(--vieve-text);
+        }
+
+        .article-content ul {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .article-content li {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: var(--vieve-text);
+        }
+
+        .article-content li strong {
+            color: var(--vieve-pink);
+            font-weight: 700;
+        }
+
+        .article-content strong {
+            color: var(--vieve-white);
+            font-weight: 700;
+        }
+
+        /* Share Section */
+        .share-section {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 20px;
+            border: 2px solid var(--vieve-purple);
+        }
+
+        .share-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: var(--vieve-white);
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .share-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .share-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            border: 2px solid var(--vieve-purple);
+            background: rgba(147, 51, 234, 0.1);
+            color: var(--vieve-white);
+            font-weight: 700;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .share-btn:hover {
+            background: linear-gradient(135deg, var(--vieve-purple), var(--vieve-pink));
+            color: var(--vieve-white);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(147, 51, 234, 0.3);
+        }
+
+        .share-btn.twitter { border-color: #1DA1F2; }
+        .share-btn.facebook { border-color: #4267B2; }
+        .share-btn.linkedin { border-color: #0077b5; }
+        .share-btn.reddit { border-color: #FF4500; }
+
+        /* Related Articles */
+        .related-section {
+            max-width: 1200px;
+            margin: 5rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .related-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            font-weight: 400;
+            background: linear-gradient(135deg, var(--vieve-white) 0%, var(--vieve-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2.5rem;
+            letter-spacing: 2px;
+        }
+
+        .related-card {
+            background: var(--vieve-gray);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(147, 51, 234, 0.2);
+            height: 100%;
+        }
+
+        .related-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--vieve-pink);
+            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.3);
+        }
+
+        .related-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .related-content {
+            padding: 1.5rem;
+        }
+
+        .related-category {
+            display: inline-block;
+            padding: 0.4rem 0.9rem;
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.3) 0%, rgba(236, 72, 153, 0.3) 100%);
+            color: var(--vieve-pink);
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .related-card-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--vieve-white);
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+            letter-spacing: 0.5px;
+        }
+
+        .related-excerpt {
+            color: var(--vieve-text);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .vieve-footer {
+            background: var(--vieve-gray);
+            padding: 3rem 0 1.5rem;
+            border-top: 2px solid;
+            border-image: linear-gradient(90deg, var(--vieve-purple), var(--vieve-pink), var(--vieve-cyan)) 1;
+            margin-top: 4rem;
+        }
+
+        .footer-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            font-weight: 400;
+            background: linear-gradient(135deg, var(--vieve-purple) 0%, var(--vieve-pink) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        .footer-link {
+            color: var(--vieve-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--vieve-pink);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .article-meta {
+                gap: 1rem;
+            }
+
+            .share-buttons {
+                flex-direction: column;
+            }
+
+            .share-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="vieve-nav">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="vieve.html" class="vieve-logo">VIEVE</a>
+                <button class="back-btn" onclick="window.location.href='vieve.html'">
+                    <i class="bi bi-arrow-left me-2"></i>Back to Vieve
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <div class="article-header">
+        <span class="article-category" id="category-badge">Category</span>
+        <h1 class="article-title" id="article-heading">Article Title</h1>
+        <div class="article-meta">
+            <span class="meta-item">
+                <i class="bi bi-person-fill"></i>
+                <span class="author-name" id="author-name">Author</span>
+            </span>
+            <span class="meta-item">
+                <i class="bi bi-calendar3"></i>
+                <span id="article-date">Date</span>
+            </span>
+            <span class="meta-item">
+                <i class="bi bi-clock"></i>
+                <span id="read-time">5 min</span> read
+            </span>
+        </div>
+    </div>
+
+    <!-- Featured Image -->
+    <div class="featured-image">
+        <img id="featured-img" src="" alt="">
+    </div>
+
+    <!-- Article Content -->
+    <article class="article-content" id="article-body">
+        <!-- Content will be loaded dynamically -->
+    </article>
+
+    <!-- Share Section -->
+    <div class="share-section">
+        <h3 class="share-title">Share This Story</h3>
+        <div class="share-buttons">
+            <a href="#" class="share-btn twitter" id="share-twitter">
+                <i class="bi bi-twitter"></i> Twitter
+            </a>
+            <a href="#" class="share-btn facebook" id="share-facebook">
+                <i class="bi bi-facebook"></i> Facebook
+            </a>
+            <a href="#" class="share-btn linkedin" id="share-linkedin">
+                <i class="bi bi-linkedin"></i> LinkedIn
+            </a>
+            <a href="#" class="share-btn reddit" id="share-reddit">
+                <i class="bi bi-reddit"></i> Reddit
+            </a>
+            <button class="share-btn" id="copy-link" style="border: 2px solid var(--vieve-cyan);">
+                <i class="bi bi-link-45deg"></i> Copy Link
+            </button>
+        </div>
+    </div>
+
+    <!-- Related Articles -->
+    <section class="related-section">
+        <h2 class="related-title">Keep Reading</h2>
+        <div class="row g-4" id="related-articles">
+            <!-- Related articles will be loaded dynamically -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="vieve-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="footer-logo mb-3">VIEVE</div>
+                    <p style="color: var(--vieve-text); font-size: 0.9rem;">
+                        A DorklyAI publication for gamers, sports fans, pop culture nerds, and food enthusiasts.
+                    </p>
+                </div>
+                <div class="col-lg-3 col-6 mb-4">
+                    <h5 style="color: var(--vieve-white); font-weight: 700; margin-bottom: 1rem;">Quick Links</h5>
+                    <a href="vieve.html" class="footer-link d-block mb-2">Home</a>
+                    <a href="../index.html" class="footer-link d-block mb-2">DorklyAI</a>
+                    <a href="blyss.html" class="footer-link d-block mb-2">Blyss</a>
+                </div>
+                <div class="col-lg-3 col-6 mb-4">
+                    <h5 style="color: var(--vieve-white); font-weight: 700; margin-bottom: 1rem;">Legal</h5>
+                    <a href="#" class="footer-link d-block mb-2">Privacy</a>
+                    <a href="#" class="footer-link d-block mb-2">Terms</a>
+                </div>
+            </div>
+            <div class="text-center mt-4 pt-4" style="border-top: 1px solid rgba(147, 51, 234, 0.3); color: rgba(255,255,255,0.4); font-size: 0.9rem;">
+                <p class="mb-0">&copy; 2025 Vieve by DorklyAI. Stay nerdy. 🎮🏀🍿</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Article Data -->
+    <script src="vieve-data.js"></script>
+    
+    <script>
+        // Get article slug from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleSlug = urlParams.get('article');
+
+        // Load article content
+        if (articleSlug) {
+            const article = getArticleBySlug(articleSlug);
+            
+            if (article) {
+                // Update page title and meta
+                document.getElementById('article-title').textContent = `${article.title} | Vieve by DorklyAI`;
+                document.getElementById('article-description').setAttribute('content', article.excerpt);
+                
+                // Update article content
+                document.getElementById('category-badge').textContent = article.category;
+                document.getElementById('article-heading').textContent = article.title;
+                document.getElementById('author-name').textContent = article.author;
+                document.getElementById('article-date').textContent = formatDate(article.date);
+                document.getElementById('read-time').textContent = article.readTime;
+                document.getElementById('featured-img').src = article.image;
+                document.getElementById('featured-img').alt = article.title;
+                document.getElementById('article-body').innerHTML = article.content;
+                
+                // Setup share buttons
+                const pageUrl = encodeURIComponent(window.location.href);
+                const pageTitle = encodeURIComponent(article.title);
+                
+                document.getElementById('share-twitter').href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
+                document.getElementById('share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+                document.getElementById('share-linkedin').href = `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`;
+                document.getElementById('share-reddit').href = `https://reddit.com/submit?url=${pageUrl}&title=${pageTitle}`;
+                
+                // Copy link functionality
+                document.getElementById('copy-link').addEventListener('click', function() {
+                    navigator.clipboard.writeText(window.location.href);
+                    this.innerHTML = '<i class="bi bi-check-circle"></i> Copied!';
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="bi bi-link-45deg"></i> Copy Link';
+                    }, 2000);
+                });
+                
+                // Load related articles
+                loadRelatedArticles(article.category, article.id);
+            } else {
+                // Article not found
+                document.querySelector('.article-header').innerHTML = `
+                    <h1 class="article-title">Article Not Found</h1>
+                    <p style="color: var(--vieve-text);">Sorry, the article you're looking for doesn't exist.</p>
+                    <button class="back-btn mt-3" onclick="window.location.href='vieve.html'">
+                        <i class="bi bi-arrow-left me-2"></i>Back to Vieve
+                    </button>
+                `;
+            }
+        }
+
+        // Load related articles
+        function loadRelatedArticles(category, currentId) {
+            const relatedArticles = getArticlesByCategory(category)
+                .filter(article => article.id !== currentId)
+                .slice(0, 3);
+            
+            const container = document.getElementById('related-articles');
+            
+            if (relatedArticles.length > 0) {
+                container.innerHTML = relatedArticles.map(article => `
+                    <div class="col-lg-4 col-md-6">
+                        <a href="vieve-article.html?article=${article.slug}" style="text-decoration: none;">
+                            <div class="related-card">
+                                <img src="${article.image}" alt="${article.title}" class="related-image">
+                                <div class="related-content">
+                                    <span class="related-category">${article.category}</span>
+                                    <h3 class="related-card-title">${article.title}</h3>
+                                    <p class="related-excerpt">${article.excerpt}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                `).join('');
+            } else {
+                // No related articles, show random articles
+                const randomArticles = getAllArticles()
+                    .filter(article => article.id !== currentId)
+                    .sort(() => Math.random() - 0.5)
+                    .slice(0, 3);
+                
+                container.innerHTML = randomArticles.map(article => `
+                    <div class="col-lg-4 col-md-6">
+                        <a href="vieve-article.html?article=${article.slug}" style="text-decoration: none;">
+                            <div class="related-card">
+                                <img src="${article.image}" alt="${article.title}" class="related-image">
+                                <div class="related-content">
+                                    <span class="related-category">${article.category}</span>
+                                    <h3 class="related-card-title">${article.title}</h3>
+                                    <p class="related-excerpt">${article.excerpt}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                `).join('');
+            }
+        }
+    </script>
+</body>
+</html>

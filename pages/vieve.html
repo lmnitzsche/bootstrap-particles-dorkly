@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vieve by DorklyAI - Sports & Pop Culture</title>
+    <link rel="icon" type="image/x-icon" href="../assets/dorklogo.png" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --vieve-dark: #0f0f0f;
+            --vieve-purple: #9333ea;
+            --vieve-pink: #ec4899;
+            --vieve-cyan: #06b6d4;
+            --vieve-orange: #f97316;
+            --vieve-green: #10b981;
+            --vieve-white: #ffffff;
+            --vieve-gray: #1a1a1a;
+            --vieve-text: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--vieve-dark);
+            color: var(--vieve-text);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .vieve-nav {
+            background: linear-gradient(180deg, rgba(15,15,15,1) 0%, rgba(15,15,15,0.95) 100%);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid;
+            border-image: linear-gradient(90deg, var(--vieve-purple), var(--vieve-pink), var(--vieve-cyan)) 1;
+        }
+
+        .vieve-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            background: linear-gradient(135deg, var(--vieve-purple) 0%, var(--vieve-pink) 50%, var(--vieve-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        .nav-link {
+            color: var(--vieve-text) !important;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem !important;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-link:hover {
+            color: var(--vieve-pink) !important;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--vieve-dark) 0%, #1a0033 50%, var(--vieve-dark) 100%);
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .hero-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            font-weight: 400;
+            background: linear-gradient(135deg, var(--vieve-white) 0%, var(--vieve-purple) 50%, var(--vieve-pink) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1;
+            letter-spacing: 3px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--vieve-cyan);
+            font-weight: 700;
+            max-width: 700px;
+            margin: 0 auto 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-tagline {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.6);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Category Pills */
+        .category-pills {
+            padding: 2rem 0;
+            background-color: var(--vieve-gray);
+            border-top: 1px solid rgba(147, 51, 234, 0.3);
+            border-bottom: 1px solid rgba(147, 51, 234, 0.3);
+        }
+
+        .category-pill {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            margin: 0.5rem;
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.2) 0%, rgba(236, 72, 153, 0.2) 100%);
+            border: 2px solid var(--vieve-purple);
+            border-radius: 50px;
+            color: var(--vieve-white);
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .category-pill:hover {
+            background: linear-gradient(135deg, var(--vieve-purple) 0%, var(--vieve-pink) 100%);
+            color: var(--vieve-white);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(147, 51, 234, 0.4);
+        }
+
+        .category-pill.active {
+            background: linear-gradient(135deg, var(--vieve-purple) 0%, var(--vieve-pink) 100%);
+            color: var(--vieve-white);
+            box-shadow: 0 5px 15px rgba(147, 51, 234, 0.3);
+        }
+
+        /* Featured Article */
+        .featured-article {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+            margin: 3rem 0;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
+            background: linear-gradient(var(--vieve-dark), var(--vieve-dark)) padding-box,
+                        linear-gradient(135deg, var(--vieve-purple), var(--vieve-pink), var(--vieve-cyan)) border-box;
+        }
+
+        .featured-article:hover {
+            transform: scale(1.02);
+        }
+
+        .featured-article img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .featured-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(15,15,15,1) 0%, rgba(15,15,15,0.9) 50%, transparent 100%);
+            padding: 3rem 2rem;
+        }
+
+        .featured-category {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: linear-gradient(135deg, var(--vieve-purple) 0%, var(--vieve-pink) 100%);
+            color: var(--vieve-white);
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .featured-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 400;
+            color: var(--vieve-white);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            letter-spacing: 1px;
+        }
+
+        .featured-excerpt {
+            color: var(--vieve-text);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .featured-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Article Grid */
+        .article-card {
+            background: var(--vieve-gray);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(147, 51, 234, 0.2);
+            height: 100%;
+        }
+
+        .article-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--vieve-pink);
+            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.3);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-category {
+            display: inline-block;
+            padding: 0.4rem 0.9rem;
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.3) 0%, rgba(236, 72, 153, 0.3) 100%);
+            color: var(--vieve-pink);
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .article-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--vieve-white);
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+            letter-spacing: 0.5px;
+        }
+
+        .article-excerpt {
+            color: var(--vieve-text);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+        }
+
+        .read-time {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            font-weight: 400;
+            background: linear-gradient(135deg, var(--vieve-white) 0%, var(--vieve-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            background: linear-gradient(135deg, var(--vieve-gray) 0%, #1a0033 100%);
+            padding: 4rem 0;
+            margin: 4rem 0;
+            border-radius: 20px;
+            border: 2px solid;
+            border-image: linear-gradient(135deg, var(--vieve-purple), var(--vieve-pink)) 1;
+        }
+
+        .newsletter-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--vieve-white);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .newsletter-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid var(--vieve-purple);
+            color: var(--vieve-white);
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+        }
+
+        .newsletter-input:focus {
+            background: rgba(255,255,255,0.08);
+            border-color: var(--vieve-pink);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.2);
+            color: var(--vieve-white);
+        }
+
+        .newsletter-btn {
+            background: linear-gradient(135deg, var(--vieve-purple) 0%, var(--vieve-pink) 100%);
+            color: var(--vieve-white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            border: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .newsletter-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+        }
+
+        /* Footer */
+        .vieve-footer {
+            background: var(--vieve-gray);
+            padding: 3rem 0 1.5rem;
+            border-top: 2px solid;
+            border-image: linear-gradient(90deg, var(--vieve-purple), var(--vieve-pink), var(--vieve-cyan)) 1;
+            margin-top: 4rem;
+        }
+
+        .footer-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            font-weight: 400;
+            background: linear-gradient(135deg, var(--vieve-purple) 0%, var(--vieve-pink) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        .footer-link {
+            color: var(--vieve-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 0.3rem 0;
+        }
+
+        .footer-link:hover {
+            color: var(--vieve-pink);
+        }
+
+        .social-icons a {
+            color: var(--vieve-text);
+            font-size: 1.5rem;
+            margin: 0 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--vieve-pink);
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+
+            .featured-title {
+                font-size: 2rem;
+            }
+
+            .section-header {
+                font-size: 2.2rem;
+            }
+
+            .category-pill {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="vieve-nav">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="vieve-logo">VIEVE</div>
+                <div class="d-none d-md-flex gap-3">
+                    <a href="#" class="nav-link">Gaming</a>
+                    <a href="#" class="nav-link">Sports</a>
+                    <a href="#" class="nav-link">Pop Culture</a>
+                    <a href="#" class="nav-link">Food</a>
+                    <a href="blyss.html" class="nav-link" style="color: #0d6efd !important;">Blyss</a>
+                </div>
+                <a href="../index.html" class="btn btn-sm" style="background: linear-gradient(135deg, var(--vieve-purple), var(--vieve-pink)); color: white; font-weight: 700; border-radius: 25px; padding: 0.5rem 1.5rem;">
+                    <i class="bi bi-arrow-left me-2"></i>DorklyAI
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">VIEVE</h1>
+            <p class="hero-subtitle">Where Geeks Get Hype</p>
+            <p class="hero-tagline">
+                Gaming breakdowns • Sports analytics • Pop culture deep dives • Food adventures
+            </p>
+        </div>
+    </section>
+
+    <!-- Category Pills -->
+    <section class="category-pills">
+        <div class="container text-center">
+            <span class="category-pill active" data-category="all">All Stories</span>
+            <span class="category-pill" data-category="gaming">Gaming</span>
+            <span class="category-pill" data-category="sports">Sports</span>
+            <span class="category-pill" data-category="pop culture">Pop Culture</span>
+            <span class="category-pill" data-category="food">Food</span>
+        </div>
+    </section>
+
+    <!-- Featured Article -->
+    <section class="container my-5">
+        <div class="featured-article">
+            <!-- Will be loaded dynamically -->
+        </div>
+    </section>
+
+    <!-- Latest Articles Grid -->
+    <section class="container my-5">
+        <h2 class="section-header">Latest Stories</h2>
+        <div class="row g-4" id="latest-articles-grid">
+            <!-- Articles will be loaded dynamically -->
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container text-center">
+            <h2 class="newsletter-title">STAY IN THE LOOP</h2>
+            <p class="mb-4" style="color: var(--vieve-text);">Weekly drops of the hottest takes and coolest content. No spam, just vibes.</p>
+            <form class="newsletter-form">
+                <div class="input-group">
+                    <input type="email" class="form-control newsletter-input" placeholder="Enter your email" required>
+                    <button class="btn newsletter-btn ms-2" type="submit">
+                        Subscribe <i class="bi bi-arrow-right ms-2"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Trending Topics -->
+    <section class="container my-5">
+        <h2 class="section-header">Trending Now</h2>
+        <div class="row g-4" id="trending-articles-grid">
+            <!-- Articles will be loaded dynamically -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="vieve-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-logo mb-3">VIEVE</div>
+                    <p style="color: var(--vieve-text); font-size: 0.9rem;">
+                        A DorklyAI publication for gamers, sports fans, pop culture nerds, and food enthusiasts.
+                    </p>
+                    <div class="social-icons mt-3">
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-twitch"></i></a>
+                        <a href="#"><i class="bi bi-discord"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6 mb-4">
+                    <h5 style="color: var(--vieve-white); font-weight: 700; margin-bottom: 1rem; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Categories</h5>
+                    <a href="#" class="footer-link">Gaming</a>
+                    <a href="#" class="footer-link">Sports</a>
+                    <a href="#" class="footer-link">Pop Culture</a>
+                    <a href="#" class="footer-link">Food</a>
+                </div>
+                <div class="col-lg-2 col-6 mb-4">
+                    <h5 style="color: var(--vieve-white); font-weight: 700; margin-bottom: 1rem; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Company</h5>
+                    <a href="#" class="footer-link">About</a>
+                    <a href="#" class="footer-link">Team</a>
+                    <a href="#" class="footer-link">Careers</a>
+                    <a href="#" class="footer-link">Contact</a>
+                </div>
+                <div class="col-lg-2 col-6 mb-4">
+                    <h5 style="color: var(--vieve-white); font-weight: 700; margin-bottom: 1rem; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Community</h5>
+                    <a href="#" class="footer-link">Discord</a>
+                    <a href="#" class="footer-link">Podcast</a>
+                    <a href="#" class="footer-link">Events</a>
+                    <a href="#" class="footer-link">Store</a>
+                </div>
+                <div class="col-lg-2 col-6 mb-4">
+                    <h5 style="color: var(--vieve-white); font-weight: 700; margin-bottom: 1rem; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Legal</h5>
+                    <a href="#" class="footer-link">Privacy</a>
+                    <a href="#" class="footer-link">Terms</a>
+                    <a href="#" class="footer-link">Cookies</a>
+                </div>
+            </div>
+            <div class="text-center mt-4 pt-4" style="border-top: 1px solid rgba(147, 51, 234, 0.3); color: rgba(255,255,255,0.4); font-size: 0.9rem;">
+                <p class="mb-0">&copy; 2025 Vieve by DorklyAI. All rights reserved. Stay nerdy. 🎮🏀🍿</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Article Data -->
+    <script src="vieve-data.js"></script>
+    
+    <script>
+        // Load dynamic content
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFeaturedArticle();
+            loadLatestArticles();
+            loadTrendingArticles();
+        });
+
+        // Load featured article
+        function loadFeaturedArticle() {
+            const featured = getFeaturedArticle();
+            const featuredSection = document.querySelector('.featured-article');
+            
+            featuredSection.innerHTML = `
+                <a href="vieve-article.html?article=${featured.slug}" style="text-decoration: none;">
+                    <img src="${featured.image}" alt="${featured.title}">
+                    <div class="featured-overlay">
+                        <span class="featured-category">${featured.category}</span>
+                        <h2 class="featured-title">${featured.title}</h2>
+                        <p class="featured-excerpt">${featured.excerpt}</p>
+                        <div class="featured-meta">
+                            <span><i class="bi bi-calendar3 me-2"></i>${formatDate(featured.date)}</span>
+                            <span><i class="bi bi-clock me-2"></i>${featured.readTime} read</span>
+                            <span><i class="bi bi-person me-2"></i>${featured.author}</span>
+                        </div>
+                    </div>
+                </a>
+            `;
+        }
+
+        // Load latest articles
+        function loadLatestArticles() {
+            const articles = getAllArticles().slice(1, 7); // Skip featured, get next 6
+            const container = document.querySelector('#latest-articles-grid');
+            
+            container.innerHTML = articles.map(article => `
+                <div class="col-lg-4 col-md-6">
+                    <a href="vieve-article.html?article=${article.slug}" style="text-decoration: none;">
+                        <div class="article-card">
+                            <img src="${article.image}" alt="${article.title}" class="article-image">
+                            <div class="article-content">
+                                <span class="article-category">${article.category}</span>
+                                <h3 class="article-title">${article.title}</h3>
+                                <p class="article-excerpt">${article.excerpt}</p>
+                                <div class="article-meta">
+                                    <span>${formatDate(article.date)}</span>
+                                    <span class="read-time">
+                                        <i class="bi bi-clock"></i> ${article.readTime}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `).join('');
+        }
+
+        // Load trending articles
+        function loadTrendingArticles() {
+            const trending = getAllArticles().slice(7, 9); // Get 2 more articles
+            const container = document.querySelector('#trending-articles-grid');
+            
+            container.innerHTML = trending.map(article => `
+                <div class="col-lg-6">
+                    <a href="vieve-article.html?article=${article.slug}" style="text-decoration: none;">
+                        <div class="article-card">
+                            <img src="${article.image}" alt="${article.title}" class="article-image">
+                            <div class="article-content">
+                                <span class="article-category">${article.category}</span>
+                                <h3 class="article-title">${article.title}</h3>
+                                <p class="article-excerpt">${article.excerpt}</p>
+                                <div class="article-meta">
+                                    <span>${formatDate(article.date)}</span>
+                                    <span class="read-time">
+                                        <i class="bi bi-clock"></i> ${article.readTime}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `).join('');
+        }
+
+        // Category filter functionality
+        let currentCategory = 'all';
+        
+        document.querySelectorAll('.category-pill').forEach(pill => {
+            pill.addEventListener('click', function() {
+                document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
+                this.classList.add('active');
+                
+                currentCategory = this.dataset.category;
+                filterArticles(currentCategory);
+            });
+        });
+
+        function filterArticles(category) {
+            const articles = category === 'all' ? getAllArticles().slice(1, 7) : getArticlesByCategory(category).slice(0, 6);
+            const container = document.querySelector('#latest-articles-grid');
+            
+            container.innerHTML = articles.map(article => `
+                <div class="col-lg-4 col-md-6">
+                    <a href="vieve-article.html?article=${article.slug}" style="text-decoration: none;">
+                        <div class="article-card">
+                            <img src="${article.image}" alt="${article.title}" class="article-image">
+                            <div class="article-content">
+                                <span class="article-category">${article.category}</span>
+                                <h3 class="article-title">${article.title}</h3>
+                                <p class="article-excerpt">${article.excerpt}</p>
+                                <div class="article-meta">
+                                    <span>${formatDate(article.date)}</span>
+                                    <span class="read-time">
+                                        <i class="bi bi-clock"></i> ${article.readTime}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `).join('');
+
+            // Show message if no articles in category
+            if (articles.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12 text-center">
+                        <p style="color: var(--vieve-text); padding: 3rem;">
+                            No articles found in this category yet. Check back soon for fresh content!
+                        </p>
+                    </div>
+                `;
+            }
+        }
+
+        // Newsletter form
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thanks for subscribing! Get ready for the freshest content drops. 🚀');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

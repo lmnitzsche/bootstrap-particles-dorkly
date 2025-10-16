@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vieve Admin - Add New Article</title>
+    <link rel="icon" type="image/x-icon" href="../assets/dorklogo.png" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --vieve-dark: #0f0f0f;
+            --vieve-purple: #9333ea;
+            --vieve-pink: #ec4899;
+            --vieve-cyan: #06b6d4;
+            --vieve-white: #ffffff;
+            --vieve-gray: #1a1a1a;
+            --vieve-text: #e5e7eb;
+        }
+
+        body {
+            background-color: var(--vieve-dark);
+            color: var(--vieve-text);
+            font-family: 'Poppins', sans-serif;
+            padding: 2rem 0;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .admin-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            background: linear-gradient(135deg, var(--vieve-purple) 0%, var(--vieve-pink) 50%, var(--vieve-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .admin-subtitle {
+            color: var(--vieve-text);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .form-card {
+            background: var(--vieve-gray);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid rgba(147, 51, 234, 0.3);
+        }
+
+        .form-label {
+            color: var(--vieve-white);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .form-control, .form-select {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(147, 51, 234, 0.3);
+            color: var(--vieve-white);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background: rgba(255,255,255,0.08);
+            border-color: var(--vieve-pink);
+            color: var(--vieve-white);
+            box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.2);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255,255,255,0.3);
+        }
+
+        textarea.form-control {
+            min-height: 200px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .btn-generate {
+            background: linear-gradient(135deg, var(--vieve-purple) 0%, var(--vieve-pink) 100%);
+            color: var(--vieve-white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            border: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-generate:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.4);
+        }
+
+        .btn-sample {
+            background: rgba(6, 182, 212, 0.2);
+            border: 2px solid var(--vieve-cyan);
+            color: var(--vieve-cyan);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .btn-sample:hover {
+            background: var(--vieve-cyan);
+            color: var(--vieve-dark);
+        }
+
+        .output-section {
+            background: #0a0a0a;
+            border: 2px solid var(--vieve-purple);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .output-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--vieve-white);
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .code-output {
+            background: #000000;
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: #10b981;
+            max-height: 500px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .btn-copy {
+            background: linear-gradient(135deg, var(--vieve-cyan) 0%, var(--vieve-purple) 100%);
+            color: var(--vieve-white);
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            border: none;
+            font-weight: 700;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .btn-copy:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(6, 182, 212, 0.4);
+        }
+
+        .instructions {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-left: 4px solid var(--vieve-pink);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .instructions h4 {
+            color: var(--vieve-pink);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .instructions ol {
+            margin-bottom: 0;
+            padding-left: 1.5rem;
+        }
+
+        .instructions li {
+            margin-bottom: 0.5rem;
+            color: var(--vieve-text);
+        }
+
+        .form-check-input {
+            background-color: rgba(255,255,255,0.1);
+            border: 2px solid var(--vieve-purple);
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        .form-check-input:checked {
+            background-color: var(--vieve-pink);
+            border-color: var(--vieve-pink);
+        }
+
+        .form-check-label {
+            color: var(--vieve-text);
+            margin-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <h1 class="admin-title">VIEVE ADMIN</h1>
+        <p class="admin-subtitle">Create new articles for the geekiest publication around</p>
+
+        <div class="instructions">
+            <h4><i class="bi bi-info-circle me-2"></i>How to Use</h4>
+            <ol>
+                <li>Fill out all the fields below with your article information</li>
+                <li>Click "Generate Article Code" to create the formatted JavaScript object</li>
+                <li>Copy the generated code using the "Copy to Clipboard" button</li>
+                <li>Open <code>vieve-data.js</code> and paste the code into the <code>vieveArticles</code> array</li>
+                <li>Save the file and your new article will appear on the site!</li>
+            </ol>
+        </div>
+
+        <div class="form-card">
+            <form id="article-form">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Article Title *</label>
+                        <input type="text" class="form-control" id="title" placeholder="Enter a catchy title" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Category *</label>
+                        <select class="form-select" id="category" required>
+                            <option value="">Select category...</option>
+                            <option value="Gaming">Gaming</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Pop Culture">Pop Culture</option>
+                            <option value="Food">Food</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Author Name *</label>
+                        <input type="text" class="form-control" id="author" placeholder="e.g., Marcus 'Pixel' Chen" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Read Time *</label>
+                        <input type="text" class="form-control" id="readTime" placeholder="e.g., 8 min" required>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Excerpt / Summary *</label>
+                    <textarea class="form-control" id="excerpt" rows="3" placeholder="A brief 1-2 sentence summary that will appear on the homepage" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Featured Image URL *</label>
+                    <input type="url" class="form-control" id="image" placeholder="https://images.unsplash.com/..." required>
+                    <small class="text-muted">Tip: Use Unsplash for free images - search for your topic and copy the image URL</small>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Article Content (HTML) *</label>
+                    <textarea class="form-control" id="content" rows="15" placeholder="<p>Your article content here...</p>
+
+Use HTML formatting:
+- <p>Paragraphs</p>
+- <h2>Section Headers</h2>
+- <strong>Bold text</strong>
+- <ul><li>Bullet points</li></ul>
+
+See sample article for formatting examples." required></textarea>
+                </div>
+
+                <div class="mb-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="featured">
+                        <label class="form-check-label" for="featured">
+                            Mark as Featured Article (appears as hero on homepage)
+                        </label>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button type="button" class="btn btn-sample me-2" onclick="loadSampleArticle()">
+                        <i class="bi bi-lightning-fill me-2"></i>Load Sample Article
+                    </button>
+                    <button type="submit" class="btn-generate">
+                        <i class="bi bi-code-slash me-2"></i>Generate Article Code
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="output-section" id="output-section" style="display: none;">
+            <h3 class="output-title"><i class="bi bi-file-code me-2"></i>Generated Code</h3>
+            <div class="code-output" id="code-output"></div>
+            <button class="btn-copy" onclick="copyToClipboard()">
+                <i class="bi bi-clipboard me-2"></i>Copy to Clipboard
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Generate slug from title
+        function generateSlug(title) {
+            return title
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/(^-|-$)/g, '');
+        }
+
+        // Get next article ID
+        function getNextId() {
+            return Date.now(); // Simple unique ID based on timestamp
+        }
+
+        // Format current date
+        function getCurrentDate() {
+            const now = new Date();
+            return now.toISOString().split('T')[0];
+        }
+
+        // Escape special characters in content
+        function escapeContent(content) {
+            return content
+                .replace(/\\/g, '\\\\')
+                .replace(/`/g, '\\`')
+                .replace(/\$/g, '\\$');
+        }
+
+        // Load sample article
+        function loadSampleArticle() {
+            document.getElementById('title').value = "The Rise of Cozy Gaming in 2025";
+            document.getElementById('category').value = "Gaming";
+            document.getElementById('author').value = "Alex 'Chill' Thompson";
+            document.getElementById('readTime').value = "7 min";
+            document.getElementById('excerpt').value = "Why wholesome games are dominating the charts and what it says about modern gamers.";
+            document.getElementById('image').value = "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&h=500&fit=crop";
+            document.getElementById('featured').checked = false;
+            document.getElementById('content').value = `<p>Stardew Valley. Animal Crossing. Unpacking. A Short Hike. In 2025, cozy games aren't just popular—they're dominating sales charts, streaming platforms, and gaming discourse. But what's driving this seismic shift away from adrenaline-pumping action toward gentle, wholesome experiences?</p>
+
+<h2>The Numbers Don't Lie</h2>
+
+<p>According to recent industry data, cozy games saw a 230% increase in sales from 2022 to 2024. Indie darling "Cozy Grove" surpassed 5 million players. "Fae Farm" broke launch records for simulation games. Even major publishers are pivoting—EA announced three farming sims for 2025.</p>
+
+<p>Streaming tells the same story. Cozy gaming streams on Twitch grew 180% year-over-year, with streamers reporting higher viewer retention and engagement than traditional AAA titles.</p>
+
+<h2>Why Now?</h2>
+
+<ul>
+<li><strong>Post-Pandemic Comfort:</strong> After years of chaos, players crave control and predictability in their escapism</li>
+<li><strong>Economic Anxiety:</strong> Building virtual wealth feels satisfying when real-world finances feel precarious</li>
+<li><strong>Burnout from "Forever Games":</strong> Battle passes and daily quests exhausted players; cozy games respect your time</li>
+<li><strong>Accessibility:</strong> Lower skill floors mean more people can participate and feel successful</li>
+</ul>
+
+<h2>The Future Is Cozy</h2>
+
+<p>This isn't a trend—it's a fundamental shift in what mainstream gaming looks like. Developers are listening, and 2025's slate is packed with wholesome experiences. From mushroom farming sims to cottage renovation games, the message is clear: sometimes the best adventure is a quiet one.</p>
+
+<p>As one developer told me: "We're not competing for attention anymore. We're creating spaces where players want to exist." In an increasingly chaotic world, that might be exactly what we need.</p>`;
+        }
+
+        // Generate article code
+        document.getElementById('article-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const title = document.getElementById('title').value;
+            const category = document.getElementById('category').value;
+            const author = document.getElementById('author').value;
+            const readTime = document.getElementById('readTime').value;
+            const excerpt = document.getElementById('excerpt').value;
+            const image = document.getElementById('image').value;
+            const content = document.getElementById('content').value;
+            const featured = document.getElementById('featured').checked;
+
+            const articleCode = `{
+    id: ${getNextId()},
+    title: "${title}",
+    slug: "${generateSlug(title)}",
+    category: "${category}",
+    author: "${author}",
+    date: "${getCurrentDate()}",
+    readTime: "${readTime}",
+    excerpt: "${excerpt}",
+    image: "${image}",
+    featured: ${featured},
+    content: \`
+        ${escapeContent(content)}
+    \`
+},`;
+
+            document.getElementById('code-output').textContent = articleCode;
+            document.getElementById('output-section').style.display = 'block';
+            document.getElementById('output-section').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Copy to clipboard
+        function copyToClipboard() {
+            const codeOutput = document.getElementById('code-output').textContent;
+            navigator.clipboard.writeText(codeOutput).then(() => {
+                const btn = document.querySelector('.btn-copy');
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<i class="bi bi-check-circle me-2"></i>Copied!';
+                btn.style.background = 'linear-gradient(135deg, #10b981, #06b6d4)';
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.style.background = 'linear-gradient(135deg, var(--vieve-cyan), var(--vieve-purple))';
+                }, 2000);
+            });
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
