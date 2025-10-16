@@ -301,6 +301,32 @@
             margin-top: 4rem;
         }
 
+        /* Vieve Switch Button */
+        .vieve-switch-small {
+            background: linear-gradient(135deg, #9333ea 0%, #ec4899 100%);
+            color: white !important;
+            border: 2px solid transparent;
+            border-radius: 20px;
+            padding: 0.5rem 1.2rem;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(236, 72, 153, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-left: 1rem;
+        }
+
+        .vieve-switch-small:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(236, 72, 153, 0.5);
+            color: white !important;
+        }
+
         @media (max-width: 768px) {
             .article-title {
                 font-size: 2rem;
@@ -309,6 +335,11 @@
             .article-body {
                 font-size: 1rem;
             }
+
+            .vieve-switch-small {
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
         }
     </style>
 </head>
@@ -316,7 +347,7 @@
     <!-- Navigation -->
     <nav class="blyss-nav">
         <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
                 <a href="blyss.html" class="blyss-logo">Blyss</a>
                 <a href="blyss.html" class="back-link">
                     <i class="bi bi-arrow-left-circle-fill"></i>

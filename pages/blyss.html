@@ -112,6 +112,37 @@
             font-size: 1.1rem;
         }
 
+        /* Vieve Switch Button */
+        .vieve-switch {
+            background: linear-gradient(135deg, #9333ea 0%, #ec4899 100%);
+            color: white !important;
+            border: 2px solid transparent;
+            border-radius: 25px;
+            padding: 0.5rem 1.2rem;
+            font-weight: 800;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Bebas Neue', sans-serif;
+        }
+
+        .vieve-switch:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 25px rgba(236, 72, 153, 0.6);
+            color: white !important;
+            border-color: #ec4899;
+        }
+
+        .vieve-switch i {
+            font-size: 1.1rem;
+        }
+
         /* Hero Section */
         .hero-section {
             position: relative;
@@ -475,18 +506,23 @@
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="blyss-logo">Blyss</div>
-                <div class="d-none d-md-flex gap-3">
+                <div class="d-none d-md-flex gap-3 align-items-center">
                     <a href="#latest-articles" class="nav-link nav-category-link" data-category="business">Business</a>
                     <a href="#latest-articles" class="nav-link nav-category-link" data-category="finance">Finance</a>
                     <a href="#latest-articles" class="nav-link nav-category-link" data-category="technology">Technology</a>
                     <a href="#latest-articles" class="nav-link nav-category-link" data-category="philosophy">Philosophy</a>
                     <a href="#latest-articles" class="nav-link nav-category-link" data-category="theology">Theology</a>
-                    <a href="vieve.html" class="nav-link" style="color: #ec4899 !important;">Vieve</a>
                 </div>
-                <a href="../index.html" class="back-to-dorkly">
-                    <i class="bi bi-arrow-left-circle-fill"></i>
-                    <span>Back to DorklyAI</span>
-                </a>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="vieve.html" class="vieve-switch">
+                        <i class="bi bi-controller"></i>
+                        <span>Vieve</span>
+                    </a>
+                    <a href="../index.html" class="back-to-dorkly">
+                        <i class="bi bi-arrow-left-circle-fill"></i>
+                        <span>DorklyAI</span>
+                    </a>
+                </div>
             </div>
         </div>
     </nav>

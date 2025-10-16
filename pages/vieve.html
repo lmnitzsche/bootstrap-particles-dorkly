@@ -77,6 +77,39 @@
             transform: translateY(-2px);
         }
 
+        /* Blyss Switch Button */
+        .blyss-switch {
+            background: linear-gradient(135deg, #0a0a0a 0%, #0d6efd 100%);
+            color: white !important;
+            border: 2px solid #0d6efd;
+            border-radius: 25px;
+            padding: 0.5rem 1.2rem;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(13, 110, 253, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+        .blyss-switch:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 25px rgba(13, 110, 253, 0.6);
+            color: white !important;
+            background: linear-gradient(135deg, #0d6efd 0%, #0056d2 100%);
+            border-color: #4d94ff;
+        }
+
+        .blyss-switch i {
+            font-size: 1.1rem;
+        }
+
         /* Hero Section */
         .hero-section {
             position: relative;
@@ -462,16 +495,21 @@
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="vieve-logo">VIEVE</div>
-                <div class="d-none d-md-flex gap-3">
+                <div class="d-none d-md-flex gap-3 align-items-center">
                     <a href="#latest-articles" class="nav-link nav-category-link" data-category="gaming">Gaming</a>
                     <a href="#latest-articles" class="nav-link nav-category-link" data-category="sports">Sports</a>
                     <a href="#latest-articles" class="nav-link nav-category-link" data-category="pop culture">Pop Culture</a>
                     <a href="#latest-articles" class="nav-link nav-category-link" data-category="food">Food</a>
-                    <a href="blyss.html" class="nav-link" style="color: #0d6efd !important;">Blyss</a>
                 </div>
-                <a href="../index.html" class="btn btn-sm" style="background: linear-gradient(135deg, var(--vieve-purple), var(--vieve-pink)); color: white; font-weight: 700; border-radius: 25px; padding: 0.5rem 1.5rem;">
-                    <i class="bi bi-arrow-left me-2"></i>DorklyAI
-                </a>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="blyss.html" class="blyss-switch">
+                        <i class="bi bi-journal-text"></i>
+                        <span>Blyss</span>
+                    </a>
+                    <a href="../index.html" class="btn btn-sm" style="background: linear-gradient(135deg, var(--vieve-purple), var(--vieve-pink)); color: white; font-weight: 700; border-radius: 25px; padding: 0.5rem 1.5rem;">
+                        <i class="bi bi-arrow-left me-2"></i>DorklyAI
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
