@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DorklyAI Academy - Master Your Future</title>
+    <link rel="icon" type="image/x-icon" href="../assets/dorklogo.png" />
+    <meta name="description" content="Transform your life with expert-led courses in financial literacy, investing, credit strategy, affiliate marketing, and sales mastery. Learn from industry professionals and start earning today.">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --success-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            --warning-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --info-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark: #1a1a2e;
+            --darker: #0f0f1e;
+            --light: #f8f9fa;
+            --text: #e4e4e7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--darker);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .academy-nav {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .academy-logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-btn {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            border: none;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0 4rem;
+            background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(118, 75, 162, 0.15) 0%, transparent 50%);
+            position: relative;
+        }
+
+        .hero-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 0%, #667eea 50%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero-cta {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        /* Course Cards */
+        .courses-section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .course-card {
+            background: linear-gradient(145deg, rgba(26, 26, 46, 0.8) 0%, rgba(15, 15, 30, 0.9) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            height: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+        }
+
+        .course-card:hover::before {
+            opacity: 1;
+        }
+
+        .course-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .course-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .course-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .course-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .course-features li {
+            padding: 0.5rem 0;
+            color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .course-features li i {
+            color: #667eea;
+        }
+
+        .course-price {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .course-btn {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 15px;
+            font-weight: 700;
+            border: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            color: white;
+        }
+
+        .btn-primary-course {
+            background: var(--primary-gradient);
+        }
+
+        .btn-success-course {
+            background: var(--success-gradient);
+        }
+
+        .btn-warning-course {
+            background: var(--warning-gradient);
+        }
+
+        .btn-info-course {
+            background: var(--info-gradient);
+        }
+
+        .course-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .opportunity-badge {
+            display: inline-block;
+            background: rgba(56, 239, 125, 0.2);
+            border: 1px solid #38ef7d;
+            color: #38ef7d;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            text-transform: uppercase;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--primary-gradient);
+            padding: 4rem 0;
+            margin: 4rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background: rgba(26, 26, 46, 0.8);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        /* Footer */
+        .academy-footer {
+            background: var(--dark);
+            padding: 3rem 0 1.5rem;
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
+            margin-top: 5rem;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #667eea;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="academy-nav">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="academy-logo">DorklyAI Academy</div>
+                <a href="../index.html" class="nav-btn">
+                    <i class="bi bi-arrow-left-circle-fill me-2"></i>
+                    Back to DorklyAI
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container text-center">
+            <h1 class="hero-title">Master Your Future</h1>
+            <p class="hero-subtitle">Transform your life with expert-led courses designed to build wealth, credit, and income.</p>
+            <button class="hero-cta" onclick="document.querySelector('.courses-section').scrollIntoView({behavior: 'smooth'})">
+                Explore Courses <i class="bi bi-arrow-down-circle ms-2"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stat-item">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Expert Courses</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Practical Skills</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stat-item">
+                        <div class="stat-number">Lifetime</div>
+                        <div class="stat-label">Access</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses-section">
+        <div class="container">
+            <h2 class="section-title">Our Courses</h2>
+            
+            <div class="row g-4">
+                <!-- Financial Literacy Course -->
+                <div class="col-lg-6">
+                    <div class="course-card">
+                        <div class="course-icon" style="background: var(--primary-gradient);">
+                            <i class="bi bi-graph-up-arrow"></i>
+                        </div>
+                        <h3 class="course-title">Financial Literacy Mastery</h3>
+                        <p class="course-description">
+                            Learn the fundamentals of personal finance, budgeting, debt management, and building a solid financial foundation that lasts a lifetime.
+                        </p>
+                        <ul class="course-features">
+                            <li><i class="bi bi-check-circle-fill"></i> Budgeting & Cash Flow Management</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Debt Elimination Strategies</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Emergency Fund Building</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Financial Goal Setting</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Tax Planning Basics</li>
+                        </ul>
+                        <div class="course-price">$197</div>
+                        <a href="financial-literacy.html" class="course-btn btn-primary-course">
+                            Learn More <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Buy & Hold Investing Course -->
+                <div class="col-lg-6">
+                    <div class="course-card">
+                        <div class="course-icon" style="background: var(--success-gradient);">
+                            <i class="bi bi-trophy-fill"></i>
+                        </div>
+                        <h3 class="course-title">Buy & Hold Forever Investing</h3>
+                        <p class="course-description">
+                            Master the Warren Buffett approach to wealth building through long-term value investing in quality stocks and index funds.
+                        </p>
+                        <ul class="course-features">
+                            <li><i class="bi bi-check-circle-fill"></i> Value Investing Principles</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Stock Analysis & Selection</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Index Fund Strategies</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Portfolio Construction</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Dollar-Cost Averaging</li>
+                        </ul>
+                        <div class="course-price">$297</div>
+                        <a href="buy-hold-investing.html" class="course-btn btn-success-course">
+                            Learn More <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Credit Strategy Course -->
+                <div class="col-lg-6">
+                    <div class="course-card">
+                        <div class="course-icon" style="background: var(--info-gradient);">
+                            <i class="bi bi-credit-card-fill"></i>
+                        </div>
+                        <h3 class="course-title">Credit Strategy Mastery</h3>
+                        <p class="course-description">
+                            Build perfect credit, maximize rewards, and leverage credit strategically to create wealth and unlock financial opportunities.
+                        </p>
+                        <ul class="course-features">
+                            <li><i class="bi bi-check-circle-fill"></i> Credit Score Optimization</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Credit Card Strategies</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Dispute & Repair Tactics</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Rewards Maximization</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Business Credit Building</li>
+                        </ul>
+                        <div class="course-price">$247</div>
+                        <a href="credit-strategy.html" class="course-btn btn-info-course">
+                            Learn More <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Affiliate Marketing Course -->
+                <div class="col-lg-6">
+                    <div class="course-card">
+                        <div class="course-icon" style="background: var(--warning-gradient);">
+                            <i class="bi bi-rocket-takeoff-fill"></i>
+                        </div>
+                        <h3 class="course-title">Affiliate Marketing Blueprint</h3>
+                        <p class="course-description">
+                            Learn how to build a profitable affiliate marketing business and earn commissions by referring people to DorklyAI services.
+                        </p>
+                        <ul class="course-features">
+                            <li><i class="bi bi-check-circle-fill"></i> Affiliate Marketing Fundamentals</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Content Creation & SEO</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Social Media Promotion</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Email Marketing Tactics</li>
+                            <li><i class="bi bi-check-circle-fill"></i> DorklyAI Affiliate Program Access</li>
+                        </ul>
+                        <div class="course-price">$197</div>
+                        <div class="opportunity-badge">
+                            <i class="bi bi-currency-dollar"></i> Earn as You Learn
+                        </div>
+                        <a href="affiliate-marketing.html" class="course-btn btn-warning-course">
+                            Learn More <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Sales Mastery Course -->
+                <div class="col-lg-12">
+                    <div class="course-card">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <div class="course-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                    <i class="bi bi-lightning-charge-fill"></i>
+                                </div>
+                                <h3 class="course-title">Sales Mastery & Commission Program</h3>
+                                <p class="course-description">
+                                    Master the art of selling and join DorklyAI as a commissioned sales representative. Learn proven techniques and start earning immediately.
+                                </p>
+                                <ul class="course-features">
+                                    <li><i class="bi bi-check-circle-fill"></i> Sales Psychology & Persuasion</li>
+                                    <li><i class="bi bi-check-circle-fill"></i> Objection Handling</li>
+                                    <li><i class="bi bi-check-circle-fill"></i> Closing Techniques</li>
+                                    <li><i class="bi bi-check-circle-fill"></i> CRM & Follow-up Systems</li>
+                                    <li><i class="bi bi-check-circle-fill"></i> DorklyAI Sales Rep Position</li>
+                                </ul>
+                                <div class="course-price">$297</div>
+                                <div class="opportunity-badge">
+                                    <i class="bi bi-briefcase-fill"></i> Career Opportunity Included
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="sales-mastery.html" class="course-btn" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                    Learn More <i class="bi bi-arrow-right ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="container mb-5">
+        <h2 class="section-title">What Our Students Say</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The financial literacy course completely changed my relationship with money. I paid off $15,000 in debt in 8 months!"</p>
+                    <div class="testimonial-author">— Sarah M.</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"I'm now earning $3,000/month as a DorklyAI affiliate. The training was worth every penny and more."</p>
+                    <div class="testimonial-author">— Marcus T.</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The credit strategy course helped me raise my score from 580 to 750 in just 6 months. Incredible results!"</p>
+                    <div class="testimonial-author">— Jennifer L.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="academy-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4 style="color: white; margin-bottom: 1rem;">DorklyAI Academy</h4>
+                    <p style="color: rgba(255,255,255,0.6);">
+                        Empowering individuals through education and opportunity.
+                    </p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 style="color: white; margin-bottom: 1rem;">Quick Links</h5>
+                    <div class="d-flex flex-column gap-2">
+                        <a href="#" class="footer-link">All Courses</a>
+                        <a href="#" class="footer-link">Affiliate Program</a>
+                        <a href="#" class="footer-link">Become a Sales Rep</a>
+                        <a href="../index.html" class="footer-link">DorklyAI Home</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 style="color: white; margin-bottom: 1rem;">Support</h5>
+                    <div class="d-flex flex-column gap-2">
+                        <a href="#" class="footer-link">FAQ</a>
+                        <a href="#" class="footer-link">Contact Us</a>
+                        <a href="#" class="footer-link">Terms of Service</a>
+                        <a href="#" class="footer-link">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4 pt-4" style="border-top: 1px solid rgba(102, 126, 234, 0.2); color: rgba(255,255,255,0.4);">
+                <p class="mb-0">&copy; 2025 DorklyAI Academy. All rights reserved. Transform your future today.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

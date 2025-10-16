@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Literacy Mastery - DorklyAI Academy</title>
+    <link rel="icon" type="image/x-icon" href="../assets/dorklogo.png" />
+    <meta name="description" content="Master personal finance fundamentals, budgeting, debt management, and build a solid financial foundation that lasts a lifetime.">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #667eea;
+            --primary-dark: #4c63d2;
+            --dark: #1a1a2e;
+            --darker: #0f0f1e;
+            --text: #e4e4e7;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--darker);
+            color: var(--text);
+        }
+
+        .course-nav {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .back-btn {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            color: var(--primary);
+        }
+
+        .course-hero {
+            padding: 5rem 0 3rem;
+            background: radial-gradient(circle at 30% 50%, rgba(102, 126, 234, 0.15) 0%, transparent 50%);
+        }
+
+        .course-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 0%, #667eea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .meta-item i {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .enroll-card {
+            background: linear-gradient(145deg, rgba(26, 26, 46, 0.9) 0%, rgba(15, 15, 30, 1) 100%);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: sticky;
+            top: 100px;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .enroll-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+
+        .enroll-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .guarantee {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .module-card {
+            background: rgba(26, 26, 46, 0.8);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .module-card:hover {
+            border-color: var(--primary);
+            transform: translateX(10px);
+        }
+
+        .module-number {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .module-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.75rem;
+        }
+
+        .module-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+        }
+
+        .lesson-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .lesson-list li {
+            padding: 0.5rem 0;
+            color: rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .lesson-list li i {
+            color: var(--primary);
+            font-size: 0.8rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(26, 26, 46, 0.8);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 15px;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+        }
+
+        .testimonial {
+            background: rgba(26, 26, 46, 0.8);
+            border-left: 4px solid var(--primary);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .faq-item {
+            background: rgba(26, 26, 46, 0.8);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-question {
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.75rem;
+        }
+
+        .faq-answer {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <nav class="course-nav">
+        <div class="container">
+            <a href="index.html" class="back-btn">
+                <i class="bi bi-arrow-left me-2"></i>
+                Back to All Courses
+            </a>
+        </div>
+    </nav>
+
+    <section class="course-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <h1 class="course-title">Financial Literacy Mastery</h1>
+                    <p class="course-subtitle">
+                        Master the fundamentals of personal finance, budgeting, and debt management. Build a solid financial foundation that empowers you to achieve your dreams and live life on your terms.
+                    </p>
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <i class="bi bi-clock-fill"></i>
+                            <span>8 Weeks</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="bi bi-journal-text"></i>
+                            <span>6 Modules</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="bi bi-play-circle-fill"></i>
+                            <span>42 Video Lessons</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="bi bi-download"></i>
+                            <span>20+ Resources</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="enroll-card">
+                        <div class="price">$197</div>
+                        <button class="enroll-btn">
+                            <i class="bi bi-lightning-charge-fill me-2"></i>
+                            Enroll Now
+                        </button>
+                        <div class="guarantee">
+                            <i class="bi bi-shield-check me-2"></i>
+                            30-Day Money-Back Guarantee
+                        </div>
+                        <ul class="list-unstyled mt-3">
+                            <li class="py-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Lifetime access</li>
+                            <li class="py-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Certificate of completion</li>
+                            <li class="py-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Downloadable resources</li>
+                            <li class="py-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Private community access</li>
+                            <li class="py-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Expert support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <h2 class="section-title">What You'll Learn</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon"><i class="bi bi-piggy-bank-fill"></i></div>
+                <div class="feature-title">Smart Budgeting</div>
+                <p class="feature-text">Create budgets that actually work and track your cash flow like a pro</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="bi bi-graph-down-arrow"></i></div>
+                <div class="feature-title">Debt Freedom</div>
+                <p class="feature-text">Eliminate debt systematically using proven strategies</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="bi bi-safe-fill"></i></div>
+                <div class="feature-title">Emergency Fund</div>
+                <p class="feature-text">Build financial security with proper emergency savings</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="bi bi-target"></i></div>
+                <div class="feature-title">Goal Setting</div>
+                <p class="feature-text">Set and achieve meaningful financial goals</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <h2 class="section-title">Course Curriculum</h2>
+        
+        <div class="module-card">
+            <div class="module-number">1</div>
+            <h3 class="module-title">Financial Foundations</h3>
+            <p class="module-description">Understand the basics of personal finance and develop a money mindset that serves you.</p>
+            <ul class="lesson-list">
+                <li><i class="bi bi-play-circle-fill"></i> The Psychology of Money</li>
+                <li><i class="bi bi-play-circle-fill"></i> Financial Goals & Vision</li>
+                <li><i class="bi bi-play-circle-fill"></i> Net Worth Calculation</li>
+                <li><i class="bi bi-play-circle-fill"></i> Cash Flow Analysis</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <div class="module-number">2</div>
+            <h3 class="module-title">Budgeting Mastery</h3>
+            <p class="module-description">Create and maintain budgets that work for your lifestyle and goals.</p>
+            <ul class="lesson-list">
+                <li><i class="bi bi-play-circle-fill"></i> Budgeting Methods (50/30/20, Zero-Based, etc.)</li>
+                <li><i class="bi bi-play-circle-fill"></i> Tracking Expenses Effectively</li>
+                <li><i class="bi bi-play-circle-fill"></i> Budget Apps & Tools</li>
+                <li><i class="bi bi-play-circle-fill"></i> Adjusting for Irregular Income</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <div class="module-number">3</div>
+            <h3 class="module-title">Debt Elimination</h3>
+            <p class="module-description">Systematic strategies to become debt-free faster than you thought possible.</p>
+            <ul class="lesson-list">
+                <li><i class="bi bi-play-circle-fill"></i> Debt Snowball vs. Avalanche</li>
+                <li><i class="bi bi-play-circle-fill"></i> Negotiating with Creditors</li>
+                <li><i class="bi bi-play-circle-fill"></i> Debt Consolidation Options</li>
+                <li><i class="bi bi-play-circle-fill"></i> Avoiding Future Debt</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <div class="module-number">4</div>
+            <h3 class="module-title">Emergency Fund Building</h3>
+            <p class="module-description">Create financial security with proper emergency savings strategies.</p>
+            <ul class="lesson-list">
+                <li><i class="bi bi-play-circle-fill"></i> How Much to Save</li>
+                <li><i class="bi bi-play-circle-fill"></i> Where to Keep Emergency Funds</li>
+                <li><i class="bi bi-play-circle-fill"></i> Automation Strategies</li>
+                <li><i class="bi bi-play-circle-fill"></i> When to Use Emergency Funds</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <div class="module-number">5</div>
+            <h3 class="module-title">Saving & Investing Basics</h3>
+            <p class="module-description">Introduction to growing wealth beyond just saving money.</p>
+            <ul class="lesson-list">
+                <li><i class="bi bi-play-circle-fill"></i> Savings Account Optimization</li>
+                <li><i class="bi bi-play-circle-fill"></i> Introduction to Investing</li>
+                <li><i class="bi bi-play-circle-fill"></i> Retirement Accounts (401k, IRA)</li>
+                <li><i class="bi bi-play-circle-fill"></i> Compound Interest Power</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <div class="module-number">6</div>
+            <h3 class="module-title">Tax Planning & Protection</h3>
+            <p class="module-description">Understand taxes and protect your financial future.</p>
+            <ul class="lesson-list">
+                <li><i class="bi bi-play-circle-fill"></i> Tax Basics & Deductions</li>
+                <li><i class="bi bi-play-circle-fill"></i> Insurance Essentials</li>
+                <li><i class="bi bi-play-circle-fill"></i> Estate Planning Introduction</li>
+                <li><i class="bi bi-play-circle-fill"></i> Your Financial Action Plan</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <h2 class="section-title">Student Success Stories</h2>
+        
+        <div class="testimonial">
+            <p class="testimonial-text">
+                "Before this course, I was living paycheck to paycheck with $18,000 in credit card debt. Within 10 months, I paid off ALL my debt and saved $5,000 in my emergency fund. This course literally changed my life!"
+            </p>
+            <div class="testimonial-author">— Sarah Martinez, Marketing Manager</div>
+        </div>
+
+        <div class="testimonial">
+            <p class="testimonial-text">
+                "I thought I was good with money, but this course opened my eyes to so many opportunities I was missing. I now have a solid budget, automated savings, and I'm on track to retire 5 years earlier than planned."
+            </p>
+            <div class="testimonial-author">— David Chen, Software Engineer</div>
+        </div>
+
+        <div class="testimonial">
+            <p class="testimonial-text">
+                "As a single mom, money was always stressful. This course gave me practical tools I could actually use. I've saved $3,000 in 6 months and I finally feel in control of my finances."
+            </p>
+            <div class="testimonial-author">— Jessica Williams, Teacher</div>
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">Do I need any prior financial knowledge?</div>
+            <div class="faq-answer">
+                No! This course is designed for complete beginners. We start from the very basics and build up your financial knowledge step by step.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How long do I have access to the course?</div>
+            <div class="faq-answer">
+                You get lifetime access to all course materials, including any future updates. Learn at your own pace, forever.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">What if I'm not satisfied with the course?</div>
+            <div class="faq-answer">
+                We offer a 30-day money-back guarantee. If you're not completely satisfied, just let us know and we'll refund your investment, no questions asked.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Is this course applicable outside the US?</div>
+            <div class="faq-answer">
+                While some examples are US-focused, the principles of budgeting, debt elimination, and financial planning are universal and applicable anywhere.
+            </div>
+        </div>
+    </section>
+
+    <section class="container my-5 text-center">
+        <div class="py-5">
+            <h2 class="section-title">Ready to Transform Your Financial Future?</h2>
+            <p class="course-subtitle mb-4">Join thousands of students who have taken control of their money.</p>
+            <button class="enroll-btn" style="max-width: 400px; margin: 0 auto;">
+                <i class="bi bi-lightning-charge-fill me-2"></i>
+                Enroll Now for $197
+            </button>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

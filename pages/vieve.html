@@ -486,6 +486,11 @@
                 padding: 0.6rem 1.2rem;
                 font-size: 0.75rem;
             }
+
+            /* Hide blog switcher buttons on mobile */
+            .blyss-switch {
+                display: none !important;
+            }
         }
     </style>
 </head>
@@ -506,8 +511,9 @@
                         <i class="bi bi-journal-text"></i>
                         <span>Blyss</span>
                     </a>
-                    <a href="../index.html" class="btn btn-sm" style="background: linear-gradient(135deg, var(--vieve-purple), var(--vieve-pink)); color: white; font-weight: 700; border-radius: 25px; padding: 0.5rem 1.5rem;">
-                        <i class="bi bi-arrow-left me-2"></i>DorklyAI
+                    <a href="../index.html" class="btn btn-sm" style="background: linear-gradient(135deg, var(--vieve-purple), var(--vieve-pink)); color: white; font-weight: 700; border-radius: 25px; padding: 0.5rem 1.2rem; font-size: 1rem; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3);">
+                        <i class="bi bi-arrow-left-circle-fill" style="font-size: 1.1rem;"></i>
+                        <span>DorklyAI</span>
                     </a>
                 </div>
             </div>

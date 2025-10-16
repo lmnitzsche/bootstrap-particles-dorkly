@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affiliate Marketing Blueprint - DorklyAI Academy</title>
+    <link rel="icon" type="image/x-icon" href="../assets/dorklogo.png" />
+    <meta name="description" content="Build a profitable affiliate marketing business and start earning commissions by referring people to DorklyAI courses and services.">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #f093fb;
+            --primary-dark: #f5576c;
+            --accent: #38ef7d;
+            --dark: #1a1a2e;
+            --darker: #0f0f1e;
+            --text: #e4e4e7;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--darker);
+            color: var(--text);
+        }
+
+        .course-nav {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(240, 147, 251, 0.2);
+        }
+
+        .back-btn {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            color: var(--primary);
+        }
+
+        .course-hero {
+            padding: 5rem 0 3rem;
+            background: radial-gradient(circle at 30% 50%, rgba(240, 147, 251, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(56, 239, 125, 0.1) 0%, transparent 50%);
+        }
+
+        .course-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 0%, #f093fb 50%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .meta-item i {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .enroll-card {
+            background: linear-gradient(145deg, rgba(26, 26, 46, 0.9) 0%, rgba(15, 15, 30, 1) 100%);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: sticky;
+            top: 100px;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .enroll-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+
+        .enroll-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(240, 147, 251, 0.5);
+        }
+
+        .guarantee {
+            background: rgba(240, 147, 251, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .module-card {
+            background: rgba(26, 26, 46, 0.8);
+            border: 1px solid rgba(240, 147, 251, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .module-card:hover {
+            border-color: var(--primary);
+            transform: translateX(10px);
+        }
+
+        .module-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .module-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.75rem;
+        }
+
+        .module-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+        }
+
+        .lesson-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .lesson-list li {
+            padding: 0.5rem 0;
+            color: rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .lesson-list li i {
+            color: var(--primary);
+            font-size: 0.8rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(26, 26, 46, 0.8);
+            border: 1px solid rgba(240, 147, 251, 0.2);
+            border-radius: 15px;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+        }
+
+        .testimonial {
+            background: rgba(26, 26, 46, 0.8);
+            border-left: 4px solid var(--primary);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .faq-item {
+            background: rgba(26, 26, 46, 0.8);
+            border: 1px solid rgba(240, 147, 251, 0.2);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-question {
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.75rem;
+        }
+
+        .faq-answer {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        .earning-badge {
+            display: inline-block;
+            background: rgba(56, 239, 125, 0.2);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            text-transform: uppercase;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .commission-highlight {
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.2) 0%, rgba(56, 239, 125, 0.2) 100%);
+            border: 2px solid var(--accent);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .commission-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #f093fb 0%, #38ef7d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .commission-text {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+
+        .commission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .commission-item {
+            padding: 1.5rem;
+            background: rgba(26, 26, 46, 0.8);
+            border-radius: 15px;
+        }
+
+        .commission-percent {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent);
+        }
+
+        .commission-label {
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="course-nav">
+        <div class="container">
+            <a href="index.html" class="back-btn">
+                <i class="bi bi-arrow-left me-2"></i>
+                Back to All Courses
+            </a>
+        </div>
+    </nav>
+
+    <section class="course-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <h1 class="course-title">Affiliate Marketing Blueprint</h1>
+                    <p class="course-subtitle">
+                        Build a profitable affiliate marketing business from scratch. Learn to create content, drive traffic, and earn commissions by promoting DorklyAI courses and other high-quality products.
+                    </p>
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <i class="bi bi-clock-fill"></i>
+                            <span>8 Weeks</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="bi bi-journal-text"></i>
+                            <span>7 Modules</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="bi bi-play-circle-fill"></i>
+                            <span>52 Video Lessons</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="bi bi-download"></i>
+                            <span>50+ Templates</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="enroll-card">
+                        <div class="price">$197</div>
+                        <button class="enroll-btn">
+                            <i class="bi bi-rocket-takeoff-fill me-2"></i>
+                            Enroll Now
+                        </button>
+                        <div class="guarantee">
+                            <i class="bi bi-shield-check me-2"></i>
+                            30-Day Money-Back Guarantee
+                        </div>
+                        <ul class="list-unstyled mt-3">
+                            <li class="py-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Lifetime course access</li>
+                            <li class="py-2"><i class="bi bi-check-circle-fill text-success me-2"></i> DorklyAI affiliate partnership</li>
+                            <li class="py-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Content templates & swipe files</li>
+                            <li class="py-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Private affiliate community</li>
+                            <li class="py-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Weekly live coaching calls</li>
+                        </ul>
+                        <div class="earning-badge">
+                            <i class="bi bi-currency-dollar"></i> Start Earning Immediately
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <div class="commission-highlight">
+            <h2 class="commission-title">Earn as You Learn</h2>
+            <p class="commission-text">
+                Upon enrollment, you'll receive your personal DorklyAI affiliate link. Start promoting our courses immediately and earn commissions while you're still learning!
+            </p>
+            <div class="commission-grid">
+                <div class="commission-item">
+                    <div class="commission-percent">30%</div>
+                    <div class="commission-label">Commission per Course Sale</div>
+                </div>
+                <div class="commission-item">
+                    <div class="commission-percent">20%</div>
+                    <div class="commission-label">Recurring Revenue Share</div>
+                </div>
+                <div class="commission-item">
+                    <div class="commission-percent">$1000+</div>
+                    <div class="commission-label">Avg. Monthly Earnings</div>
+                </div>
+                <div class="commission-item">
+                    <div class="commission-percent">∞</div>
+                    <div class="commission-label">Lifetime Cookie Duration</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <h2 class="section-title">What You'll Master</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon"><i class="bi bi-pen-fill"></i></div>
+                <div class="feature-title">Content Creation</div>
+                <p class="feature-text">Create compelling content that attracts and converts your audience</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="bi bi-graph-up-arrow"></i></div>
+                <div class="feature-title">Traffic Generation</div>
+                <p class="feature-text">Drive targeted traffic through SEO, social media, and paid ads</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="bi bi-envelope-fill"></i></div>
+                <div class="feature-title">Email Marketing</div>
+                <p class="feature-text">Build and monetize an engaged email list that generates passive income</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="bi bi-bar-chart-fill"></i></div>
+                <div class="feature-title">Conversion Optimization</div>
+                <p class="feature-text">Maximize your earnings with proven conversion strategies</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <h2 class="section-title">Complete Course Curriculum</h2>
+        
+        <div class="module-card">
+            <div class="module-number">1</div>
+            <h3 class="module-title">Affiliate Marketing Fundamentals</h3>
+            <p class="module-description">Understand the affiliate business model and how to succeed in it.</p>
+            <ul class="lesson-list">
+                <li><i class="bi bi-play-circle-fill"></i> How Affiliate Marketing Works</li>
+                <li><i class="bi bi-play-circle-fill"></i> Choosing Profitable Niches</li>
+                <li><i class="bi bi-play-circle-fill"></i> Understanding Your Audience</li>
+                <li><i class="bi bi-play-circle-fill"></i> DorklyAI Affiliate Program Setup</li>
+                <li><i class="bi bi-play-circle-fill"></i> Tracking & Analytics Basics</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <div class="module-number">2</div>
+            <h3 class="module-title">Platform & Website Setup</h3>
+            <p class="module-description">Build your affiliate marketing platform from scratch.</p>
+            <ul class="lesson-list">
+                <li><i class="bi bi-play-circle-fill"></i> Domain & Hosting Selection</li>
+                <li><i class="bi bi-play-circle-fill"></i> WordPress Setup & Optimization</li>
+                <li><i class="bi bi-play-circle-fill"></i> Essential Plugins & Tools</li>
+                <li><i class="bi bi-play-circle-fill"></i> Professional Design Basics</li>
+                <li><i class="bi bi-play-circle-fill"></i> Legal Pages & Compliance</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <div class="module-number">3</div>
+            <h3 class="module-title">Content Creation Mastery</h3>
+            <p class="module-description">Create high-converting content that drives affiliate sales.</p>
+            <ul class="lesson-list">
+                <li><i class="bi bi-play-circle-fill"></i> Content Strategy & Planning</li>
+                <li><i class="bi bi-play-circle-fill"></i> Review Post Templates</li>
+                <li><i class="bi bi-play-circle-fill"></i> Comparison Articles</li>
+                <li><i class="bi bi-play-circle-fill"></i> Tutorial Content Creation</li>
+                <li><i class="bi bi-play-circle-fill"></i> Video Content for Affiliates</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <div class="module-number">4</div>
+            <h3 class="module-title">SEO & Organic Traffic</h3>
+            <p class="module-description">Master search engine optimization to drive free, targeted traffic.</p>
+            <ul class="lesson-list">
+                <li><i class="bi bi-play-circle-fill"></i> Keyword Research for Affiliates</li>
+                <li><i class="bi bi-play-circle-fill"></i> On-Page SEO Optimization</li>
+                <li><i class="bi bi-play-circle-fill"></i> Link Building Strategies</li>
+                <li><i class="bi bi-play-circle-fill"></i> Technical SEO Basics</li>
+                <li><i class="bi bi-play-circle-fill"></i> Local SEO for Affiliates</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <div class="module-number">5</div>
+            <h3 class="module-title">Social Media Marketing</h3>
+            <p class="module-description">Leverage social platforms to grow your affiliate business.</p>
+            <ul class="lesson-list">
+                <li><i class="bi bi-play-circle-fill"></i> Platform Selection Strategy</li>
+                <li><i class="bi bi-play-circle-fill"></i> Content Calendar Planning</li>
+                <li><i class="bi bi-play-circle-fill"></i> Instagram Affiliate Marketing</li>
+                <li><i class="bi bi-play-circle-fill"></i> YouTube Affiliate Strategy</li>
+                <li><i class="bi bi-play-circle-fill"></i> TikTok & Short-Form Video</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <div class="module-number">6</div>
+            <h3 class="module-title">Email Marketing & List Building</h3>
+            <p class="module-description">Build an email list that generates consistent affiliate income.</p>
+            <ul class="lesson-list">
+                <li><i class="bi bi-play-circle-fill"></i> Email Service Provider Setup</li>
+                <li><i class="bi bi-play-circle-fill"></i> Lead Magnet Creation</li>
+                <li><i class="bi bi-play-circle-fill"></i> Email Sequence Templates</li>
+                <li><i class="bi bi-play-circle-fill"></i> Promotional Email Strategies</li>
+                <li><i class="bi bi-play-circle-fill"></i> List Segmentation & Automation</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <div class="module-number">7</div>
+            <h3 class="module-title">Paid Advertising & Scaling</h3>
+            <p class="module-description">Scale your affiliate business with paid traffic strategies.</p>
+            <ul class="lesson-list">
+                <li><i class="bi bi-play-circle-fill"></i> Facebook Ads for Affiliates</li>
+                <li><i class="bi bi-play-circle-fill"></i> Google Ads Basics</li>
+                <li><i class="bi bi-play-circle-fill"></i> Native Advertising</li>
+                <li><i class="bi bi-play-circle-fill"></i> Ad Compliance & Best Practices</li>
+                <li><i class="bi bi-play-circle-fill"></i> Scaling Your Campaigns</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <h2 class="section-title">Student Success Stories</h2>
+        
+        <div class="testimonial">
+            <p class="testimonial-text">
+                "I enrolled 3 months ago and I'm already earning $3,200/month promoting DorklyAI courses. The training is comprehensive and the affiliate program pays incredibly well. Best decision ever!"
+            </p>
+            <div class="testimonial-author">— Marcus Thompson, Full-Time Affiliate Marketer</div>
+        </div>
+
+        <div class="testimonial">
+            <p class="testimonial-text">
+                "I started as a complete beginner with no website. Now I have a thriving blog with 10,000 monthly visitors and I'm earning $1,800/month in passive affiliate income. This course gave me everything I needed."
+            </p>
+            <div class="testimonial-author">— Sophia Martinez, Content Creator</div>
+        </div>
+
+        <div class="testimonial">
+            <p class="testimonial-text">
+                "The 'earn as you learn' model is genius. I made my first $500 in commissions before I even finished the course! Now I'm on track to replace my full-time income within 6 months."
+            </p>
+            <div class="testimonial-author">— David Chen, Side Hustle Success</div>
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">Do I need a website to start?</div>
+            <div class="faq-answer">
+                No! While we do teach website creation, you can start promoting on social media, YouTube, or other platforms immediately. Many successful affiliates operate entirely on social media.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How soon can I start earning?</div>
+            <div class="faq-answer">
+                You'll receive your affiliate link immediately upon enrollment. Students have made their first commission within 24 hours by sharing with their existing network while learning the advanced strategies.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">What commission rate do I earn?</div>
+            <div class="faq-answer">
+                DorklyAI offers a generous 30% commission on course sales, plus 20% recurring revenue share on subscription products. This is significantly higher than industry average.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Is this only for DorklyAI products?</div>
+            <div class="faq-answer">
+                No! While you'll get instant access to our affiliate program, this course teaches you how to promote any product or service as an affiliate. The skills are completely transferable.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Do I need technical skills?</div>
+            <div class="faq-answer">
+                Not at all. We start from the absolute basics and guide you through every technical step. If you can send an email, you can succeed with affiliate marketing.
+            </div>
+        </div>
+    </section>
+
+    <section class="container my-5 text-center">
+        <div class="py-5">
+            <h2 class="section-title">Start Earning Today</h2>
+            <p class="course-subtitle mb-4">Join our community of successful affiliate marketers building real online income.</p>
+            <button class="enroll-btn" style="max-width: 400px; margin: 0 auto;">
+                <i class="bi bi-rocket-takeoff-fill me-2"></i>
+                Enroll Now for $197
+            </button>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

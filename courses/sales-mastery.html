@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Mastery & Commission Program - DorklyAI Academy</title>
+    <link rel="icon" type="image/x-icon" href="../assets/dorklogo.png" />
+    <meta name="description" content="Master the art of selling and join DorklyAI as a commissioned sales representative. Learn proven techniques and start earning immediately.">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #f5576c;
+            --primary-light: #f093fb;
+            --accent: #ffd700;
+            --dark: #1a1a2e;
+            --darker: #0f0f1e;
+            --text: #e4e4e7;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--darker);
+            color: var(--text);
+        }
+
+        .course-nav {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(245, 87, 108, 0.2);
+        }
+
+        .back-btn {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            color: var(--primary);
+        }
+
+        .course-hero {
+            padding: 5rem 0 3rem;
+            background: radial-gradient(circle at 30% 50%, rgba(245, 87, 108, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(240, 147, 251, 0.1) 0%, transparent 50%);
+        }
+
+        .course-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 0%, #f5576c 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .meta-item i {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .enroll-card {
+            background: linear-gradient(145deg, rgba(26, 26, 46, 0.9) 0%, rgba(15, 15, 30, 1) 100%);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: sticky;
+            top: 100px;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .enroll-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+
+        .enroll-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(245, 87, 108, 0.5);
+        }
+
+        .guarantee {
+            background: rgba(245, 87, 108, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .module-card {
+            background: rgba(26, 26, 46, 0.8);
+            border: 1px solid rgba(245, 87, 108, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .module-card:hover {
+            border-color: var(--primary);
+            transform: translateX(10px);
+        }
+
+        .module-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .module-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.75rem;
+        }
+
+        .module-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+        }
+
+        .lesson-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .lesson-list li {
+            padding: 0.5rem 0;
+            color: rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .lesson-list li i {
+            color: var(--primary);
+            font-size: 0.8rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(26, 26, 46, 0.8);
+            border: 1px solid rgba(245, 87, 108, 0.2);
+            border-radius: 15px;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+        }
+
+        .testimonial {
+            background: rgba(26, 26, 46, 0.8);
+            border-left: 4px solid var(--primary);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .faq-item {
+            background: rgba(26, 26, 46, 0.8);
+            border: 1px solid rgba(245, 87, 108, 0.2);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-question {
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.75rem;
+        }
+
+        .faq-answer {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        .career-badge {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            text-transform: uppercase;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); }
+        }
+
+        .career-highlight {
+            background: linear-gradient(135deg, rgba(245, 87, 108, 0.2) 0%, rgba(255, 215, 0, 0.2) 100%);
+            border: 2px solid var(--accent);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .career-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #f5576c 0%, #ffd700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .career-text {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+
+        .career-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .career-item {
+            padding: 1.5rem;
+            background: rgba(26, 26, 46, 0.8);
+            border-radius: 15px;
+        }
+
+        .career-stat {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent);
+        }
+
+        .career-label {
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 0.5rem;
+        }
+
+        .rep-benefits {
+            background: rgba(26, 26, 46, 0.8);
+            border: 1px solid var(--accent);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .rep-benefits h4 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .rep-benefits ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .rep-benefits li {
+            padding: 0.75rem 0;
+            color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .rep-benefits li i {
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="course-nav">
+        <div class="container">
+            <a href="index.html" class="back-btn">
+                <i class="bi bi-arrow-left me-2"></i>
+                Back to All Courses
+            </a>
+        </div>
+    </nav>
+
+    <section class="course-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <h1 class="course-title">Sales Mastery & Commission Program</h1>
+                    <p class="course-subtitle">
+                        Master the art and science of professional selling. Learn proven sales techniques and qualify to become a commissioned DorklyAI sales representative earning unlimited income potential.
+                    </p>
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <i class="bi bi-clock-fill"></i>
+                            <span>10 Weeks</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="bi bi-journal-text"></i>
+                            <span>8 Modules</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="bi bi-play-circle-fill"></i>
+                            <span>68 Video Lessons</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="bi bi-download"></i>
+                            <span>40+ Scripts</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="enroll-card">
+                        <div class="price">$297</div>
+                        <button class="enroll-btn">
+                            <i class="bi bi-lightning-charge-fill me-2"></i>
+                            Enroll Now
+                        </button>
+                        <div class="guarantee">
+                            <i class="bi bi-shield-check me-2"></i>
+                            30-Day Money-Back Guarantee
+                        </div>
+                        <ul class="list-unstyled mt-3">
+                            <li class="py-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Lifetime course access</li>
+                            <li class="py-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Sales scripts & templates</li>
+                            <li class="py-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Role-play practice sessions</li>
+                            <li class="py-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Sales mentorship program</li>
+                            <li class="py-2"><i class="bi bi-check-circle-fill text-success me-2"></i> CRM training & tools</li>
+                        </ul>
+                        <div class="career-badge">
+                            <i class="bi bi-briefcase-fill"></i> Career Opportunity Included
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <div class="career-highlight">
+            <h2 class="career-title">Become a DorklyAI Sales Rep</h2>
+            <p class="career-text">
+                Top-performing students will be invited to join our elite sales team as commissioned representatives. Sell our courses, services, and receive ongoing training, leads, and support.
+            </p>
+            <div class="career-grid">
+                <div class="career-item">
+                    <div class="career-stat">40%</div>
+                    <div class="career-label">Commission Rate</div>
+                </div>
+                <div class="career-item">
+                    <div class="career-stat">$5K+</div>
+                    <div class="career-label">Avg. Monthly Earnings</div>
+                </div>
+                <div class="career-item">
+                    <div class="career-stat">Remote</div>
+                    <div class="career-label">Work From Anywhere</div>
+                </div>
+                <div class="career-item">
+                    <div class="career-stat">Unlimited</div>
+                    <div class="career-label">Income Potential</div>
+                </div>
+            </div>
+
+            <div class="rep-benefits">
+                <h4><i class="bi bi-star-fill me-2"></i>Sales Rep Benefits</h4>
+                <ul>
+                    <li><i class="bi bi-check-circle-fill"></i> Pre-qualified warm leads provided</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Professional sales materials & presentations</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Weekly team training & coaching</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Performance bonuses & incentives</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Career advancement opportunities</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Full CRM and sales tools access</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <h2 class="section-title">Sales Skills You'll Master</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon"><i class="bi bi-person-check-fill"></i></div>
+                <div class="feature-title">Prospecting</div>
+                <p class="feature-text">Find and qualify high-value prospects efficiently</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="bi bi-chat-dots-fill"></i></div>
+                <div class="feature-title">Consultative Selling</div>
+                <p class="feature-text">Build trust and understand customer needs deeply</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="bi bi-shield-check"></i></div>
+                <div class="feature-title">Objection Handling</div>
+                <p class="feature-text">Turn objections into opportunities with confidence</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="bi bi-trophy-fill"></i></div>
+                <div class="feature-title">Closing Techniques</div>
+                <p class="feature-text">Master multiple closing strategies that work</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <h2 class="section-title">Complete Sales Training Curriculum</h2>
+        
+        <div class="module-card">
+            <div class="module-number">1</div>
+            <h3 class="module-title">Sales Fundamentals</h3>
+            <p class="module-description">Build a rock-solid foundation in professional sales principles.</p>
+            <ul class="lesson-list">
+                <li><i class="bi bi-play-circle-fill"></i> The Modern Sales Process</li>
+                <li><i class="bi bi-play-circle-fill"></i> Sales Psychology & Persuasion</li>
+                <li><i class="bi bi-play-circle-fill"></i> Building Trust & Rapport</li>
+                <li><i class="bi bi-play-circle-fill"></i> Understanding Buyer Motivation</li>
+                <li><i class="bi bi-play-circle-fill"></i> Sales Ethics & Integrity</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <div class="module-number">2</div>
+            <h3 class="module-title">Prospecting & Lead Generation</h3>
+            <p class="module-description">Master the art of finding and qualifying potential customers.</p>
+            <ul class="lesson-list">
+                <li><i class="bi bi-play-circle-fill"></i> Identifying Ideal Prospects</li>
+                <li><i class="bi bi-play-circle-fill"></i> Cold Calling Mastery</li>
+                <li><i class="bi bi-play-circle-fill"></i> LinkedIn Prospecting</li>
+                <li><i class="bi bi-play-circle-fill"></i> Email Outreach Strategies</li>
+                <li><i class="bi bi-play-circle-fill"></i> Referral Generation Systems</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <div class="module-number">3</div>
+            <h3 class="module-title">Discovery & Needs Analysis</h3>
+            <p class="module-description">Learn to uncover customer needs and pain points effectively.</p>
+            <ul class="lesson-list">
+                <li><i class="bi bi-play-circle-fill"></i> Asking Powerful Questions</li>
+                <li><i class="bi bi-play-circle-fill"></i> Active Listening Skills</li>
+                <li><i class="bi bi-play-circle-fill"></i> Identifying Pain Points</li>
+                <li><i class="bi bi-play-circle-fill"></i> Budget Qualification</li>
+                <li><i class="bi bi-play-circle-fill"></i> Decision-Maker Mapping</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <div class="module-number">4</div>
+            <h3 class="module-title">Consultative Selling</h3>
+            <p class="module-description">Position yourself as a trusted advisor, not just a salesperson.</p>
+            <ul class="lesson-list">
+                <li><i class="bi bi-play-circle-fill"></i> Solution-Based Selling</li>
+                <li><i class="bi bi-play-circle-fill"></i> Value Proposition Creation</li>
+                <li><i class="bi bi-play-circle-fill"></i> Custom Presentations</li>
+                <li><i class="bi bi-play-circle-fill"></i> ROI Demonstration</li>
+                <li><i class="bi bi-play-circle-fill"></i> Competitor Differentiation</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <div class="module-number">5</div>
+            <h3 class="module-title">Objection Handling Mastery</h3>
+            <p class="module-description">Turn every objection into a closing opportunity.</p>
+            <ul class="lesson-list">
+                <li><i class="bi bi-play-circle-fill"></i> Common Objections & Responses</li>
+                <li><i class="bi bi-play-circle-fill"></i> Price Objection Strategies</li>
+                <li><i class="bi bi-play-circle-fill"></i> Timing Objections</li>
+                <li><i class="bi bi-play-circle-fill"></i> Competition Objections</li>
+                <li><i class="bi bi-play-circle-fill"></i> The "Think It Over" Response</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <div class="module-number">6</div>
+            <h3 class="module-title">Closing Techniques</h3>
+            <p class="module-description">Master multiple proven closing strategies for any situation.</p>
+            <ul class="lesson-list">
+                <li><i class="bi bi-play-circle-fill"></i> The Assumptive Close</li>
+                <li><i class="bi bi-play-circle-fill"></i> Trial Close Methods</li>
+                <li><i class="bi bi-play-circle-fill"></i> Alternative Choice Close</li>
+                <li><i class="bi bi-play-circle-fill"></i> Urgency & Scarcity Tactics</li>
+                <li><i class="bi bi-play-circle-fill"></i> Silence & Patience in Closing</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <div class="module-number">7</div>
+            <h3 class="module-title">CRM & Sales Technology</h3>
+            <p class="module-description">Leverage technology to maximize your sales efficiency.</p>
+            <ul class="lesson-list">
+                <li><i class="bi bi-play-circle-fill"></i> CRM System Mastery</li>
+                <li><i class="bi bi-play-circle-fill"></i> Pipeline Management</li>
+                <li><i class="bi bi-play-circle-fill"></i> Sales Automation Tools</li>
+                <li><i class="bi bi-play-circle-fill"></i> Email Tracking & Follow-up</li>
+                <li><i class="bi bi-play-circle-fill"></i> Sales Analytics & Reporting</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <div class="module-number">8</div>
+            <h3 class="module-title">Long-Term Sales Success</h3>
+            <p class="module-description">Build sustainable habits for a successful sales career.</p>
+            <ul class="lesson-list">
+                <li><i class="bi bi-play-circle-fill"></i> Time Management for Sales</li>
+                <li><i class="bi bi-play-circle-fill"></i> Customer Relationship Management</li>
+                <li><i class="bi bi-play-circle-fill"></i> Upselling & Cross-selling</li>
+                <li><i class="bi bi-play-circle-fill"></i> Building Referral Networks</li>
+                <li><i class="bi bi-play-circle-fill"></i> DorklyAI Sales Rep Application</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <h2 class="section-title">Sales Rep Success Stories</h2>
+        
+        <div class="testimonial">
+            <p class="testimonial-text">
+                "I completed this course and immediately applied to become a DorklyAI sales rep. Three months in and I'm earning $7,500/month in commissions working part-time from home. Best career move ever!"
+            </p>
+            <div class="testimonial-author">— Tyler Rodriguez, DorklyAI Sales Rep</div>
+        </div>
+
+        <div class="testimonial">
+            <p class="testimonial-text">
+                "The sales training is world-class. I used these skills to triple my income at my current job, then got hired as a DorklyAI rep. Now I make six figures helping people transform their lives through education."
+            </p>
+            <div class="testimonial-author">— Ashley Thompson, Senior Sales Representative</div>
+        </div>
+
+        <div class="testimonial">
+            <p class="testimonial-text">
+                "I had zero sales experience before this course. The training, scripts, and role-play sessions prepared me perfectly. I'm now a top 5 performer on the DorklyAI sales team earning $10K+ monthly."
+            </p>
+            <div class="testimonial-author">— Marcus Johnson, Elite Sales Rep</div>
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <h2 class="section-title">Common Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">Do I need sales experience to take this course?</div>
+            <div class="faq-answer">
+                Not at all! This course is designed for complete beginners. We start with fundamentals and build up to advanced techniques. Many of our top sales reps had zero experience before enrolling.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How do I become a DorklyAI sales rep?</div>
+            <div class="faq-answer">
+                Upon completing the course and passing a final assessment, you can apply to join our sales team. We review applications monthly and select top performers based on their course performance and role-play sessions.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">What's the commission structure?</div>
+            <div class="faq-answer">
+                Sales reps earn 40% commission on all course sales, plus performance bonuses. Top performers earn $5,000-$15,000 monthly. There's no cap on your earnings.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Is this a full-time position?</div>
+            <div class="faq-answer">
+                It can be! Many reps work part-time (10-20 hours/week) while others are full-time. You set your own schedule and work remotely from anywhere in the world.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">What if I don't become a sales rep?</div>
+            <div class="faq-answer">
+                The skills you learn are valuable anywhere! Use them in your current job, start your own business, or pursue sales opportunities elsewhere. These are universal, high-income skills.
+            </div>
+        </div>
+    </section>
+
+    <section class="container my-5 text-center">
+        <div class="py-5">
+            <h2 class="section-title">Start Your Sales Career Today</h2>
+            <p class="course-subtitle mb-4">Master professional selling and unlock unlimited earning potential as a DorklyAI sales representative.</p>
+            <button class="enroll-btn" style="max-width: 400px; margin: 0 auto;">
+                <i class="bi bi-lightning-charge-fill me-2"></i>
+                Enroll Now for $297
+            </button>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
