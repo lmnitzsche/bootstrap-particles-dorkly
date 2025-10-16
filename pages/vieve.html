@@ -463,10 +463,10 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div class="vieve-logo">VIEVE</div>
                 <div class="d-none d-md-flex gap-3">
-                    <a href="#" class="nav-link">Gaming</a>
-                    <a href="#" class="nav-link">Sports</a>
-                    <a href="#" class="nav-link">Pop Culture</a>
-                    <a href="#" class="nav-link">Food</a>
+                    <a href="#latest-articles" class="nav-link nav-category-link" data-category="gaming">Gaming</a>
+                    <a href="#latest-articles" class="nav-link nav-category-link" data-category="sports">Sports</a>
+                    <a href="#latest-articles" class="nav-link nav-category-link" data-category="pop culture">Pop Culture</a>
+                    <a href="#latest-articles" class="nav-link nav-category-link" data-category="food">Food</a>
                     <a href="blyss.html" class="nav-link" style="color: #0d6efd !important;">Blyss</a>
                 </div>
                 <a href="../index.html" class="btn btn-sm" style="background: linear-gradient(135deg, var(--vieve-purple), var(--vieve-pink)); color: white; font-weight: 700; border-radius: 25px; padding: 0.5rem 1.5rem;">
@@ -506,7 +506,7 @@
     </section>
 
     <!-- Latest Articles Grid -->
-    <section class="container my-5">
+    <section class="container my-5" id="latest-articles">
         <h2 class="section-header">Latest Stories</h2>
         <div class="row g-4" id="latest-articles-grid">
             <!-- Articles will be loaded dynamically -->
@@ -686,6 +686,28 @@
                 
                 currentCategory = this.dataset.category;
                 filterArticles(currentCategory);
+            });
+        });
+
+        // Navigation category links
+        document.querySelectorAll('.nav-category-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const category = this.dataset.category;
+                
+                // Update category pills
+                document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
+                const targetPill = document.querySelector(`.category-pill[data-category="${category}"]`);
+                if (targetPill) {
+                    targetPill.classList.add('active');
+                }
+                
+                // Filter articles
+                currentCategory = category;
+                filterArticles(category);
+                
+                // Smooth scroll to articles section
+                document.querySelector('#latest-articles').scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 

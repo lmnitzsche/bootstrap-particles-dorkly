@@ -69,17 +69,25 @@
             color: white;
             font-weight: 700;
             border-radius: 25px;
-            padding: 0.5rem 1.5rem;
+            padding: 0.6rem 1.5rem;
             border: none;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
         }
 
         .back-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+        }
+
+        .back-btn i {
+            font-size: 1.1rem;
         }
 
         /* Article Header */
@@ -380,7 +388,8 @@
             <div class="d-flex justify-content-between align-items-center">
                 <a href="vieve.html" class="vieve-logo">VIEVE</a>
                 <button class="back-btn" onclick="window.location.href='vieve.html'">
-                    <i class="bi bi-arrow-left me-2"></i>Back to Vieve
+                    <i class="bi bi-arrow-left-circle-fill"></i>
+                    <span>Back to Vieve</span>
                 </button>
             </div>
         </div>

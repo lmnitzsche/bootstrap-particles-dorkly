@@ -59,14 +59,29 @@
         }
 
         .back-link {
-            color: var(--blyss-text);
+            background: linear-gradient(135deg, var(--blyss-blue) 0%, #0056d2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 0.6rem 1.5rem;
+            font-weight: 700;
+            font-size: 0.9rem;
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
         }
 
         .back-link:hover {
-            color: var(--blyss-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(13, 110, 253, 0.5);
+            color: white;
+        }
+
+        .back-link i {
+            font-size: 1.1rem;
         }
 
         /* Article Header */
@@ -304,7 +319,8 @@
             <div class="d-flex justify-content-between align-items-center">
                 <a href="blyss.html" class="blyss-logo">Blyss</a>
                 <a href="blyss.html" class="back-link">
-                    <i class="bi bi-arrow-left me-2"></i>Back to Articles
+                    <i class="bi bi-arrow-left-circle-fill"></i>
+                    <span>Back to Articles</span>
                 </a>
             </div>
         </div>
