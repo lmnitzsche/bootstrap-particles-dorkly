@@ -170,6 +170,44 @@ p {
   z-index: 1;
 }
 
+/* DorklyAI Custom Styles */
+.gradient-text {
+  background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-pills .nav-link {
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.nav-pills .nav-link.active {
+  background-color: #0d6efd;
+}
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.125);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.feature {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  width: 3rem;
+  font-size: 1.5rem;
+}
+
 abbr[title] {
   -webkit-text-decoration: underline dotted;
           text-decoration: underline dotted;
