@@ -16,6 +16,35 @@
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- Custom Nav Pills Override -->
+        <style>
+            .nav-pills .nav-link {
+                border-radius: 0.5rem !important;
+                padding: 0.75rem 1.5rem !important;
+                font-weight: 600 !important;
+                transition: all 0.3s ease !important;
+                background-color: #f8f9fa !important;
+                color: #6c757d !important;
+                border: 2px solid transparent !important;
+                cursor: pointer !important;
+            }
+            
+            .nav-pills .nav-link:hover {
+                background-color: #e9ecef !important;
+                color: #0d6efd !important;
+                border-color: #0d6efd !important;
+                transform: translateY(-2px) !important;
+                box-shadow: 0 4px 8px rgba(13, 110, 253, 0.2) !important;
+            }
+            
+            .nav-pills .nav-link.active {
+                background-color: #0d6efd !important;
+                color: white !important;
+                border-color: #0d6efd !important;
+                box-shadow: 0 6px 12px rgba(13, 110, 253, 0.4) !important;
+                transform: translateY(-2px) !important;
+            }
+        </style>
     </head>
     <body>
         <!------ Rotating Testimonials ---------->
@@ -172,13 +201,13 @@
                 <!-- Service Categories Tabs -->
                 <ul class="nav nav-pills nav-fill mb-4" id="pricingTabs" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link nav-link.active" id="web-tab" data-bs-toggle="pill" data-bs-target="#web" type="button" role="tab">Web Development</button>
+                        <button class="nav-link active" id="web-tab" data-bs-toggle="pill" data-bs-target="#web" type="button" role="tab" aria-selected="true">Web Development</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="automation-tab" data-bs-toggle="pill" data-bs-target="#automation" type="button" role="tab">Automation Software</button>
+                        <button class="nav-link" id="automation-tab" data-bs-toggle="pill" data-bs-target="#automation" type="button" role="tab" aria-selected="false">Automation Software</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="social-tab" data-bs-toggle="pill" data-bs-target="#social" type="button" role="tab">Social Media</button>
+                        <button class="nav-link" id="social-tab" data-bs-toggle="pill" data-bs-target="#social" type="button" role="tab" aria-selected="false">Social Media</button>
                     </li>
                 </ul>
 

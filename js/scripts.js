@@ -62,10 +62,10 @@ $('.carousel-testimonial').owlCarousel({
     });
 
     document.addEventListener("DOMContentLoaded", function () {
-        const navLinks = document.querySelectorAll(".nav-item .nav-link");
+        const navLinks = document.querySelectorAll(".navbar .nav-item .nav-link");
         const currentPage = window.location.pathname.split("/").pop();
     
-        // Remove active class from all links
+        // Remove active class from navbar links only (not pricing tabs)
         navLinks.forEach(link => link.classList.remove("active"));
     
         // Highlight home icon if on index.html or root URL
