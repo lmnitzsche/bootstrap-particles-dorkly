@@ -1236,21 +1236,18 @@
                         const year1Rate = parseFloat(sale.year1CommissionRate || 20) / 100;
                         const year2Rate = parseFloat(sale.year2CommissionRate || 10) / 100;
                         
-                        // Calculate paid monthly commissions (only confirmed payments)
-                        for (let i = 1; i <= monthsPaid; i++) {
-                            const paymentKey = `${sale.id}_${i}`;
-                            if (confirmedPayments[paymentKey] === true) {
-                                const rate = (i - 1) < 12 ? year1Rate : year2Rate;
-                                paidCommissions += monthlyFee * rate;
-                            }
-                        }
-                        
-                        // Calculate expected monthly commissions (future months + unconfirmed past months)
+                        // Check all months in the contract
                         for (let i = 1; i <= contractLength; i++) {
                             const paymentKey = `${sale.id}_${i}`;
-                            if (confirmedPayments[paymentKey] !== true) {
-                                const rate = (i - 1) < 12 ? year1Rate : year2Rate;
-                                expectedCommissions += monthlyFee * rate;
+                            const rate = (i - 1) < 12 ? year1Rate : year2Rate;
+                            const commission = monthlyFee * rate;
+                            
+                            if (confirmedPayments[paymentKey] === true) {
+                                // Payment confirmed - add to paid
+                                paidCommissions += commission;
+                            } else {
+                                // Payment not confirmed - add to expected
+                                expectedCommissions += commission;
                             }
                         }
                     }

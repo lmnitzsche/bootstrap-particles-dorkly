@@ -546,6 +546,7 @@
         function updateStats() {
             const today = new Date();
             const activeContracts = salesData.filter(sale => sale.status === 'active');
+            const confirmedPayments = JSON.parse(localStorage.getItem('dorklyai_confirmed_payments')) || {};
             
             let paidCommissions = 0;
             let expectedCommissions = 0;
@@ -564,22 +565,24 @@
                     // Calculate months elapsed since contract start
                     const monthsElapsed = Math.floor((today - contractStart) / (30.44 * 24 * 60 * 60 * 1000));
                     const monthsPaid = Math.max(0, Math.min(monthsElapsed, contractLength));
-                    const monthsRemaining = Math.max(0, contractLength - monthsPaid);
                     
                     const monthlyFee = parseFloat(sale.monthlyFee);
                     const year1Rate = parseFloat(sale.year1CommissionRate || 20) / 100;
                     const year2Rate = parseFloat(sale.year2CommissionRate || 10) / 100;
                     
-                    // Calculate paid monthly commissions (months that have already passed)
-                    for (let i = 0; i < monthsPaid; i++) {
-                        const rate = i < 12 ? year1Rate : year2Rate;
-                        paidCommissions += monthlyFee * rate;
-                    }
-                    
-                    // Calculate expected monthly commissions (future months if contract is active)
-                    for (let i = monthsPaid; i < contractLength; i++) {
-                        const rate = i < 12 ? year1Rate : year2Rate;
-                        expectedCommissions += monthlyFee * rate;
+                    // Check all months in the contract
+                    for (let i = 1; i <= contractLength; i++) {
+                        const paymentKey = `${sale.id}_${i}`;
+                        const rate = (i - 1) < 12 ? year1Rate : year2Rate;
+                        const commission = monthlyFee * rate;
+                        
+                        if (confirmedPayments[paymentKey] === true) {
+                            // Payment confirmed - add to paid
+                            paidCommissions += commission;
+                        } else {
+                            // Payment not confirmed - add to expected
+                            expectedCommissions += commission;
+                        }
                     }
                 }
             });
@@ -901,14 +904,14 @@
             document.body.removeChild(link);
         }
 
-        // Refresh data periodically (every 30 seconds)
+        // Refresh data periodically (every 10 seconds for real-time updates)
         setInterval(() => {
             if (currentRep) {
                 const allSales = JSON.parse(localStorage.getItem('dorklyai_sales')) || [];
                 salesData = allSales.filter(sale => sale.repId === currentRep.id);
                 loadDashboard();
             }
-        }, 30000);
+        }, 10000);
     </script>
 </body>
 </html>
