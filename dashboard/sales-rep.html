@@ -435,14 +435,8 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="users.js"></script>
     <script>
-        // Load reps from localStorage (synced with admin dashboard)
-        let repsData = JSON.parse(localStorage.getItem('dorklyai_reps')) || [
-            { id: 1, name: 'Tyler Rodriguez', email: 'tyler@dorklyai.com', password: 'rep123' },
-            { id: 2, name: 'Ashley Thompson', email: 'ashley@dorklyai.com', password: 'rep123' },
-            { id: 3, name: 'Marcus Johnson', email: 'marcus@dorklyai.com', password: 'rep123' }
-        ];
-
         let currentRep = null;
         let salesData = [];
 
@@ -452,8 +446,8 @@
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
 
-            // Check credentials against repsData from localStorage
-            const rep = repsData.find(r => r.email === email && r.password === password);
+            // Check credentials against shared usersData
+            const rep = usersData.find(r => r.email === email && r.password === password);
             
             if (rep) {
                 currentRep = rep;

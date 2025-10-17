@@ -334,7 +334,8 @@
             </form>
             <div class="text-center mt-3">
                 <small style="color: rgba(255,255,255,0.5);">
-                    Demo: admin@dorklyai.com / admin123
+                    Admin Account:<br>
+                    logan@dorklyai.com / logan123
                 </small>
             </div>
         </div>
@@ -627,12 +628,22 @@
                             <label class="form-label">Rep Email</label>
                             <input type="email" class="form-control" id="repEmail" placeholder="jane@example.com" required>
                         </div>
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-2 mb-3">
                             <label class="form-label">Password</label>
                             <input type="password" class="form-control" id="repPassword" placeholder="Set password" required minlength="6">
                             <small style="color: rgba(255,255,255,0.5);">Min 6 characters</small>
                         </div>
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-2 mb-3">
+                            <label class="form-label">Admin Access</label>
+                            <div class="form-check" style="padding-top: 0.5rem;">
+                                <input class="form-check-input" type="checkbox" id="repIsAdmin" style="width: 20px; height: 20px;">
+                                <label class="form-check-label" for="repIsAdmin" style="padding-left: 0.5rem; color: rgba(255,255,255,0.7);">
+                                    Is Admin
+                                </label>
+                            </div>
+                            <small style="color: rgba(255,255,255,0.5);">Can access admin dashboard</small>
+                        </div>
+                        <div class="col-md-2 mb-3">
                             <label class="form-label">&nbsp;</label>
                             <button type="submit" class="btn btn-primary-custom w-100">
                                 <i class="bi bi-person-plus me-2"></i>
@@ -641,36 +652,44 @@
                         </div>
                     </div>
                 </form>
+                <small style="color: rgba(255,255,255,0.6); display: block; margin-top: 0.5rem;">
+                    <i class="bi bi-info-circle me-1"></i>Tip: Check "Is Admin" to give sales reps access to this admin dashboard. They can login to both sales-rep.html and admin.html with the same credentials.
+                </small>
                 <div id="repsList"></div>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="users.js"></script>
     <script>
-        // Local Storage Database (will be replaced with Firebase)
-        let salesData = JSON.parse(localStorage.getItem('dorklyai_sales')) || [];
-        let repsData = JSON.parse(localStorage.getItem('dorklyai_reps')) || [
-            { id: 1, name: 'Tyler Rodriguez', email: 'tyler@dorklyai.com', password: 'rep123' },
-            { id: 2, name: 'Ashley Thompson', email: 'ashley@dorklyai.com', password: 'rep123' },
-            { id: 3, name: 'Marcus Johnson', email: 'marcus@dorklyai.com', password: 'rep123' }
-        ];
+        console.log('Admin script loaded');
+        console.log('usersData:', usersData);
+        
         let currentUser = null;
+        let salesData = JSON.parse(localStorage.getItem('dorklyai_sales')) || [];
 
-        // Login Handler
+        // Login Handler - EXACT copy from sales-rep.html with isAdmin check
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            console.log('Login form submitted!');
+            
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
+            console.log('Email:', email, 'Password:', password);
 
-            // Demo login (replace with Firebase Auth)
-            if (email === 'admin@dorklyai.com' && password === 'admin123') {
-                currentUser = { email: email, role: 'admin' };
+            // Check credentials against shared usersData - must be admin
+            const user = usersData.find(r => r.email === email && r.password === password && r.isAdmin === true);
+            console.log('Found user:', user);
+            
+            if (user) {
+                currentUser = user;
                 document.getElementById('loginScreen').style.display = 'none';
                 document.getElementById('dashboardScreen').style.display = 'block';
-                document.getElementById('userEmail').textContent = email;
+                document.getElementById('userEmail').textContent = user.name;
                 loadDashboard();
             } else {
+                console.log('Login failed');
                 document.getElementById('loginError').style.display = 'block';
             }
         });
@@ -784,7 +803,7 @@
         function populateRepsDropdown() {
             const select = document.getElementById('salesRep');
             select.innerHTML = '<option value="">Select Rep...</option>';
-            repsData.forEach(rep => {
+            usersData.forEach(rep => {
                 select.innerHTML += `<option value="${rep.id}">${rep.name}</option>`;
             });
         }
@@ -847,7 +866,7 @@
             e.preventDefault();
             
             const repId = parseInt(document.getElementById('salesRep').value);
-            const rep = repsData.find(r => r.id === repId);
+            const rep = usersData.find(r => r.id === repId);
             
             // Get service package data
             const serviceSelect = document.getElementById('course');
@@ -1004,9 +1023,10 @@
             
             const email = document.getElementById('repEmail').value;
             const password = document.getElementById('repPassword').value;
+            const isAdmin = document.getElementById('repIsAdmin').checked;
             
             // Check if email already exists
-            const emailExists = repsData.some(rep => rep.email === email);
+            const emailExists = usersData.some(rep => rep.email === email);
             if (emailExists) {
                 alert('A sales rep with this email already exists!');
                 return;
@@ -1016,22 +1036,24 @@
                 id: Date.now(),
                 name: document.getElementById('repName').value,
                 email: email,
-                password: password  // In production, this would be hashed
+                password: password,  // In production, this would be hashed
+                isAdmin: isAdmin
             };
 
-            repsData.push(newRep);
-            localStorage.setItem('dorklyai_reps', JSON.stringify(repsData));
+            usersData.push(newRep);
+            localStorage.setItem('dorklyai_users', JSON.stringify(usersData));
             
             this.reset();
             loadDashboard();
-            alert('Sales rep added successfully! They can now login with: ' + email);
-        });
+            
+            const accessLevel = isAdmin ? 'Admin & Sales Rep' : 'Sales Rep';
+            alert(`Sales rep added successfully!\n\nThey can now login as:\n- ${accessLevel}\n- Email: ${email}\n- Password: ${password}`);
         });
 
         // Load Reps List
         function loadReps() {
             const repsList = document.getElementById('repsList');
-            repsList.innerHTML = repsData.map(rep => {
+            repsList.innerHTML = usersData.map(rep => {
                 const repSales = salesData.filter(sale => sale.repId === rep.id);
                 
                 // Calculate total commissions using new structure
@@ -1050,7 +1072,10 @@
                     <div class="stat-card">
                         <div class="d-flex justify-content-between align-items-start">
                             <div style="flex: 1;">
-                                <h5 style="color: white; margin-bottom: 0.5rem;">${rep.name}</h5>
+                                <h5 style="color: white; margin-bottom: 0.5rem;">
+                                    ${rep.name}
+                                    ${rep.isAdmin ? '<span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem; margin-left: 0.5rem;"><i class="bi bi-shield-check"></i> ADMIN</span>' : ''}
+                                </h5>
                                 <p style="color: rgba(255,255,255,0.6); margin-bottom: 0.5rem;">
                                     <i class="bi bi-envelope me-2"></i>${rep.email}
                                 </p>
@@ -1091,9 +1116,24 @@
 
         // Delete Rep
         function deleteRep(id) {
+            // Check if deleting last admin
+            const rep = usersData.find(r => r.id === id);
+            if (rep && rep.isAdmin) {
+                const adminCount = usersData.filter(r => r.isAdmin).length;
+                if (adminCount <= 1) {
+                    alert('Cannot delete the last admin user! Please make another rep an admin first.');
+                    return;
+                }
+                
+                if (currentUser.id === id) {
+                    alert('Cannot delete your own account while logged in!');
+                    return;
+                }
+            }
+            
             if (confirm('Are you sure you want to delete this rep? Their sales history will remain in the system.')) {
-                repsData = repsData.filter(rep => rep.id !== id);
-                localStorage.setItem('dorklyai_reps', JSON.stringify(repsData));
+                usersData = usersData.filter(rep => rep.id !== id);
+                localStorage.setItem('dorklyai_users', JSON.stringify(usersData));
                 loadDashboard();
                 alert('Sales rep removed successfully!');
             }
