@@ -370,8 +370,18 @@
         <div class="container-fluid py-4">
             <!-- Welcome Banner -->
             <div class="welcome-banner">
-                <h2>Welcome, <span id="welcomeName"></span>! 🚀</h2>
-                <p>Master control center - manage everything from here</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h2>Welcome, <span id="welcomeName"></span>! 🚀</h2>
+                        <p>Master control center - manage everything from here</p>
+                    </div>
+                    <div class="text-end">
+                        <div style="font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-bottom: 0.25rem;">
+                            <i class="bi bi-calendar-event me-1"></i>Today
+                        </div>
+                        <div id="currentDate" style="font-size: 1.1rem; font-weight: 600; color: white;"></div>
+                    </div>
+                </div>
             </div>
 
             <!-- Quick Stats -->
@@ -554,7 +564,8 @@
                                 <th>Rep</th>
                                 <th>Service</th>
                                 <th>Customer</th>
-                                <th>Contract</th>
+                                <th>Contract Length</th>
+                                <th>Contract Ends</th>
                                 <th>Value</th>
                                 <th>Commission</th>
                                 <th>Status</th>
@@ -563,7 +574,7 @@
                         </thead>
                         <tbody id="salesTableBody">
                             <tr>
-                                <td colspan="9" class="text-center" style="padding: 2rem; color: rgba(255,255,255,0.5);">
+                                <td colspan="10" class="text-center" style="padding: 2rem; color: rgba(255,255,255,0.5);">
                                     No sales yet. Add your first sale above!
                                 </td>
                             </tr>
@@ -636,6 +647,12 @@
                 document.getElementById('dashboardScreen').style.display = 'block';
                 document.getElementById('userName').textContent = admin.name;
                 document.getElementById('welcomeName').textContent = admin.name.split(' ')[0];
+                
+                // Set current date
+                const today = new Date();
+                const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                document.getElementById('currentDate').textContent = today.toLocaleDateString('en-US', dateOptions);
+                
                 loadDashboard();
             } else {
                 document.getElementById('loginError').style.display = 'block';
@@ -802,11 +819,12 @@
 
         function loadSalesTable() {
             const tbody = document.getElementById('salesTableBody');
+            const today = new Date();
             
             if (salesData.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="9" class="text-center" style="padding: 2rem; color: rgba(255,255,255,0.5);">
+                        <td colspan="10" class="text-center" style="padding: 2rem; color: rgba(255,255,255,0.5);">
                             No sales yet. Add your first sale above!
                         </td>
                     </tr>
@@ -816,6 +834,24 @@
 
             tbody.innerHTML = salesData.map(sale => {
                 const contractInfo = sale.contractLength ? `${sale.contractLength} months` : 'N/A';
+                
+                // Calculate contract end date
+                let contractEndDisplay = 'N/A';
+                if (sale.contractStart && sale.contractLength) {
+                    const startDate = new Date(sale.contractStart);
+                    const endDate = new Date(startDate);
+                    endDate.setMonth(endDate.getMonth() + parseInt(sale.contractLength));
+                    
+                    const daysUntilEnd = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
+                    contractEndDisplay = endDate.toLocaleDateString();
+                    
+                    // Add urgency indicator
+                    if (daysUntilEnd > 0 && daysUntilEnd <= 30 && sale.status === 'active') {
+                        contractEndDisplay += `<br><small style="color: #ffc107;"><i class="bi bi-exclamation-triangle-fill me-1"></i>${daysUntilEnd} days left</small>`;
+                    } else if (daysUntilEnd <= 0 && sale.status === 'active') {
+                        contractEndDisplay += `<br><small style="color: #f5576c;"><i class="bi bi-alarm-fill me-1"></i>EXPIRED</small>`;
+                    }
+                }
                 
                 const commission = sale.totalCommission || 0;
                 const commissionDisplay = sale.setupCommission 
@@ -843,6 +879,7 @@
                         <td>${sale.course}</td>
                         <td>${sale.customerName}</td>
                         <td>${contractInfo}</td>
+                        <td>${contractEndDisplay}</td>
                         <td>${valueDisplay}</td>
                         <td>${commissionDisplay}</td>
                         <td><span class="badge-${statusClass}">${sale.status}</span></td>
