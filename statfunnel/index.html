@@ -1075,10 +1075,10 @@
 
             <!-- Portfolio Builder Section -->
             <div class="calculator-container" style="background: white; border: 2px solid #667eea;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
                     <div>
-                        <h2 class="section-title" style="margin-bottom: 5px;">Portfolio Builder</h2>
-                        <p class="text-muted mb-0">Build your custom portfolio and see the weighted average CAGR</p>
+                        <h2 class="section-title" style="margin-bottom: 10px;">Portfolio Builder</h2>
+                        <p class="text-muted mb-0" style="margin-top: 5px;">Build your custom portfolio and see the weighted average CAGR</p>
                     </div>
                     <div style="text-align: right;">
                         <label for="portfolioYearSelect" style="display: block; font-size: 0.9rem; color: #666; margin-bottom: 5px; font-weight: 600;">CAGR Period</label>
@@ -1723,6 +1723,10 @@
             document.querySelectorAll('.cagr-card').forEach(c => c.classList.remove('active'));
             cardElement.classList.add('active');
             
+            // Store ticker and name on card for later reference
+            cardElement.dataset.ticker = ticker;
+            cardElement.dataset.name = name;
+            
             // Show details section with loading state
             const detailsDiv = document.getElementById('cagrDetails');
             detailsDiv.style.display = 'block';
@@ -1739,13 +1743,16 @@
             }, 100);
             
             try {
-                // Calculate date range (30 years)
+                // Calculate date range using currentCAGRYears
+                console.log('Fetching CAGR for', ticker, 'with', currentCAGRYears, 'years');
                 const endDate = new Date();
                 const startDate = new Date();
-                startDate.setFullYear(startDate.getFullYear() - 30);
+                startDate.setFullYear(startDate.getFullYear() - currentCAGRYears);
                 
                 const period1 = Math.floor(startDate.getTime() / 1000);
                 const period2 = Math.floor(endDate.getTime() / 1000);
+                
+                console.log('Date range:', new Date(period1 * 1000).toLocaleDateString(), 'to', new Date(period2 * 1000).toLocaleDateString());
                 
                 // Yahoo Finance API endpoint
                 const yahooUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?period1=${period1}&period2=${period2}&interval=1mo&includeAdjustedClose=true`;
@@ -1777,26 +1784,33 @@
                 const result = data.chart.result[0];
                 
                 if (!result || !result.timestamp || result.timestamp.length === 0) {
-                    throw new Error('No data available for this asset in the 30-year period');
+                    throw new Error(`No data available for this asset in the ${currentCAGRYears}-year period`);
                 }
                 
                 const closes = result.indicators.quote[0].close;
                 const validData = closes.filter(c => c !== null && c !== undefined && c > 0);
                 
                 if (validData.length < 2) {
-                    throw new Error(`Insufficient data available for ${ticker}. This asset may not have 30 years of history.`);
+                    throw new Error(`Insufficient data available for ${ticker}. This asset may not have ${currentCAGRYears} years of history.`);
                 }
                 
                 const startPrice = validData[0];
                 const endPrice = validData[validData.length - 1];
-                const years = validData.length / 12;
+                const actualMonths = validData.length;
+                const actualYears = actualMonths / 12;
+                
+                console.log('Data points:', validData.length, 'months =', actualYears.toFixed(2), 'years');
+                console.log('Start price:', startPrice, 'End price:', endPrice);
                 
                 // Calculate CAGR: ((End Value / Start Value) ^ (1 / Years)) - 1
-                const cagr = (Math.pow(endPrice / startPrice, 1 / years) - 1) * 100;
+                // Use actual years from the data for accurate calculation
+                const cagr = (Math.pow(endPrice / startPrice, 1 / actualYears) - 1) * 100;
                 
-                // Calculate what $10,000 would grow to
+                console.log('Calculated CAGR:', cagr.toFixed(2) + '%');
+                
+                // Calculate what $10,000 would grow to over the actual period
                 const initialInvestment = 10000;
-                const finalValue = initialInvestment * Math.pow(1 + (cagr / 100), years);
+                const finalValue = initialInvestment * Math.pow(1 + (cagr / 100), actualYears);
                 const totalReturn = ((finalValue - initialInvestment) / initialInvestment) * 100;
                 
                 // Display results
@@ -1813,7 +1827,7 @@
                 // Show error message
                 const errorMsg = document.createElement('p');
                 errorMsg.style.cssText = 'color: #dc3545; font-size: 0.9rem; margin-top: 10px;';
-                errorMsg.textContent = error.message || 'Unable to fetch 30-year data for this asset.';
+                errorMsg.textContent = error.message || `Unable to fetch ${currentCAGRYears}-year data for this asset.`;
                 document.querySelector('.cagr-main-stat').appendChild(errorMsg);
                 
                 setTimeout(() => errorMsg.remove(), 5000);
@@ -1989,9 +2003,9 @@
         }
 
         function updateCAGRPeriod() {
-            const years = parseInt(document.getElementById('cagrYearSelect').value);
+            const years = parseInt(document.getElementById('cagrYears').value);
             currentCAGRYears = years;
-            document.getElementById('cagrPeriodLabel').textContent = years + '-Year';
+            document.getElementById('cagrPeriodLabel').textContent = years + '-Year CAGR';
             
             // Clear the current results
             document.getElementById('cagrValue').innerHTML = '<div class="cagr-loading"><div class="spinner"></div><p>Calculating...</p></div>';
@@ -2001,8 +2015,11 @@
             // If an asset is selected, recalculate
             const selectedCard = document.querySelector('.cagr-card.active');
             if (selectedCard) {
-                const symbol = selectedCard.dataset.symbol;
-                fetchCAGR(symbol);
+                const ticker = selectedCard.dataset.ticker;
+                const name = selectedCard.dataset.name;
+                if (ticker && name) {
+                    fetchCAGR(ticker, name, selectedCard);
+                }
             }
             
             // Reset portfolio calculation with new time period
