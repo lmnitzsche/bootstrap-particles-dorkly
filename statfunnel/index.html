@@ -479,6 +479,334 @@
             transform: translateY(-3px);
             box-shadow: 0 12px 35px rgba(40, 167, 69, 0.5);
         }
+
+        /* CAGR Performance Section Styles */
+        .cagr-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .cagr-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid #e0e0e0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cagr-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .cagr-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .cagr-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+        }
+
+        .cagr-card.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.5);
+            border-color: transparent;
+        }
+
+        .cagr-card.active::before {
+            display: none;
+        }
+
+        .cagr-card-ticker {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: #2d3436;
+            transition: color 0.3s ease;
+        }
+
+        .cagr-card.active .cagr-card-ticker {
+            color: white;
+        }
+
+        .cagr-card-name {
+            font-size: 0.85rem;
+            color: #6c757d;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .cagr-card.active .cagr-card-name {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cagr-result-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cagr-icon-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        .cagr-stats {
+            padding-left: 30px;
+        }
+
+        .cagr-main-stat {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+
+        .cagr-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .cagr-value {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .cagr-sub-stat {
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .cagr-sub-label {
+            font-size: 0.75rem;
+            color: #6c757d;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .cagr-sub-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #28a745;
+        }
+
+        .cagr-loading {
+            text-align: center;
+            padding: 30px;
+            color: #667eea;
+        }
+
+        .cagr-loading .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(102, 126, 234, 0.2);
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .portfolio-summary {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.15);
+        }
+
+        .portfolio-stat-box {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .portfolio-stat-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .portfolio-stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .portfolio-stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .portfolio-note {
+            background: rgba(102, 126, 234, 0.1);
+            border-left: 4px solid #667eea;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .portfolio-asset-row {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .portfolio-asset-row select,
+        .portfolio-asset-row input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-asset-row select:focus,
+        .portfolio-asset-row input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .portfolio-asset-row .remove-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .portfolio-asset-row .remove-btn:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+
+        .portfolio-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .portfolio-buttons button {
+            flex: 1;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-asset-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .add-asset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+        }
+
+        .clear-portfolio-btn {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .clear-portfolio-btn:hover {
+            background: #7f8c8d;
+            transform: translateY(-2px);
+        }
         
         .info-badge {
             background: linear-gradient(135deg, #e7f3ff 0%, #cce5ff 100%);
@@ -682,6 +1010,106 @@
                 </div>
                 
                 <div id="backtestResults"></div>
+            </div>
+
+            <!-- 30-Year CAGR Performance Section -->
+            <div class="calculator-container" style="background: white;">
+                <h2 class="section-title">Performance Analysis</h2>
+                <p class="text-muted mb-4">Click on any asset to see its historical Compound Annual Growth Rate (CAGR)</p>
+                
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <label for="cagrYears" class="form-label" style="font-weight: 600;">Time Period (Years)</label>
+                        <select class="form-select" id="cagrYears" onchange="updateCAGRPeriod()">
+                            <option value="1">1 Year</option>
+                            <option value="3">3 Years</option>
+                            <option value="5">5 Years</option>
+                            <option value="10">10 Years</option>
+                            <option value="15">15 Years</option>
+                            <option value="20">20 Years</option>
+                            <option value="25">25 Years</option>
+                            <option value="30" selected>30 Years</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="cagr-grid" id="cagrGrid">
+                    <!-- ETF Cards will be populated here -->
+                </div>
+                
+                <div id="cagrDetails" style="display: none; margin-top: 30px;">
+                    <div class="cagr-result-card">
+                        <div class="row align-items-center">
+                            <div class="col-md-4 text-center">
+                                <div class="cagr-icon-circle">
+                                    <span id="cagrAssetName" style="font-size: 2rem; font-weight: 800;">SPY</span>
+                                </div>
+                                <p class="mt-2" style="font-size: 0.9rem; color: #6c757d;" id="cagrAssetFullName">S&P 500</p>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="cagr-stats">
+                                    <div class="cagr-main-stat">
+                                        <span class="cagr-label" id="cagrPeriodLabel">30-Year CAGR</span>
+                                        <span class="cagr-value" id="cagrValue">Loading...</span>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-6">
+                                            <div class="cagr-sub-stat">
+                                                <span class="cagr-sub-label">$10,000 Investment</span>
+                                                <span class="cagr-sub-value" id="cagrGrowth">-</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="cagr-sub-stat">
+                                                <span class="cagr-sub-label">Total Return</span>
+                                                <span class="cagr-sub-value" id="cagrTotalReturn">-</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Portfolio Builder Section -->
+            <div class="calculator-container" style="background: white; border: 2px solid #667eea;">
+                <h2 class="section-title">Portfolio Builder</h2>
+                <p class="text-muted mb-4">Build your custom portfolio and see the weighted average CAGR</p>
+                
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div id="portfolioAssets">
+                            <!-- Portfolio assets will be dynamically added here -->
+                        </div>
+                        
+                        <div class="portfolio-buttons">
+                            <button class="add-asset-btn" onclick="addPortfolioAsset()">+ Add Asset</button>
+                            <button class="clear-portfolio-btn" onclick="clearPortfolio()">Clear All</button>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="portfolio-summary">
+                            <h4 style="font-size: 1.2rem; margin-bottom: 20px; color: #2d3436; font-weight: 700;">Portfolio Summary</h4>
+                            
+                            <div class="portfolio-stat-box">
+                                <div class="portfolio-stat-label">Total Allocation</div>
+                                <div class="portfolio-stat-value" id="totalAllocation">0%</div>
+                            </div>
+                            
+                            <div class="portfolio-stat-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                <div class="portfolio-stat-label" style="color: rgba(255,255,255,0.9);">Weighted Average CAGR</div>
+                                <div class="portfolio-stat-value" style="color: white; font-size: 2.5rem;" id="portfolioCAGR">-%</div>
+                            </div>
+                            
+                            <div class="portfolio-note">
+                                <strong>Note:</strong> Total allocation should equal 100%. The CAGR will be calculated automatically as you add assets and allocations.
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Albert Einstein Wisdom Section -->
@@ -1232,7 +1660,302 @@
         // Calculate on page load
         window.addEventListener('load', () => {
             calculateCompoundInterest();
+            initializeCAGRSection();
         });
+
+        // CAGR Section Functions
+        const cagrAssets = [
+            { ticker: 'SPY', name: 'S&P 500' },
+            { ticker: 'QQQ', name: 'Nasdaq 100' },
+            { ticker: 'VTI', name: 'Total Market' },
+            { ticker: 'VB', name: 'Small Cap' },
+            { ticker: 'XLF', name: 'Financials' },
+            { ticker: 'SCHD', name: 'Dividend' },
+            { ticker: 'VIG', name: 'Dividend Growth' },
+            { ticker: 'VEA', name: 'Developed Intl' },
+            { ticker: 'VXUS', name: 'Total Intl' },
+            { ticker: 'EWG', name: 'Germany' },
+            { ticker: 'EWJ', name: 'Japan' },
+            { ticker: 'EWA', name: 'Australia' },
+            { ticker: 'VNQ', name: 'Real Estate' },
+            { ticker: 'GLD', name: 'Gold' },
+            { ticker: 'SLV', name: 'Silver' },
+            { ticker: 'BND', name: 'Bonds' },
+            { ticker: 'USO', name: 'Oil' }
+        ];
+
+        function initializeCAGRSection() {
+            const grid = document.getElementById('cagrGrid');
+            grid.innerHTML = '';
+            
+            cagrAssets.forEach(asset => {
+                const card = document.createElement('div');
+                card.className = 'cagr-card';
+                card.innerHTML = `
+                    <div class="cagr-card-ticker">${asset.ticker}</div>
+                    <div class="cagr-card-name">${asset.name}</div>
+                `;
+                card.onclick = () => fetchCAGR(asset.ticker, asset.name, card);
+                grid.appendChild(card);
+            });
+        }
+
+        async function fetchCAGR(ticker, name, cardElement) {
+            // Remove active class from all cards
+            document.querySelectorAll('.cagr-card').forEach(c => c.classList.remove('active'));
+            cardElement.classList.add('active');
+            
+            // Show details section with loading state
+            const detailsDiv = document.getElementById('cagrDetails');
+            detailsDiv.style.display = 'block';
+            
+            document.getElementById('cagrAssetName').textContent = ticker;
+            document.getElementById('cagrAssetFullName').textContent = name;
+            document.getElementById('cagrValue').innerHTML = '<div class="cagr-loading"><div class="spinner"></div>Calculating...</div>';
+            document.getElementById('cagrGrowth').textContent = '-';
+            document.getElementById('cagrTotalReturn').textContent = '-';
+            
+            // Smooth scroll to results
+            setTimeout(() => {
+                detailsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+            
+            try {
+                // Calculate date range (30 years)
+                const endDate = new Date();
+                const startDate = new Date();
+                startDate.setFullYear(startDate.getFullYear() - 30);
+                
+                const period1 = Math.floor(startDate.getTime() / 1000);
+                const period2 = Math.floor(endDate.getTime() / 1000);
+                
+                // Yahoo Finance API endpoint
+                const yahooUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?period1=${period1}&period2=${period2}&interval=1mo&includeAdjustedClose=true`;
+                
+                let response;
+                let data;
+                
+                try {
+                    // Try direct Yahoo Finance API
+                    response = await fetch(yahooUrl, {
+                        method: 'GET',
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    
+                    if (!response.ok) throw new Error(`Direct API failed: ${response.status}`);
+                    data = await response.json();
+                } catch (directError) {
+                    console.log('Direct API failed, trying CORS proxy...');
+                    const corsProxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(yahooUrl)}`;
+                    response = await fetch(corsProxyUrl);
+                    if (!response.ok) throw new Error(`CORS proxy failed! Status: ${response.status}`);
+                    data = await response.json();
+                }
+                
+                if (data.chart.error) {
+                    throw new Error(data.chart.error.description);
+                }
+                
+                const result = data.chart.result[0];
+                
+                if (!result || !result.timestamp || result.timestamp.length === 0) {
+                    throw new Error('No data available for this asset in the 30-year period');
+                }
+                
+                const closes = result.indicators.quote[0].close;
+                const validData = closes.filter(c => c !== null && c !== undefined && c > 0);
+                
+                if (validData.length < 2) {
+                    throw new Error(`Insufficient data available for ${ticker}. This asset may not have 30 years of history.`);
+                }
+                
+                const startPrice = validData[0];
+                const endPrice = validData[validData.length - 1];
+                const years = validData.length / 12;
+                
+                // Calculate CAGR: ((End Value / Start Value) ^ (1 / Years)) - 1
+                const cagr = (Math.pow(endPrice / startPrice, 1 / years) - 1) * 100;
+                
+                // Calculate what $10,000 would grow to
+                const initialInvestment = 10000;
+                const finalValue = initialInvestment * Math.pow(1 + (cagr / 100), years);
+                const totalReturn = ((finalValue - initialInvestment) / initialInvestment) * 100;
+                
+                // Display results
+                document.getElementById('cagrValue').textContent = cagr.toFixed(2) + '%';
+                document.getElementById('cagrGrowth').textContent = '$' + finalValue.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+                document.getElementById('cagrTotalReturn').textContent = '+' + totalReturn.toFixed(0) + '%';
+                
+            } catch (error) {
+                console.error('CAGR calculation error:', error);
+                document.getElementById('cagrValue').innerHTML = '<span style="color: #dc3545; font-size: 1.2rem;">Data Unavailable</span>';
+                document.getElementById('cagrGrowth').textContent = '-';
+                document.getElementById('cagrTotalReturn').textContent = '-';
+                
+                // Show error message
+                const errorMsg = document.createElement('p');
+                errorMsg.style.cssText = 'color: #dc3545; font-size: 0.9rem; margin-top: 10px;';
+                errorMsg.textContent = error.message || 'Unable to fetch 30-year data for this asset.';
+                document.querySelector('.cagr-main-stat').appendChild(errorMsg);
+                
+                setTimeout(() => errorMsg.remove(), 5000);
+            }
+        }
+
+        // Portfolio Builder Functions
+        let portfolioAssets = [];
+        let cagrCache = {}; // Store calculated CAGRs
+        let currentCAGRYears = 30; // Default 30 years
+
+        function addPortfolioAsset() {
+            const assetId = Date.now();
+            const assetRow = document.createElement('div');
+            assetRow.className = 'portfolio-asset-row';
+            assetRow.id = `asset-${assetId}`;
+            
+            assetRow.innerHTML = `
+                <select class="asset-select" onchange="updatePortfolio()">
+                    <option value="">Select Asset...</option>
+                    ${cagrAssets.map(asset => `<option value="${asset.symbol}">${asset.name} (${asset.symbol})</option>`).join('')}
+                </select>
+                <input type="number" class="allocation-input" min="0" max="100" step="0.1" placeholder="Allocation %" oninput="updatePortfolio()">
+                <button class="remove-btn" onclick="removePortfolioAsset(${assetId})">Remove</button>
+            `;
+            
+            document.getElementById('portfolioAssets').appendChild(assetRow);
+            portfolioAssets.push(assetId);
+        }
+
+        function removePortfolioAsset(assetId) {
+            const assetRow = document.getElementById(`asset-${assetId}`);
+            if (assetRow) {
+                assetRow.style.animation = 'slideOut 0.3s ease-out';
+                setTimeout(() => {
+                    assetRow.remove();
+                    portfolioAssets = portfolioAssets.filter(id => id !== assetId);
+                    updatePortfolio();
+                }, 300);
+            }
+        }
+
+        function clearPortfolio() {
+            const container = document.getElementById('portfolioAssets');
+            const rows = container.querySelectorAll('.portfolio-asset-row');
+            rows.forEach((row, index) => {
+                setTimeout(() => {
+                    row.style.animation = 'slideOut 0.3s ease-out';
+                    setTimeout(() => row.remove(), 300);
+                }, index * 100);
+            });
+            
+            portfolioAssets = [];
+            setTimeout(() => {
+                document.getElementById('totalAllocation').textContent = '0%';
+                document.getElementById('portfolioCAGR').textContent = '-%';
+            }, rows.length * 100 + 300);
+        }
+
+        async function updatePortfolio() {
+            const rows = document.querySelectorAll('.portfolio-asset-row');
+            let totalAllocation = 0;
+            let weightedCAGR = 0;
+            let validAssets = 0;
+
+            for (const row of rows) {
+                const select = row.querySelector('.asset-select');
+                const input = row.querySelector('.allocation-input');
+                const symbol = select.value;
+                const allocation = parseFloat(input.value) || 0;
+
+                if (symbol && allocation > 0) {
+                    totalAllocation += allocation;
+                    
+                    // Get CAGR for this asset
+                    const cacheKey = `${symbol}-${currentCAGRYears}`;
+                    let cagr;
+                    
+                    if (cagrCache[cacheKey]) {
+                        cagr = cagrCache[cacheKey];
+                    } else {
+                        // Fetch and calculate CAGR
+                        try {
+                            const historicalData = await fetchHistoricalData(symbol, currentCAGRYears);
+                            if (historicalData && historicalData.length >= 2) {
+                                const startPrice = historicalData[0].price;
+                                const endPrice = historicalData[historicalData.length - 1].price;
+                                cagr = (Math.pow(endPrice / startPrice, 1 / currentCAGRYears) - 1) * 100;
+                                cagrCache[cacheKey] = cagr;
+                            }
+                        } catch (error) {
+                            console.error(`Error fetching CAGR for ${symbol}:`, error);
+                            cagr = 0;
+                        }
+                    }
+                    
+                    if (cagr !== undefined && cagr !== null) {
+                        weightedCAGR += (allocation / 100) * cagr;
+                        validAssets++;
+                    }
+                }
+            }
+
+            // Update displays
+            document.getElementById('totalAllocation').textContent = totalAllocation.toFixed(1) + '%';
+            
+            if (validAssets > 0 && totalAllocation > 0) {
+                const cagrElement = document.getElementById('portfolioCAGR');
+                cagrElement.textContent = weightedCAGR.toFixed(2) + '%';
+                
+                // Change color based on allocation total
+                if (Math.abs(totalAllocation - 100) < 0.1) {
+                    cagrElement.style.color = '#27ae60'; // Green when 100%
+                } else {
+                    cagrElement.style.color = '#667eea'; // Default purple
+                }
+            } else {
+                document.getElementById('portfolioCAGR').textContent = '-%';
+            }
+        }
+
+        function updateCAGRPeriod() {
+            const years = parseInt(document.getElementById('cagrYearSelect').value);
+            currentCAGRYears = years;
+            document.getElementById('cagrPeriodLabel').textContent = years + '-Year';
+            
+            // Clear the current results
+            document.getElementById('cagrValue').innerHTML = '<div class="cagr-loading"><div class="spinner"></div><p>Calculating...</p></div>';
+            document.getElementById('cagrGrowth').textContent = '-';
+            document.getElementById('cagrTotalReturn').textContent = '-';
+            
+            // If an asset is selected, recalculate
+            const selectedCard = document.querySelector('.cagr-card.active');
+            if (selectedCard) {
+                const symbol = selectedCard.dataset.symbol;
+                fetchCAGR(symbol);
+            }
+            
+            // Reset portfolio calculation with new time period
+            if (portfolioAssets.length > 0) {
+                updatePortfolio();
+            }
+        }
+
+        // Add slideOut animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideOut {
+                from {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+                to {
+                    opacity: 0;
+                    transform: translateX(-100px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
+
