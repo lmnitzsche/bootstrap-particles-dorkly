@@ -268,7 +268,7 @@ const blyssArticles = [
             <h2>Your Action Plan: Harness the Eighth Wonder</h2>
 
             <p><strong>Step 1: Calculate Your Current Position</strong><br>
-            Use our free <a href="../investcalcfunnel/index.html" style="color: #0d6efd; font-weight: 600;">Investment Calculator</a> to see exactly where you stand. Input your current savings, monthly contributions, expected returns, and timeline. Watch the power of compounding visualized in real-time.</p>
+            Use our free <a href="../statfunnel/index.html" style="color: #0d6efd; font-weight: 600;">Investment Calculator</a> to see exactly where you stand. Input your current savings, monthly contributions, expected returns, and timeline. Watch the power of compounding visualized in real-time.</p>
 
             <p><strong>Step 2: Backtest with Real Data</strong><br>
             Don't guess at returns—see actual historical performance. Our backtesting tool lets you see how strategies would have performed over the past 50 years using real S&P 500, Nasdaq, and dividend aristocrat data.</p>
@@ -291,7 +291,7 @@ const blyssArticles = [
 
             <p>The best time to start investing was 20 years ago. The second best time is right now.</p>
 
-            <p><strong>Take the first step:</strong> Visit our <a href="../investcalcfunnel/index.html" style="color: #0d6efd; font-weight: 600; text-decoration: underline;">Free Investment Calculator</a> and discover what your financial future could look like. See the eighth wonder of the world working for you.</p>
+            <p><strong>Take the first step:</strong> Visit our <a href="../statfunnel/index.html" style="color: #0d6efd; font-weight: 600; text-decoration: underline;">Free Investment Calculator</a> and discover what your financial future could look like. See the eighth wonder of the world working for you.</p>
 
             <p>Calculate your compound interest potential →<br>
             Backtest with 50 years of real market data →<br>
