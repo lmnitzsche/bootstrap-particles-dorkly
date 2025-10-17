@@ -619,15 +619,20 @@
                 </h2>
                 <form id="addRepForm" class="mb-4">
                     <div class="row">
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
                             <label class="form-label">Rep Name</label>
                             <input type="text" class="form-control" id="repName" placeholder="Jane Smith" required>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
                             <label class="form-label">Rep Email</label>
                             <input type="email" class="form-control" id="repEmail" placeholder="jane@example.com" required>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" id="repPassword" placeholder="Set password" required minlength="6">
+                            <small style="color: rgba(255,255,255,0.5);">Min 6 characters</small>
+                        </div>
+                        <div class="col-md-3 mb-3">
                             <label class="form-label">&nbsp;</label>
                             <button type="submit" class="btn btn-primary-custom w-100">
                                 <i class="bi bi-person-plus me-2"></i>
@@ -646,9 +651,9 @@
         // Local Storage Database (will be replaced with Firebase)
         let salesData = JSON.parse(localStorage.getItem('dorklyai_sales')) || [];
         let repsData = JSON.parse(localStorage.getItem('dorklyai_reps')) || [
-            { id: 1, name: 'Tyler Rodriguez', email: 'tyler@dorklyai.com' },
-            { id: 2, name: 'Ashley Thompson', email: 'ashley@dorklyai.com' },
-            { id: 3, name: 'Marcus Johnson', email: 'marcus@dorklyai.com' }
+            { id: 1, name: 'Tyler Rodriguez', email: 'tyler@dorklyai.com', password: 'rep123' },
+            { id: 2, name: 'Ashley Thompson', email: 'ashley@dorklyai.com', password: 'rep123' },
+            { id: 3, name: 'Marcus Johnson', email: 'marcus@dorklyai.com', password: 'rep123' }
         ];
         let currentUser = null;
 
@@ -997,10 +1002,21 @@
         document.getElementById('addRepForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            const email = document.getElementById('repEmail').value;
+            const password = document.getElementById('repPassword').value;
+            
+            // Check if email already exists
+            const emailExists = repsData.some(rep => rep.email === email);
+            if (emailExists) {
+                alert('A sales rep with this email already exists!');
+                return;
+            }
+            
             const newRep = {
                 id: Date.now(),
                 name: document.getElementById('repName').value,
-                email: document.getElementById('repEmail').value
+                email: email,
+                password: password  // In production, this would be hashed
             };
 
             repsData.push(newRep);
@@ -1008,7 +1024,8 @@
             
             this.reset();
             loadDashboard();
-            alert('Sales rep added successfully!');
+            alert('Sales rep added successfully! They can now login with: ' + email);
+        });
         });
 
         // Load Reps List
@@ -1016,18 +1033,52 @@
             const repsList = document.getElementById('repsList');
             repsList.innerHTML = repsData.map(rep => {
                 const repSales = salesData.filter(sale => sale.repId === rep.id);
-                const totalCommissions = repSales.reduce((sum, sale) => sum + parseFloat(sale.commission), 0);
+                
+                // Calculate total commissions using new structure
+                const totalCommissions = repSales.reduce((sum, sale) => {
+                    return sum + parseFloat(sale.totalCommission || sale.commission || 0);
+                }, 0);
+                
+                // Calculate setup vs recurring breakdown
+                const setupCommissions = repSales.reduce((sum, sale) => {
+                    return sum + parseFloat(sale.setupCommission || 0);
+                }, 0);
+                
+                const recurringCommissions = totalCommissions - setupCommissions;
                 
                 return `
                     <div class="stat-card">
                         <div class="d-flex justify-content-between align-items-start">
-                            <div>
+                            <div style="flex: 1;">
                                 <h5 style="color: white; margin-bottom: 0.5rem;">${rep.name}</h5>
-                                <p style="color: rgba(255,255,255,0.6); margin-bottom: 0.5rem;">${rep.email}</p>
-                                <div style="color: var(--success); font-weight: 700; font-size: 1.5rem;">
-                                    $${totalCommissions.toFixed(2)}
+                                <p style="color: rgba(255,255,255,0.6); margin-bottom: 0.5rem;">
+                                    <i class="bi bi-envelope me-2"></i>${rep.email}
+                                </p>
+                                <div class="row mt-3">
+                                    <div class="col-md-4">
+                                        <div style="color: var(--success); font-weight: 700; font-size: 1.5rem;">
+                                            $${totalCommissions.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                                        </div>
+                                        <small style="color: rgba(255,255,255,0.5);">Total Commission</small>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div style="color: #667eea; font-weight: 600; font-size: 1.2rem;">
+                                            $${setupCommissions.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                                        </div>
+                                        <small style="color: rgba(255,255,255,0.5);">Setup Fees</small>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div style="color: #764ba2; font-weight: 600; font-size: 1.2rem;">
+                                            $${recurringCommissions.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                                        </div>
+                                        <small style="color: rgba(255,255,255,0.5);">Recurring</small>
+                                    </div>
                                 </div>
-                                <small style="color: rgba(255,255,255,0.5);">${repSales.length} sales</small>
+                                <div class="mt-2">
+                                    <span style="color: rgba(255,255,255,0.7);">
+                                        <i class="bi bi-graph-up me-1"></i>${repSales.length} ${repSales.length === 1 ? 'sale' : 'sales'}
+                                    </span>
+                                </div>
                             </div>
                             <button class="delete-btn" onclick="deleteRep(${rep.id})">
                                 <i class="bi bi-trash"></i>
@@ -1040,27 +1091,13 @@
 
         // Delete Rep
         function deleteRep(id) {
-            if (confirm('Are you sure you want to delete this rep?')) {
+            if (confirm('Are you sure you want to delete this rep? Their sales history will remain in the system.')) {
                 repsData = repsData.filter(rep => rep.id !== id);
                 localStorage.setItem('dorklyai_reps', JSON.stringify(repsData));
                 loadDashboard();
+                alert('Sales rep removed successfully!');
             }
         }
-
-        // Auto-fill amount based on service selection
-        document.getElementById('course').addEventListener('change', function() {
-            const selectedOption = this.options[this.selectedIndex];
-            const setupFee = selectedOption.getAttribute('data-setup');
-            const monthlyFee = selectedOption.getAttribute('data-monthly');
-            
-            if (setupFee) {
-                document.getElementById('saleAmount').value = setupFee;
-                document.getElementById('packageHelper').textContent = 
-                    `Setup: $${setupFee} + $${monthlyFee}/month recurring`;
-            } else {
-                document.getElementById('packageHelper').textContent = '';
-            }
-        });
     </script>
 </body>
 </html>

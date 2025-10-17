@@ -179,6 +179,24 @@
             font-weight: 600;
         }
 
+        .badge-danger {
+            background: rgba(245, 87, 108, 0.2);
+            color: #f5576c;
+            border: 1px solid #f5576c;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .badge-warning {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+            border: 1px solid #ffc107;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
         .login-container {
             min-height: 100vh;
             display: flex;
@@ -397,14 +415,15 @@
                                 <th>Date</th>
                                 <th>Service Package</th>
                                 <th>Customer</th>
-                                <th>Amount</th>
+                                <th>Contract</th>
+                                <th>Total Value</th>
                                 <th>Commission</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody id="salesTableBody">
                             <tr>
-                                <td colspan="6" class="text-center" style="padding: 2rem; color: rgba(255,255,255,0.5);">
+                                <td colspan="7" class="text-center" style="padding: 2rem; color: rgba(255,255,255,0.5);">
                                     No sales recorded yet. Start selling to see your commissions here!
                                 </td>
                             </tr>
@@ -417,8 +436,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Demo data (will be replaced with Firebase)
-        const demoReps = [
+        // Load reps from localStorage (synced with admin dashboard)
+        let repsData = JSON.parse(localStorage.getItem('dorklyai_reps')) || [
             { id: 1, name: 'Tyler Rodriguez', email: 'tyler@dorklyai.com', password: 'rep123' },
             { id: 2, name: 'Ashley Thompson', email: 'ashley@dorklyai.com', password: 'rep123' },
             { id: 3, name: 'Marcus Johnson', email: 'marcus@dorklyai.com', password: 'rep123' }
@@ -433,8 +452,8 @@
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
 
-            // Demo login
-            const rep = demoReps.find(r => r.email === email && r.password === password);
+            // Check credentials against repsData from localStorage
+            const rep = repsData.find(r => r.email === email && r.password === password);
             
             if (rep) {
                 currentRep = rep;
@@ -470,8 +489,19 @@
 
         // Update Stats
         function updateStats() {
-            const totalCommissions = salesData.reduce((sum, sale) => sum + parseFloat(sale.commission), 0);
+            // Use new commission structure (totalCommission) or fallback to old (commission)
+            const totalCommissions = salesData.reduce((sum, sale) => {
+                return sum + parseFloat(sale.totalCommission || sale.commission || 0);
+            }, 0);
+            
             const totalSales = salesData.length;
+            
+            // Calculate setup vs recurring commissions
+            const setupCommissions = salesData.reduce((sum, sale) => {
+                return sum + parseFloat(sale.setupCommission || 0);
+            }, 0);
+            
+            const recurringCommissions = totalCommissions - setupCommissions;
             
             // This month sales
             const now = new Date();
@@ -482,10 +512,10 @@
             
             const avgCommission = totalSales > 0 ? totalCommissions / totalSales : 0;
 
-            document.getElementById('totalCommissions').textContent = '$' + totalCommissions.toFixed(2);
+            document.getElementById('totalCommissions').textContent = '$' + totalCommissions.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('totalSales').textContent = totalSales;
             document.getElementById('monthSales').textContent = thisMonth.length;
-            document.getElementById('avgCommission').textContent = '$' + avgCommission.toFixed(0);
+            document.getElementById('avgCommission').textContent = '$' + avgCommission.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
         }
 
         // Load Sales Table
@@ -495,7 +525,7 @@
             if (salesData.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="6" class="text-center" style="padding: 2rem; color: rgba(255,255,255,0.5);">
+                        <td colspan="7" class="text-center" style="padding: 2rem; color: rgba(255,255,255,0.5);">
                             No sales recorded yet. Start selling to see your commissions here!
                         </td>
                     </tr>
@@ -503,16 +533,46 @@
                 return;
             }
 
-            tbody.innerHTML = salesData.map(sale => `
-                <tr>
-                    <td>${new Date(sale.date).toLocaleDateString()}</td>
-                    <td>${sale.course}</td>
-                    <td>${sale.customerName}</td>
-                    <td>$${sale.amount}</td>
-                    <td>$${sale.commission}</td>
-                    <td><span class="badge-${sale.status === 'completed' ? 'success' : 'pending'}">${sale.status}</span></td>
-                </tr>
-            `).join('');
+            tbody.innerHTML = salesData.map(sale => {
+                // Format contract info if available
+                const contractInfo = sale.contractLength 
+                    ? `${sale.contractLength} months` 
+                    : 'N/A';
+                
+                // Use new commission structure or fallback to old
+                const commission = sale.totalCommission || sale.commission || 0;
+                const commissionDisplay = sale.setupCommission 
+                    ? `$${parseFloat(commission).toLocaleString('en-US', {minimumFractionDigits: 2})}<br><small style="color: rgba(255,255,255,0.5);">Setup: $${parseFloat(sale.setupCommission).toLocaleString('en-US', {minimumFractionDigits: 2})}</small>`
+                    : `$${parseFloat(commission).toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+                
+                // Use new value structure or fallback to old
+                const totalValue = sale.totalContractValue || sale.amount || 0;
+                const valueDisplay = sale.setupFee 
+                    ? `$${parseFloat(totalValue).toLocaleString('en-US', {minimumFractionDigits: 2})}<br><small style="color: rgba(255,255,255,0.5);">$${sale.setupFee} + $${sale.monthlyFee}/mo</small>`
+                    : `$${parseFloat(totalValue).toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+                
+                // Status badge colors
+                const statusColors = {
+                    'active': 'success',
+                    'completed': 'success',
+                    'pending': 'pending',
+                    'cancelled': 'danger',
+                    'paused': 'warning'
+                };
+                const statusClass = statusColors[sale.status] || 'pending';
+                
+                return `
+                    <tr>
+                        <td>${new Date(sale.date).toLocaleDateString()}</td>
+                        <td>${sale.course}</td>
+                        <td>${sale.customerName}</td>
+                        <td>${contractInfo}</td>
+                        <td>${valueDisplay}</td>
+                        <td>${commissionDisplay}</td>
+                        <td><span class="badge-${statusClass}">${sale.status}</span></td>
+                    </tr>
+                `;
+            }).join('');
         }
 
         // Load Service Package Breakdown
@@ -523,7 +583,7 @@
                     breakdown[sale.course] = { count: 0, commission: 0 };
                 }
                 breakdown[sale.course].count++;
-                breakdown[sale.course].commission += parseFloat(sale.commission);
+                breakdown[sale.course].commission += parseFloat(sale.totalCommission || sale.commission || 0);
             });
 
             const container = document.getElementById('courseBreakdown');
