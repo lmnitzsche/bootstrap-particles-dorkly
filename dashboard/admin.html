@@ -216,6 +216,24 @@
             font-weight: 600;
         }
 
+        .badge-danger {
+            background: rgba(245, 87, 108, 0.2);
+            color: var(--danger);
+            border: 1px solid var(--danger);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .badge-warning {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+            border: 1px solid #ffc107;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
         .action-btn {
             background: rgba(102, 126, 234, 0.2);
             color: var(--primary);
@@ -351,31 +369,81 @@
                         <i class="bi bi-currency-dollar" style="color: var(--primary);"></i>
                     </div>
                     <div class="stat-value" id="totalRevenue">$0</div>
-                    <div class="stat-label">Total Revenue</div>
+                    <div class="stat-label">Total Revenue (Setup)</div>
                 </div>
 
                 <div class="stat-card">
                     <div class="stat-icon" style="background: rgba(56, 239, 125, 0.2);">
-                        <i class="bi bi-bag-check-fill" style="color: var(--success);"></i>
+                        <i class="bi bi-arrow-repeat" style="color: var(--success);"></i>
                     </div>
-                    <div class="stat-value" id="totalSales">0</div>
-                    <div class="stat-label">Total Sales</div>
+                    <div class="stat-value" id="recurringRevenue">$0/mo</div>
+                    <div class="stat-label">Active MRR</div>
                 </div>
 
                 <div class="stat-card">
                     <div class="stat-icon" style="background: rgba(240, 147, 251, 0.2);">
-                        <i class="bi bi-people-fill" style="color: #f093fb;"></i>
+                        <i class="bi bi-graph-up-arrow" style="color: #f093fb;"></i>
                     </div>
-                    <div class="stat-value" id="totalReps">0</div>
-                    <div class="stat-label">Active Reps</div>
+                    <div class="stat-value" id="projectedArr">$0</div>
+                    <div class="stat-label">Projected ARR</div>
                 </div>
 
                 <div class="stat-card">
                     <div class="stat-icon" style="background: rgba(255, 193, 7, 0.2);">
                         <i class="bi bi-cash-stack" style="color: #ffc107;"></i>
                     </div>
-                    <div class="stat-value" id="totalCommissions">$0</div>
-                    <div class="stat-label">Total Commissions</div>
+                    <div class="stat-value" id="totalCommissionsPaid">$0</div>
+                    <div class="stat-label">Commissions Paid</div>
+                </div>
+            </div>
+
+            <!-- Advanced Metrics Row -->
+            <div class="row mb-4">
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="stat-card">
+                        <div style="font-size: 1.8rem; font-weight: 800; color: white;" id="activeContracts">0</div>
+                        <div class="stat-label">Active Contracts</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="stat-card">
+                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--success);" id="avgContractValue">$0</div>
+                        <div class="stat-label">Avg Contract Value</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="stat-card">
+                        <div style="font-size: 1.8rem; font-weight: 800; color: #f093fb;" id="conversionRate">0%</div>
+                        <div class="stat-label">Close Rate</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="stat-card">
+                        <div style="font-size: 1.8rem; font-weight: 800; color: #ffc107;" id="churnRate">0%</div>
+                        <div class="stat-label">Churn Rate</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Commission Metrics -->
+            <div class="row mb-4">
+                <div class="col-lg-4 col-md-6 mb-3">
+                    <div class="stat-card">
+                        <div style="font-size: 1.5rem; font-weight: 800; color: var(--primary);" id="projectedCommissions">$0</div>
+                        <div class="stat-label">Projected Commissions (Next 30 Days)</div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-3">
+                    <div class="stat-card">
+                        <div style="font-size: 1.5rem; font-weight: 800; color: var(--success);" id="actualCommissions">$0</div>
+                        <div class="stat-label">Actual Commissions (This Month)</div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-3">
+                    <div class="stat-card">
+                        <div style="font-size: 1.5rem; font-weight: 800; color: #ffc107;" id="outstandingCommissions">$0</div>
+                        <div class="stat-label">Outstanding Commissions</div>
+                    </div>
                 </div>
             </div>
 
@@ -415,26 +483,80 @@
                             </select>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <label class="form-label">Sale Amount</label>
-                            <input type="number" class="form-control" id="saleAmount" placeholder="1000.00" step="0.01" required>
-                            <small style="color: rgba(255,255,255,0.5);" id="packageHelper"></small>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 mb-3">
-                            <label class="form-label">Commission Rate (%)</label>
-                            <input type="number" class="form-control" id="commissionRate" placeholder="20" value="20" required>
-                            <small style="color: rgba(255,255,255,0.5);">Standard: 20% of setup fee</small>
-                        </div>
-                        <div class="col-md-4 mb-3">
                             <label class="form-label">Customer Name</label>
                             <input type="text" class="form-control" id="customerName" placeholder="John Doe" required>
                         </div>
-                        <div class="col-md-4 mb-3">
+                    </div>
+                    
+                    <!-- Contract Details -->
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label">Contract Start Date</label>
+                            <input type="date" class="form-control" id="contractStart" required>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label">Contract Length (Months)</label>
+                            <input type="number" class="form-control" id="contractLength" placeholder="12" value="12" min="1" required>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label">Payment Day (1-31)</label>
+                            <input type="number" class="form-control" id="paymentDay" placeholder="1" value="1" min="1" max="31" required>
+                            <small style="color: rgba(255,255,255,0.5);">Day of month for recurring payments</small>
+                        </div>
+                        <div class="col-md-3 mb-3">
                             <label class="form-label">Customer Email</label>
                             <input type="email" class="form-control" id="customerEmail" placeholder="john@example.com" required>
                         </div>
                     </div>
+
+                    <!-- Commission Structure -->
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Setup Commission (%)</label>
+                            <input type="number" class="form-control" id="setupCommissionRate" placeholder="15" value="15" step="0.01" required>
+                            <small style="color: rgba(255,255,255,0.5);">% of initial setup fee</small>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Year 1 Monthly Commission (%)</label>
+                            <input type="number" class="form-control" id="year1CommissionRate" placeholder="20" value="20" step="0.01" required>
+                            <small style="color: rgba(255,255,255,0.5);">% of monthly recurring (months 1-12)</small>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Year 2+ Monthly Commission (%)</label>
+                            <input type="number" class="form-control" id="year2CommissionRate" placeholder="10" value="10" step="0.01" required>
+                            <small style="color: rgba(255,255,255,0.5);">% of monthly recurring (month 13+)</small>
+                        </div>
+                    </div>
+
+                    <!-- Commission Preview -->
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <div style="background: rgba(102, 126, 234, 0.1); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 12px; padding: 1.5rem;">
+                                <h6 style="color: #667eea; margin-bottom: 1rem; font-weight: 600;">
+                                    <i class="bi bi-calculator me-2"></i>Commission Preview
+                                </h6>
+                                <div class="row text-center">
+                                    <div class="col-md-3">
+                                        <div style="font-size: 1.5rem; font-weight: 700; color: #38ef7d;" id="previewSetup">$0</div>
+                                        <small style="color: rgba(255,255,255,0.6);">Setup Commission</small>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div style="font-size: 1.5rem; font-weight: 700; color: #667eea;" id="previewYear1">$0</div>
+                                        <small style="color: rgba(255,255,255,0.6);">Year 1 Total (12mo)</small>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div style="font-size: 1.5rem; font-weight: 700; color: #764ba2;" id="previewYear2">$0</div>
+                                        <small style="color: rgba(255,255,255,0.6);">Year 2+ Total</small>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div style="font-size: 1.8rem; font-weight: 900; color: #ffc107;" id="previewTotal">$0</div>
+                                        <small style="color: rgba(255,255,255,0.6);">Total Commission</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-md-8 mb-3">
                             <label class="form-label">Notes (Optional)</label>
@@ -443,8 +565,10 @@
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Status</label>
                             <select class="form-select" id="saleStatus">
-                                <option value="completed">Completed</option>
+                                <option value="active">Active</option>
                                 <option value="pending">Pending</option>
+                                <option value="cancelled">Cancelled</option>
+                                <option value="paused">Paused</option>
                             </select>
                         </div>
                     </div>
@@ -459,7 +583,7 @@
             <div class="section-card">
                 <h2 class="section-title">
                     <i class="bi bi-graph-up"></i>
-                    Recent Sales
+                    Recent Sales & Contracts
                 </h2>
                 <div class="table-responsive">
                     <table class="sales-table">
@@ -469,7 +593,8 @@
                                 <th>Sales Rep</th>
                                 <th>Service Package</th>
                                 <th>Customer</th>
-                                <th>Amount</th>
+                                <th>Contract</th>
+                                <th>Total Value</th>
                                 <th>Commission</th>
                                 <th>Status</th>
                                 <th>Actions</th>
@@ -477,7 +602,7 @@
                         </thead>
                         <tbody id="salesTableBody">
                             <tr>
-                                <td colspan="8" class="text-center" style="padding: 2rem; color: rgba(255,255,255,0.5);">
+                                <td colspan="9" class="text-center" style="padding: 2rem; color: rgba(255,255,255,0.5);">
                                     No sales yet. Add your first sale above!
                                 </td>
                             </tr>
@@ -559,17 +684,95 @@
             loadReps();
             loadSales();
             populateRepsDropdown();
+            
+            // Set default contract start date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('contractStart').value = today;
         }
 
         // Update Stats
         function updateStats() {
-            const totalRevenue = salesData.reduce((sum, sale) => sum + parseFloat(sale.amount), 0);
-            const totalCommissions = salesData.reduce((sum, sale) => sum + parseFloat(sale.commission), 0);
+            // Filter active contracts only
+            const activeContracts = salesData.filter(sale => sale.status === 'active');
             
-            document.getElementById('totalRevenue').textContent = '$' + totalRevenue.toFixed(2);
-            document.getElementById('totalSales').textContent = salesData.length;
-            document.getElementById('totalReps').textContent = repsData.length;
-            document.getElementById('totalCommissions').textContent = '$' + totalCommissions.toFixed(2);
+            // Calculate Total Setup Revenue
+            const totalSetupRevenue = salesData.reduce((sum, sale) => {
+                return sum + parseFloat(sale.setupFee || sale.amount || 0);
+            }, 0);
+            
+            // Calculate Active MRR (Monthly Recurring Revenue)
+            const activeMRR = activeContracts.reduce((sum, sale) => {
+                return sum + parseFloat(sale.monthlyFee || 0);
+            }, 0);
+            
+            // Calculate Projected ARR (Annual Recurring Revenue)
+            const projectedARR = activeMRR * 12;
+            
+            // Calculate Total Commissions Paid
+            const totalCommissionsPaid = salesData.reduce((sum, sale) => {
+                return sum + parseFloat(sale.totalCommission || sale.commission || 0);
+            }, 0);
+            
+            // Active Contracts Count
+            const activeContractCount = activeContracts.length;
+            
+            // Average Contract Value
+            const avgContractValue = activeContractCount > 0 
+                ? activeContracts.reduce((sum, sale) => sum + parseFloat(sale.totalContractValue || sale.amount || 0), 0) / activeContractCount
+                : 0;
+            
+            // Close Rate (assuming all sales in system were attempted closes for demo)
+            const totalAttempts = salesData.length > 0 ? salesData.length : 1;
+            const closeRate = (activeContractCount / totalAttempts) * 100;
+            
+            // Churn Rate (cancelled contracts / total contracts that have started)
+            const cancelledContracts = salesData.filter(sale => sale.status === 'cancelled').length;
+            const churnRate = salesData.length > 0 ? (cancelledContracts / salesData.length) * 100 : 0;
+            
+            // Commission Metrics
+            const today = new Date();
+            const next30Days = new Date(today.getTime() + (30 * 24 * 60 * 60 * 1000));
+            
+            // Projected Commissions (next 30 days) - for active contracts with monthly payments
+            const projectedCommissions = activeContracts.reduce((sum, sale) => {
+                if (!sale.contractStart || !sale.monthlyFee) return sum;
+                
+                const contractStart = new Date(sale.contractStart);
+                const monthsElapsed = Math.floor((today - contractStart) / (30 * 24 * 60 * 60 * 1000));
+                const rate = monthsElapsed < 12 ? (sale.year1CommissionRate || 20) : (sale.year2CommissionRate || 10);
+                const monthlyCommission = parseFloat(sale.monthlyFee) * (rate / 100);
+                
+                return sum + monthlyCommission;
+            }, 0);
+            
+            // Actual Commissions (this month) - for demo, show setup commissions from this month
+            const thisMonth = today.getMonth();
+            const thisYear = today.getFullYear();
+            const actualCommissions = salesData.reduce((sum, sale) => {
+                const saleDate = new Date(sale.date);
+                if (saleDate.getMonth() === thisMonth && saleDate.getFullYear() === thisYear) {
+                    return sum + parseFloat(sale.setupCommission || sale.commission || 0);
+                }
+                return sum;
+            }, 0);
+            
+            // Outstanding Commissions - total projected minus what's been "paid" (for demo, just show projected)
+            const outstandingCommissions = projectedCommissions;
+            
+            // Update DOM
+            document.getElementById('totalRevenue').textContent = '$' + totalSetupRevenue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('activeMRR').textContent = '$' + activeMRR.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + '/mo';
+            document.getElementById('projectedARR').textContent = '$' + projectedARR.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+            document.getElementById('totalCommissions').textContent = '$' + totalCommissionsPaid.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            
+            document.getElementById('activeContracts').textContent = activeContractCount;
+            document.getElementById('avgContractValue').textContent = '$' + avgContractValue.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+            document.getElementById('closeRate').textContent = closeRate.toFixed(1) + '%';
+            document.getElementById('churnRate').textContent = churnRate.toFixed(1) + '%';
+            
+            document.getElementById('projectedCommissions').textContent = '$' + projectedCommissions.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('actualCommissions').textContent = '$' + actualCommissions.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('outstandingCommissions').textContent = '$' + outstandingCommissions.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
         }
 
         // Populate Reps Dropdown
@@ -581,15 +784,92 @@
             });
         }
 
+        // Commission Preview Calculator
+        function updateCommissionPreview() {
+            const serviceSelect = document.getElementById('course');
+            const selectedOption = serviceSelect.options[serviceSelect.selectedIndex];
+            
+            if (!selectedOption || !selectedOption.dataset.setup) {
+                document.getElementById('previewSetup').textContent = '$0';
+                document.getElementById('previewYear1').textContent = '$0';
+                document.getElementById('previewYear2').textContent = '$0';
+                document.getElementById('previewTotal').textContent = '$0';
+                return;
+            }
+
+            const setupFee = parseFloat(selectedOption.dataset.setup) || 0;
+            const monthlyFee = parseFloat(selectedOption.dataset.monthly) || 0;
+            const contractLength = parseInt(document.getElementById('contractLength').value) || 12;
+            
+            const setupCommRate = parseFloat(document.getElementById('setupCommissionRate').value) || 0;
+            const year1CommRate = parseFloat(document.getElementById('year1CommissionRate').value) || 0;
+            const year2CommRate = parseFloat(document.getElementById('year2CommissionRate').value) || 0;
+
+            // Calculate commissions
+            const setupCommission = (setupFee * setupCommRate / 100);
+            
+            // Year 1: First 12 months or less if contract is shorter
+            const year1Months = Math.min(12, contractLength);
+            const year1Total = (monthlyFee * year1CommRate / 100) * year1Months;
+            
+            // Year 2+: Remaining months after first 12
+            const year2Months = Math.max(0, contractLength - 12);
+            const year2Total = (monthlyFee * year2CommRate / 100) * year2Months;
+            
+            const totalCommission = setupCommission + year1Total + year2Total;
+
+            // Update preview
+            document.getElementById('previewSetup').textContent = '$' + setupCommission.toFixed(2);
+            document.getElementById('previewYear1').textContent = '$' + year1Total.toFixed(2);
+            document.getElementById('previewYear2').textContent = '$' + year2Total.toFixed(2);
+            document.getElementById('previewTotal').textContent = '$' + totalCommission.toFixed(2);
+        }
+
+        // Add event listeners for live preview
+        document.addEventListener('DOMContentLoaded', function() {
+            const previewFields = ['course', 'contractLength', 'setupCommissionRate', 'year1CommissionRate', 'year2CommissionRate'];
+            previewFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field) {
+                    field.addEventListener('input', updateCommissionPreview);
+                    field.addEventListener('change', updateCommissionPreview);
+                }
+            });
+        });
+
         // Add Sale
         document.getElementById('addSaleForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const repId = parseInt(document.getElementById('salesRep').value);
             const rep = repsData.find(r => r.id === repId);
-            const amount = parseFloat(document.getElementById('saleAmount').value);
-            const commissionRate = parseFloat(document.getElementById('commissionRate').value);
-            const commission = (amount * commissionRate / 100).toFixed(2);
+            
+            // Get service package data
+            const serviceSelect = document.getElementById('course');
+            const selectedOption = serviceSelect.options[serviceSelect.selectedIndex];
+            const setupFee = parseFloat(selectedOption.dataset.setup) || 0;
+            const monthlyFee = parseFloat(selectedOption.dataset.monthly) || 0;
+            
+            // Get contract details
+            const contractStart = document.getElementById('contractStart').value;
+            const contractLength = parseInt(document.getElementById('contractLength').value);
+            const paymentDay = parseInt(document.getElementById('paymentDay').value);
+            
+            // Get commission rates
+            const setupCommRate = parseFloat(document.getElementById('setupCommissionRate').value);
+            const year1CommRate = parseFloat(document.getElementById('year1CommissionRate').value);
+            const year2CommRate = parseFloat(document.getElementById('year2CommissionRate').value);
+            
+            // Calculate commissions
+            const setupCommission = (setupFee * setupCommRate / 100);
+            const year1Months = Math.min(12, contractLength);
+            const year1Total = (monthlyFee * year1CommRate / 100) * year1Months;
+            const year2Months = Math.max(0, contractLength - 12);
+            const year2Total = (monthlyFee * year2CommRate / 100) * year2Months;
+            const totalCommission = setupCommission + year1Total + year2Total;
+            
+            // Calculate total contract value
+            const totalContractValue = setupFee + (monthlyFee * contractLength);
 
             const newSale = {
                 id: Date.now(),
@@ -599,9 +879,26 @@
                 course: document.getElementById('course').value,
                 customerName: document.getElementById('customerName').value,
                 customerEmail: document.getElementById('customerEmail').value,
-                amount: amount.toFixed(2),
-                commissionRate: commissionRate,
-                commission: commission,
+                
+                // Contract details
+                contractStart: contractStart,
+                contractLength: contractLength,
+                paymentDay: paymentDay,
+                
+                // Financial details
+                setupFee: setupFee.toFixed(2),
+                monthlyFee: monthlyFee.toFixed(2),
+                totalContractValue: totalContractValue.toFixed(2),
+                
+                // Commission details
+                setupCommissionRate: setupCommRate,
+                year1CommissionRate: year1CommRate,
+                year2CommissionRate: year2CommRate,
+                setupCommission: setupCommission.toFixed(2),
+                year1Commission: year1Total.toFixed(2),
+                year2Commission: year2Total.toFixed(2),
+                totalCommission: totalCommission.toFixed(2),
+                
                 status: document.getElementById('saleStatus').value,
                 notes: document.getElementById('saleNotes').value
             };
@@ -610,6 +907,13 @@
             localStorage.setItem('dorklyai_sales', JSON.stringify(salesData));
             
             this.reset();
+            document.getElementById('contractLength').value = '12';
+            document.getElementById('paymentDay').value = '1';
+            document.getElementById('setupCommissionRate').value = '15';
+            document.getElementById('year1CommissionRate').value = '20';
+            document.getElementById('year2CommissionRate').value = '10';
+            updateCommissionPreview();
+            
             loadDashboard();
             alert('Sale added successfully!');
         });
@@ -621,7 +925,7 @@
             if (salesData.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="8" class="text-center" style="padding: 2rem; color: rgba(255,255,255,0.5);">
+                        <td colspan="9" class="text-center" style="padding: 2rem; color: rgba(255,255,255,0.5);">
                             No sales yet. Add your first sale above!
                         </td>
                     </tr>
@@ -629,22 +933,55 @@
                 return;
             }
 
-            tbody.innerHTML = salesData.map(sale => `
-                <tr>
-                    <td>${new Date(sale.date).toLocaleDateString()}</td>
-                    <td>${sale.repName}</td>
-                    <td>${sale.course}</td>
-                    <td>${sale.customerName}</td>
-                    <td>$${sale.amount}</td>
-                    <td>$${sale.commission} (${sale.commissionRate}%)</td>
-                    <td><span class="badge-${sale.status === 'completed' ? 'success' : 'pending'}">${sale.status}</span></td>
-                    <td>
-                        <button class="delete-btn" onclick="deleteSale(${sale.id})">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-            `).join('');
+            tbody.innerHTML = salesData.map(sale => {
+                // Calculate contract end date if we have contract start
+                let contractInfo = '';
+                if (sale.contractStart && sale.contractLength) {
+                    const startDate = new Date(sale.contractStart);
+                    const endDate = new Date(startDate);
+                    endDate.setMonth(endDate.getMonth() + parseInt(sale.contractLength));
+                    contractInfo = `${sale.contractLength} months<br><small style="color: rgba(255,255,255,0.5);">Ends ${endDate.toLocaleDateString()}</small>`;
+                } else {
+                    contractInfo = 'N/A';
+                }
+                
+                // Format status badge
+                const statusColors = {
+                    'active': 'success',
+                    'pending': 'pending',
+                    'cancelled': 'danger',
+                    'paused': 'warning'
+                };
+                const statusClass = statusColors[sale.status] || 'pending';
+                
+                // Display total commission with breakdown tooltip
+                const commissionDisplay = sale.totalCommission 
+                    ? `$${sale.totalCommission}<br><small style="color: rgba(255,255,255,0.5);">Setup: $${sale.setupCommission || 0}</small>`
+                    : `$${sale.commission || 0}`;
+                
+                // Display total contract value or legacy amount
+                const valueDisplay = sale.totalContractValue 
+                    ? `$${sale.totalContractValue}<br><small style="color: rgba(255,255,255,0.5);">$${sale.setupFee} + $${sale.monthlyFee}/mo</small>`
+                    : `$${sale.amount || 0}`;
+
+                return `
+                    <tr>
+                        <td>${new Date(sale.date).toLocaleDateString()}</td>
+                        <td>${sale.repName}</td>
+                        <td>${sale.course}</td>
+                        <td>${sale.customerName}</td>
+                        <td>${contractInfo}</td>
+                        <td>${valueDisplay}</td>
+                        <td>${commissionDisplay}</td>
+                        <td><span class="badge-${statusClass}">${sale.status}</span></td>
+                        <td>
+                            <button class="delete-btn" onclick="deleteSale(${sale.id})">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
         }
 
         // Delete Sale
