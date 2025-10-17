@@ -550,6 +550,37 @@
                 </form>
             </div>
 
+            <!-- Upcoming Monthly Payments -->
+            <div class="section-card">
+                <h2 class="section-title">
+                    <i class="bi bi-calendar-check"></i>
+                    Upcoming Monthly Payments & Collections
+                </h2>
+                <div class="table-responsive">
+                    <table class="sales-table">
+                        <thead>
+                            <tr>
+                                <th>Customer</th>
+                                <th>Sales Rep</th>
+                                <th>Service</th>
+                                <th>Due Date</th>
+                                <th>Monthly Fee</th>
+                                <th>Commission</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="upcomingPaymentsBody">
+                            <tr>
+                                <td colspan="8" class="text-center" style="padding: 2rem; color: rgba(255,255,255,0.5);">
+                                    No upcoming payments
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
             <!-- All Sales -->
             <div class="section-card">
                 <div class="d-flex justify-content-between align-items-center mb-3">
@@ -678,6 +709,7 @@
             usersData = getUsers();
             
             updateStats();
+            loadUpcomingPayments();
             loadSalesTable();
             loadReps();
             populateRepsDropdown();
@@ -687,11 +719,29 @@
         }
 
         function updateStats() {
+            const today = new Date();
             const activeContracts = salesData.filter(sale => sale.status === 'active');
+            const confirmedPayments = JSON.parse(localStorage.getItem('dorklyai_confirmed_payments')) || {};
             
-            const totalRevenue = salesData.reduce((sum, sale) => {
+            // Total revenue from setup fees (immediate)
+            let totalRevenue = salesData.reduce((sum, sale) => {
                 return sum + parseFloat(sale.setupFee || 0);
             }, 0);
+            
+            // Add confirmed monthly payments to revenue
+            activeContracts.forEach(sale => {
+                if (sale.contractStart && sale.monthlyFee && parseFloat(sale.monthlyFee) > 0) {
+                    const contractLength = parseInt(sale.contractLength) || 12;
+                    const monthsElapsed = Math.floor((today - new Date(sale.contractStart)) / (30.44 * 24 * 60 * 60 * 1000));
+                    
+                    for (let i = 1; i <= Math.min(monthsElapsed + 1, contractLength); i++) {
+                        const paymentKey = `${sale.id}_${i}`;
+                        if (confirmedPayments[paymentKey] === true) {
+                            totalRevenue += parseFloat(sale.monthlyFee);
+                        }
+                    }
+                }
+            });
             
             const activeMRR = activeContracts.reduce((sum, sale) => {
                 return sum + parseFloat(sale.monthlyFee || 0);
@@ -907,6 +957,138 @@
             }
         }
 
+        // Load Upcoming Payments with Admin Controls
+        function loadUpcomingPayments() {
+            const tbody = document.getElementById('upcomingPaymentsBody');
+            const today = new Date();
+            const nextMonths = 3; // Show next 3 months
+            const payments = [];
+
+            // Get active contracts with monthly fees
+            const activeContracts = salesData.filter(sale => 
+                sale.status === 'active' && 
+                sale.contractStart && 
+                sale.monthlyFee && 
+                parseFloat(sale.monthlyFee) > 0
+            );
+
+            activeContracts.forEach(sale => {
+                const contractStart = new Date(sale.contractStart);
+                const contractLength = parseInt(sale.contractLength) || 12;
+                const contractEnd = new Date(contractStart);
+                contractEnd.setMonth(contractEnd.getMonth() + contractLength);
+                const paymentDay = parseInt(sale.paymentDay) || 1;
+                const monthlyFee = parseFloat(sale.monthlyFee);
+
+                // Calculate which month of contract we're in
+                const monthsElapsed = Math.floor((today - contractStart) / (30.44 * 24 * 60 * 60 * 1000));
+
+                // Generate next few payment dates
+                for (let i = 0; i < nextMonths; i++) {
+                    const monthNumber = monthsElapsed + i + 1; // +1 because first payment is month 1
+                    
+                    if (monthNumber > contractLength) break; // Contract ended
+                    if (monthNumber < 1) continue; // Contract hasn't started
+
+                    // Calculate payment date
+                    const paymentDate = new Date(contractStart);
+                    paymentDate.setMonth(paymentDate.getMonth() + monthNumber);
+                    paymentDate.setDate(Math.min(paymentDay, new Date(paymentDate.getFullYear(), paymentDate.getMonth() + 1, 0).getDate()));
+
+                    // Only show if payment date is in the future or within last 30 days
+                    const daysDiff = Math.ceil((paymentDate - today) / (1000 * 60 * 60 * 24));
+                    if (daysDiff < -30) continue;
+
+                    // Calculate commission rate based on month number
+                    const commissionRate = monthNumber <= 12 
+                        ? (parseFloat(sale.year1CommissionRate) || 20) / 100
+                        : (parseFloat(sale.year2CommissionRate) || 10) / 100;
+                    const commission = monthlyFee * commissionRate;
+
+                    // Check if payment has been confirmed
+                    const paymentKey = `${sale.id}_${monthNumber}`;
+                    const confirmedPayments = JSON.parse(localStorage.getItem('dorklyai_confirmed_payments')) || {};
+                    const isConfirmed = confirmedPayments[paymentKey] === true;
+
+                    payments.push({
+                        customerName: sale.customerName,
+                        repName: sale.repName,
+                        course: sale.course,
+                        paymentDate: paymentDate,
+                        monthlyFee: monthlyFee,
+                        commission: commission,
+                        daysDiff: daysDiff,
+                        isConfirmed: isConfirmed,
+                        saleId: sale.id,
+                        monthNumber: monthNumber,
+                        paymentKey: paymentKey
+                    });
+                }
+            });
+
+            // Sort by payment date
+            payments.sort((a, b) => a.paymentDate - b.paymentDate);
+
+            if (payments.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="8" class="text-center" style="padding: 2rem; color: rgba(255,255,255,0.5);">
+                            No upcoming payments in the next ${nextMonths} months
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = payments.map(payment => {
+                let statusBadge = '';
+                let actionButton = '';
+                
+                if (payment.isConfirmed) {
+                    statusBadge = '<span class="badge-success"><i class="bi bi-check-circle-fill me-1"></i>Paid</span>';
+                    actionButton = `<button class="action-btn" onclick="unconfirmPayment('${payment.paymentKey}')" style="font-size: 0.75rem; padding: 0.3rem 0.6rem;">Undo</button>`;
+                } else if (payment.daysDiff < 0) {
+                    statusBadge = `<span class="badge-danger"><i class="bi bi-exclamation-triangle-fill me-1"></i>Overdue (${Math.abs(payment.daysDiff)} days)</span>`;
+                    actionButton = `<button class="btn btn-primary-custom" onclick="confirmPayment('${payment.paymentKey}')" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Confirm Payment</button>`;
+                } else if (payment.daysDiff <= 7) {
+                    statusBadge = `<span class="badge-warning"><i class="bi bi-clock-fill me-1"></i>Due in ${payment.daysDiff} ${payment.daysDiff === 1 ? 'day' : 'days'}</span>`;
+                    actionButton = `<button class="btn btn-primary-custom" onclick="confirmPayment('${payment.paymentKey}')" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Confirm Payment</button>`;
+                } else {
+                    statusBadge = '<span class="badge-pending">Pending</span>';
+                    actionButton = `<button class="btn btn-primary-custom" onclick="confirmPayment('${payment.paymentKey}')" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Confirm Payment</button>`;
+                }
+
+                return `
+                    <tr>
+                        <td>${payment.customerName}</td>
+                        <td>${payment.repName}</td>
+                        <td>${payment.course}</td>
+                        <td>${payment.paymentDate.toLocaleDateString()}</td>
+                        <td>$${payment.monthlyFee.toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
+                        <td>$${payment.commission.toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
+                        <td>${statusBadge}</td>
+                        <td>${actionButton}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function confirmPayment(paymentKey) {
+            const confirmedPayments = JSON.parse(localStorage.getItem('dorklyai_confirmed_payments')) || {};
+            confirmedPayments[paymentKey] = true;
+            localStorage.setItem('dorklyai_confirmed_payments', JSON.stringify(confirmedPayments));
+            loadDashboard();
+        }
+
+        function unconfirmPayment(paymentKey) {
+            if (confirm('Are you sure you want to undo this payment confirmation?')) {
+                const confirmedPayments = JSON.parse(localStorage.getItem('dorklyai_confirmed_payments')) || {};
+                delete confirmedPayments[paymentKey];
+                localStorage.setItem('dorklyai_confirmed_payments', JSON.stringify(confirmedPayments));
+                loadDashboard();
+            }
+        }
+
         function downloadSalesCSV() {
             if (salesData.length === 0) {
                 alert('No sales data to download!');
@@ -1027,6 +1209,7 @@
             
             const repsList = document.getElementById('repsList');
             const today = new Date();
+            const confirmedPayments = JSON.parse(localStorage.getItem('dorklyai_confirmed_payments')) || {};
             
             repsList.innerHTML = usersData.map(rep => {
                 const repSales = salesData.filter(sale => sale.repId === rep.id && sale.status === 'active');
@@ -1048,22 +1231,27 @@
                         // Calculate months elapsed since contract start
                         const monthsElapsed = Math.floor((today - contractStart) / (30.44 * 24 * 60 * 60 * 1000));
                         const monthsPaid = Math.max(0, Math.min(monthsElapsed, contractLength));
-                        const monthsRemaining = Math.max(0, contractLength - monthsPaid);
                         
                         const monthlyFee = parseFloat(sale.monthlyFee);
                         const year1Rate = parseFloat(sale.year1CommissionRate || 20) / 100;
                         const year2Rate = parseFloat(sale.year2CommissionRate || 10) / 100;
                         
-                        // Calculate paid monthly commissions (months that have already passed)
-                        for (let i = 0; i < monthsPaid; i++) {
-                            const rate = i < 12 ? year1Rate : year2Rate;
-                            paidCommissions += monthlyFee * rate;
+                        // Calculate paid monthly commissions (only confirmed payments)
+                        for (let i = 1; i <= monthsPaid; i++) {
+                            const paymentKey = `${sale.id}_${i}`;
+                            if (confirmedPayments[paymentKey] === true) {
+                                const rate = (i - 1) < 12 ? year1Rate : year2Rate;
+                                paidCommissions += monthlyFee * rate;
+                            }
                         }
                         
-                        // Calculate expected monthly commissions (future months if contract is active)
-                        for (let i = monthsPaid; i < contractLength; i++) {
-                            const rate = i < 12 ? year1Rate : year2Rate;
-                            expectedCommissions += monthlyFee * rate;
+                        // Calculate expected monthly commissions (future months + unconfirmed past months)
+                        for (let i = 1; i <= contractLength; i++) {
+                            const paymentKey = `${sale.id}_${i}`;
+                            if (confirmedPayments[paymentKey] !== true) {
+                                const rate = (i - 1) < 12 ? year1Rate : year2Rate;
+                                expectedCommissions += monthlyFee * rate;
+                            }
                         }
                     }
                 });
