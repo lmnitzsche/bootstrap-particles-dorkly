@@ -75,7 +75,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 4.5rem;
             font-weight: 900;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
             text-shadow: 
                 0 0 20px rgba(162, 155, 254, 0.5),
                 0 4px 6px rgba(0,0,0,0.4);
@@ -84,6 +84,39 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: glow 3s ease-in-out infinite;
+        }
+
+        .dorkly-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            box-shadow: 
+                0 4px 15px rgba(102, 126, 234, 0.4),
+                0 0 30px rgba(118, 75, 162, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dorkly-badge:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 8px 25px rgba(102, 126, 234, 0.6),
+                0 0 40px rgba(118, 75, 162, 0.5);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .dorkly-badge::before {
+            content: '';
+            margin-right: 5px;
         }
 
         @keyframes glow {
@@ -514,10 +547,10 @@
         <div class="container">
             <!-- Hero Section -->
             <div class="hero-section">
-                <h1>💎 Investment Calculator</h1>
-                <p style="font-size: 1rem; opacity: 0.8; margin-top: -10px;">by DorklyAI</p>
-                <p>Calculate compound interest and backtest your investment strategy</p>
-                <p class="subtitle">with real historical data from the world's top assets</p>
+                <a href="https://dorklyai.com" target="_blank" class="dorkly-badge">Powered by DorklyAI</a>
+                <h1>Investment Calculator</h1>
+                <p style="font-size: 1.4rem; font-weight: 300; margin-top: 10px;">Calculate compound interest and backtest your investment strategy</p>
+                <p class="subtitle" style="font-size: 1.1rem;">with real historical data from the world's top assets</p>
             </div>
 
             <!-- Main Calculator -->
@@ -528,27 +561,27 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="mb-4">
-                            <label for="initialInvestment" class="form-label">💵 Initial Investment</label>
+                            <label for="initialInvestment" class="form-label">Initial Investment</label>
                             <input type="number" class="form-control" id="initialInvestment" value="10000" min="0" step="100">
                         </div>
                         
                         <div class="mb-4">
-                            <label for="monthlyContribution" class="form-label">📅 Monthly Contribution</label>
+                            <label for="monthlyContribution" class="form-label">Monthly Contribution</label>
                             <input type="number" class="form-control" id="monthlyContribution" value="500" min="0" step="50">
                         </div>
                         
                         <div class="mb-4">
-                            <label for="expectedReturn" class="form-label">📈 Expected Annual Return (%) <span class="info-badge">Estimate</span></label>
+                            <label for="expectedReturn" class="form-label">Expected Annual Return (%)</label>
                             <input type="number" class="form-control" id="expectedReturn" value="10" min="0" max="100" step="0.1">
                         </div>
                         
                         <div class="mb-4">
-                            <label for="years" class="form-label">⏱️ Investment Period (Years)</label>
+                            <label for="years" class="form-label">Investment Period (Years)</label>
                             <input type="number" class="form-control" id="years" value="10" min="1" max="50" step="1">
                         </div>
                         
                         <button class="btn btn-primary btn-lg w-100" onclick="calculateCompoundInterest()">
-                            ✨ Calculate Returns
+                            Calculate Returns
                         </button>
                     </div>
                     
@@ -589,31 +622,32 @@
 
             <!-- Backtesting Section -->
             <div class="calculator-container">
-                <h2 class="section-title">📈 Historical Backtesting</h2>
+                <h2 class="section-title">Historical Backtesting</h2>
                 <p class="text-muted mb-4">See how your investment would have performed with <strong>real historical data</strong> from major assets</p>
                 
                 <div class="mb-4">
                     <label class="form-label">Select Asset to Backtest:</label>
                     <div class="d-flex flex-wrap" id="assetButtons">
-                        <button class="btn asset-button" data-ticker="SPY" onclick="selectAsset('SPY')">📊 S&P 500 (SPY)</button>
-                        <button class="btn asset-button" data-ticker="QQQ" onclick="selectAsset('QQQ')">💻 Nasdaq (QQQ)</button>
-                        <button class="btn asset-button" data-ticker="SCHD" onclick="selectAsset('SCHD')">💰 Dividend (SCHD)</button>
-                        <button class="btn asset-button" data-ticker="VIG" onclick="selectAsset('VIG')">📈 Div Growth (VIG)</button>
-                        <button class="btn asset-button" data-ticker="VNQ" onclick="selectAsset('VNQ')">🏢 Real Estate (VNQ)</button>
-                        <button class="btn asset-button" data-ticker="VB" onclick="selectAsset('VB')">🚀 Small Cap (VB)</button>
-                        <button class="btn asset-button" data-ticker="XLF" onclick="selectAsset('XLF')">🏦 Finance (XLF)</button>
-                        <button class="btn asset-button" data-ticker="GLD" onclick="selectAsset('GLD')">🥇 Gold (GLD)</button>
-                        <button class="btn asset-button" data-ticker="SLV" onclick="selectAsset('SLV')">🥈 Silver (SLV)</button>
-                        <button class="btn asset-button" data-ticker="BTC-USD" onclick="selectAsset('BTC-USD')">₿ Bitcoin (BTC)</button>
-                        <button class="btn asset-button" data-ticker="ETH-USD" onclick="selectAsset('ETH-USD')">Ξ Ethereum (ETH)</button>
-                        <button class="btn asset-button" data-ticker="SOL-USD" onclick="selectAsset('SOL-USD')">◎ Solana (SOL)</button>
-                        <button class="btn asset-button" data-ticker="VEA" onclick="selectAsset('VEA')">🌍 Developed Intl (VEA)</button>
-                        <button class="btn asset-button" data-ticker="VXUS" onclick="selectAsset('VXUS')">🌎 Total Intl (VXUS)</button>
-                        <button class="btn asset-button" data-ticker="EWG" onclick="selectAsset('EWG')">🇩🇪 Germany (EWG)</button>
-                        <button class="btn asset-button" data-ticker="EWJ" onclick="selectAsset('EWJ')">🇯🇵 Japan (EWJ)</button>
-                        <button class="btn asset-button" data-ticker="VTI" onclick="selectAsset('VTI')">📈 Total Market (VTI)</button>
-                        <button class="btn asset-button" data-ticker="EWA" onclick="selectAsset('EWA')">🇦🇺 Australia (EWA)</button>
-                        <button class="btn asset-button" data-ticker="BND" onclick="selectAsset('BND')">📜 Bonds (BND)</button>
+                        <button class="btn asset-button" data-ticker="SPY" onclick="selectAsset('SPY')">S&P 500 (SPY)</button>
+                        <button class="btn asset-button" data-ticker="QQQ" onclick="selectAsset('QQQ')">Nasdaq (QQQ)</button>
+                        <button class="btn asset-button" data-ticker="VTI" onclick="selectAsset('VTI')">Total Market (VTI)</button>
+                        <button class="btn asset-button" data-ticker="VB" onclick="selectAsset('VB')">Small Cap (VB)</button>
+                        <button class="btn asset-button" data-ticker="XLF" onclick="selectAsset('XLF')">Finance (XLF)</button>
+                        <button class="btn asset-button" data-ticker="SCHD" onclick="selectAsset('SCHD')">Dividend (SCHD)</button>
+                        <button class="btn asset-button" data-ticker="VIG" onclick="selectAsset('VIG')">Div Growth (VIG)</button>
+                        <button class="btn asset-button" data-ticker="VEA" onclick="selectAsset('VEA')">Developed Intl (VEA)</button>
+                        <button class="btn asset-button" data-ticker="VXUS" onclick="selectAsset('VXUS')">Total Intl (VXUS)</button>
+                        <button class="btn asset-button" data-ticker="EWG" onclick="selectAsset('EWG')">Germany (EWG)</button>
+                        <button class="btn asset-button" data-ticker="EWJ" onclick="selectAsset('EWJ')">Japan (EWJ)</button>
+                        <button class="btn asset-button" data-ticker="EWA" onclick="selectAsset('EWA')">Australia (EWA)</button>
+                        <button class="btn asset-button" data-ticker="VNQ" onclick="selectAsset('VNQ')">Real Estate (VNQ)</button>
+                        <button class="btn asset-button" data-ticker="GLD" onclick="selectAsset('GLD')">Gold (GLD)</button>
+                        <button class="btn asset-button" data-ticker="SLV" onclick="selectAsset('SLV')">Silver (SLV)</button>
+                        <button class="btn asset-button" data-ticker="BND" onclick="selectAsset('BND')">Bonds (BND)</button>
+                        <button class="btn asset-button" data-ticker="USO" onclick="selectAsset('USO')">Oil (USO)</button>
+                        <button class="btn asset-button" data-ticker="BTC-USD" onclick="selectAsset('BTC-USD')">Bitcoin (BTC)</button>
+                        <button class="btn asset-button" data-ticker="ETH-USD" onclick="selectAsset('ETH-USD')">Ethereum (ETH)</button>
+                        <button class="btn asset-button" data-ticker="SOL-USD" onclick="selectAsset('SOL-USD')">Solana (SOL)</button>
                     </div>
                 </div>
                 
@@ -625,12 +659,17 @@
                             <option value="3">3 Years</option>
                             <option value="5" selected>5 Years</option>
                             <option value="10">10 Years</option>
-                            <option value="15">15 Years (if available)</option>
+                            <option value="15">15 Years</option>
+                            <option value="20">20 Years</option>
+                            <option value="25">25 Years</option>
+                            <option value="30">30 Years</option>
+                            <option value="40">40 Years</option>
+                            <option value="50">50 Years</option>
                         </select>
                     </div>
                     <div class="col-md-6 d-flex align-items-end">
                         <button class="btn btn-success btn-lg w-100" onclick="runBacktest()" id="backtestButton">
-                            🚀 Run Backtest
+                            Run Backtest
                         </button>
                     </div>
                 </div>
@@ -647,20 +686,20 @@
 
             <!-- Albert Einstein Wisdom Section -->
             <div class="warren-buffett-section">
-                <h3>� Einstein's Investment Wisdom</h3>
+                <h3>Einstein's Investment Wisdom</h3>
                 <blockquote>
                     "Compound interest is the eighth wonder of the world. He who understands it, earns it; he who doesn't, pays it."
                     <footer class="mt-3" style="font-size: 1rem; opacity: 0.9;">— Albert Einstein</footer>
                 </blockquote>
                 <p class="lead mb-4">Discover timeless investment wisdom and strategies from legendary thinkers</p>
                 <a href="../blog/blyss.html" class="warren-link">
-                    📚 Read Investment Insights on Blyss →
+                    Read Investment Insights on Blyss →
                 </a>
             </div>
 
             <!-- CTA Section -->
             <div class="cta-section">
-                <h2>🤖 Supercharge Your Workflow with AI</h2>
+                <h2>Supercharge Your Workflow with AI</h2>
                 <p class="lead mb-4">Meet DorklyAI - Your Intelligent AI Assistant for Everything</p>
                 <p class="mb-4" style="font-size: 1.2rem;">From business automation to content creation, data analysis to creative projects - DorklyAI transforms how you work with cutting-edge artificial intelligence.</p>
                 <a href="https://dorklyai.com" class="cta-button" target="_blank">Try DorklyAI Free →</a>
@@ -977,7 +1016,7 @@
                 
                 document.getElementById('backtestResults').innerHTML = `
                     <div class="backtest-error">
-                        <h5>⚠️ Unable to Complete Backtest</h5>
+                        <h5>Unable to Complete Backtest</h5>
                         <p><strong>Error:</strong> ${errorMessage}</p>
                         ${suggestion}
                         <p class="mb-0 mt-3"><small><strong>Tip:</strong> Try selecting a different time period or asset. Some newer assets (especially cryptocurrencies) have limited historical data.</small></p>
@@ -1028,7 +1067,7 @@
             const isPositive = data.totalReturn >= 0;
             const resultsHTML = `
                 <div class="backtest-results">
-                    <h4>✅ Backtest Results for ${ticker}</h4>
+                    <h4>Backtest Results for ${ticker}</h4>
                     <p class="text-muted mb-3">Based on actual historical prices with dollar-cost averaging</p>
                     
                     <div class="stats-grid">
