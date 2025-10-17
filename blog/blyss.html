@@ -885,7 +885,12 @@
 
         // Load trending articles
         function loadTrendingArticles() {
-            const trending = getAllArticles().slice(7, 9); // Get 2 more articles
+            // Change these numbers to control which articles appear as trending:
+            // .slice(0, 2) = First 2 articles (IDs 101 & 100)
+            // .slice(1, 3) = Articles 2-3 (IDs 100 & 1)
+            // .slice(2, 4) = Articles 3-4 (IDs 1 & 2)
+            // To show specific articles, you can also filter by ID or slug
+            const trending = getAllArticles().slice(0, 2); // Shows newest 2 articles
             const container = document.querySelector('#trending-articles-grid');
             
             container.innerHTML = trending.map(article => `

@@ -75,16 +75,16 @@ const blyssArticles = [
 
             <div style="background: #f8f9fa; padding: 25px; border-radius: 15px; border-left: 5px solid #0d6efd; margin: 25px 0;">
                 <h4 style="margin-top: 0; color: #0d6efd;"><i class="bi bi-check-circle-fill"></i> Your Automation Score (0-100%)</h4>
-                <p>See exactly where you stand compared to other businesses in your industry.</p>
+                <p style="color: #212529;">See exactly where you stand compared to other businesses in your industry.</p>
 
                 <h4 style="color: #0d6efd;"><i class="bi bi-check-circle-fill"></i> Personalized Recommendations</h4>
-                <p>Get specific, actionable advice based on your unique situation—not generic tips.</p>
+                <p style="color: #212529;">Get specific, actionable advice based on your unique situation—not generic tips.</p>
 
                 <h4 style="color: #0d6efd;"><i class="bi bi-check-circle-fill"></i> Time-Savings Potential</h4>
-                <p>Discover how many hours per week you could reclaim with the right automation strategy.</p>
+                <p style="color: #212529;">Discover how many hours per week you could reclaim with the right automation strategy.</p>
 
                 <h4 style="color: #0d6efd; margin-bottom: 0;"><i class="bi bi-check-circle-fill"></i> Priority Action Plan</h4>
-                <p style="margin-bottom: 0;">Know exactly what to tackle first for the biggest impact.</p>
+                <p style="margin-bottom: 0; color: #212529;">Know exactly what to tackle first for the biggest impact.</p>
             </div>
 
             <h2>Real Results from Real Businesses</h2>

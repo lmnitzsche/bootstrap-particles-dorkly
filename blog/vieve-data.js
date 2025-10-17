@@ -3,6 +3,173 @@
 
 const vieveArticles = [
     {
+        id: 11,
+        title: "Fable Returns: Everything We Know About Albion's Long-Awaited Comeback",
+        slug: "fable-reboot-albion-returns-2026",
+        category: "Gaming",
+        author: "Logan Nitzsche",
+        date: "2025-10-17",
+        readTime: "12 min",
+        excerpt: "After 15 years, we're finally returning to Albion. The Fable reboot has been delayed to 2026, but for fans of Lionhead's magical world, it might be worth the wait. Here's everything we know—and everything we're hoping for.",
+        image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1600&h=900&fit=crop",
+        featured: true,
+        content: `
+            <p>Chicken chaser. Hero of Oakvale. Sparrow. These aren't just names—they're <em>identities</em> burned into the hearts of anyone who's ever explored Albion. For 15 years, Fable fans have waited in the wilderness, surviving on nostalgia and the faint hope that one day, we'd return home.</p>
+            
+            <p>That day is coming. Playground Games' Fable reboot—officially just called "Fable"—was supposed to launch in late 2025. Then came the delay. Now we're looking at late 2026. And you know what? <strong>Good.</strong> Because this world deserves to be done right.</p>
+
+            <h2>Why Fable Matters: A Love Letter to Albion</h2>
+            
+            <p>Before Skyrim, before The Witcher 3, before every open-world RPG had moral choice systems and branching narratives, there was Fable. Peter Molyneux's vision of a world that reacted to your every decision wasn't just innovative—it was <em>personal</em>.</p>
+
+            <p>You weren't just playing a character. You <em>became</em> someone in Albion. Kick chickens? Villagers remember. Save the town from bandits? They build statues of you. Marry someone, then murder them for their house? The game lets you do it, and the world judges you accordingly. That reactivity, that consequence—that's what made Fable legendary.</p>
+
+            <h2>Fable: The Lost Chapters - Where Magic Began</h2>
+            
+            <p>The original Fable (2004) dropped us into Albion as a child witnessing tragedy. Your family slaughtered by bandits. Your village burned. The Hero's Guild saving you. From that moment, you're on a path—but <em>which</em> path is entirely your choice.</p>
+
+            <p><strong>The Story That Hooked Us:</strong> Jack of Blades wasn't just a villain—he was ancient evil incarnate. The twist that Theresa was your blind sister? Heartbreaking. The choice to keep the Sword of Aeons (killing her) or destroy it (saving her)? That defined who you were as a player. Not many games in 2004 made you feel the weight of your decisions like that.</p>
+
+            <p>The world felt <em>alive</em>. Oakvale's tranquility. Bargate Prison's bleakness. Darkwood's creeping horror. Hook Coast's pirate charm. Each location had personality, history, and secrets. The Arena? Still one of gaming's most satisfying progression systems. Starting as a nobody and ending as a god among mortals—pure power fantasy done right.</p>
+
+            <h2>Fable II - The Masterpiece We Didn't Deserve</h2>
+            
+            <p>Then came Fable II (2008), and Lionhead said "you thought the first one was good? Hold my mead."</p>
+
+            <p><strong>The Story of Revenge and Redemption:</strong> You start as a homeless child in Bowerstone's slums, clutching a music box that promises wishes. Your sister Rose is murdered by Lord Lucien. You're shot and killed—but saved by Theresa (yes, <em>that</em> Theresa, centuries later). Your dog, your only friend, survives the fall with you. That opening? Devastating. Personal. Immediately emotionally invested.</p>
+
+            <p>The journey to gather the three Heroes—Hammer, Garth, and Reaver—felt epic. Each had personality, backstory, and moral complexity. Reaver being an immortal sociopath who sacrificed an entire town for eternal youth? Darkly brilliant. The Spire's construction using slave labor? Uncomfortable but narratively powerful.</p>
+
+            <p>And that ending. <strong>That ending.</strong> You finally confront Lucien after decades of buildup. You're ready for the ultimate boss fight... and Reaver just shoots him. Anticlimactic? Maybe. But thematically perfect. Evil doesn't always get a dramatic defeat. Sometimes vengeance is just pulling a trigger. Then comes the real choice: resurrection (your dog, Rose, or family), wealth, or sacrifice for the greater good. No right answer. Just consequence.</p>
+
+            <p>Fable II understood that the journey—building a real estate empire, getting married (or having seven spouses in different towns), your dog finding treasure, aging visibly based on alignment—was MORE important than the destination. It perfected the "living in the world" fantasy.</p>
+
+            <h2>Fable III - Flawed Royalty</h2>
+            
+            <p>Fable III (2010) had the most ambitious story concept: you're not just a hero—you're a <em>revolutionary who becomes king</em>. That second-act shift from freedom fighter to ruler? Genius on paper.</p>
+
+            <p><strong>The Story They Tried to Tell:</strong> Your brother Logan is a tyrant. You lead a rebellion, gathering allies—the dwellers of Aurora, the Swift Brigade, Bowerstone's citizens. You promise them everything: better wages, no child labor, rebuilding the orphanage, preserving traditions. You become the people's champion.</p>
+
+            <p>Then you take the throne and discover the horrible truth: Logan wasn't evil—he was desperate. The Crawler is coming. An ancient darkness that will consume Albion in one year. Every penny in the treasury must go to building an army, or everyone dies. Those promises you made? You can keep them... and doom the kingdom. Or break them all... and save everyone.</p>
+
+            <p>It's the trolley problem as an entire game. Betray your ideals or watch your people die. <strong>That</strong> was brilliant. The execution? Not so much. The kingdom management felt rushed. The Crawler showed up too late. The pacing broke. But the <em>idea</em>—the moral weight of leadership—that resonated.</p>
+
+            <p>Plus: Reaver as your advisor, trolling you at every turn? Walter's sacrifice? Ben Finn's loyalty? The characters still hit. The story was there. The game just needed more time to breathe.</p>
+
+            <h2>What Went Wrong: The 13-Year Gap</h2>
+            
+            <p>Then came Fable Legends. Then came cancellation. Then came Lionhead Studios shutting down in 2016. Peter Molyneux was long gone. Fable fans watched their beloved franchise die, buried alongside countless promises of what could have been.</p>
+
+            <p>We grieved. We replayed the originals. We hoped. And in 2020, Microsoft finally announced it: Fable was coming back. Playground Games—the Forza Horizon team—would resurrect Albion. Fans were skeptical (a racing game studio doing Fable?), excited, and terrified in equal measure.</p>
+
+            <h2>The 2026 Reboot: What We Know</h2>
+            
+            <p>After five years of development and one major delay, here's everything confirmed:</p>
+
+            <h3>Setting & Story</h3>
+            <ul>
+                <li><strong>New Hero, Same Albion:</strong> Not a remake—a complete reimagining set centuries after Fable III</li>
+                <li><strong>The Age of Decline:</strong> Heroes are myths. Magic is fading. Albion is dying. You're one of the last hope</li>
+                <li><strong>Fairytale Darkness:</strong> Think Brothers Grimm meets Monty Python—whimsical but unsettling</li>
+                <li><strong>Narrative Focus:</strong> Playground confirmed "story is the foundation" (music to our ears)</li>
+            </ul>
+
+            <h3>Gameplay Evolution</h3>
+            <ul>
+                <li><strong>True Open World:</strong> Using Forza's tech for massive, seamless Albion exploration</li>
+                <li><strong>Moral Choice Returns:</strong> But more nuanced—gray areas instead of good/evil binary</li>
+                <li><strong>Dynamic World:</strong> Your actions visibly change regions, economy, and NPC behavior</li>
+                <li><strong>Combat Redesign:</strong> Magic, melee, ranged—all equally viable and flashy</li>
+                <li><strong>Character Aging:</strong> Confirmed return of physical changes based on choices and time</li>
+            </ul>
+
+            <h3>The Cast & Voices</h3>
+            <p>Richard Ayoade is confirmed for voice work (this alone is worth the price of admission). Rumors of a female-led story with optional male hero. Reaver's descendant might appear (please let this be true). Your "guide" is supposedly a sarcastic, omniscient narrator—very Fable.</p>
+
+            <h2>The Delay: Why It's Good News</h2>
+            
+            <p>The original 2025 release would've been rushed. Playground admitted the game "needs more time to be what Fable deserves." Translation: they're not shipping until it's ready. After Cyberpunk 2077, Starfield, and countless other disappointments, a studio actually delaying for quality? <strong>Respect.</strong></p>
+
+            <p>Fable fans have waited 15 years. We can wait 9 more months if it means getting the game Albion deserves. No crashes. No game-breaking bugs. No missing features. Just a complete, polished return to the world we love.</p>
+
+            <h2>What We're Hoping For</h2>
+            
+            <p>Beyond the confirmed features, here's what the community desperately wants:</p>
+
+            <h3>Story Depth</h3>
+            <ul>
+                <li>Choices that matter across 40+ hours, not just at the end</li>
+                <li>Villains as compelling as Jack of Blades and as tragic as Lucien</li>
+                <li>Side quests with Fable's signature dark humor and surprising depth</li>
+                <li>Companion characters who aren't just quest markers (we miss you, Dog)</li>
+            </ul>
+
+            <h3>World Building</h3>
+            <ul>
+                <li>Locations with the personality of Oakvale, Bowerstone, and Brightwood</li>
+                <li>Hidden areas that reward exploration with actual story, not just loot</li>
+                <li>NPC schedules and routines that make towns feel lived-in</li>
+                <li>Consequences that span hours of gameplay, not just immediate reactions</li>
+            </ul>
+
+            <h3>The Fable Magic</h3>
+            <ul>
+                <li>That unique British humor—silly, dark, self-aware</li>
+                <li>Emotional gut-punches when you least expect them</li>
+                <li>The satisfaction of evolving from nobody to legendary</li>
+                <li>A world that remembers everything you do, good or bad</li>
+            </ul>
+
+            <h2>Why This Time Feels Different</h2>
+            
+            <p>Playground Games isn't Lionhead. They don't have Peter Molyneux over-promising features that don't exist. What they <em>do</em> have is technical mastery (Forza Horizon 5 is stunning), Microsoft's full backing, and clear passion for the IP.</p>
+
+            <p>The trailers show Albion rendered in breathtaking detail. The British voice cast is perfect. The tone—that balance of whimsy and darkness—feels authentically Fable. Most importantly, they're taking their time. No one's rushing this out to meet a fiscal quarter.</p>
+
+            <h2>The Weight of Legacy</h2>
+            
+            <p>Here's the thing about Fable: it's not just a game franchise. It's a <em>feeling</em>. That first time you saw the Guild of Heroes. Your first trip to Bowerstone. Realizing your choices actually mattered. Meeting your children after a 10-year time skip. Choosing between saving your dog or your family. These moments shaped us as gamers.</p>
+
+            <p>Fable taught an entire generation that RPGs could be funny without being frivolous. Serious without being self-important. Fantasy without being generic. You could be a hero <em>and</em> a landlord. A warrior <em>and</em> a pie-eating champion. The game never judged—it just reacted.</p>
+
+            <h2>What We Need From This Reboot</h2>
+            
+            <p>Playground: we don't need Fable to be The Witcher 3. We don't need it to be Skyrim. We need it to be <strong>Fable</strong>. That means:</p>
+
+            <p><strong>Embrace the weird.</strong> Exploding chickens. Hobbe murders. Sexually awkward farting contests. Don't sanitize the quirks for mass appeal. The quirks <em>are</em> the appeal.</p>
+
+            <p><strong>Nail the reactivity.</strong> If we can marry someone in every town, the game should treat us like the polygamist we are. If we slaughter innocents, make us feel it. If we're heroes, let us be worshipped. The world must respond.</p>
+
+            <p><strong>Tell a story worth caring about.</strong> Fable's best moments weren't about saving the world—they were about personal stakes. Family. Revenge. Love. Sacrifice. The epic scale matters less than emotional connection.</p>
+
+            <p><strong>Let us live there.</strong> Real estate. Relationships. Jobs. Hobbies. We want to <em>exist</em> in Albion, not just quest through it. The best RPGs let you build a life. Fable pioneered that.</p>
+
+            <h2>The Final Countdown</h2>
+            
+            <p>Late 2026. Eight months from now. After 15 years in the darkness, Albion's lights are coming back on. The Hero's Guild may be ruins, but heroes are rising again. Magic might be fading, but it's not gone. And somewhere in that world, our story begins again.</p>
+
+            <p>Will it recapture the magic of Fable II? Can it learn from Fable III's mistakes? Will it honor what made the originals special while pushing the franchise forward? We won't know until we play it. But for the first time in over a decade, we're <em>hopeful</em>.</p>
+
+            <p>To every Fable fan who never gave up: we're going home. To Playground Games: no pressure, but you're carrying the dreams of millions of players who grew up in Albion. And to Albion itself: we never forgot you. We never stopped hoping. And we're ready to return.</p>
+
+            <blockquote>
+                <p><em>"Your health is low. Do you have any potions? Or food?"</em></p>
+                <p>Soon, old friend. Soon we'll hear those words again. And it'll feel like coming home.</p>
+            </blockquote>
+
+            <h2>Mark Your Calendars</h2>
+            <p><strong>Fable</strong> launches exclusively on Xbox Series X|S and PC via Game Pass in <strong>late 2026</strong>.</p>
+
+            <p>The wait continues. But for fans who've been waiting 15 years? What's another year?</p>
+
+            <p><em>Chicken chasers, rise up. Albion needs us one more time.</em> 🗡️✨</p>
+
+            <hr>
+
+            <p style="font-style: italic; color: #666; margin-top: 2rem;"><strong>About the Author:</strong> Logan has played through Fable, Fable II, and Fable III countless times and still cries when his dog finds that first dig spot. His Xbox profile picture may or may not still be the Guild Seal.</p>
+        `
+    },
+    {
         id: 1,
         title: "Why The Last of Us Part II Still Divides Gamers in 2025",
         slug: "last-of-us-part-ii-divides-gamers",
@@ -12,7 +179,7 @@ const vieveArticles = [
         readTime: "9 min",
         excerpt: "Five years later, we're breaking down why this masterpiece remains the most controversial game of the decade.",
         image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1600&h=900&fit=crop",
-        featured: true,
+        featured: false,
         content: `
             <p>Half a decade after its release, The Last of Us Part II continues to spark heated debates in gaming communities. It's simultaneously celebrated as a narrative masterpiece and criticized for controversial story decisions. What makes this game so divisive?</p>
             
