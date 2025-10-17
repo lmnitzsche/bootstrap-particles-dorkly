@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>How Dorkly is Your Business? | Free Business Automation Quiz | DorklyAI</title>
+    <meta name="title" content="How Dorkly is Your Business? | Free Business Automation Quiz">
+    <meta name="description" content="Take our free 2-minute quiz to discover your business automation score and unlock time-saving opportunities. Get personalized recommendations from DorklyAI.">
+    <meta name="keywords" content="business automation quiz, productivity assessment, time management quiz, business efficiency test, automation needs assessment, DorklyAI quiz">
+    <meta name="author" content="DorklyAI">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dorklyai.com/quizfunnel/">
+    <meta property="og:title" content="How Dorkly is Your Business? Take the Quiz!">
+    <meta property="og:description" content="Discover your business automation score in 2 minutes. Get personalized recommendations to save time and scale faster.">
+    <meta property="og:image" content="https://dorklyai.com/assets/dorklogo.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://dorklyai.com/quizfunnel/">
+    <meta property="twitter:title" content="How Dorkly is Your Business? Take the Quiz!">
+    <meta property="twitter:description" content="Discover your business automation score in 2 minutes.">
+    <meta property="twitter:image" content="https://dorklyai.com/assets/dorklogo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://dorklyai.com/quizfunnel/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/dorklogo.png">
+    
+    <!-- Bootstrap 5.3.0 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #6c757d;
+            --success-color: #198754;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Background Particles */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0) scale(1);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translateY(-100px) translateX(50px) scale(1.2);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(-200px) translateX(-50px) scale(0.8);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translateY(-100px) translateX(-100px) scale(1.1);
+                opacity: 0.5;
+            }
+        }
+        
+        .quiz-container {
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            width: 100%;
+            padding: 50px 40px;
+            position: relative;
+            z-index: 1;
+            animation: slideUp 0.6s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .logo-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo-section img {
+            height: 80px;
+            margin-bottom: 15px;
+        }
+        
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .quiz-header h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+        
+        .quiz-header p {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+        
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--gradient-1);
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+        
+        .question-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .question-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .question-number {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .question-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+        
+        .answer-option {
+            background: var(--light-color);
+            border: 3px solid transparent;
+            border-radius: 15px;
+            padding: 20px 25px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .answer-option:hover {
+            border-color: var(--primary-color);
+            background: rgba(13, 110, 253, 0.05);
+            transform: translateX(5px);
+        }
+        
+        .answer-option.selected {
+            border-color: var(--primary-color);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            transform: scale(1.02);
+        }
+        
+        .answer-option::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 5px;
+            background: var(--gradient-1);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .answer-option.selected::before {
+            transform: scaleY(1);
+        }
+        
+        .option-icon {
+            font-size: 2rem;
+            min-width: 50px;
+            text-align: center;
+        }
+        
+        .option-content {
+            flex: 1;
+        }
+        
+        .option-title {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .option-description {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            font-weight: 300;
+        }
+        
+        .button-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+            justify-content: space-between;
+        }
+        
+        .btn-quiz {
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+        
+        .btn-back {
+            background: var(--light-color);
+            color: var(--dark-color);
+        }
+        
+        .btn-back:hover {
+            background: #e2e6ea;
+            transform: translateX(-5px);
+        }
+        
+        .btn-next {
+            background: var(--gradient-1);
+            color: white;
+        }
+        
+        .btn-next:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-next:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Results Section */
+        .results-section {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .results-section.active {
+            display: block;
+        }
+        
+        .score-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px auto;
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.4);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        .score-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+            font-family: 'Bebas Neue', cursive;
+        }
+        
+        .score-label {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .score-description {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .recommendations {
+            background: var(--light-color);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .recommendations h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        .recommendation-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .recommendation-icon {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+        
+        .recommendation-text h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .recommendation-text p {
+            font-size: 0.95rem;
+            color: var(--secondary-color);
+            margin: 0;
+        }
+        
+        .cta-section {
+            margin-top: 40px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: var(--gradient-1);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.6);
+            color: white;
+        }
+        
+        .share-section {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #e9ecef;
+        }
+        
+        .share-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .share-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .share-btn {
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+        
+        .share-btn.twitter {
+            background: #1da1f2;
+        }
+        
+        .share-btn.linkedin {
+            background: #0077b5;
+        }
+        
+        .share-btn.facebook {
+            background: #1877f2;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .quiz-container {
+                padding: 30px 20px;
+            }
+            
+            .quiz-header h1 {
+                font-size: 2rem;
+            }
+            
+            .question-text {
+                font-size: 1.2rem;
+            }
+            
+            .answer-option {
+                padding: 15px 20px;
+            }
+            
+            .option-icon {
+                font-size: 1.5rem;
+                min-width: 40px;
+            }
+            
+            .button-container {
+                flex-direction: column;
+            }
+            
+            .score-circle {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .score-number {
+                font-size: 3rem;
+            }
+        }
+        
+        .start-screen {
+            text-align: center;
+        }
+        
+        .start-screen h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        .start-screen .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature-box {
+            background: var(--light-color);
+            padding: 20px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-box:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        }
+        
+        .feature-box i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .feature-box h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .feature-box p {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="background-animation" id="particles"></div>
+
+    <!-- Quiz Container -->
+    <div class="quiz-container">
+        <!-- Logo Section -->
+        <div class="logo-section">
+            <a href="../index.html">
+                <img src="../assets/dorkbanner.png" alt="DorklyAI Logo">
+            </a>
+        </div>
+
+        <!-- Start Screen -->
+        <div id="startScreen" class="start-screen">
+            <div class="quiz-header">
+                <h1>How Dorkly is Your Business?</h1>
+                <p>Discover your business automation potential in just 2 minutes</p>
+            </div>
+
+            <div class="features">
+                <div class="feature-box">
+                    <i class="bi bi-clock-history"></i>
+                    <h4>2 Minutes</h4>
+                    <p>Quick & easy assessment</p>
+                </div>
+                <div class="feature-box">
+                    <i class="bi bi-graph-up-arrow"></i>
+                    <h4>Personalized</h4>
+                    <p>Custom recommendations</p>
+                </div>
+                <div class="feature-box">
+                    <i class="bi bi-gift"></i>
+                    <h4>100% Free</h4>
+                    <p>No credit card required</p>
+                </div>
+            </div>
+
+            <button class="btn-quiz btn-next" onclick="startQuiz()">
+                Start Quiz <i class="bi bi-arrow-right"></i>
+            </button>
+
+            <p style="margin-top: 20px; color: var(--secondary-color); font-size: 0.9rem;">
+                Join 500+ businesses who've discovered their automation potential
+            </p>
+        </div>
+
+        <!-- Quiz Header (Hidden Initially) -->
+        <div id="quizHeader" class="quiz-header" style="display: none;">
+            <h1>How Dorkly is Your Business?</h1>
+            <p>Answer honestly to get the most accurate results</p>
+        </div>
+
+        <!-- Progress Bar (Hidden Initially) -->
+        <div id="progressBar" class="progress-bar-container" style="display: none;">
+            <div class="progress-bar-fill" id="progressFill"></div>
+        </div>
+
+        <!-- Questions Container -->
+        <div id="questionsContainer" style="display: none;">
+            <!-- Questions will be dynamically inserted here -->
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultsSection" class="results-section">
+            <!-- Results will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Quiz Data
+        const quizQuestions = [
+            {
+                id: 1,
+                question: "How much time does your team spend on repetitive manual tasks each week?",
+                options: [
+                    { text: "Almost none - everything is automated", icon: "🚀", points: 10, description: "You're already crushing it!" },
+                    { text: "A few hours - some automation exists", icon: "⚡", points: 7, description: "Good start, room to grow" },
+                    { text: "Half the week - significant manual work", icon: "⏰", points: 4, description: "Major opportunity here" },
+                    { text: "Most of the week - it's overwhelming", icon: "😰", points: 1, description: "Time for a change!" }
+                ]
+            },
+            {
+                id: 2,
+                question: "How do you currently manage your social media presence?",
+                options: [
+                    { text: "Automated scheduling with analytics", icon: "📊", points: 10, description: "Professional approach" },
+                    { text: "Manual posts with some planning", icon: "📝", points: 6, description: "Decent but time-consuming" },
+                    { text: "Post whenever we remember", icon: "🤷", points: 3, description: "Inconsistent results" },
+                    { text: "We barely use social media", icon: "📴", points: 0, description: "Missing opportunities" }
+                ]
+            },
+            {
+                id: 3,
+                question: "How would you describe your current website?",
+                options: [
+                    { text: "Modern, fast, and converts visitors", icon: "🎯", points: 10, description: "Perfect digital presence" },
+                    { text: "Functional but could use updates", icon: "🔧", points: 6, description: "Ready for refresh" },
+                    { text: "Outdated and slow", icon: "🐌", points: 3, description: "Hurting your brand" },
+                    { text: "No website or very basic", icon: "🚫", points: 0, description: "Critical gap" }
+                ]
+            },
+            {
+                id: 4,
+                question: "How do you track and analyze business data?",
+                options: [
+                    { text: "Real-time dashboards with AI insights", icon: "🤖", points: 10, description: "Data-driven excellence" },
+                    { text: "Spreadsheets and manual reports", icon: "📈", points: 5, description: "Functional but limited" },
+                    { text: "Scattered data, no clear system", icon: "🗂️", points: 2, description: "Lost opportunities" },
+                    { text: "We don't really track much", icon: "❓", points: 0, description: "Flying blind" }
+                ]
+            },
+            {
+                id: 5,
+                question: "How does your team communicate and collaborate?",
+                options: [
+                    { text: "Integrated platform with automation", icon: "🔗", points: 10, description: "Seamless teamwork" },
+                    { text: "Multiple tools, mostly organized", icon: "💬", points: 6, description: "Works but fragmented" },
+                    { text: "Mostly email and phone calls", icon: "📧", points: 3, description: "Old-school approach" },
+                    { text: "Communication is chaotic", icon: "🌪️", points: 0, description: "Productivity killer" }
+                ]
+            },
+            {
+                id: 6,
+                question: "What's your biggest business challenge right now?",
+                options: [
+                    { text: "Scaling efficiently while maintaining quality", icon: "📈", points: 8, description: "Growth challenges" },
+                    { text: "Finding time for strategic work", icon: "⏱️", points: 6, description: "Time management" },
+                    { text: "Converting leads to customers", icon: "🎯", points: 7, description: "Sales & marketing" },
+                    { text: "Everything feels overwhelming", icon: "😵", points: 3, description: "System overhaul needed" }
+                ]
+            },
+            {
+                id: 7,
+                question: "How much do you invest in business technology monthly?",
+                options: [
+                    { text: "$1,000+ - Tech is our competitive advantage", icon: "💎", points: 10, description: "Strategic investment" },
+                    { text: "$500-$1,000 - We value good tools", icon: "💰", points: 7, description: "Smart spending" },
+                    { text: "$100-$500 - Minimal investment", icon: "💵", points: 4, description: "Room to invest" },
+                    { text: "Under $100 - We keep costs low", icon: "🪙", points: 1, description: "Limiting growth" }
+                ]
+            },
+            {
+                id: 8,
+                question: "If you could automate ONE thing tomorrow, what would it be?",
+                options: [
+                    { text: "Social media & content creation", icon: "📱", points: 8, description: "Marketing focus", category: "social" },
+                    { text: "Data entry & reporting", icon: "📊", points: 9, description: "Operations focus", category: "automation" },
+                    { text: "Customer communication & follow-ups", icon: "💬", points: 8, description: "Sales focus", category: "automation" },
+                    { text: "Website updates & management", icon: "🌐", points: 7, description: "Digital presence", category: "web" }
+                ]
+            }
+        ];
+
+        let currentQuestion = 0;
+        let answers = [];
+        let userScore = 0;
+
+        // Create animated particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 100 + 50;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        function startQuiz() {
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('quizHeader').style.display = 'block';
+            document.getElementById('progressBar').style.display = 'block';
+            document.getElementById('questionsContainer').style.display = 'block';
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const container = document.getElementById('questionsContainer');
+            const question = quizQuestions[currentQuestion];
+            const progress = ((currentQuestion + 1) / quizQuestions.length) * 100;
+            
+            document.getElementById('progressFill').style.width = progress + '%';
+
+            let optionsHTML = '';
+            question.options.forEach((option, index) => {
+                optionsHTML += `
+                    <div class="answer-option" onclick="selectAnswer(${index})">
+                        <div class="option-icon">${option.icon}</div>
+                        <div class="option-content">
+                            <div class="option-title">${option.text}</div>
+                            <div class="option-description">${option.description}</div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = `
+                <div class="question-section active">
+                    <div class="question-number">Question ${currentQuestion + 1} of ${quizQuestions.length}</div>
+                    <div class="question-text">${question.question}</div>
+                    <div id="optionsContainer">
+                        ${optionsHTML}
+                    </div>
+                    <div class="button-container">
+                        ${currentQuestion > 0 ? '<button class="btn-quiz btn-back" onclick="previousQuestion()"><i class="bi bi-arrow-left"></i> Back</button>' : '<div></div>'}
+                        <button class="btn-quiz btn-next" id="nextBtn" onclick="nextQuestion()" disabled>
+                            ${currentQuestion === quizQuestions.length - 1 ? 'See Results' : 'Next'} <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectAnswer(optionIndex) {
+            // Remove previous selection
+            document.querySelectorAll('.answer-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+
+            // Add selection to clicked option
+            document.querySelectorAll('.answer-option')[optionIndex].classList.add('selected');
+
+            // Store answer
+            const question = quizQuestions[currentQuestion];
+            answers[currentQuestion] = {
+                questionId: question.id,
+                selectedOption: optionIndex,
+                points: question.options[optionIndex].points,
+                category: question.options[optionIndex].category || 'general'
+            };
+
+            // Enable next button
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        function nextQuestion() {
+            if (!answers[currentQuestion]) return;
+
+            currentQuestion++;
+            if (currentQuestion < quizQuestions.length) {
+                renderQuestion();
+            } else {
+                calculateResults();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                renderQuestion();
+                
+                // Re-select previous answer if exists
+                if (answers[currentQuestion]) {
+                    const selectedIndex = answers[currentQuestion].selectedOption;
+                    document.querySelectorAll('.answer-option')[selectedIndex].classList.add('selected');
+                    document.getElementById('nextBtn').disabled = false;
+                }
+            }
+        }
+
+        function calculateResults() {
+            // Calculate total score
+            userScore = answers.reduce((sum, answer) => sum + answer.points, 0);
+            const maxScore = quizQuestions.reduce((sum, q) => sum + 10, 0);
+            const percentage = Math.round((userScore / maxScore) * 100);
+
+            // Determine level
+            let level, levelEmoji, levelColor, levelDescription, recommendations;
+            
+            if (percentage >= 80) {
+                level = "Tech Wizard 🧙‍♂️";
+                levelEmoji = "🚀";
+                levelColor = "var(--gradient-4)";
+                levelDescription = "Amazing! Your business is incredibly Dorkly! You're already leveraging technology like a pro. You're in the top 10% of businesses we've assessed.";
+                recommendations = [
+                    { icon: "🎯", title: "Optimization", text: "Fine-tune existing systems for maximum ROI" },
+                    { icon: "🤖", title: "AI Integration", text: "Explore cutting-edge AI solutions for competitive advantage" },
+                    { icon: "📈", title: "Scale", text: "Use your tech foundation to accelerate growth" }
+                ];
+            } else if (percentage >= 60) {
+                level = "Digital Native 💻";
+                levelEmoji = "⚡";
+                levelColor = "var(--gradient-3)";
+                levelDescription = "Great work! Your business is pretty Dorkly. You've got solid foundations but there's room to level up your automation game.";
+                recommendations = [
+                    { icon: "🔗", title: "Integration", text: "Connect your existing tools for seamless workflows" },
+                    { icon: "📊", title: "Analytics", text: "Implement better data tracking and reporting" },
+                    { icon: "⚙️", title: "Automation", text: "Automate repetitive tasks to free up 10+ hours/week" }
+                ];
+            } else if (percentage >= 40) {
+                level = "Growing Operator 🌱";
+                levelEmoji = "🔧";
+                levelColor = "var(--gradient-2)";
+                levelDescription = "You're on the right track! Your business has Dorkly potential. With some strategic tech investments, you could save 15+ hours per week.";
+                recommendations = [
+                    { icon: "🌐", title: "Web Presence", text: "Upgrade your website to convert more visitors" },
+                    { icon: "📱", title: "Social Media", text: "Automate content creation and scheduling" },
+                    { icon: "💼", title: "Business Tools", text: "Implement core automation for operations" }
+                ];
+            } else {
+                level = "Manual Hustler 💪";
+                levelEmoji = "🚨";
+                levelColor = "var(--gradient-1)";
+                levelDescription = "Huge opportunity ahead! Your business isn't very Dorkly yet, but that's exciting! You could transform your operations and save 20+ hours per week with the right technology.";
+                recommendations = [
+                    { icon: "🎯", title: "Quick Wins", text: "Start with simple automation that shows immediate ROI" },
+                    { icon: "🌐", title: "Digital Foundation", text: "Build a professional web presence that works 24/7" },
+                    { icon: "📈", title: "Growth Strategy", text: "Create a roadmap for systematic tech adoption" }
+                ];
+            }
+
+            showResults(percentage, level, levelDescription, recommendations);
+        }
+
+        function showResults(percentage, level, description, recommendations) {
+            document.getElementById('quizHeader').style.display = 'none';
+            document.getElementById('progressBar').style.display = 'none';
+            document.getElementById('questionsContainer').style.display = 'none';
+            
+            const resultsSection = document.getElementById('resultsSection');
+            
+            let recommendationsHTML = '';
+            recommendations.forEach(rec => {
+                recommendationsHTML += `
+                    <div class="recommendation-item">
+                        <div class="recommendation-icon">${rec.icon}</div>
+                        <div class="recommendation-text">
+                            <h4>${rec.title}</h4>
+                            <p>${rec.text}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            resultsSection.innerHTML = `
+                <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 20px;">Your Results Are In!</h2>
+                
+                <div class="score-circle">
+                    <div class="score-number">${percentage}<span style="font-size: 2rem;">%</span></div>
+                </div>
+                
+                <div class="score-label" style="background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    ${level}
+                </div>
+                
+                <div class="score-description">
+                    ${description}
+                </div>
+
+                <div class="recommendations">
+                    <h3><i class="bi bi-lightbulb-fill" style="color: #ffc107;"></i> Your Personalized Recommendations</h3>
+                    ${recommendationsHTML}
+                </div>
+
+                <div class="cta-section">
+                    <h3 style="margin-bottom: 20px; color: var(--dark-color);">Ready to Level Up Your Business?</h3>
+                    <p style="margin-bottom: 30px; color: var(--secondary-color); font-size: 1.1rem;">
+                        Get a free 30-minute consultation with our experts. We'll show you exactly how to implement these recommendations.
+                    </p>
+                    <a href="../index.html#form" class="cta-button">
+                        <i class="bi bi-calendar-check"></i> Book Free Consultation
+                    </a>
+                    <p style="margin-top: 20px; color: var(--secondary-color); font-size: 0.9rem;">
+                        💎 Limited slots available • ⚡ Response within 24 hours • 🎁 No credit card required
+                    </p>
+                </div>
+
+                <div class="share-section">
+                    <h4>Share Your Results</h4>
+                    <div class="share-buttons">
+                        <a href="https://twitter.com/intent/tweet?text=I%20just%20scored%20${percentage}%25%20on%20the%20%22How%20Dorkly%20is%20Your%20Business%22%20quiz!%20Take%20the%20quiz%20at%20dorklyai.com" target="_blank" class="share-btn twitter">
+                            <i class="bi bi-twitter"></i> Twitter
+                        </a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://dorklyai.com/quizfunnel" target="_blank" class="share-btn linkedin">
+                            <i class="bi bi-linkedin"></i> LinkedIn
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://dorklyai.com/quizfunnel" target="_blank" class="share-btn facebook">
+                            <i class="bi bi-facebook"></i> Facebook
+                        </a>
+                    </div>
+                </div>
+
+                <div style="margin-top: 40px; padding-top: 30px; border-top: 2px solid #e9ecef;">
+                    <button class="btn-quiz btn-back" onclick="location.reload()" style="display: inline-block; margin: 0 auto;">
+                        <i class="bi bi-arrow-clockwise"></i> Retake Quiz
+                    </button>
+                </div>
+            `;
+
+            resultsSection.classList.add('active');
+
+            // Send result to analytics (placeholder)
+            console.log('Quiz completed:', { score: percentage, level: level, answers: answers });
+        }
+
+        // Initialize particles on load
+        window.onload = function() {
+            createParticles();
+        };
+    </script>
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Quiz",
+      "name": "How Dorkly is Your Business?",
+      "description": "Free business automation assessment quiz to discover time-saving opportunities and get personalized recommendations from DorklyAI",
+      "educationalLevel": "Business Owner",
+      "timeRequired": "PT2M",
+      "interactivityType": "active",
+      "learningResourceType": "assessment",
+      "isAccessibleForFree": true,
+      "about": {
+        "@type": "Thing",
+        "name": "Business Automation"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "DorklyAI",
+        "url": "https://dorklyai.com",
+        "logo": "https://dorklyai.com/assets/dorklogo.png"
+      },
+      "hasPart": {
+        "@type": "Question",
+        "eduQuestionType": "Multiple choice"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
+    
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://dorklyai.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Business Quiz",
+          "item": "https://dorklyai.com/quizfunnel/"
+        }
+      ]
+    }
+    </script>
+    
+    <!-- WebApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "How Dorkly is Your Business Quiz",
+      "url": "https://dorklyai.com/quizfunnel/",
+      "description": "Interactive business automation assessment tool that analyzes your current technology stack and provides personalized recommendations to save time and increase efficiency.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "247",
+        "bestRating": "5"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "DorklyAI"
+      }
+    }
+    </script>
+    
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How long does the quiz take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The 'How Dorkly is Your Business' quiz takes approximately 2 minutes to complete. It consists of 8 carefully crafted questions designed to assess your business automation needs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the quiz really free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! The quiz is 100% free with no credit card required. You'll receive personalized recommendations immediately after completing the assessment."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What will I learn from taking this quiz?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You'll discover your business automation score, identify areas where you're losing time and money, and receive personalized recommendations for technology solutions that can save you 10-20+ hours per week."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to provide my email to see results?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, you can see your results immediately without providing any contact information. However, we do offer a free consultation to discuss your personalized recommendations in detail."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who should take this quiz?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "This quiz is perfect for business owners, entrepreneurs, operations managers, and decision-makers who want to optimize their business processes, save time, and scale more efficiently using technology and automation."
+          }
+        }
+      ]
+    }
+    </script>
+</body>
+</html>

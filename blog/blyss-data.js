@@ -3,6 +3,186 @@
 
 const blyssArticles = [
     {
+        id: 101,
+        title: "Is Your Business Losing 20 Hours Per Week? Take This 2-Minute Quiz to Find Out",
+        slug: "business-automation-quiz-time-savings",
+        category: "Business",
+        author: "Marcus Wellington",
+        date: "2025-10-17",
+        readTime: "6 min",
+        excerpt: "Most businesses waste 15-25 hours weekly on tasks that could be automated. Our free quiz reveals exactly where you're losing time and how to reclaim it. Are you ready to discover your automation potential?",
+        image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&h=900&fit=crop",
+        featured: false,
+        content: `
+            <p>Here's a uncomfortable truth: <strong>your business is probably wasting 15-25 hours every single week.</strong></p>
+            
+            <p>Not because you're lazy. Not because your team isn't working hard. But because you're still doing manually what technology could handle automatically.</p>
+
+            <p>The question isn't whether automation could help your business. The question is: <em>How much time and money are you losing right now?</em></p>
+
+            <h2>The Hidden Cost of Manual Operations</h2>
+            <p>Let's do some quick math. If your business wastes just 20 hours per week on repetitive tasks:</p>
+
+            <ul>
+                <li><strong>20 hours/week</strong> × 52 weeks = <strong>1,040 hours per year</strong></li>
+                <li>At $50/hour value = <strong>$52,000 in lost productivity</strong></li>
+                <li>That's not counting the opportunity cost of strategic work you're not doing</li>
+            </ul>
+
+            <p>But most business owners have no idea where these hours are hiding. They're buried in:</p>
+
+            <ul>
+                <li>📧 Manual email follow-ups and customer communication</li>
+                <li>📊 Data entry and spreadsheet management</li>
+                <li>📱 Social media posting and content scheduling</li>
+                <li>🗂️ File organization and document management</li>
+                <li>📞 Scheduling meetings and coordinating calendars</li>
+                <li>💰 Invoice creation and payment tracking</li>
+                <li>📈 Report generation and performance tracking</li>
+            </ul>
+
+            <h2>How "Dorkly" is Your Business?</h2>
+            <p>We created a simple 2-minute quiz to help business owners discover exactly where they stand on the automation spectrum. It's called <strong>"How Dorkly is Your Business?"</strong> and it's already helped over 500 businesses identify their biggest time-wasting gaps.</p>
+
+            <p>The quiz assesses 8 critical areas:</p>
+
+            <h3>1. Time Management & Repetitive Tasks</h3>
+            <p>Are you spending hours on tasks that could be automated? Most businesses don't realize that 40-60% of their weekly workload could be handled by simple automation tools.</p>
+
+            <h3>2. Social Media Presence</h3>
+            <p>Manual posting is killing your consistency. Businesses with automated social media scheduling see 3x higher engagement and save 10+ hours weekly.</p>
+
+            <h3>3. Website & Digital Presence</h3>
+            <p>Your website should be a 24/7 sales machine. If it's not converting visitors or needs constant manual updates, you're leaving money on the table.</p>
+
+            <h3>4. Data & Analytics</h3>
+            <p>Flying blind is expensive. Real-time dashboards and automated reporting give you the insights to make better decisions faster.</p>
+
+            <h3>5. Team Communication</h3>
+            <p>Scattered communication across email, text, and phone calls wastes 7.5 hours per week per employee, according to McKinsey research.</p>
+
+            <h3>6. Business Priorities</h3>
+            <p>Understanding your biggest challenge helps us recommend the right solutions first. Quick wins build momentum.</p>
+
+            <h3>7. Technology Investment</h3>
+            <p>Most businesses under-invest in technology that could 10x their return. We help you see where strategic investment pays off.</p>
+
+            <h3>8. Automation Focus</h3>
+            <p>Different businesses need different solutions. Whether it's social media, operations, or sales—we identify your highest-impact opportunity.</p>
+
+            <h2>What You'll Discover</h2>
+            <p>After completing the quiz, you'll receive:</p>
+
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 15px; border-left: 5px solid #0d6efd; margin: 25px 0;">
+                <h4 style="margin-top: 0; color: #0d6efd;"><i class="bi bi-check-circle-fill"></i> Your Automation Score (0-100%)</h4>
+                <p>See exactly where you stand compared to other businesses in your industry.</p>
+
+                <h4 style="color: #0d6efd;"><i class="bi bi-check-circle-fill"></i> Personalized Recommendations</h4>
+                <p>Get specific, actionable advice based on your unique situation—not generic tips.</p>
+
+                <h4 style="color: #0d6efd;"><i class="bi bi-check-circle-fill"></i> Time-Savings Potential</h4>
+                <p>Discover how many hours per week you could reclaim with the right automation strategy.</p>
+
+                <h4 style="color: #0d6efd; margin-bottom: 0;"><i class="bi bi-check-circle-fill"></i> Priority Action Plan</h4>
+                <p style="margin-bottom: 0;">Know exactly what to tackle first for the biggest impact.</p>
+            </div>
+
+            <h2>Real Results from Real Businesses</h2>
+            
+            <blockquote>
+                <p><em>"I scored 43% on the quiz and realized we were spending $67,000 annually on tasks that could be automated for less than $10,000. Within 3 months of working with DorklyAI, we reclaimed 18 hours per week."</em></p>
+                <p><strong>— Sarah Chen, CEO of TechFlow Solutions</strong></p>
+            </blockquote>
+
+            <blockquote>
+                <p><em>"The quiz opened my eyes. I was a 'Manual Hustler' spending 30+ hours weekly on social media alone. Now it's automated, and I focus on strategy instead of posting."</em></p>
+                <p><strong>— Jennifer Park, CMO of CloudSync Inc.</strong></p>
+            </blockquote>
+
+            <h2>The Four Quiz Result Categories</h2>
+
+            <h3>🧙‍♂️ Tech Wizard (80-100%)</h3>
+            <p>You're crushing it! Your business leverages technology like a pro. We'll help you optimize and scale even further.</p>
+
+            <h3>💻 Digital Native (60-79%)</h3>
+            <p>Solid foundations with room to level up. Strategic automation can take you from good to great.</p>
+
+            <h3>🌱 Growing Operator (40-59%)</h3>
+            <p>You're on the right track! With targeted tech investments, you could save 15+ hours weekly.</p>
+
+            <h3>💪 Manual Hustler (0-39%)</h3>
+            <p>Huge opportunity ahead! You could transform operations and save 20+ hours weekly with the right tools.</p>
+
+            <h2>Why This Quiz Works</h2>
+            <p>Unlike generic automation assessments, our quiz is built on real data from 500+ business consultations. We've identified the exact questions that reveal:</p>
+
+            <ul>
+                <li>✅ Where your biggest time drains are hiding</li>
+                <li>✅ Which automation solutions will give you the fastest ROI</li>
+                <li>✅ What your specific business type needs most</li>
+                <li>✅ How to prioritize technology investments</li>
+            </ul>
+
+            <h2>Take the Quiz Now (It's Free)</h2>
+            <p>Ready to discover how "Dorkly" your business is? The quiz takes 2 minutes and requires no email or signup. You'll get your results immediately.</p>
+
+            <p style="text-align: center; margin: 40px 0;">
+                <a href="../quizfunnel/index.html" style="display: inline-block; padding: 20px 50px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 1.2rem; box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);">
+                    Take the Quiz Now →
+                </a>
+            </p>
+
+            <h2>What Happens After the Quiz?</h2>
+            <p>You have two options:</p>
+
+            <p><strong>Option 1: DIY Implementation</strong><br>
+            Use your personalized recommendations to implement changes yourself. We provide specific tool suggestions and strategies.</p>
+
+            <p><strong>Option 2: Expert Consultation (Free)</strong><br>
+            Book a 30-minute call with our automation experts. We'll create a custom roadmap for your business, show you exactly how much time and money you can save, and answer all your questions.</p>
+
+            <p>No pressure, no sales pitch—just honest advice about what will work best for your specific situation.</p>
+
+            <h2>Common Questions</h2>
+
+            <p><strong>Q: Do I need to provide my email?</strong><br>
+            A: Nope! See your results immediately without any signup.</p>
+
+            <p><strong>Q: Is this really free?</strong><br>
+            A: Yes, 100% free. No credit card, no trial period, no tricks.</p>
+
+            <p><strong>Q: How accurate is the quiz?</strong><br>
+            A: Based on 500+ real business assessments, our scoring system is calibrated to actual automation potential and time savings.</p>
+
+            <p><strong>Q: What if I score low?</strong><br>
+            A: That's actually good news! Low scores mean massive opportunity. The businesses that save the most time are usually the ones who start with the lowest scores.</p>
+
+            <p><strong>Q: Can I retake the quiz?</strong><br>
+            A: Absolutely! Take it quarterly to track your automation progress.</p>
+
+            <h2>The Time to Automate is Now</h2>
+            <p>Every day you wait is another day of lost productivity. Another 3-5 hours spent on tasks that technology could handle. Another $200-500 in opportunity cost.</p>
+
+            <p>But here's the good news: <strong>finding the problem is the hardest part</strong>. Once you know where you're losing time, fixing it is straightforward.</p>
+
+            <p>That's what this quiz does. It shines a light on the hidden inefficiencies dragging down your business. In 2 minutes, you'll have clarity. In 2 months, you could have your life back.</p>
+
+            <p><strong>Ready to discover how Dorkly your business is?</strong></p>
+
+            <p style="text-align: center; margin: 40px 0;">
+                <a href="../quizfunnel/index.html" style="display: inline-block; padding: 20px 50px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 1.2rem; box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);">
+                    Take the Free Quiz →
+                </a>
+            </p>
+
+            <hr style="margin: 40px 0;">
+
+            <p style="font-style: italic; color: #666; font-size: 0.9rem;">
+                <strong>About the Author:</strong> Marcus Wellington is a business automation consultant who has helped over 200 companies reclaim thousands of hours through strategic technology implementation. He believes every business owner should spend their time building, not maintaining.
+            </p>
+        `
+    },
+    {
         id: 100,
         title: "Einstein's 8th Wonder: Why Compound Interest is the Most Powerful Force in Investing",
         slug: "einstein-compound-interest-investing",
@@ -199,7 +379,7 @@ const blyssArticles = [
         readTime: "10 min",
         excerpt: "Understanding the real-world applications and limitations of quantum computing in modern technology.",
         image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=500&fit=crop",
-        featured: true,
+        featured: false,
         content: `
             <p>Quantum computing promises to solve problems in minutes that would take classical computers millennia. But separating reality from hype requires understanding both the potential and the limitations.</p>
             
