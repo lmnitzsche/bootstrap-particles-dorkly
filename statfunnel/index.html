@@ -1075,8 +1075,25 @@
 
             <!-- Portfolio Builder Section -->
             <div class="calculator-container" style="background: white; border: 2px solid #667eea;">
-                <h2 class="section-title">Portfolio Builder</h2>
-                <p class="text-muted mb-4">Build your custom portfolio and see the weighted average CAGR</p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <div>
+                        <h2 class="section-title" style="margin-bottom: 5px;">Portfolio Builder</h2>
+                        <p class="text-muted mb-0">Build your custom portfolio and see the weighted average CAGR</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <label for="portfolioYearSelect" style="display: block; font-size: 0.9rem; color: #666; margin-bottom: 5px; font-weight: 600;">CAGR Period</label>
+                        <select id="portfolioYearSelect" onchange="updatePortfolioYears()" style="padding: 10px 20px; border: 2px solid #667eea; border-radius: 8px; font-size: 1rem; font-weight: 600; color: #667eea; background: white; cursor: pointer;">
+                            <option value="1">1 Year</option>
+                            <option value="3">3 Years</option>
+                            <option value="5">5 Years</option>
+                            <option value="10">10 Years</option>
+                            <option value="15">15 Years</option>
+                            <option value="20">20 Years</option>
+                            <option value="25">25 Years</option>
+                            <option value="30" selected>30 Years</option>
+                        </select>
+                    </div>
+                </div>
                 
                 <div class="row">
                     <div class="col-lg-8">
@@ -1100,8 +1117,8 @@
                             </div>
                             
                             <div class="portfolio-stat-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                                <div class="portfolio-stat-label" style="color: rgba(255,255,255,0.9);">Weighted Average CAGR</div>
-                                <div class="portfolio-stat-value" style="color: white; font-size: 2.5rem;" id="portfolioCAGR">-%</div>
+                                <div class="portfolio-stat-label" style="color: rgba(255,255,255,0.9);"><span id="portfolioYearLabel">30</span>-Year Weighted CAGR</div>
+                                <div style="font-size: 2.5rem; font-weight: 800; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important;" id="portfolioCAGR">-%</div>
                             </div>
                             
                             <div class="portfolio-note">
@@ -1667,20 +1684,21 @@
         const cagrAssets = [
             { ticker: 'SPY', name: 'S&P 500' },
             { ticker: 'QQQ', name: 'Nasdaq 100' },
-            { ticker: 'VTI', name: 'Total Market' },
+            { ticker: 'VTI', name: 'Total Stock Market' },
             { ticker: 'VB', name: 'Small Cap' },
             { ticker: 'XLF', name: 'Financials' },
-            { ticker: 'SCHD', name: 'Dividend' },
-            { ticker: 'VIG', name: 'Dividend Growth' },
-            { ticker: 'VEA', name: 'Developed Intl' },
-            { ticker: 'VXUS', name: 'Total Intl' },
+            { ticker: 'SCHD', name: 'Dividend Equity' },
+            { ticker: 'VIG', name: 'Dividend Appreciation' },
+            { ticker: 'VEA', name: 'Developed Markets' },
+            { ticker: 'VXUS', name: 'Total International' },
             { ticker: 'EWG', name: 'Germany' },
             { ticker: 'EWJ', name: 'Japan' },
             { ticker: 'EWA', name: 'Australia' },
+            { ticker: 'EIS', name: 'Israel' },
             { ticker: 'VNQ', name: 'Real Estate' },
             { ticker: 'GLD', name: 'Gold' },
             { ticker: 'SLV', name: 'Silver' },
-            { ticker: 'BND', name: 'Bonds' },
+            { ticker: 'BND', name: 'Total Bond Market' },
             { ticker: 'USO', name: 'Oil' }
         ];
 
@@ -1807,6 +1825,62 @@
         let cagrCache = {}; // Store calculated CAGRs
         let currentCAGRYears = 30; // Default 30 years
 
+        async function fetchHistoricalData(ticker, years) {
+            try {
+                const endDate = new Date();
+                const startDate = new Date();
+                startDate.setFullYear(startDate.getFullYear() - years);
+                
+                const period1 = Math.floor(startDate.getTime() / 1000);
+                const period2 = Math.floor(endDate.getTime() / 1000);
+                
+                const yahooUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?period1=${period1}&period2=${period2}&interval=1mo&includeAdjustedClose=true`;
+                
+                let response;
+                let data;
+                
+                try {
+                    response = await fetch(yahooUrl, {
+                        method: 'GET',
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    
+                    if (!response.ok) throw new Error(`Direct API failed: ${response.status}`);
+                    data = await response.json();
+                } catch (directError) {
+                    const corsProxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(yahooUrl)}`;
+                    response = await fetch(corsProxyUrl);
+                    
+                    if (!response.ok) throw new Error(`CORS proxy failed: ${response.status}`);
+                    data = await response.json();
+                }
+                
+                if (data.chart.error) throw new Error(data.chart.error.description);
+                
+                const result = data.chart.result[0];
+                if (!result || !result.timestamp || result.timestamp.length === 0) {
+                    throw new Error('No data available');
+                }
+                
+                const timestamps = result.timestamp;
+                const closes = result.indicators.quote[0].close;
+                
+                const validData = timestamps.map((ts, idx) => ({
+                    date: new Date(ts * 1000),
+                    price: closes[idx]
+                })).filter(item => item.price !== null && item.price !== undefined && item.price > 0);
+                
+                if (validData.length < 2) {
+                    throw new Error(`Insufficient data for ${ticker}`);
+                }
+                
+                return validData;
+            } catch (error) {
+                console.error(`Error fetching data for ${ticker}:`, error);
+                throw error;
+            }
+        }
+
         function addPortfolioAsset() {
             const assetId = Date.now();
             const assetRow = document.createElement('div');
@@ -1816,7 +1890,7 @@
             assetRow.innerHTML = `
                 <select class="asset-select" onchange="updatePortfolio()">
                     <option value="">Select Asset...</option>
-                    ${cagrAssets.map(asset => `<option value="${asset.symbol}">${asset.name} (${asset.symbol})</option>`).join('')}
+                    ${cagrAssets.map(asset => `<option value="${asset.ticker}">${asset.name} (${asset.ticker})</option>`).join('')}
                 </select>
                 <input type="number" class="allocation-input" min="0" max="100" step="0.1" placeholder="Allocation %" oninput="updatePortfolio()">
                 <button class="remove-btn" onclick="removePortfolioAsset(${assetId})">Remove</button>
@@ -1906,14 +1980,11 @@
                 const cagrElement = document.getElementById('portfolioCAGR');
                 cagrElement.textContent = weightedCAGR.toFixed(2) + '%';
                 
-                // Change color based on allocation total
-                if (Math.abs(totalAllocation - 100) < 0.1) {
-                    cagrElement.style.color = '#27ae60'; // Green when 100%
-                } else {
-                    cagrElement.style.color = '#667eea'; // Default purple
-                }
+                // Keep white color for visibility on gradient background
+                cagrElement.style.color = '#ffffff';
             } else {
                 document.getElementById('portfolioCAGR').textContent = '-%';
+                document.getElementById('portfolioCAGR').style.color = '#ffffff';
             }
         }
 
@@ -1936,6 +2007,21 @@
             
             // Reset portfolio calculation with new time period
             if (portfolioAssets.length > 0) {
+                updatePortfolio();
+            }
+        }
+
+        function updatePortfolioYears() {
+            const years = parseInt(document.getElementById('portfolioYearSelect').value);
+            currentCAGRYears = years;
+            document.getElementById('portfolioYearLabel').textContent = years;
+            
+            // Clear the cache for the new time period and recalculate
+            cagrCache = {};
+            
+            // Recalculate portfolio if assets exist
+            const rows = document.querySelectorAll('.portfolio-asset-row');
+            if (rows.length > 0) {
                 updatePortfolio();
             }
         }
