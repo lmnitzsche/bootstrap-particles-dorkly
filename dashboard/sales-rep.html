@@ -362,10 +362,18 @@
             <div class="quick-stats">
                 <div class="stat-card">
                     <div class="stat-icon" style="background: rgba(56, 239, 125, 0.2);">
-                        <i class="bi bi-cash-stack" style="color: var(--success);"></i>
+                        <i class="bi bi-check-circle-fill" style="color: var(--success);"></i>
                     </div>
-                    <div class="stat-value" id="totalCommissions">$0.00</div>
-                    <div class="stat-label">Total Commissions</div>
+                    <div class="stat-value" id="paidCommissions">$0.00</div>
+                    <div class="stat-label">Paid Commissions</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(255, 193, 7, 0.2);">
+                        <i class="bi bi-clock-history" style="color: #ffc107;"></i>
+                    </div>
+                    <div class="stat-value" id="expectedCommissions">$0.00</div>
+                    <div class="stat-label">Expected Commissions</div>
                 </div>
 
                 <div class="stat-card">
@@ -383,14 +391,14 @@
                     <div class="stat-value" id="monthSales">0</div>
                     <div class="stat-label">This Month</div>
                 </div>
+            </div>
 
-                <div class="stat-card">
-                    <div class="stat-icon" style="background: rgba(255, 193, 7, 0.2);">
-                        <i class="bi bi-currency-dollar" style="color: #ffc107;"></i>
-                    </div>
-                    <div class="stat-value" id="avgCommission">$0</div>
-                    <div class="stat-label">Avg. Commission</div>
-                </div>
+            <!-- Commission Info Banner -->
+            <div style="background: rgba(255, 193, 7, 0.1); border: 1px solid rgba(255, 193, 7, 0.3); border-radius: 12px; padding: 1rem; margin-bottom: 2rem;">
+                <small style="color: rgba(255,255,255,0.8);">
+                    <i class="bi bi-info-circle me-2"></i>
+                    <strong>Commission Policy:</strong> You receive expected commissions only while you manage the customer. If you leave the company, future monthly commissions are forfeited.
+                </small>
             </div>
 
             <!-- Sales Breakdown by Service -->
@@ -483,19 +491,47 @@
 
         // Update Stats
         function updateStats() {
-            // Use new commission structure (totalCommission) or fallback to old (commission)
-            const totalCommissions = salesData.reduce((sum, sale) => {
-                return sum + parseFloat(sale.totalCommission || sale.commission || 0);
-            }, 0);
+            const today = new Date();
+            const activeContracts = salesData.filter(sale => sale.status === 'active');
+            
+            let paidCommissions = 0;
+            let expectedCommissions = 0;
+            
+            activeContracts.forEach(sale => {
+                // Setup commission is always paid immediately
+                paidCommissions += parseFloat(sale.setupCommission || 0);
+                
+                // Calculate monthly commissions
+                if (sale.contractStart && sale.monthlyFee && parseFloat(sale.monthlyFee) > 0) {
+                    const contractStart = new Date(sale.contractStart);
+                    const contractLength = parseInt(sale.contractLength) || 12;
+                    const contractEnd = new Date(contractStart);
+                    contractEnd.setMonth(contractEnd.getMonth() + contractLength);
+                    
+                    // Calculate months elapsed since contract start
+                    const monthsElapsed = Math.floor((today - contractStart) / (30.44 * 24 * 60 * 60 * 1000));
+                    const monthsPaid = Math.max(0, Math.min(monthsElapsed, contractLength));
+                    const monthsRemaining = Math.max(0, contractLength - monthsPaid);
+                    
+                    const monthlyFee = parseFloat(sale.monthlyFee);
+                    const year1Rate = parseFloat(sale.year1CommissionRate || 20) / 100;
+                    const year2Rate = parseFloat(sale.year2CommissionRate || 10) / 100;
+                    
+                    // Calculate paid monthly commissions (months that have already passed)
+                    for (let i = 0; i < monthsPaid; i++) {
+                        const rate = i < 12 ? year1Rate : year2Rate;
+                        paidCommissions += monthlyFee * rate;
+                    }
+                    
+                    // Calculate expected monthly commissions (future months if contract is active)
+                    for (let i = monthsPaid; i < contractLength; i++) {
+                        const rate = i < 12 ? year1Rate : year2Rate;
+                        expectedCommissions += monthlyFee * rate;
+                    }
+                }
+            });
             
             const totalSales = salesData.length;
-            
-            // Calculate setup vs recurring commissions
-            const setupCommissions = salesData.reduce((sum, sale) => {
-                return sum + parseFloat(sale.setupCommission || 0);
-            }, 0);
-            
-            const recurringCommissions = totalCommissions - setupCommissions;
             
             // This month sales
             const now = new Date();
@@ -503,13 +539,11 @@
                 const saleDate = new Date(sale.date);
                 return saleDate.getMonth() === now.getMonth() && saleDate.getFullYear() === now.getFullYear();
             });
-            
-            const avgCommission = totalSales > 0 ? totalCommissions / totalSales : 0;
 
-            document.getElementById('totalCommissions').textContent = '$' + totalCommissions.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('paidCommissions').textContent = '$' + paidCommissions.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('expectedCommissions').textContent = '$' + expectedCommissions.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('totalSales').textContent = totalSales;
             document.getElementById('monthSales').textContent = thisMonth.length;
-            document.getElementById('avgCommission').textContent = '$' + avgCommission.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
         }
 
         // Load Sales Table

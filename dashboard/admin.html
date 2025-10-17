@@ -428,6 +428,7 @@
                             <select class="form-select" id="course" required onchange="updateCommissionPreview()">
                                 <option value="">Select Service...</option>
                                 <optgroup label="Web Development">
+                                    <option value="Web Dev - Free Tier" data-setup="20" data-monthly="0">Free Tier - $20 + $0/mo</option>
                                     <option value="Web Dev - Starter" data-setup="1000" data-monthly="200">Starter - $1,000 + $200/mo</option>
                                     <option value="Web Dev - Growth" data-setup="2000" data-monthly="350">Growth - $2,000 + $350/mo</option>
                                     <option value="Web Dev - Enterprise" data-setup="3500" data-monthly="500">Enterprise - $3,500 + $500/mo</option>
@@ -897,19 +898,50 @@
             usersData = getUsers();
             
             const repsList = document.getElementById('repsList');
+            const today = new Date();
             
             repsList.innerHTML = usersData.map(rep => {
-                const repSales = salesData.filter(sale => sale.repId === rep.id);
+                const repSales = salesData.filter(sale => sale.repId === rep.id && sale.status === 'active');
                 
-                const totalCommissions = repSales.reduce((sum, sale) => {
-                    return sum + parseFloat(sale.totalCommission || 0);
-                }, 0);
+                let paidCommissions = 0;
+                let expectedCommissions = 0;
                 
-                const setupCommissions = repSales.reduce((sum, sale) => {
-                    return sum + parseFloat(sale.setupCommission || 0);
-                }, 0);
+                repSales.forEach(sale => {
+                    // Setup commission is always paid immediately
+                    paidCommissions += parseFloat(sale.setupCommission || 0);
+                    
+                    // Calculate monthly commissions
+                    if (sale.contractStart && sale.monthlyFee && parseFloat(sale.monthlyFee) > 0) {
+                        const contractStart = new Date(sale.contractStart);
+                        const contractLength = parseInt(sale.contractLength) || 12;
+                        const contractEnd = new Date(contractStart);
+                        contractEnd.setMonth(contractEnd.getMonth() + contractLength);
+                        
+                        // Calculate months elapsed since contract start
+                        const monthsElapsed = Math.floor((today - contractStart) / (30.44 * 24 * 60 * 60 * 1000));
+                        const monthsPaid = Math.max(0, Math.min(monthsElapsed, contractLength));
+                        const monthsRemaining = Math.max(0, contractLength - monthsPaid);
+                        
+                        const monthlyFee = parseFloat(sale.monthlyFee);
+                        const year1Rate = parseFloat(sale.year1CommissionRate || 20) / 100;
+                        const year2Rate = parseFloat(sale.year2CommissionRate || 10) / 100;
+                        
+                        // Calculate paid monthly commissions (months that have already passed)
+                        for (let i = 0; i < monthsPaid; i++) {
+                            const rate = i < 12 ? year1Rate : year2Rate;
+                            paidCommissions += monthlyFee * rate;
+                        }
+                        
+                        // Calculate expected monthly commissions (future months if contract is active)
+                        for (let i = monthsPaid; i < contractLength; i++) {
+                            const rate = i < 12 ? year1Rate : year2Rate;
+                            expectedCommissions += monthlyFee * rate;
+                        }
+                    }
+                });
                 
-                const recurringCommissions = totalCommissions - setupCommissions;
+                const totalCommissions = paidCommissions + expectedCommissions;
+                const allRepSales = salesData.filter(sale => sale.repId === rep.id); // Include all statuses for count
                 
                 return `
                     <div class="stat-card">
@@ -923,28 +955,44 @@
                                     <i class="bi bi-envelope me-2"></i>${rep.email}
                                 </p>
                                 <div class="row mt-3">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div style="color: var(--success); font-weight: 700; font-size: 1.5rem;">
                                             $${totalCommissions.toLocaleString('en-US', {minimumFractionDigits: 2})}
                                         </div>
                                         <small style="color: rgba(255,255,255,0.5);">Total Commission</small>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
+                                        <div style="color: #38ef7d; font-weight: 600; font-size: 1.2rem;">
+                                            $${paidCommissions.toLocaleString('en-US', {minimumFractionDigits: 2})}
+                                        </div>
+                                        <small style="color: rgba(255,255,255,0.5);">
+                                            <i class="bi bi-check-circle me-1"></i>Paid
+                                        </small>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div style="color: #ffc107; font-weight: 600; font-size: 1.2rem;">
+                                            $${expectedCommissions.toLocaleString('en-US', {minimumFractionDigits: 2})}
+                                        </div>
+                                        <small style="color: rgba(255,255,255,0.5);">
+                                            <i class="bi bi-clock-history me-1"></i>Expected
+                                        </small>
+                                    </div>
+                                    <div class="col-md-3">
                                         <div style="color: #667eea; font-weight: 600; font-size: 1.2rem;">
-                                            $${setupCommissions.toLocaleString('en-US', {minimumFractionDigits: 2})}
+                                            ${repSales.length}
                                         </div>
-                                        <small style="color: rgba(255,255,255,0.5);">Setup Fees</small>
+                                        <small style="color: rgba(255,255,255,0.5);">Active Contracts</small>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div style="color: #764ba2; font-weight: 600; font-size: 1.2rem;">
-                                            $${recurringCommissions.toLocaleString('en-US', {minimumFractionDigits: 2})}
-                                        </div>
-                                        <small style="color: rgba(255,255,255,0.5);">Recurring</small>
-                                    </div>
+                                </div>
+                                <div class="mt-3" style="padding-top: 0.75rem; border-top: 1px solid rgba(102, 126, 234, 0.2);">
+                                    <small style="color: rgba(255,255,255,0.6);">
+                                        <i class="bi bi-info-circle me-1"></i>
+                                        <strong>Note:</strong> Expected commissions only paid if rep manages the customer. If rep leaves, future commissions are forfeited.
+                                    </small>
                                 </div>
                                 <div class="mt-2">
                                     <span style="color: rgba(255,255,255,0.7);">
-                                        <i class="bi bi-graph-up me-1"></i>${repSales.length} ${repSales.length === 1 ? 'sale' : 'sales'}
+                                        <i class="bi bi-graph-up me-1"></i>${allRepSales.length} total ${allRepSales.length === 1 ? 'sale' : 'sales'}
                                     </span>
                                 </div>
                             </div>
