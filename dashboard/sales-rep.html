@@ -375,11 +375,11 @@
                 </div>
             </div>
 
-            <!-- Sales Breakdown by Course -->
+            <!-- Sales Breakdown by Service -->
             <div class="section-card">
                 <h2 class="section-title">
                     <i class="bi bi-pie-chart-fill"></i>
-                    Sales by Course
+                    Sales by Service Package
                 </h2>
                 <div id="courseBreakdown" class="row"></div>
             </div>
@@ -395,7 +395,7 @@
                         <thead>
                             <tr>
                                 <th>Date</th>
-                                <th>Course</th>
+                                <th>Service Package</th>
                                 <th>Customer</th>
                                 <th>Amount</th>
                                 <th>Commission</th>
@@ -515,7 +515,7 @@
             `).join('');
         }
 
-        // Load Course Breakdown
+        // Load Service Package Breakdown
         function loadCourseBreakdown() {
             const breakdown = {};
             salesData.forEach(sale => {
@@ -531,7 +531,7 @@
             if (Object.keys(breakdown).length === 0) {
                 container.innerHTML = `
                     <div class="col-12 text-center" style="padding: 2rem; color: rgba(255,255,255,0.5);">
-                        No course sales yet
+                        No service sales yet
                     </div>
                 `;
                 return;

@@ -394,25 +394,37 @@
                             </select>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <label class="form-label">Course</label>
+                            <label class="form-label">Service Package</label>
                             <select class="form-select" id="course" required>
-                                <option value="">Select Course...</option>
-                                <option value="Financial Literacy">Financial Literacy - $197</option>
-                                <option value="Buy & Hold Investing">Buy & Hold Investing - $297</option>
-                                <option value="Credit Strategy">Credit Strategy - $247</option>
-                                <option value="Affiliate Marketing">Affiliate Marketing - $197</option>
-                                <option value="Sales Mastery">Sales Mastery - $297</option>
+                                <option value="">Select Service...</option>
+                                <optgroup label="Web Development">
+                                    <option value="Web Dev - Starter" data-setup="1000" data-monthly="200">Starter - $1,000 + $200/mo</option>
+                                    <option value="Web Dev - Growth" data-setup="2000" data-monthly="350">Growth - $2,000 + $350/mo</option>
+                                    <option value="Web Dev - Enterprise" data-setup="3500" data-monthly="500">Enterprise - $3,500 + $500/mo</option>
+                                </optgroup>
+                                <optgroup label="Automation Software">
+                                    <option value="Automation - Starter" data-setup="1500" data-monthly="300">Starter - $1,500 + $300/mo</option>
+                                    <option value="Automation - Growth" data-setup="3000" data-monthly="600">Growth - $3,000 + $600/mo</option>
+                                    <option value="Automation - Enterprise" data-setup="5000" data-monthly="1000">Enterprise - $5,000 + $1,000/mo</option>
+                                </optgroup>
+                                <optgroup label="Social Media Marketing">
+                                    <option value="Social Media - Starter" data-setup="750" data-monthly="500">Starter - $750 + $500/mo</option>
+                                    <option value="Social Media - Growth" data-setup="1250" data-monthly="1000">Growth - $1,250 + $1,000/mo</option>
+                                    <option value="Social Media - Enterprise" data-setup="2000" data-monthly="2000">Enterprise - $2,000 + $2,000/mo</option>
+                                </optgroup>
                             </select>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Sale Amount</label>
-                            <input type="number" class="form-control" id="saleAmount" placeholder="297.00" step="0.01" required>
+                            <input type="number" class="form-control" id="saleAmount" placeholder="1000.00" step="0.01" required>
+                            <small style="color: rgba(255,255,255,0.5);" id="packageHelper"></small>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Commission Rate (%)</label>
-                            <input type="number" class="form-control" id="commissionRate" placeholder="40" value="40" required>
+                            <input type="number" class="form-control" id="commissionRate" placeholder="20" value="20" required>
+                            <small style="color: rgba(255,255,255,0.5);">Standard: 20% of setup fee</small>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Customer Name</label>
@@ -455,7 +467,7 @@
                             <tr>
                                 <th>Date</th>
                                 <th>Sales Rep</th>
-                                <th>Course</th>
+                                <th>Service Package</th>
                                 <th>Customer</th>
                                 <th>Amount</th>
                                 <th>Commission</th>
@@ -698,18 +710,18 @@
             }
         }
 
-        // Auto-fill amount based on course selection
+        // Auto-fill amount based on service selection
         document.getElementById('course').addEventListener('change', function() {
-            const prices = {
-                'Financial Literacy': 197,
-                'Buy & Hold Investing': 297,
-                'Credit Strategy': 247,
-                'Affiliate Marketing': 197,
-                'Sales Mastery': 297
-            };
-            const selectedCourse = this.value;
-            if (prices[selectedCourse]) {
-                document.getElementById('saleAmount').value = prices[selectedCourse];
+            const selectedOption = this.options[this.selectedIndex];
+            const setupFee = selectedOption.getAttribute('data-setup');
+            const monthlyFee = selectedOption.getAttribute('data-monthly');
+            
+            if (setupFee) {
+                document.getElementById('saleAmount').value = setupFee;
+                document.getElementById('packageHelper').textContent = 
+                    `Setup: $${setupFee} + $${monthlyFee}/month recurring`;
+            } else {
+                document.getElementById('packageHelper').textContent = '';
             }
         });
     </script>
