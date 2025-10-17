@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://dorklyai.com/sitemap.xml
+
+# Crawl-delay for all bots
+Crawl-delay: 1
+
+# Disallow admin and dashboard areas
+Disallow: /dashboard/
+Disallow: /blog/*-admin.html
+Disallow: /blog/*-data.js
+
+# Allow important pages
+Allow: /statfunnel/
+Allow: /blog/blyss.html
+Allow: /blog/vieve.html
+Allow: /courses/

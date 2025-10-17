@@ -3,10 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Investment Calculator - Compound Interest & Backtesting Tool</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>Free Investment Calculator | Compound Interest, Backtesting & Portfolio Analysis Tool</title>
+    <meta name="title" content="Free Investment Calculator | Compound Interest, Backtesting & Portfolio Analysis Tool">
+    <meta name="description" content="Calculate compound interest, backtest 50 years of stock data on SPY, QQQ, VTI, and more. Build custom portfolios and analyze CAGR performance. Free investment planning tool powered by DorklyAI.">
+    <meta name="keywords" content="investment calculator, compound interest calculator, stock backtesting, CAGR calculator, portfolio builder, retirement calculator, SPY calculator, ETF performance, financial planning, investment tools">
+    <meta name="author" content="DorklyAI">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dorklyai.com/statfunnel/">
+    <meta property="og:title" content="Free Investment Calculator | Compound Interest, Backtesting & Portfolio Analysis">
+    <meta property="og:description" content="Calculate compound interest, backtest 50 years of stock data, and build custom portfolios. Free investment planning tool with real-time market data.">
+    <meta property="og:image" content="https://dorklyai.com/assets/investment-calculator-preview.jpg">
+    <meta property="og:site_name" content="DorklyAI Investment Tools">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://dorklyai.com/statfunnel/">
+    <meta property="twitter:title" content="Free Investment Calculator | Compound Interest & Backtesting Tool">
+    <meta property="twitter:description" content="Calculate compound interest, backtest historical stock data, and analyze portfolio CAGR. Free tool powered by DorklyAI.">
+    <meta property="twitter:image" content="https://dorklyai.com/assets/investment-calculator-preview.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://dorklyai.com/statfunnel/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "DorklyAI Investment Calculator",
+      "applicationCategory": "FinanceApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Free investment calculator featuring compound interest calculations, 50-year stock backtesting, portfolio builder, and CAGR analysis for ETFs including SPY, QQQ, VTI, SCHD, and more.",
+      "url": "https://dorklyai.com/statfunnel/",
+      "creator": {
+        "@type": "Organization",
+        "name": "DorklyAI",
+        "url": "https://dorklyai.com"
+      },
+      "featureList": [
+        "Compound Interest Calculator",
+        "Historical Stock Backtesting (50 years)",
+        "Portfolio Builder with Weighted CAGR",
+        "Real-time Market Data via Yahoo Finance",
+        "20+ ETFs and Assets Supported",
+        "Interactive Charts and Visualizations"
+      ],
+      "operatingSystem": "Web Browser",
+      "browserRequirements": "Requires JavaScript. Supported on Chrome, Firefox, Safari, Edge."
+    }
+    </script>
+    
     <style>
         * {
             margin: 0;
@@ -871,20 +936,25 @@
     </style>
 </head>
 <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="visually-hidden-focusable">Skip to main content</a>
+    
     <div class="content-wrapper">
         <div class="container">
             <!-- Hero Section -->
-            <div class="hero-section">
-                <a href="https://dorklyai.com" target="_blank" class="dorkly-badge">Powered by DorklyAI</a>
-                <h1>Investment Calculator</h1>
-                <p style="font-size: 1.4rem; font-weight: 300; margin-top: 10px;">Calculate compound interest and backtest your investment strategy</p>
-                <p class="subtitle" style="font-size: 1.1rem;">with real historical data from the world's top assets</p>
-            </div>
+            <header class="hero-section" role="banner">
+                <a href="https://dorklyai.com" target="_blank" class="dorkly-badge" rel="noopener" aria-label="Powered by DorklyAI - Visit DorklyAI website">Powered by DorklyAI</a>
+                <h1>Free Investment Calculator & Portfolio Analysis Tool</h1>
+                <p style="font-size: 1.4rem; font-weight: 300; margin-top: 10px;">Calculate compound interest, backtest 50 years of stock market data, and build custom portfolios</p>
+                <p class="subtitle" style="font-size: 1.1rem;">Real-time historical data from SPY, QQQ, VTI, and 17+ top ETFs and assets</p>
+            </header>
 
-            <!-- Main Calculator -->
-            <div class="calculator-container">
-                <h2 class="section-title">Compound Interest Calculator</h2>
-                <p class="text-muted mb-4">Discover the power of compound interest - Einstein's "8th wonder of the world"</p>
+            <!-- Main Content -->
+            <main id="main-content" role="main">
+                <!-- Compound Interest Calculator Section -->
+                <article class="calculator-container">
+                    <h2 class="section-title">Compound Interest Calculator</h2>
+                    <p class="text-muted mb-4">Discover the power of compound interest - Einstein's "8th wonder of the world" - and plan your financial future</p>
                 
                 <div class="row">
                     <div class="col-lg-4">
@@ -948,10 +1018,12 @@
                 </div>
             </div>
 
-            <!-- Backtesting Section -->
-            <div class="calculator-container">
-                <h2 class="section-title">Historical Backtesting</h2>
-                <p class="text-muted mb-4">See how your investment would have performed with <strong>real historical data</strong> from major assets</p>
+                </article>
+                
+                <!-- Historical Backtesting Section -->
+                <section class="calculator-container" aria-labelledby="backtesting-heading">
+                    <h2 id="backtesting-heading" class="section-title">Historical Stock Backtesting (Up to 50 Years)</h2>
+                    <p class="text-muted mb-4">See how your investment strategy would have performed with <strong>real historical market data</strong> from SPY, QQQ, VTI, and 17+ major ETFs and assets</p>
                 
                 <div class="mb-4">
                     <label class="form-label">Select Asset to Backtest:</label>
@@ -1012,10 +1084,12 @@
                 <div id="backtestResults"></div>
             </div>
 
-            <!-- 30-Year CAGR Performance Section -->
-            <div class="calculator-container" style="background: white;">
-                <h2 class="section-title">Performance Analysis</h2>
-                <p class="text-muted mb-4">Click on any asset to see its historical Compound Annual Growth Rate (CAGR)</p>
+                </section>
+                
+                <!-- CAGR Performance Analysis Section -->
+                <section class="calculator-container" style="background: white;" aria-labelledby="cagr-heading">
+                    <h2 id="cagr-heading" class="section-title">ETF Performance Analysis - CAGR Calculator</h2>
+                    <p class="text-muted mb-4">Analyze historical Compound Annual Growth Rate (CAGR) for 18+ ETFs including SPY, QQQ, VTI, SCHD, bonds, gold, and international markets</p>
                 
                 <div class="row mb-4">
                     <div class="col-md-4">
@@ -1072,14 +1146,15 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Portfolio Builder Section -->
-            <div class="calculator-container" style="background: white; border: 2px solid #667eea;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
-                    <div>
-                        <h2 class="section-title" style="margin-bottom: 10px;">Portfolio Builder</h2>
-                        <p class="text-muted mb-0" style="margin-top: 5px;">Build your custom portfolio and see the weighted average CAGR</p>
-                    </div>
+                </section>
+                
+                <!-- Portfolio Builder Section -->
+                <section class="calculator-container" style="background: white; border: 2px solid #667eea;" aria-labelledby="portfolio-heading">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                        <div>
+                            <h2 id="portfolio-heading" class="section-title" style="margin-bottom: 10px;">Custom Portfolio Builder with Weighted CAGR</h2>
+                            <p class="text-muted mb-0" style="margin-top: 5px;">Build your custom investment portfolio and calculate the weighted average CAGR across multiple assets</p>
+                        </div>
                     <div style="text-align: right;">
                         <label for="portfolioYearSelect" style="display: block; font-size: 0.9rem; color: #666; margin-bottom: 5px; font-weight: 600;">CAGR Period</label>
                         <select id="portfolioYearSelect" onchange="updatePortfolioYears()" style="padding: 10px 20px; border: 2px solid #667eea; border-radius: 8px; font-size: 1rem; font-weight: 600; color: #667eea; background: white; cursor: pointer;">
@@ -1126,30 +1201,48 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                    </div>
+                </section>
 
-            <!-- Albert Einstein Wisdom Section -->
-            <div class="warren-buffett-section">
-                <h3>Einstein's Investment Wisdom</h3>
-                <blockquote>
-                    "Compound interest is the eighth wonder of the world. He who understands it, earns it; he who doesn't, pays it."
-                    <footer class="mt-3" style="font-size: 1rem; opacity: 0.9;">— Albert Einstein</footer>
-                </blockquote>
-                <p class="lead mb-4">Discover timeless investment wisdom and strategies from legendary thinkers</p>
-                <a href="../blog/blyss.html" class="warren-link">
-                    Read Investment Insights on Blyss →
-                </a>
-            </div>
+                <!-- Einstein Investment Wisdom Section -->
+                <aside class="warren-buffett-section" role="complementary" aria-label="Investment wisdom and education">
+                    <h3>Einstein's Investment Wisdom</h3>
+                    <blockquote cite="https://en.wikipedia.org/wiki/Albert_Einstein">
+                        "Compound interest is the eighth wonder of the world. He who understands it, earns it; he who doesn't, pays it."
+                        <footer class="mt-3" style="font-size: 1rem; opacity: 0.9;">— Albert Einstein</footer>
+                    </blockquote>
+                    <p class="lead mb-4">Discover timeless investment wisdom, financial strategies, and market insights from legendary investors and thinkers</p>
+                    <a href="../blog/blyss.html" class="warren-link" aria-label="Read more investment insights on Blyss blog">
+                        Read Investment Insights on Blyss →
+                    </a>
+                </aside>
 
-            <!-- CTA Section -->
-            <div class="cta-section">
-                <h2>Supercharge Your Workflow with AI</h2>
-                <p class="lead mb-4">Meet DorklyAI - Your Intelligent AI Assistant for Everything</p>
-                <p class="mb-4" style="font-size: 1.2rem;">From business automation to content creation, data analysis to creative projects - DorklyAI transforms how you work with cutting-edge artificial intelligence.</p>
-                <a href="https://dorklyai.com" class="cta-button" target="_blank">Try DorklyAI Free →</a>
-                <p class="mt-4" style="font-size: 1rem; opacity: 0.95;">Join thousands of professionals working smarter with AI-powered tools</p>
-            </div>
+                <!-- DorklyAI CTA Section -->
+                <aside class="cta-section" role="complementary" aria-label="DorklyAI call to action">
+                    <h2>Supercharge Your Financial Planning with AI</h2>
+                    <p class="lead mb-4">Meet DorklyAI - Your Intelligent AI Assistant for Investment Analysis, Data Processing & More</p>
+                    <p class="mb-4" style="font-size: 1.2rem;">From portfolio optimization to market analysis, financial modeling to automated reporting - DorklyAI transforms how you invest and manage wealth with cutting-edge artificial intelligence.</p>
+                    <a href="https://dorklyai.com" class="cta-button" target="_blank" rel="noopener" aria-label="Try DorklyAI Free - opens in new tab">Try DorklyAI Free →</a>
+                    <p class="mt-4" style="font-size: 1rem; opacity: 0.95;">Join thousands of investors and financial professionals making smarter decisions with AI-powered tools</p>
+                </aside>
+            </main>
+            
+            <!-- Footer -->
+            <footer role="contentinfo" style="text-align: center; padding: 40px 0 20px; color: rgba(255,255,255,0.7);">
+                <p style="font-size: 0.9rem; margin-bottom: 10px;">
+                    <strong>DorklyAI Investment Tools</strong> - Free compound interest calculator, stock backtesting, and portfolio analysis
+                </p>
+                <p style="font-size: 0.85rem; margin-bottom: 15px;">
+                    Data provided by Yahoo Finance. Past performance does not guarantee future results. Not financial advice.
+                </p>
+                <nav aria-label="Footer navigation" style="margin-bottom: 15px;">
+                    <a href="https://dorklyai.com" target="_blank" rel="noopener" style="color: rgba(255,255,255,0.8); margin: 0 15px; text-decoration: none;">Home</a>
+                    <a href="../blog/blyss.html" style="color: rgba(255,255,255,0.8); margin: 0 15px; text-decoration: none;">Blog</a>
+                    <a href="https://dorklyai.com/privacy" target="_blank" rel="noopener" style="color: rgba(255,255,255,0.8); margin: 0 15px; text-decoration: none;">Privacy</a>
+                    <a href="https://dorklyai.com/terms" target="_blank" rel="noopener" style="color: rgba(255,255,255,0.8); margin: 0 15px; text-decoration: none;">Terms</a>
+                </nav>
+                <p style="font-size: 0.8rem;">© 2025 DorklyAI. All rights reserved.</p>
+            </footer>
         </div>
     </div>
 
@@ -2058,6 +2151,86 @@
             }
         `;
         document.head.appendChild(style);
+    </script>
+    
+    <!-- FAQ Schema for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a compound interest calculator?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A compound interest calculator helps you estimate the future value of your investments by calculating interest on both your initial principal and accumulated interest over time. Our calculator includes monthly contributions and shows you exactly how your money can grow."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How far back can I backtest stock data?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can backtest investment strategies up to 50 years using real historical data from Yahoo Finance for major ETFs like SPY, QQQ, VTI, SCHD, and more. This allows you to see how your investment approach would have performed during different market conditions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is CAGR and why does it matter?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CAGR (Compound Annual Growth Rate) is the rate of return that would be required for an investment to grow from its beginning balance to its ending balance over a specific time period. It's important because it smooths out volatility and gives you a true sense of an investment's performance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which assets can I analyze with this tool?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can analyze 18+ assets including: SPY (S&P 500), QQQ (Nasdaq), VTI (Total Stock Market), SCHD (Dividend Equity), VIG (Dividend Appreciation), international ETFs, real estate (VNQ), precious metals (GLD, SLV), bonds (BND), oil (USO), and cryptocurrencies (Bitcoin, Ethereum, Solana)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the portfolio builder work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The portfolio builder allows you to create custom investment portfolios by allocating percentages to different assets. It automatically calculates the weighted average CAGR based on your allocations and historical performance data, helping you optimize your portfolio diversification."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this investment calculator free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! This investment calculator, backtesting tool, and portfolio analyzer are completely free to use. No registration required. We provide real-time historical data from Yahoo Finance at no cost."
+          }
+        }
+      ]
+    }
+    </script>
+    
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://dorklyai.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Investment Calculator",
+          "item": "https://dorklyai.com/statfunnel/"
+        }
+      ]
+    }
     </script>
 </body>
 </html>
