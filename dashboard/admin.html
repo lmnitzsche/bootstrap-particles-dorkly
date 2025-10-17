@@ -552,10 +552,16 @@
 
             <!-- All Sales -->
             <div class="section-card">
-                <h2 class="section-title">
-                    <i class="bi bi-graph-up"></i>
-                    All Sales & Contracts
-                </h2>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="section-title mb-0">
+                        <i class="bi bi-graph-up"></i>
+                        All Sales & Contracts
+                    </h2>
+                    <button class="btn btn-primary-custom" onclick="downloadSalesCSV()" style="padding: 0.6rem 1.5rem;">
+                        <i class="bi bi-download me-2"></i>
+                        Download Sales Data (CSV)
+                    </button>
+                </div>
                 <div class="table-responsive">
                     <table class="sales-table">
                         <thead>
@@ -899,6 +905,91 @@
                 localStorage.setItem('dorklyai_sales', JSON.stringify(salesData));
                 loadDashboard();
             }
+        }
+
+        function downloadSalesCSV() {
+            if (salesData.length === 0) {
+                alert('No sales data to download!');
+                return;
+            }
+
+            // Reload users data for rep email lookup
+            usersData = getUsers();
+
+            // CSV Headers
+            const headers = [
+                'Sale ID',
+                'Date',
+                'Sales Rep',
+                'Rep Email',
+                'Service Package',
+                'Customer Name',
+                'Customer Email',
+                'Contract Start',
+                'Contract Length (Months)',
+                'Payment Day',
+                'Setup Fee',
+                'Monthly Fee',
+                'Total Contract Value',
+                'Setup Commission Rate (%)',
+                'Year 1 Commission Rate (%)',
+                'Year 2+ Commission Rate (%)',
+                'Setup Commission ($)',
+                'Year 1 Commission ($)',
+                'Year 2+ Commission ($)',
+                'Total Commission ($)',
+                'Status',
+                'Notes'
+            ];
+
+            // Build CSV rows
+            const rows = salesData.map(sale => {
+                // Find rep to get email
+                const rep = usersData.find(u => u.id === sale.repId);
+                const repEmail = rep ? rep.email : 'N/A';
+
+                return [
+                    sale.id || '',
+                    new Date(sale.date).toLocaleDateString() || '',
+                    `"${sale.repName || ''}"`,
+                    repEmail,
+                    `"${sale.course || ''}"`,
+                    `"${sale.customerName || ''}"`,
+                    sale.customerEmail || '',
+                    sale.contractStart || '',
+                    sale.contractLength || '',
+                    sale.paymentDay || '',
+                    sale.setupFee || '0',
+                    sale.monthlyFee || '0',
+                    sale.totalContractValue || '0',
+                    sale.setupCommissionRate || '0',
+                    sale.year1CommissionRate || '0',
+                    sale.year2CommissionRate || '0',
+                    sale.setupCommission || '0',
+                    sale.year1Commission || '0',
+                    sale.year2Commission || '0',
+                    sale.totalCommission || '0',
+                    sale.status || '',
+                    `"${(sale.notes || '').replace(/"/g, '""')}"` // Escape quotes in notes
+                ].join(',');
+            });
+
+            // Combine headers and rows
+            const csvContent = [headers.join(','), ...rows].join('\n');
+
+            // Create blob and download
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            
+            const timestamp = new Date().toISOString().split('T')[0];
+            link.setAttribute('href', url);
+            link.setAttribute('download', `dorklyai_sales_${timestamp}.csv`);
+            link.style.visibility = 'hidden';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
         document.getElementById('addRepForm').addEventListener('submit', function(e) {

@@ -422,10 +422,16 @@
 
             <!-- Recent Sales -->
             <div class="section-card">
-                <h2 class="section-title">
-                    <i class="bi bi-clock-history"></i>
-                    Your Recent Sales
-                </h2>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="section-title mb-0">
+                        <i class="bi bi-clock-history"></i>
+                        Your Recent Sales
+                    </h2>
+                    <button class="btn btn-primary-custom" onclick="downloadMySalesCSV()" style="padding: 0.6rem 1.5rem;">
+                        <i class="bi bi-download me-2"></i>
+                        Download My Sales (CSV)
+                    </button>
+                </div>
                 <div class="table-responsive">
                     <table class="sales-table">
                         <thead>
@@ -680,6 +686,81 @@
                     </div>
                 </div>
             `).join('');
+        }
+
+        function downloadMySalesCSV() {
+            if (salesData.length === 0) {
+                alert('No sales data to download!');
+                return;
+            }
+
+            // CSV Headers
+            const headers = [
+                'Sale ID',
+                'Date',
+                'Service Package',
+                'Customer Name',
+                'Customer Email',
+                'Contract Start',
+                'Contract Length (Months)',
+                'Payment Day',
+                'Setup Fee',
+                'Monthly Fee',
+                'Total Contract Value',
+                'Setup Commission Rate (%)',
+                'Year 1 Commission Rate (%)',
+                'Year 2+ Commission Rate (%)',
+                'Setup Commission ($)',
+                'Year 1 Commission ($)',
+                'Year 2+ Commission ($)',
+                'Total Commission ($)',
+                'Status',
+                'Notes'
+            ];
+
+            // Build CSV rows
+            const rows = salesData.map(sale => {
+                return [
+                    sale.id || '',
+                    new Date(sale.date).toLocaleDateString() || '',
+                    `"${sale.course || ''}"`,
+                    `"${sale.customerName || ''}"`,
+                    sale.customerEmail || '',
+                    sale.contractStart || '',
+                    sale.contractLength || '',
+                    sale.paymentDay || '',
+                    sale.setupFee || '0',
+                    sale.monthlyFee || '0',
+                    sale.totalContractValue || '0',
+                    sale.setupCommissionRate || '0',
+                    sale.year1CommissionRate || '0',
+                    sale.year2CommissionRate || '0',
+                    sale.setupCommission || '0',
+                    sale.year1Commission || '0',
+                    sale.year2Commission || '0',
+                    sale.totalCommission || '0',
+                    sale.status || '',
+                    `"${(sale.notes || '').replace(/"/g, '""')}"` // Escape quotes in notes
+                ].join(',');
+            });
+
+            // Combine headers and rows
+            const csvContent = [headers.join(','), ...rows].join('\n');
+
+            // Create blob and download
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            
+            const repName = currentRep.name.replace(/\s+/g, '_');
+            const timestamp = new Date().toISOString().split('T')[0];
+            link.setAttribute('href', url);
+            link.setAttribute('download', `${repName}_sales_${timestamp}.csv`);
+            link.style.visibility = 'hidden';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
         // Refresh data periodically (every 30 seconds)
