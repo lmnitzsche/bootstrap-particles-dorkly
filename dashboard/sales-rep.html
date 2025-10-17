@@ -413,10 +413,16 @@
 
             <!-- Upcoming Monthly Payments -->
             <div class="section-card">
-                <h2 class="section-title">
-                    <i class="bi bi-calendar-check"></i>
-                    Upcoming Monthly Payments
-                </h2>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="section-title mb-0">
+                        <i class="bi bi-calendar-check"></i>
+                        Upcoming Monthly Payments
+                    </h2>
+                    <button class="btn btn-primary-custom" onclick="downloadMyPaymentsCSV()" style="padding: 0.6rem 1.5rem;">
+                        <i class="bi bi-download me-2"></i>
+                        Download My Payment History (CSV)
+                    </button>
+                </div>
                 <div class="table-responsive">
                     <table class="sales-table">
                         <thead>
@@ -897,6 +903,142 @@
             const timestamp = new Date().toISOString().split('T')[0];
             link.setAttribute('href', url);
             link.setAttribute('download', `${repName}_sales_${timestamp}.csv`);
+            link.style.visibility = 'hidden';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function downloadMyPaymentsCSV() {
+            const confirmedPayments = JSON.parse(localStorage.getItem('dorklyai_confirmed_payments')) || {};
+            const today = new Date();
+            const allPayments = [];
+
+            // Get all my contracts with monthly fees
+            const myContracts = salesData.filter(sale => 
+                sale.contractStart && 
+                sale.monthlyFee && 
+                parseFloat(sale.monthlyFee) > 0
+            );
+
+            // Generate all payments for all my contracts
+            myContracts.forEach(sale => {
+                const contractStart = new Date(sale.contractStart);
+                const contractLength = parseInt(sale.contractLength) || 12;
+                const paymentDay = parseInt(sale.paymentDay) || 1;
+                const monthlyFee = parseFloat(sale.monthlyFee);
+
+                // Generate payment for each month of the contract
+                for (let monthNum = 1; monthNum <= contractLength; monthNum++) {
+                    // Calculate payment date
+                    const paymentDate = new Date(contractStart);
+                    paymentDate.setMonth(paymentDate.getMonth() + monthNum);
+                    paymentDate.setDate(Math.min(paymentDay, new Date(paymentDate.getFullYear(), paymentDate.getMonth() + 1, 0).getDate()));
+
+                    // Calculate commission rate based on month number
+                    const commissionRate = (monthNum - 1) < 12 
+                        ? (parseFloat(sale.year1CommissionRate) || 20)
+                        : (parseFloat(sale.year2CommissionRate) || 10);
+                    const commission = (monthlyFee * commissionRate / 100);
+
+                    // Check if payment is confirmed
+                    const paymentKey = `${sale.id}_${monthNum}`;
+                    const isConfirmed = confirmedPayments[paymentKey] === true;
+
+                    // Determine status
+                    const daysDiff = Math.ceil((paymentDate - today) / (1000 * 60 * 60 * 24));
+                    let status = '';
+                    if (isConfirmed) {
+                        status = 'Paid';
+                    } else if (daysDiff < 0) {
+                        status = `Overdue (${Math.abs(daysDiff)} days)`;
+                    } else if (daysDiff <= 7) {
+                        status = `Due in ${daysDiff} days`;
+                    } else {
+                        status = 'Pending';
+                    }
+
+                    allPayments.push({
+                        saleId: sale.id,
+                        customerName: sale.customerName,
+                        customerEmail: sale.customerEmail,
+                        service: sale.course,
+                        contractStart: sale.contractStart,
+                        contractLength: contractLength,
+                        monthNumber: monthNum,
+                        paymentDate: paymentDate.toISOString().split('T')[0],
+                        paymentDay: paymentDay,
+                        monthlyFee: monthlyFee.toFixed(2),
+                        commissionRate: commissionRate.toFixed(2),
+                        commission: commission.toFixed(2),
+                        status: status,
+                        confirmed: isConfirmed ? 'Yes' : 'No',
+                        contractStatus: sale.status
+                    });
+                }
+            });
+
+            // Sort by payment date
+            allPayments.sort((a, b) => new Date(a.paymentDate) - new Date(b.paymentDate));
+
+            if (allPayments.length === 0) {
+                alert('No payment data to download!');
+                return;
+            }
+
+            // CSV Headers
+            const headers = [
+                'Sale ID',
+                'Customer Name',
+                'Customer Email',
+                'Service Package',
+                'Contract Start',
+                'Contract Length (Months)',
+                'Month Number',
+                'Payment Due Date',
+                'Payment Day of Month',
+                'Monthly Fee',
+                'Commission Rate (%)',
+                'My Commission',
+                'Payment Status',
+                'Confirmed',
+                'Contract Status'
+            ];
+
+            // Build CSV rows
+            const rows = allPayments.map(payment => {
+                return [
+                    payment.saleId,
+                    `"${payment.customerName}"`,
+                    payment.customerEmail,
+                    `"${payment.service}"`,
+                    payment.contractStart,
+                    payment.contractLength,
+                    payment.monthNumber,
+                    payment.paymentDate,
+                    payment.paymentDay,
+                    payment.monthlyFee,
+                    payment.commissionRate,
+                    payment.commission,
+                    `"${payment.status}"`,
+                    payment.confirmed,
+                    payment.contractStatus
+                ].join(',');
+            });
+
+            // Combine headers and rows
+            const csvContent = [headers.join(','), ...rows].join('\n');
+
+            // Create blob and download
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            
+            const repName = currentRep.name.replace(/\s+/g, '_');
+            const timestamp = new Date().toISOString().split('T')[0];
+            link.setAttribute('href', url);
+            link.setAttribute('download', `${repName}_payment_history_${timestamp}.csv`);
             link.style.visibility = 'hidden';
             
             document.body.appendChild(link);
