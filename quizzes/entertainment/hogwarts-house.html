@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Hogwarts House Sorting Quiz | Which House Are You? | DorklyAI</title>
+    <meta name="title" content="Hogwarts House Sorting Quiz | Which House Are You?">
+    <meta name="description" content="Discover your true Hogwarts house! Are you brave Gryffindor, wise Ravenclaw, loyal Hufflepuff, or ambitious Slytherin? Take our magical sorting quiz now!">
+    <meta name="keywords" content="Hogwarts house quiz, sorting hat quiz, Harry Potter quiz, Gryffindor Ravenclaw Hufflepuff Slytherin, personality quiz">
+    <meta name="author" content="DorklyAI">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dorklyai.com/quizzes/entertainment/hogwarts-house.html">
+    <meta property="og:title" content="Hogwarts House Sorting Quiz - Which House Are You?">
+    <meta property="og:description" content="Discover your true Hogwarts house! Are you brave, wise, loyal, or ambitious?">
+    <meta property="og:image" content="https://dorklyai.com/assets/dorklogo.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://dorklyai.com/quizzes/entertainment/hogwarts-house.html">
+    <meta property="twitter:title" content="Hogwarts House Sorting Quiz">
+    <meta property="twitter:description" content="Discover your true Hogwarts house!">
+    <meta property="twitter:image" content="https://dorklyai.com/assets/dorklogo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://dorklyai.com/quizzes/entertainment/hogwarts-house.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/dorklogo.png">
+    
+    <!-- Bootstrap 5.3.0 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    
+    <!-- Quiz Styles -->
+    <link href="../quiz-styles.css" rel="stylesheet">
+    
+    <style>
+        /* Hogwarts-specific theme overrides */
+        :root {
+            --quiz-gradient: linear-gradient(135deg, #8B4513 0%, #FFD700 50%, #8B0000 100%);
+            --quiz-primary: #8B0000;
+            --quiz-secondary: #FFD700;
+        }
+        
+        /* House-specific colors for results */
+        .gryffindor-theme {
+            --house-gradient: linear-gradient(135deg, #740001 0%, #D3A625 100%);
+            --house-primary: #740001;
+            --house-secondary: #D3A625;
+        }
+        
+        .ravenclaw-theme {
+            --house-gradient: linear-gradient(135deg, #0E1A40 0%, #946B2D 100%);
+            --house-primary: #0E1A40;
+            --house-secondary: #946B2D;
+        }
+        
+        .hufflepuff-theme {
+            --house-gradient: linear-gradient(135deg, #372E29 0%, #ECB939 100%);
+            --house-primary: #372E29;
+            --house-secondary: #ECB939;
+        }
+        
+        .slytherin-theme {
+            --house-gradient: linear-gradient(135deg, #1A472A 0%, #AAAAAA 100%);
+            --house-primary: #1A472A;
+            --house-secondary: #AAAAAA;
+        }
+        
+        .house-themed .result-title {
+            background: var(--house-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .house-themed .trait-badge {
+            background: var(--house-gradient);
+        }
+        
+        .house-themed .btn-primary {
+            background: var(--house-gradient);
+        }
+        
+        .magical-sparkle {
+            position: absolute;
+            color: #FFD700;
+            font-size: 0.8rem;
+            animation: sparkle 2s infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="background-animation" id="backgroundAnimation"></div>
+    
+    <!-- Quiz Container -->
+    <div class="quiz-container" id="quiz-container">
+        <!-- Quiz content will be inserted here by the quiz engine -->
+    </div>
+    
+    <!-- Quiz Engine -->
+    <script src="../quiz-engine.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Hogwarts House Quiz Configuration
+        const hogwartsQuizConfig = {
+            title: "Hogwarts House Sorting",
+            description: "Welcome to Hogwarts! The Sorting Hat will determine which house truly reflects your character, values, and magical potential. Answer honestly, for the hat can see into your heart.",
+            quizType: "hogwarts-house",
+            theme: "hogwarts",
+            estimatedTime: "3-4",
+            scoringMethod: "category",
+            showProgress: true,
+            allowBack: false,
+            shuffleQuestions: false,
+            shuffleAnswers: false,
+            showResults: true,
+            enableLeadCapture: true,
+            disclaimer: "This quiz is for entertainment purposes and is not affiliated with J.K. Rowling or Warner Bros.",
+            
+            questions: [
+                {
+                    id: 1,
+                    question: "You're walking alone at night and come to a fork in the road. Which path do you choose?",
+                    answers: [
+                        {
+                            value: "gryffindor",
+                            text: "The wide, sunny, grassy lane",
+                            description: "The safe and obvious choice"
+                        },
+                        {
+                            value: "hufflepuff",
+                            text: "The narrow, dark, lantern-lit alley",
+                            description: "Trust in the light to guide you"
+                        },
+                        {
+                            value: "ravenclaw",
+                            text: "The cobbled street lit by moonlight",
+                            description: "Let wisdom and observation guide you"
+                        },
+                        {
+                            value: "slytherin",
+                            text: "The twisting, leaf-strewn path through woods",
+                            description: "Adventure awaits those who dare"
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    question: "What quality do you most value in yourself?",
+                    answers: [
+                        {
+                            value: "gryffindor",
+                            text: "Courage",
+                            description: "Bravery in the face of danger"
+                        },
+                        {
+                            value: "ravenclaw",
+                            text: "Intelligence",
+                            description: "Knowledge and wisdom above all"
+                        },
+                        {
+                            value: "hufflepuff",
+                            text: "Loyalty",
+                            description: "Standing by friends and principles"
+                        },
+                        {
+                            value: "slytherin",
+                            text: "Ambition",
+                            description: "The drive to achieve greatness"
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    question: "Which magical creature would you most like as a pet?",
+                    answers: [
+                        {
+                            value: "gryffindor",
+                            text: "Phoenix",
+                            description: "Noble and brave, rising from ashes"
+                        },
+                        {
+                            value: "ravenclaw",
+                            text: "Owl",
+                            description: "Wise messenger of knowledge"
+                        },
+                        {
+                            value: "hufflepuff",
+                            text: "Badger",
+                            description: "Loyal and hardworking companion"
+                        },
+                        {
+                            value: "slytherin",
+                            text: "Serpent",
+                            description: "Cunning and mysterious ally"
+                        }
+                    ]
+                },
+                {
+                    id: 4,
+                    question: "You're in a magical library. Which section do you visit first?",
+                    answers: [
+                        {
+                            value: "gryffindor",
+                            text: "Defense Against the Dark Arts",
+                            description: "Learn to protect others"
+                        },
+                        {
+                            value: "ravenclaw",
+                            text: "Ancient Runes and Mysteries",
+                            description: "Unlock forgotten knowledge"
+                        },
+                        {
+                            value: "hufflepuff",
+                            text: "Herbology and Healing",
+                            description: "Help and nurture others"
+                        },
+                        {
+                            value: "slytherin",
+                            text: "Advanced Transfiguration",
+                            description: "Master powerful magic"
+                        }
+                    ]
+                },
+                {
+                    id: 5,
+                    question: "What's your greatest fear?",
+                    answers: [
+                        {
+                            value: "gryffindor",
+                            text: "Showing cowardice when others need help",
+                            description: "Failing to be brave when it matters"
+                        },
+                        {
+                            value: "ravenclaw",
+                            text: "Ignorance and being wrong",
+                            description: "Making decisions without understanding"
+                        },
+                        {
+                            value: "hufflepuff",
+                            text: "Being abandoned by those you care about",
+                            description: "Losing the bonds of friendship"
+                        },
+                        {
+                            value: "slytherin",
+                            text: "Being ordinary and unremarkable",
+                            description: "Never achieving your true potential"
+                        }
+                    ]
+                },
+                {
+                    id: 6,
+                    question: "How do you prefer to solve problems?",
+                    answers: [
+                        {
+                            value: "gryffindor",
+                            text: "Face them head-on with determination",
+                            description: "Bold action over careful planning"
+                        },
+                        {
+                            value: "ravenclaw",
+                            text: "Research thoroughly and think it through",
+                            description: "Knowledge and logic lead to solutions"
+                        },
+                        {
+                            value: "hufflepuff",
+                            text: "Work with others and consider everyone",
+                            description: "Collaboration and fairness"
+                        },
+                        {
+                            value: "slytherin",
+                            text: "Find the most efficient path to success",
+                            description: "Strategic thinking and resourcefulness"
+                        }
+                    ]
+                },
+                {
+                    id: 7,
+                    question: "Which Hogwarts subject appeals to you most?",
+                    answers: [
+                        {
+                            value: "gryffindor",
+                            text: "Quidditch and Flying",
+                            description: "Adventure and physical challenge"
+                        },
+                        {
+                            value: "ravenclaw",
+                            text: "Astronomy",
+                            description: "The mysteries of the universe"
+                        },
+                        {
+                            value: "hufflepuff",
+                            text: "Care of Magical Creatures",
+                            description: "Nurturing and understanding others"
+                        },
+                        {
+                            value: "slytherin",
+                            text: "Potions",
+                            description: "Precise skill with powerful results"
+                        }
+                    ]
+                },
+                {
+                    id: 8,
+                    question: "What motivates you most?",
+                    answers: [
+                        {
+                            value: "gryffindor",
+                            text: "Protecting those who can't protect themselves",
+                            description: "Standing up for the vulnerable"
+                        },
+                        {
+                            value: "ravenclaw",
+                            text: "Discovering something new about the world",
+                            description: "The pursuit of understanding"
+                        },
+                        {
+                            value: "hufflepuff",
+                            text: "Making sure everyone is included and happy",
+                            description: "Creating harmony and belonging"
+                        },
+                        {
+                            value: "slytherin",
+                            text: "Achieving your goals and proving yourself",
+                            description: "Personal success and recognition"
+                        }
+                    ]
+                },
+                {
+                    id: 9,
+                    question: "How do others typically see you?",
+                    answers: [
+                        {
+                            value: "gryffindor",
+                            text: "Bold and sometimes reckless",
+                            description: "A natural leader who acts on instinct"
+                        },
+                        {
+                            value: "ravenclaw",
+                            text: "Thoughtful and sometimes distant",
+                            description: "Lost in thought and ideas"
+                        },
+                        {
+                            value: "hufflepuff",
+                            text: "Kind and sometimes naive",
+                            description: "Always sees the best in people"
+                        },
+                        {
+                            value: "slytherin",
+                            text: "Determined and sometimes ruthless",
+                            description: "Focused on achieving your goals"
+                        }
+                    ]
+                },
+                {
+                    id: 10,
+                    question: "Which element calls to you?",
+                    answers: [
+                        {
+                            value: "gryffindor",
+                            text: "Fire",
+                            description: "Passionate, warm, and transformative"
+                        },
+                        {
+                            value: "ravenclaw",
+                            text: "Air",
+                            description: "Free-flowing, intellectual, and infinite"
+                        },
+                        {
+                            value: "hufflepuff",
+                            text: "Earth",
+                            description: "Stable, nurturing, and grounding"
+                        },
+                        {
+                            value: "slytherin",
+                            text: "Water",
+                            description: "Adaptable, deep, and powerful"
+                        }
+                    ]
+                }
+            ],
+            
+            results: {
+                gryffindor: {
+                    title: "Gryffindor",
+                    subtitle: "Brave, Daring, and Chivalrous",
+                    icon: "🦁",
+                    description: "You belong in Gryffindor, where the brave dwell at heart! You value courage, determination, and chivalry above all else. You're not afraid to stand up for what's right, even when it's difficult or dangerous. Your boldness and heroic nature make you a natural leader who inspires others to be their best selves.",
+                    traits: ["Brave", "Determined", "Chivalrous", "Bold", "Protective", "Heroic"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                ravenclaw: {
+                    title: "Ravenclaw",
+                    subtitle: "Wise, Witty, and Creative",
+                    icon: "🦅",
+                    description: "You belong in Ravenclaw, where intelligence and wisdom are valued above all! You have a sharp mind and love learning new things. Your creativity and wit make you excellent at solving complex problems, and you're always seeking to understand the deeper mysteries of the world around you.",
+                    traits: ["Intelligent", "Creative", "Witty", "Wise", "Curious", "Analytical"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                hufflepuff: {
+                    title: "Hufflepuff",
+                    subtitle: "Loyal, Patient, and Kind",
+                    icon: "🦡",
+                    description: "You belong in Hufflepuff, where loyalty and fair play reign supreme! You value friendship, hard work, and treating everyone with kindness and respect. Your patient and nurturing nature makes you an excellent friend and collaborator, and you have an amazing ability to bring out the best in others.",
+                    traits: ["Loyal", "Kind", "Patient", "Fair", "Hardworking", "Inclusive"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                slytherin: {
+                    title: "Slytherin",
+                    subtitle: "Ambitious, Cunning, and Resourceful",
+                    icon: "🐍",
+                    description: "You belong in Slytherin, where ambition and cunning lead to greatness! You're determined to achieve your goals and aren't afraid to use your intelligence and resourcefulness to get there. Your natural leadership abilities and strategic mind make you excellent at navigating complex situations and achieving success.",
+                    traits: ["Ambitious", "Cunning", "Resourceful", "Strategic", "Determined", "Leadership"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                }
+            }
+        };
+        
+        // Initialize the quiz
+        quiz = new QuizEngine(hogwartsQuizConfig);
+        
+        // Create magical background particles
+        function createMagicalParticles() {
+            const background = document.getElementById('backgroundAnimation');
+            const particleCount = 60;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random size between 3px and 15px
+                const size = Math.random() * 12 + 3;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Random position
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                
+                // Random animation delay
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                
+                // Random animation duration
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                
+                // Some particles are golden
+                if (Math.random() < 0.3) {
+                    particle.style.background = 'rgba(255, 215, 0, 0.3)';
+                }
+                
+                background.appendChild(particle);
+            }
+            
+            // Add some magical sparkles
+            for (let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'magical-sparkle';
+                sparkle.innerHTML = '✨';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 3 + 's';
+                background.appendChild(sparkle);
+            }
+        }
+        
+        // Override the original quiz engine's renderResults to add house theming
+        const originalRenderResults = quiz.renderResults;
+        quiz.renderResults = function() {
+            originalRenderResults.call(this);
+            
+            // Apply house-specific theming
+            const resultKey = this.results.resultKey;
+            const container = document.querySelector('.quiz-results-screen');
+            container.classList.add('house-themed', `${resultKey}-theme`);
+            
+            // Update CSS variables for the specific house
+            const houses = {
+                gryffindor: { gradient: 'linear-gradient(135deg, #740001 0%, #D3A625 100%)' },
+                ravenclaw: { gradient: 'linear-gradient(135deg, #0E1A40 0%, #946B2D 100%)' },
+                hufflepuff: { gradient: 'linear-gradient(135deg, #372E29 0%, #ECB939 100%)' },
+                slytherin: { gradient: 'linear-gradient(135deg, #1A472A 0%, #AAAAAA 100%)' }
+            };
+            
+            if (houses[resultKey]) {
+                document.documentElement.style.setProperty('--house-gradient', houses[resultKey].gradient);
+            }
+        };
+        
+        // Initialize magical particles when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createMagicalParticles();
+        });
+    </script>
+</body>
+</html>

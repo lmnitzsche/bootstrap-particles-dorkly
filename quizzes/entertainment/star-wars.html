@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Star Wars Path Quiz | Jedi, Sith, or Neutral? | DorklyAI</title>
+    <meta name="title" content="Star Wars Path Quiz | Jedi, Sith, or Neutral?">
+    <meta name="description" content="Discover your Star Wars destiny! Are you a noble Jedi, powerful Sith, wise Gray Jedi, or practical Smuggler? Find your path in the galaxy far, far away!">
+    <meta name="keywords" content="Star Wars quiz, Jedi Sith quiz, Force user quiz, Star Wars personality quiz, galactic path quiz">
+    <meta name="author" content="DorklyAI">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dorklyai.com/quizzes/entertainment/star-wars.html">
+    <meta property="og:title" content="Star Wars Path Quiz - Jedi, Sith, or Neutral?">
+    <meta property="og:description" content="Discover your Star Wars destiny! Find your path in the galaxy far, far away!">
+    <meta property="og:image" content="https://dorklyai.com/assets/dorklogo.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://dorklyai.com/quizzes/entertainment/star-wars.html">
+    <meta property="twitter:title" content="Star Wars Path Quiz">
+    <meta property="twitter:description" content="Discover your Star Wars destiny!">
+    <meta property="twitter:image" content="https://dorklyai.com/assets/dorklogo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://dorklyai.com/quizzes/entertainment/star-wars.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/dorklogo.png">
+    
+    <!-- Bootstrap 5.3.0 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    
+    <!-- Quiz Styles -->
+    <link href="../quiz-styles.css" rel="stylesheet">
+    
+    <style>
+        /* Star Wars-specific theme overrides */
+        :root {
+            --quiz-gradient: linear-gradient(135deg, #000000 0%, #0066CC 50%, #FFFFFF 100%);
+            --quiz-primary: #0066CC;
+            --quiz-secondary: #FFD700;
+        }
+        
+        /* Path-specific colors for results */
+        .jedi-theme {
+            --path-gradient: linear-gradient(135deg, #0066CC 0%, #87CEEB 50%, #FFFFFF 100%);
+            --path-primary: #0066CC;
+            --path-secondary: #87CEEB;
+        }
+        
+        .sith-theme {
+            --path-gradient: linear-gradient(135deg, #8B0000 0%, #FF0000 50%, #000000 100%);
+            --path-primary: #8B0000;
+            --path-secondary: #FF0000;
+        }
+        
+        .gray-jedi-theme {
+            --path-gradient: linear-gradient(135deg, #4B0082 0%, #9370DB 50%, #C0C0C0 100%);
+            --path-primary: #4B0082;
+            --path-secondary: #9370DB;
+        }
+        
+        .smuggler-theme {
+            --path-gradient: linear-gradient(135deg, #8B4513 0%, #DAA520 50%, #FFA500 100%);
+            --path-primary: #8B4513;
+            --path-secondary: #DAA520;
+        }
+        
+        .path-themed .result-title {
+            background: var(--path-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .path-themed .trait-badge {
+            background: var(--path-gradient);
+        }
+        
+        .path-themed .btn-primary {
+            background: var(--path-gradient);
+        }
+        
+        .force-effect {
+            position: absolute;
+            color: #0066CC;
+            font-size: 1rem;
+            animation: force-flow 4s infinite ease-in-out;
+            pointer-events: none;
+        }
+        
+        @keyframes force-flow {
+            0%, 100% { 
+                opacity: 0.2; 
+                transform: translateY(0) scale(0.8);
+            }
+            50% { 
+                opacity: 0.8; 
+                transform: translateY(-50px) scale(1.2);
+            }
+        }
+        
+        .star-field {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        .lightsaber-glow {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            animation: saber-hum 2s infinite ease-in-out;
+            pointer-events: none;
+        }
+        
+        @keyframes saber-hum {
+            0%, 100% { 
+                text-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+                transform: translateX(-50%) scale(1);
+            }
+            50% { 
+                text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+                transform: translateX(-50%) scale(1.1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="background-animation" id="backgroundAnimation"></div>
+    
+    <!-- Quiz Container -->
+    <div class="quiz-container" id="quiz-container">
+        <!-- Quiz content will be inserted here by the quiz engine -->
+    </div>
+    
+    <!-- Quiz Engine -->
+    <script src="../quiz-engine.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Star Wars Path Quiz Configuration
+        const starWarsQuizConfig = {
+            title: "Star Wars Path Quiz",
+            description: "A long time ago, in a galaxy far, far away... Your destiny awaits. Discover whether the Force guides you toward the light of the Jedi, the power of the Sith, the balance of the Gray Jedi, or the freedom of a Smuggler's life.",
+            quizType: "star-wars-path",
+            theme: "starwars",
+            estimatedTime: "4-5",
+            scoringMethod: "category",
+            showProgress: true,
+            allowBack: false,
+            shuffleQuestions: false,
+            shuffleAnswers: false,
+            showResults: true,
+            enableLeadCapture: true,
+            disclaimer: "This quiz is for entertainment purposes and is not affiliated with Disney, Lucasfilm, or the Star Wars franchise.",
+            
+            questions: [
+                {
+                    id: 1,
+                    question: "The Force flows through all living things. How do you connect with it?",
+                    answers: [
+                        {
+                            value: "jedi",
+                            text: "Through meditation, peace, and harmony",
+                            description: "Seek balance and inner tranquility"
+                        },
+                        {
+                            value: "sith",
+                            text: "Through passion, emotion, and desire",
+                            description: "Channel your feelings into power"
+                        },
+                        {
+                            value: "gray-jedi",
+                            text: "Through understanding both light and dark",
+                            description: "Embrace all aspects of the Force"
+                        },
+                        {
+                            value: "smuggler",
+                            text: "I prefer relying on skill and luck",
+                            description: "The Force is mysterious - better trust yourself"
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    question: "You discover a corrupt politician oppressing innocent people. What do you do?",
+                    answers: [
+                        {
+                            value: "jedi",
+                            text: "Work within the system to bring justice",
+                            description: "Use legal and peaceful means"
+                        },
+                        {
+                            value: "sith",
+                            text: "Remove them from power by any means necessary",
+                            description: "Swift, decisive action ends suffering"
+                        },
+                        {
+                            value: "gray-jedi",
+                            text: "Use whatever methods are most effective",
+                            description: "The ends justify the means"
+                        },
+                        {
+                            value: "smuggler",
+                            text: "Help individuals escape or avoid them",
+                            description: "You can't save everyone, but you can save some"
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    question: "What is your view on attachment and relationships?",
+                    answers: [
+                        {
+                            value: "jedi",
+                            text: "Attachment leads to suffering; compassion for all",
+                            description: "Love all beings, possess none"
+                        },
+                        {
+                            value: "sith",
+                            text: "Protect those you love with absolute power",
+                            description: "Strength keeps your loved ones safe"
+                        },
+                        {
+                            value: "gray-jedi",
+                            text: "Love is natural; embrace it while staying centered",
+                            description: "Balance emotion with wisdom"
+                        },
+                        {
+                            value: "smuggler",
+                            text: "Keep a small circle of people you trust completely",
+                            description: "Loyalty to friends above all"
+                        }
+                    ]
+                },
+                {
+                    id: 4,
+                    question: "You're offered incredible power that could help many, but at a personal cost. Do you accept?",
+                    answers: [
+                        {
+                            value: "jedi",
+                            text: "Only if I can maintain my principles",
+                            description: "Power without virtue is meaningless"
+                        },
+                        {
+                            value: "sith",
+                            text: "Yes, power is necessary to create change",
+                            description: "Sacrifice for the greater good... your good"
+                        },
+                        {
+                            value: "gray-jedi",
+                            text: "If the benefits outweigh the costs",
+                            description: "Pragmatic calculation guides decisions"
+                        },
+                        {
+                            value: "smuggler",
+                            text: "Depends on what the personal cost is",
+                            description: "Always read the fine print"
+                        }
+                    ]
+                },
+                {
+                    id: 5,
+                    question: "How do you handle your anger and fear?",
+                    answers: [
+                        {
+                            value: "jedi",
+                            text: "Release them through meditation and acceptance",
+                            description: "Let go of negative emotions"
+                        },
+                        {
+                            value: "sith",
+                            text: "Channel them into strength and determination",
+                            description: "Your emotions are your power"
+                        },
+                        {
+                            value: "gray-jedi",
+                            text: "Acknowledge them but don't let them control you",
+                            description: "Emotions are data, not commands"
+                        },
+                        {
+                            value: "smuggler",
+                            text: "Use humor and action to move past them",
+                            description: "Don't dwell on it - do something about it"
+                        }
+                    ]
+                },
+                {
+                    id: 6,
+                    question: "What's your preferred approach to conflict?",
+                    answers: [
+                        {
+                            value: "jedi",
+                            text: "Seek peaceful resolution first, fight only when necessary",
+                            description: "Diplomacy before the lightsaber"
+                        },
+                        {
+                            value: "sith",
+                            text: "Strike decisively to end conflicts quickly",
+                            description: "Overwhelming force prevents prolonged suffering"
+                        },
+                        {
+                            value: "gray-jedi",
+                            text: "Adapt your approach to each situation",
+                            description: "Different problems need different solutions"
+                        },
+                        {
+                            value: "smuggler",
+                            text: "Avoid it when possible, outmaneuver when not",
+                            description: "Fighting is bad for business"
+                        }
+                    ]
+                },
+                {
+                    id: 7,
+                    question: "You find an ancient Sith holocron containing dangerous knowledge. What do you do?",
+                    answers: [
+                        {
+                            value: "jedi",
+                            text: "Destroy it to prevent anyone from being corrupted",
+                            description: "Some knowledge is too dangerous to exist"
+                        },
+                        {
+                            value: "sith",
+                            text: "Study it to gain its power and wisdom",
+                            description: "Knowledge is never inherently evil"
+                        },
+                        {
+                            value: "gray-jedi",
+                            text: "Study it carefully to understand and guard against it",
+                            description: "Understanding your enemy is crucial"
+                        },
+                        {
+                            value: "smuggler",
+                            text: "Sell it to someone who knows what to do with it",
+                            description: "Let the experts handle the mystical stuff"
+                        }
+                    ]
+                },
+                {
+                    id: 8,
+                    question: "What motivates your actions?",
+                    answers: [
+                        {
+                            value: "jedi",
+                            text: "Service to others and the greater good",
+                            description: "A life of selfless service"
+                        },
+                        {
+                            value: "sith",
+                            text: "Personal power and the ability to shape destiny",
+                            description: "Master your fate and the fate of others"
+                        },
+                        {
+                            value: "gray-jedi",
+                            text: "Finding truth and maintaining balance",
+                            description: "See the bigger picture beyond dogma"
+                        },
+                        {
+                            value: "smuggler",
+                            text: "Freedom, adventure, and helping friends",
+                            description: "Live life on your own terms"
+                        }
+                    ]
+                },
+                {
+                    id: 9,
+                    question: "How do you view the role of emotion in decision-making?",
+                    answers: [
+                        {
+                            value: "jedi",
+                            text: "Emotions cloud judgment; logic and wisdom guide",
+                            description: "Clear mind, pure intentions"
+                        },
+                        {
+                            value: "sith",
+                            text: "Emotions are the source of strength and clarity",
+                            description: "Passion reveals truth"
+                        },
+                        {
+                            value: "gray-jedi",
+                            text: "Emotions provide information; wisdom interprets",
+                            description: "Feel everything, be controlled by nothing"
+                        },
+                        {
+                            value: "smuggler",
+                            text: "Trust your gut, but keep your head cool",
+                            description: "Instincts and experience work together"
+                        }
+                    ]
+                },
+                {
+                    id: 10,
+                    question: "What legacy do you want to leave?",
+                    answers: [
+                        {
+                            value: "jedi",
+                            text: "A galaxy more peaceful and just",
+                            description: "Leave the universe better than you found it"
+                        },
+                        {
+                            value: "sith",
+                            text: "A legacy of power that protects what you value",
+                            description: "Strength that echoes through generations"
+                        },
+                        {
+                            value: "gray-jedi",
+                            text: "Wisdom that helps others find their own balance",
+                            description: "Teaching others to think for themselves"
+                        },
+                        {
+                            value: "smuggler",
+                            text: "Stories of adventure and loyalty to friends",
+                            description: "A life fully lived on your own terms"
+                        }
+                    ]
+                }
+            ],
+            
+            results: {
+                jedi: {
+                    title: "Jedi Knight",
+                    subtitle: "Guardian of Peace and Justice",
+                    icon: "⭐",
+                    description: "You walk the path of the Jedi! You believe in peace, justice, and using your abilities to protect others. Your dedication to the Light Side of the Force guides you to act with compassion, wisdom, and selflessness. You understand that true strength comes from inner peace and the desire to serve the greater good.",
+                    traits: ["Peaceful", "Compassionate", "Wise", "Selfless", "Diplomatic", "Protective"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                sith: {
+                    title: "Sith Lord",
+                    subtitle: "Master of Power and Passion",
+                    icon: "🔴",
+                    description: "You have embraced the Dark Side of the Force! You believe that passion, strength, and determination are the keys to achieving your goals. You're not afraid to use power to protect what you value and shape the galaxy according to your vision. Your emotions fuel your strength and give you the clarity to act decisively.",
+                    traits: ["Passionate", "Powerful", "Determined", "Decisive", "Strategic", "Ambitious"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                "gray-jedi": {
+                    title: "Gray Jedi",
+                    subtitle: "Walker Between Light and Dark",
+                    icon: "⚪",
+                    description: "You follow the path of the Gray Jedi! You understand that both light and dark have their place in the Force, and true wisdom comes from embracing balance rather than extremes. You make decisions based on pragmatic assessment rather than rigid dogma, using whatever methods are most effective for the situation at hand.",
+                    traits: ["Balanced", "Pragmatic", "Independent", "Wise", "Flexible", "Realistic"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                smuggler: {
+                    title: "Galactic Smuggler",
+                    subtitle: "Free Spirit of the Outer Rim",
+                    icon: "🚀",
+                    description: "You chart your own course through the galaxy! You value freedom, adventure, and loyalty to your chosen family above mystical philosophies. While others debate the nature of the Force, you rely on skill, wit, and determination to navigate the challenges of life. Your independence and resourcefulness make you a valuable ally and formidable opponent.",
+                    traits: ["Independent", "Resourceful", "Loyal", "Adventurous", "Practical", "Free-spirited"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                }
+            }
+        };
+        
+        // Initialize the quiz
+        quiz = new QuizEngine(starWarsQuizConfig);
+        
+        // Create Star Wars themed background
+        function createStarWarsBackground() {
+            const background = document.getElementById('backgroundAnimation');
+            const particleCount = 40;
+            
+            // Regular particles (representing space dust)
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 8 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 15 + 20) + 's';
+                
+                // Some particles are blue (Force energy)
+                if (Math.random() < 0.3) {
+                    particle.style.background = 'rgba(0, 102, 204, 0.4)';
+                }
+                
+                background.appendChild(particle);
+            }
+            
+            // Add stars
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star-field';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                background.appendChild(star);
+            }
+            
+            // Add Force effects
+            const forceSymbols = ['✨', '🌟', '💫', '⭐'];
+            for (let i = 0; i < 12; i++) {
+                const force = document.createElement('div');
+                force.className = 'force-effect';
+                force.innerHTML = forceSymbols[Math.floor(Math.random() * forceSymbols.length)];
+                force.style.left = Math.random() * 100 + '%';
+                force.style.top = Math.random() * 100 + '%';
+                force.style.animationDelay = Math.random() * 5 + 's';
+                background.appendChild(force);
+            }
+            
+            // Add lightsaber glow effect
+            const lightsaber = document.createElement('div');
+            lightsaber.className = 'lightsaber-glow';
+            lightsaber.innerHTML = '⚔️';
+            lightsaber.style.color = '#0066CC';
+            background.appendChild(lightsaber);
+        }
+        
+        // Override the quiz engine's renderResults to add path theming
+        const originalRenderResults = quiz.renderResults;
+        quiz.renderResults = function() {
+            originalRenderResults.call(this);
+            
+            // Apply path-specific theming
+            const resultKey = this.results.resultKey;
+            const container = document.querySelector('.quiz-results-screen');
+            container.classList.add('path-themed', `${resultKey}-theme`);
+            
+            // Update CSS variables for the specific path
+            const paths = {
+                jedi: { gradient: 'linear-gradient(135deg, #0066CC 0%, #87CEEB 50%, #FFFFFF 100%)' },
+                sith: { gradient: 'linear-gradient(135deg, #8B0000 0%, #FF0000 50%, #000000 100%)' },
+                'gray-jedi': { gradient: 'linear-gradient(135deg, #4B0082 0%, #9370DB 50%, #C0C0C0 100%)' },
+                smuggler: { gradient: 'linear-gradient(135deg, #8B4513 0%, #DAA520 50%, #FFA500 100%)' }
+            };
+            
+            if (paths[resultKey]) {
+                document.documentElement.style.setProperty('--path-gradient', paths[resultKey].gradient);
+            }
+        };
+        
+        // Initialize Star Wars background when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createStarWarsBackground();
+        });
+    </script>
+</body>
+</html>

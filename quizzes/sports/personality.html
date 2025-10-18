@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Sports Personality Quiz | Which Sport Fits You? | DorklyAI</title>
+    <meta name="title" content="Sports Personality Quiz | Which Sport Fits You?">
+    <meta name="description" content="Discover your athletic calling! Are you a team player, solo competitor, strategist, or adrenaline junkie? Find your perfect sport match!">
+    <meta name="keywords" content="sports personality quiz, athletic quiz, what sport am I quiz, sports compatibility quiz, athletic personality test">
+    <meta name="author" content="DorklyAI">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dorklyai.com/quizzes/sports/personality.html">
+    <meta property="og:title" content="Sports Personality Quiz - Which Sport Fits You?">
+    <meta property="og:description" content="Discover your athletic calling! Find your perfect sport match!">
+    <meta property="og:image" content="https://dorklyai.com/assets/dorklogo.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://dorklyai.com/quizzes/sports/personality.html">
+    <meta property="twitter:title" content="Sports Personality Quiz">
+    <meta property="twitter:description" content="Discover your athletic calling!">
+    <meta property="twitter:image" content="https://dorklyai.com/assets/dorklogo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://dorklyai.com/quizzes/sports/personality.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/dorklogo.png">
+    
+    <!-- Bootstrap 5.3.0 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    
+    <!-- Quiz Styles -->
+    <link href="../quiz-styles.css" rel="stylesheet">
+    
+    <style>
+        /* Sports-specific theme overrides */
+        :root {
+            --quiz-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --quiz-primary: #43e97b;
+            --quiz-secondary: #38f9d7;
+        }
+        
+        /* Sport-specific colors for results */
+        .team-sports-theme {
+            --sport-gradient: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FFD23F 100%);
+            --sport-primary: #FF6B35;
+            --sport-secondary: #F7931E;
+        }
+        
+        .individual-sports-theme {
+            --sport-gradient: linear-gradient(135deg, #6A4C93 0%, #3498DB 50%, #2ECC71 100%);
+            --sport-primary: #6A4C93;
+            --sport-secondary: #3498DB;
+        }
+        
+        .extreme-sports-theme {
+            --sport-gradient: linear-gradient(135deg, #E74C3C 0%, #F39C12 50%, #F1C40F 100%);
+            --sport-primary: #E74C3C;
+            --sport-secondary: #F39C12;
+        }
+        
+        .precision-sports-theme {
+            --sport-gradient: linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #95A5A6 100%);
+            --sport-primary: #2C3E50;
+            --sport-secondary: #34495E;
+        }
+        
+        .sport-themed .result-title {
+            background: var(--sport-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .sport-themed .trait-badge {
+            background: var(--sport-gradient);
+        }
+        
+        .sport-themed .btn-primary {
+            background: var(--sport-gradient);
+        }
+        
+        .sport-icon {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: bounce-sport 3s infinite ease-in-out;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        
+        @keyframes bounce-sport {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.4;
+            }
+            25% { 
+                transform: translateY(-20px) rotate(5deg);
+                opacity: 0.8;
+            }
+            50% { 
+                transform: translateY(-10px) rotate(-5deg);
+                opacity: 0.6;
+            }
+            75% { 
+                transform: translateY(-30px) rotate(3deg);
+                opacity: 0.7;
+            }
+        }
+        
+        .energy-wave {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 2px solid rgba(67, 233, 123, 0.3);
+            border-radius: 50%;
+            animation: energy-pulse 4s infinite ease-in-out;
+        }
+        
+        @keyframes energy-pulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.4;
+            }
+            100% {
+                transform: scale(0.8);
+                opacity: 0.8;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="background-animation" id="backgroundAnimation"></div>
+    
+    <!-- Quiz Container -->
+    <div class="quiz-container" id="quiz-container">
+        <!-- Quiz content will be inserted here by the quiz engine -->
+    </div>
+    
+    <!-- Quiz Engine -->
+    <script src="../quiz-engine.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Sports Personality Quiz Configuration
+        const sportsQuizConfig = {
+            title: "Sports Personality Quiz",
+            description: "Discover your athletic calling! Whether you're a team player, solo competitor, adrenaline seeker, or precision master, this quiz will reveal which sports best match your personality, skills, and competitive style.",
+            quizType: "sports-personality",
+            theme: "sports",
+            estimatedTime: "3-4",
+            scoringMethod: "category",
+            showProgress: true,
+            allowBack: false,
+            shuffleQuestions: false,
+            shuffleAnswers: false,
+            showResults: true,
+            enableLeadCapture: true,
+            disclaimer: "This quiz is for entertainment and guidance purposes. Consult with fitness professionals before starting any new sport.",
+            
+            questions: [
+                {
+                    id: 1,
+                    question: "How do you prefer to compete?",
+                    answers: [
+                        {
+                            value: "team-sports",
+                            text: "As part of a team working toward a common goal",
+                            description: "Collaboration and teamwork energize you"
+                        },
+                        {
+                            value: "individual-sports",
+                            text: "One-on-one, testing your skills against another",
+                            description: "Personal achievement and self-reliance"
+                        },
+                        {
+                            value: "extreme-sports",
+                            text: "Against nature and your own limits",
+                            description: "Push boundaries and embrace risk"
+                        },
+                        {
+                            value: "precision-sports",
+                            text: "With focus on technique and accuracy",
+                            description: "Perfection through practice and control"
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    question: "What motivates you most in physical activity?",
+                    answers: [
+                        {
+                            value: "team-sports",
+                            text: "Contributing to team success and camaraderie",
+                            description: "Shared victories are the sweetest"
+                        },
+                        {
+                            value: "individual-sports",
+                            text: "Personal improvement and self-mastery",
+                            description: "Becoming the best version of yourself"
+                        },
+                        {
+                            value: "extreme-sports",
+                            text: "Adrenaline rush and overcoming fear",
+                            description: "The thrill of danger and excitement"
+                        },
+                        {
+                            value: "precision-sports",
+                            text: "Achieving perfect form and consistency",
+                            description: "Mastery through repetition and refinement"
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    question: "How do you handle pressure situations?",
+                    answers: [
+                        {
+                            value: "team-sports",
+                            text: "Rally your teammates and communicate constantly",
+                            description: "Lean on your team and support others"
+                        },
+                        {
+                            value: "individual-sports",
+                            text: "Focus internally and trust your training",
+                            description: "Rely on mental toughness and preparation"
+                        },
+                        {
+                            value: "extreme-sports",
+                            text: "Embrace the chaos and trust your instincts",
+                            description: "Pressure creates excitement"
+                        },
+                        {
+                            value: "precision-sports",
+                            text: "Slow down, breathe, and execute technique",
+                            description: "Calm precision under pressure"
+                        }
+                    ]
+                },
+                {
+                    id: 4,
+                    question: "What's your ideal training environment?",
+                    answers: [
+                        {
+                            value: "team-sports",
+                            text: "Group practices with teammates and coaches",
+                            description: "Energy feeds off others' motivation"
+                        },
+                        {
+                            value: "individual-sports",
+                            text: "Solo training where you can focus completely",
+                            description: "Quiet focus and personal goals"
+                        },
+                        {
+                            value: "extreme-sports",
+                            text: "Outdoors in challenging natural conditions",
+                            description: "Nature as your gym and opponent"
+                        },
+                        {
+                            value: "precision-sports",
+                            text: "Controlled environment with minimal distractions",
+                            description: "Consistent conditions for skill development"
+                        }
+                    ]
+                },
+                {
+                    id: 5,
+                    question: "How do you prefer to improve your performance?",
+                    answers: [
+                        {
+                            value: "team-sports",
+                            text: "Through drills, strategy sessions, and team play",
+                            description: "Learn systems and work on chemistry"
+                        },
+                        {
+                            value: "individual-sports",
+                            text: "Analyzing personal stats and solo practice",
+                            description: "Data-driven personal improvement"
+                        },
+                        {
+                            value: "extreme-sports",
+                            text: "Taking on bigger challenges and risks",
+                            description: "Progressive overload of excitement"
+                        },
+                        {
+                            value: "precision-sports",
+                            text: "Repetitive practice and technical refinement",
+                            description: "Perfect practice makes perfect"
+                        }
+                    ]
+                },
+                {
+                    id: 6,
+                    question: "What role do you naturally take in group activities?",
+                    answers: [
+                        {
+                            value: "team-sports",
+                            text: "Leader, organizer, or motivating teammate",
+                            description: "Natural at bringing people together"
+                        },
+                        {
+                            value: "individual-sports",
+                            text: "Independent contributor who leads by example",
+                            description: "Inspire others through personal excellence"
+                        },
+                        {
+                            value: "extreme-sports",
+                            text: "The one who suggests the most adventurous option",
+                            description: "Push the group toward excitement"
+                        },
+                        {
+                            value: "precision-sports",
+                            text: "The careful planner who thinks through details",
+                            description: "Ensure everything is done correctly"
+                        }
+                    ]
+                },
+                {
+                    id: 7,
+                    question: "How do you view competition?",
+                    answers: [
+                        {
+                            value: "team-sports",
+                            text: "A way to bond with teammates and test your unity",
+                            description: "Shared struggle creates strong bonds"
+                        },
+                        {
+                            value: "individual-sports",
+                            text: "A measurement of your personal development",
+                            description: "Compete against yourself most of all"
+                        },
+                        {
+                            value: "extreme-sports",
+                            text: "An opportunity for incredible experiences",
+                            description: "The journey matters more than winning"
+                        },
+                        {
+                            value: "precision-sports",
+                            text: "A test of who has mastered their craft best",
+                            description: "Technical excellence determines victory"
+                        }
+                    ]
+                },
+                {
+                    id: 8,
+                    question: "What physical attributes do you most want to develop?",
+                    answers: [
+                        {
+                            value: "team-sports",
+                            text: "Endurance, speed, and tactical awareness",
+                            description: "All-around athleticism for team play"
+                        },
+                        {
+                            value: "individual-sports",
+                            text: "Mental toughness and specialized skills",
+                            description: "Master specific techniques deeply"
+                        },
+                        {
+                            value: "extreme-sports",
+                            text: "Balance, quick reflexes, and courage",
+                            description: "Body and mind ready for anything"
+                        },
+                        {
+                            value: "precision-sports",
+                            text: "Fine motor control and consistency",
+                            description: "Smooth, repeatable movements"
+                        }
+                    ]
+                },
+                {
+                    id: 9,
+                    question: "How do you handle setbacks or losses?",
+                    answers: [
+                        {
+                            value: "team-sports",
+                            text: "Analyze what the team can do better together",
+                            description: "Focus on collective improvement"
+                        },
+                        {
+                            value: "individual-sports",
+                            text: "Study your performance and adjust training",
+                            description: "Personal responsibility for improvement"
+                        },
+                        {
+                            value: "extreme-sports",
+                            text: "Learn from it and attempt something even bigger",
+                            description: "Setbacks fuel the next adventure"
+                        },
+                        {
+                            value: "precision-sports",
+                            text: "Break down technique and practice fundamentals",
+                            description: "Return to basics and rebuild"
+                        }
+                    ]
+                },
+                {
+                    id: 10,
+                    question: "What aspect of sport appeals to you most?",
+                    answers: [
+                        {
+                            value: "team-sports",
+                            text: "The social connection and shared achievement",
+                            description: "Relationships built through sport"
+                        },
+                        {
+                            value: "individual-sports",
+                            text: "Personal growth and self-discovery",
+                            description: "Learning about your own capabilities"
+                        },
+                        {
+                            value: "extreme-sports",
+                            text: "The rush of pushing your limits",
+                            description: "Living life at maximum intensity"
+                        },
+                        {
+                            value: "precision-sports",
+                            text: "The meditation of perfect execution",
+                            description: "Finding flow in focused practice"
+                        }
+                    ]
+                }
+            ],
+            
+            results: {
+                "team-sports": {
+                    title: "Team Sports Athlete",
+                    subtitle: "Collaboration, Communication, Unity",
+                    icon: "🏀",
+                    description: "You thrive in team sports! You're energized by collaboration, communication, and working toward shared goals. Whether it's basketball, soccer, volleyball, or football, you excel when you can contribute to something bigger than yourself. Your natural leadership and teamwork skills make you a valuable player who elevates everyone's game.",
+                    traits: ["Collaborative", "Communicative", "Supportive", "Strategic", "Motivating", "Social"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                "individual-sports": {
+                    title: "Individual Sports Competitor",
+                    subtitle: "Self-Reliance, Focus, Mastery",
+                    icon: "🎾",
+                    description: "You excel in individual sports! You're driven by personal improvement, self-reliance, and the pursuit of mastery. Whether it's tennis, golf, running, swimming, or martial arts, you thrive when success depends entirely on your own preparation and execution. Your mental toughness and dedication to self-improvement set you apart.",
+                    traits: ["Self-disciplined", "Focused", "Analytical", "Determined", "Independent", "Resilient"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                "extreme-sports": {
+                    title: "Extreme Sports Adventurer",
+                    subtitle: "Risk-Taking, Adrenaline, Freedom",
+                    icon: "🏂",
+                    description: "You're built for extreme sports! You crave adrenaline, love taking calculated risks, and find freedom in pushing physical and mental boundaries. Whether it's snowboarding, rock climbing, surfing, or mountain biking, you thrive when facing the unknown and conquering your fears. Your courage and adaptability inspire others to live boldly.",
+                    traits: ["Adventurous", "Courageous", "Adaptable", "Risk-tolerant", "Free-spirited", "Inspiring"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                "precision-sports": {
+                    title: "Precision Sports Specialist",
+                    subtitle: "Technique, Consistency, Excellence",
+                    icon: "🎯",
+                    description: "You excel in precision sports! You're drawn to activities that reward perfect technique, consistency, and mental focus. Whether it's archery, gymnastics, diving, figure skating, or golf, you thrive when success depends on mastering exact movements and maintaining composure. Your attention to detail and pursuit of perfection set the standard for excellence.",
+                    traits: ["Precise", "Patient", "Focused", "Perfectionist", "Disciplined", "Consistent"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                }
+            }
+        };
+        
+        // Initialize the quiz
+        quiz = new QuizEngine(sportsQuizConfig);
+        
+        // Create sports themed background
+        function createSportsBackground() {
+            const background = document.getElementById('backgroundAnimation');
+            const particleCount = 45;
+            
+            // Regular particles (representing energy)
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 10 + 3;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 12 + 18) + 's';
+                
+                // Some particles are green (sports energy)
+                if (Math.random() < 0.4) {
+                    particle.style.background = 'rgba(67, 233, 123, 0.4)';
+                } else if (Math.random() < 0.3) {
+                    particle.style.background = 'rgba(56, 249, 215, 0.3)';
+                }
+                
+                background.appendChild(particle);
+            }
+            
+            // Add sport icons
+            const sports = ['⚽', '🏀', '🎾', '🏐', '🏈', '⚾', '🏓', '🏸', '🥊', '🏊', '🏃', '🚴'];
+            for (let i = 0; i < 16; i++) {
+                const sport = document.createElement('div');
+                sport.className = 'sport-icon';
+                sport.innerHTML = sports[Math.floor(Math.random() * sports.length)];
+                sport.style.left = Math.random() * 100 + '%';
+                sport.style.top = Math.random() * 100 + '%';
+                sport.style.animationDelay = Math.random() * 4 + 's';
+                sport.style.color = `rgba(67, 233, 123, ${Math.random() * 0.4 + 0.3})`;
+                background.appendChild(sport);
+            }
+            
+            // Add energy waves
+            for (let i = 0; i < 5; i++) {
+                const wave = document.createElement('div');
+                wave.className = 'energy-wave';
+                wave.style.left = Math.random() * 100 + '%';
+                wave.style.top = Math.random() * 100 + '%';
+                wave.style.animationDelay = Math.random() * 4 + 's';
+                background.appendChild(wave);
+            }
+        }
+        
+        // Override the quiz engine's renderResults to add sport theming
+        const originalRenderResults = quiz.renderResults;
+        quiz.renderResults = function() {
+            originalRenderResults.call(this);
+            
+            // Apply sport-specific theming
+            const resultKey = this.results.resultKey;
+            const container = document.querySelector('.quiz-results-screen');
+            container.classList.add('sport-themed', `${resultKey}-theme`);
+            
+            // Update CSS variables for the specific sport category
+            const sportCategories = {
+                'team-sports': { gradient: 'linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FFD23F 100%)' },
+                'individual-sports': { gradient: 'linear-gradient(135deg, #6A4C93 0%, #3498DB 50%, #2ECC71 100%)' },
+                'extreme-sports': { gradient: 'linear-gradient(135deg, #E74C3C 0%, #F39C12 50%, #F1C40F 100%)' },
+                'precision-sports': { gradient: 'linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #95A5A6 100%)' }
+            };
+            
+            if (sportCategories[resultKey]) {
+                document.documentElement.style.setProperty('--sport-gradient', sportCategories[resultKey].gradient);
+            }
+        };
+        
+        // Initialize sports background when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createSportsBackground();
+        });
+    </script>
+</body>
+</html>

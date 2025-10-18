@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Cobra Kai Dojo Quiz | Which Dojo Fits You? | DorklyAI</title>
+    <meta name="title" content="Cobra Kai Dojo Quiz | Which Dojo Fits You?">
+    <meta name="description" content="Discover your martial arts philosophy! Are you Cobra Kai's aggression, Miyagi-Do's balance, or Eagle Fang's adaptation? Find your dojo now!">
+    <meta name="keywords" content="Cobra Kai quiz, dojo quiz, Miyagi-Do, Eagle Fang, martial arts quiz, karate philosophy quiz">
+    <meta name="author" content="DorklyAI">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dorklyai.com/quizzes/entertainment/cobra-kai.html">
+    <meta property="og:title" content="Cobra Kai Dojo Quiz - Which Dojo Fits You?">
+    <meta property="og:description" content="Discover your martial arts philosophy! Strike first, strike hard, or find balance?">
+    <meta property="og:image" content="https://dorklyai.com/assets/dorklogo.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://dorklyai.com/quizzes/entertainment/cobra-kai.html">
+    <meta property="twitter:title" content="Cobra Kai Dojo Quiz">
+    <meta property="twitter:description" content="Discover your martial arts philosophy!">
+    <meta property="twitter:image" content="https://dorklyai.com/assets/dorklogo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://dorklyai.com/quizzes/entertainment/cobra-kai.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/dorklogo.png">
+    
+    <!-- Bootstrap 5.3.0 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    
+    <!-- Quiz Styles -->
+    <link href="../quiz-styles.css" rel="stylesheet">
+    
+    <style>
+        /* Cobra Kai-specific theme overrides */
+        :root {
+            --quiz-gradient: linear-gradient(135deg, #000000 0%, #FFD700 50%, #FF0000 100%);
+            --quiz-primary: #000000;
+            --quiz-secondary: #FFD700;
+        }
+        
+        /* Dojo-specific colors for results */
+        .cobra-kai-theme {
+            --dojo-gradient: linear-gradient(135deg, #000000 0%, #FFD700 50%, #FF0000 100%);
+            --dojo-primary: #000000;
+            --dojo-secondary: #FFD700;
+        }
+        
+        .miyagi-do-theme {
+            --dojo-gradient: linear-gradient(135deg, #0066CC 0%, #FFFFFF 50%, #87CEEB 100%);
+            --dojo-primary: #0066CC;
+            --dojo-secondary: #FFFFFF;
+        }
+        
+        .eagle-fang-theme {
+            --dojo-gradient: linear-gradient(135deg, #8B4513 0%, #DAA520 50%, #FFA500 100%);
+            --dojo-primary: #8B4513;
+            --dojo-secondary: #DAA520;
+        }
+        
+        .all-valley-theme {
+            --dojo-gradient: linear-gradient(135deg, #4B0082 0%, #800080 50%, #FF69B4 100%);
+            --dojo-primary: #4B0082;
+            --dojo-secondary: #800080;
+        }
+        
+        .dojo-themed .result-title {
+            background: var(--dojo-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .dojo-themed .trait-badge {
+            background: var(--dojo-gradient);
+        }
+        
+        .dojo-themed .btn-primary {
+            background: var(--dojo-gradient);
+        }
+        
+        .karate-stance {
+            position: absolute;
+            font-size: 1.2rem;
+            animation: stance 3s infinite ease-in-out;
+            pointer-events: none;
+        }
+        
+        @keyframes stance {
+            0%, 100% { 
+                opacity: 0.4; 
+                transform: rotate(-10deg) scale(0.8);
+            }
+            50% { 
+                opacity: 0.8; 
+                transform: rotate(10deg) scale(1.1);
+            }
+        }
+        
+        .dojo-emblem {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            opacity: 0.1;
+            animation: float 6s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="background-animation" id="backgroundAnimation"></div>
+    
+    <!-- Quiz Container -->
+    <div class="quiz-container" id="quiz-container">
+        <!-- Quiz content will be inserted here by the quiz engine -->
+    </div>
+    
+    <!-- Quiz Engine -->
+    <script src="../quiz-engine.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Cobra Kai Dojo Quiz Configuration
+        const cobraKaiQuizConfig = {
+            title: "Cobra Kai Dojo Selector",
+            description: "Which dojo philosophy matches your fighting spirit? Discover whether you align with Cobra Kai's aggression, Miyagi-Do's balance, Eagle Fang's adaptation, or forge your own path in the All Valley.",
+            quizType: "cobra-kai-dojo",
+            theme: "cobrakai",
+            estimatedTime: "3-4",
+            scoringMethod: "category",
+            showProgress: true,
+            allowBack: false,
+            shuffleQuestions: false,
+            shuffleAnswers: false,
+            showResults: true,
+            enableLeadCapture: true,
+            disclaimer: "This quiz is for entertainment purposes and is not affiliated with Netflix, Sony Pictures, or the Cobra Kai series.",
+            
+            questions: [
+                {
+                    id: 1,
+                    question: "How do you approach a challenge?",
+                    answers: [
+                        {
+                            value: "cobra-kai",
+                            text: "Strike first, strike hard, no mercy",
+                            description: "Overwhelm your opponent with aggressive action"
+                        },
+                        {
+                            value: "miyagi-do",
+                            text: "Wait, observe, then respond with precision",
+                            description: "Defense first, understand your opponent"
+                        },
+                        {
+                            value: "eagle-fang",
+                            text: "Adapt quickly and use whatever works",
+                            description: "Be flexible and creative in your approach"
+                        },
+                        {
+                            value: "all-valley",
+                            text: "Combine all strategies as needed",
+                            description: "Use the best elements from all philosophies"
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    question: "What's most important in competition?",
+                    answers: [
+                        {
+                            value: "cobra-kai",
+                            text: "Winning at all costs",
+                            description: "Victory is the only thing that matters"
+                        },
+                        {
+                            value: "miyagi-do",
+                            text: "Honor and respect for your opponent",
+                            description: "How you fight matters more than winning"
+                        },
+                        {
+                            value: "eagle-fang",
+                            text: "Being unpredictable and surprising",
+                            description: "Keep your opponent guessing"
+                        },
+                        {
+                            value: "all-valley",
+                            text: "Personal growth through the experience",
+                            description: "Competition makes you better"
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    question: "How do you handle defeat?",
+                    answers: [
+                        {
+                            value: "cobra-kai",
+                            text: "Train harder and come back stronger",
+                            description: "Defeat is motivation for revenge"
+                        },
+                        {
+                            value: "miyagi-do",
+                            text: "Learn from it and find inner peace",
+                            description: "Every defeat teaches valuable lessons"
+                        },
+                        {
+                            value: "eagle-fang",
+                            text: "Analyze what went wrong and adapt",
+                            description: "Failure is data for improvement"
+                        },
+                        {
+                            value: "all-valley",
+                            text: "Accept it gracefully but prepare for next time",
+                            description: "Defeat is part of the journey"
+                        }
+                    ]
+                },
+                {
+                    id: 4,
+                    question: "What fighting style appeals to you most?",
+                    answers: [
+                        {
+                            value: "cobra-kai",
+                            text: "Aggressive offense with powerful strikes",
+                            description: "Dominate through strength and speed"
+                        },
+                        {
+                            value: "miyagi-do",
+                            text: "Defensive counters and flowing movements",
+                            description: "Use opponent's force against them"
+                        },
+                        {
+                            value: "eagle-fang",
+                            text: "Mixed techniques and improvisation",
+                            description: "Combine different martial arts styles"
+                        },
+                        {
+                            value: "all-valley",
+                            text: "Balanced approach with all techniques",
+                            description: "Master both offense and defense"
+                        }
+                    ]
+                },
+                {
+                    id: 5,
+                    question: "How do you motivate yourself?",
+                    answers: [
+                        {
+                            value: "cobra-kai",
+                            text: "Through anger and the need to prove yourself",
+                            description: "Channel your rage into power"
+                        },
+                        {
+                            value: "miyagi-do",
+                            text: "Through inner peace and self-discipline",
+                            description: "Find strength in calmness"
+                        },
+                        {
+                            value: "eagle-fang",
+                            text: "Through fun and the thrill of improvement",
+                            description: "Enjoy the process of getting better"
+                        },
+                        {
+                            value: "all-valley",
+                            text: "Through respect for the art itself",
+                            description: "Honor the tradition of martial arts"
+                        }
+                    ]
+                },
+                {
+                    id: 6,
+                    question: "What's your view on teamwork?",
+                    answers: [
+                        {
+                            value: "cobra-kai",
+                            text: "Everyone should follow the strongest leader",
+                            description: "Hierarchy and discipline create strength"
+                        },
+                        {
+                            value: "miyagi-do",
+                            text: "Support each other like family",
+                            description: "Everyone helps everyone improve"
+                        },
+                        {
+                            value: "eagle-fang",
+                            text: "Collaborate but maintain individuality",
+                            description: "Team up while being yourself"
+                        },
+                        {
+                            value: "all-valley",
+                            text: "Unite different perspectives for common goals",
+                            description: "Diversity makes the team stronger"
+                        }
+                    ]
+                },
+                {
+                    id: 7,
+                    question: "How do you view your opponents?",
+                    answers: [
+                        {
+                            value: "cobra-kai",
+                            text: "Enemies to be defeated and dominated",
+                            description: "Show no weakness or mercy"
+                        },
+                        {
+                            value: "miyagi-do",
+                            text: "Fellow practitioners deserving respect",
+                            description: "We all walk the same path"
+                        },
+                        {
+                            value: "eagle-fang",
+                            text: "Challenges that help you improve",
+                            description: "Good opponents make you better"
+                        },
+                        {
+                            value: "all-valley",
+                            text: "Potential allies with different methods",
+                            description: "Former enemies can become friends"
+                        }
+                    ]
+                },
+                {
+                    id: 8,
+                    question: "What drives your training?",
+                    answers: [
+                        {
+                            value: "cobra-kai",
+                            text: "The desire to be feared and respected",
+                            description: "Power commands respect"
+                        },
+                        {
+                            value: "miyagi-do",
+                            text: "Personal growth and self-improvement",
+                            description: "Become the best version of yourself"
+                        },
+                        {
+                            value: "eagle-fang",
+                            text: "Having fun while getting stronger",
+                            description: "Training should be enjoyable"
+                        },
+                        {
+                            value: "all-valley",
+                            text: "Protecting those you care about",
+                            description: "Strength to defend others"
+                        }
+                    ]
+                },
+                {
+                    id: 9,
+                    question: "How do you handle pressure?",
+                    answers: [
+                        {
+                            value: "cobra-kai",
+                            text: "Channel it into aggressive action",
+                            description: "Pressure creates diamonds"
+                        },
+                        {
+                            value: "miyagi-do",
+                            text: "Find your center and stay calm",
+                            description: "Breathe and maintain balance"
+                        },
+                        {
+                            value: "eagle-fang",
+                            text: "Embrace the chaos and have fun with it",
+                            description: "Pressure makes things interesting"
+                        },
+                        {
+                            value: "all-valley",
+                            text: "Use it as fuel for focused determination",
+                            description: "Pressure reveals true character"
+                        }
+                    ]
+                },
+                {
+                    id: 10,
+                    question: "What's your ultimate goal in martial arts?",
+                    answers: [
+                        {
+                            value: "cobra-kai",
+                            text: "To be the most dominant fighter",
+                            description: "Strike fear into your enemies"
+                        },
+                        {
+                            value: "miyagi-do",
+                            text: "To achieve perfect balance and harmony",
+                            description: "Master yourself, master the world"
+                        },
+                        {
+                            value: "eagle-fang",
+                            text: "To constantly evolve and surprise",
+                            description: "Never stop learning and adapting"
+                        },
+                        {
+                            value: "all-valley",
+                            text: "To unite all styles in perfect harmony",
+                            description: "Bring peace to the karate community"
+                        }
+                    ]
+                }
+            ],
+            
+            results: {
+                "cobra-kai": {
+                    title: "Cobra Kai",
+                    subtitle: "Strike First. Strike Hard. No Mercy.",
+                    icon: "🐍",
+                    description: "You embody the aggressive spirit of Cobra Kai! You believe in decisive action, overwhelming offense, and never showing weakness. Your philosophy is that the best defense is a strong offense, and you're not afraid to do whatever it takes to win. You thrive on competition and use your intensity to dominate your opponents.",
+                    traits: ["Aggressive", "Decisive", "Competitive", "Intense", "Fearless", "Dominant"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                "miyagi-do": {
+                    title: "Miyagi-Do",
+                    subtitle: "Defense and Balance in All Things",
+                    icon: "🌊",
+                    description: "You align with the peaceful wisdom of Miyagi-Do! You believe in defense, balance, and using your opponent's strength against them. Your philosophy emphasizes inner peace, respect for others, and finding harmony in conflict. You understand that true strength comes from self-discipline and protecting others, not from aggression.",
+                    traits: ["Balanced", "Defensive", "Peaceful", "Respectful", "Wise", "Protective"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                "eagle-fang": {
+                    title: "Eagle Fang",
+                    subtitle: "Adapt, Improvise, and Strike Like an Eagle",
+                    icon: "🦅",
+                    description: "You embody the adaptive spirit of Eagle Fang! You believe in flexibility, creativity, and using whatever techniques work best in any situation. Your philosophy combines the best elements of different styles while maintaining a sense of fun and spontaneity. You're not bound by rigid traditions and prefer to forge your own path.",
+                    traits: ["Adaptive", "Creative", "Flexible", "Spontaneous", "Fun-loving", "Innovative"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                "all-valley": {
+                    title: "All Valley Unity",
+                    subtitle: "Bringing All Dojos Together",
+                    icon: "🏆",
+                    description: "You represent the ultimate harmony of all martial arts philosophies! You understand that each dojo has valuable lessons to offer, and true mastery comes from integrating different approaches. Your philosophy focuses on unity, growth, and using martial arts to build bridges rather than walls. You see the bigger picture beyond individual dojo rivalries.",
+                    traits: ["Unifying", "Diplomatic", "Open-minded", "Wise", "Peaceful", "Inclusive"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                }
+            }
+        };
+        
+        // Initialize the quiz
+        quiz = new QuizEngine(cobraKaiQuizConfig);
+        
+        // Create martial arts themed background
+        function createMartialartsBackground() {
+            const background = document.getElementById('backgroundAnimation');
+            const particleCount = 50;
+            
+            // Regular particles
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 12 + 4;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                
+                // Some particles are golden (Cobra Kai colors)
+                if (Math.random() < 0.3) {
+                    particle.style.background = 'rgba(255, 215, 0, 0.3)';
+                } else if (Math.random() < 0.2) {
+                    particle.style.background = 'rgba(255, 0, 0, 0.2)';
+                }
+                
+                background.appendChild(particle);
+            }
+            
+            // Add karate stance emojis
+            const stances = ['🥋', '👊', '🤚', '👐', '🙏'];
+            for (let i = 0; i < 15; i++) {
+                const stance = document.createElement('div');
+                stance.className = 'karate-stance';
+                stance.innerHTML = stances[Math.floor(Math.random() * stances.length)];
+                stance.style.left = Math.random() * 100 + '%';
+                stance.style.top = Math.random() * 100 + '%';
+                stance.style.animationDelay = Math.random() * 4 + 's';
+                stance.style.color = `rgba(255, 215, 0, ${Math.random() * 0.3 + 0.1})`;
+                background.appendChild(stance);
+            }
+            
+            // Add dojo emblem
+            const emblem = document.createElement('div');
+            emblem.className = 'dojo-emblem';
+            emblem.innerHTML = '🥋';
+            background.appendChild(emblem);
+        }
+        
+        // Override the quiz engine's renderResults to add dojo theming
+        const originalRenderResults = quiz.renderResults;
+        quiz.renderResults = function() {
+            originalRenderResults.call(this);
+            
+            // Apply dojo-specific theming
+            const resultKey = this.results.resultKey;
+            const container = document.querySelector('.quiz-results-screen');
+            container.classList.add('dojo-themed', `${resultKey}-theme`);
+            
+            // Update CSS variables for the specific dojo
+            const dojos = {
+                'cobra-kai': { gradient: 'linear-gradient(135deg, #000000 0%, #FFD700 50%, #FF0000 100%)' },
+                'miyagi-do': { gradient: 'linear-gradient(135deg, #0066CC 0%, #FFFFFF 50%, #87CEEB 100%)' },
+                'eagle-fang': { gradient: 'linear-gradient(135deg, #8B4513 0%, #DAA520 50%, #FFA500 100%)' },
+                'all-valley': { gradient: 'linear-gradient(135deg, #4B0082 0%, #800080 50%, #FF69B4 100%)' }
+            };
+            
+            if (dojos[resultKey]) {
+                document.documentElement.style.setProperty('--dojo-gradient', dojos[resultKey].gradient);
+            }
+        };
+        
+        // Initialize martial arts background when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createMartialartsBackground();
+        });
+    </script>
+</body>
+</html>

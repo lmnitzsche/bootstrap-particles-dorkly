@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Quiz Central | Discover Your Perfect Match | Fun Personality Quizzes</title>
+    <meta name="title" content="Quiz Central | Discover Your Perfect Match">
+    <meta name="description" content="Explore our collection of fun personality quizzes! From pop culture favorites to sports, gaming, and food preferences. Discover what makes you unique!">
+    <meta name="keywords" content="personality quiz, pop culture quiz, gaming quiz, sports quiz, food quiz, entertainment quiz, fun quizzes">
+    <meta name="author" content="Quiz Central">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dorklyai.com/quizzes/">
+    <meta property="og:title" content="Quiz Central - Discover Your Perfect Match">
+    <meta property="og:description" content="Take our collection of fun personality quizzes! From pop culture to gaming and more.">
+    <meta property="og:image" content="https://dorklyai.com/assets/dorklogo.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://dorklyai.com/quizzes/">
+    <meta property="twitter:title" content="Quiz Central - Discover Your Perfect Match">
+    <meta property="twitter:description" content="Explore our collection of personality quizzes!">
+    <meta property="twitter:image" content="https://dorklyai.com/assets/dorklogo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://dorklyai.com/quizzes/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/dorklogo.png">
+    
+    <!-- Bootstrap 5.3.0 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --pop-culture-gradient: linear-gradient(135deg, #ff6b9d 0%, #c44569 50%, #f8b500 100%);
+            --sports-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --gaming-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            --food-gradient: linear-gradient(135deg, #fd746c 0%, #ff9068 50%, #fdc830 100%);
+            --surface: rgba(255, 255, 255, 0.95);
+            --surface-dark: rgba(0, 0, 0, 0.1);
+            --text-primary: #2d3748;
+            --text-secondary: #718096;
+            --border-light: rgba(255, 255, 255, 0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Background */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+            opacity: 0.1;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0) scale(1) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-100px) translateX(50px) scale(1.2) rotate(90deg);
+            }
+            50% {
+                transform: translateY(-200px) translateX(-50px) scale(0.8) rotate(180deg);
+            }
+            75% {
+                transform: translateY(-100px) translateX(-100px) scale(1.1) rotate(270deg);
+            }
+        }
+        
+        /* Header */
+        .main-header {
+            position: relative;
+            z-index: 10;
+            padding: 2rem 0 4rem 0;
+            text-align: center;
+        }
+        
+        .logo {
+            height: 80px;
+            margin-bottom: 2.5rem;
+            filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.3));
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .hero-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 50%, #2d3748 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            letter-spacing: 4px;
+            text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .hero-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+            border-radius: 2px;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            color: #2d3748;
+            font-weight: 500;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Category Filter */
+        .category-filter {
+            position: relative;
+            z-index: 10;
+            padding: 0 2rem 3rem 2rem;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .filter-container {
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-light);
+            border-radius: 50px;
+            padding: 8px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .filter-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: transparent;
+            color: var(--text-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .filter-btn:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .filter-btn:hover::before {
+            opacity: 1;
+        }
+        
+        .filter-btn.active {
+            color: white;
+            background: var(--gradient);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .filter-btn.all { --gradient: var(--primary-gradient); }
+        .filter-btn.pop-culture { --gradient: var(--pop-culture-gradient); }
+        .filter-btn.sports { --gradient: var(--sports-gradient); }
+        .filter-btn.gaming { --gradient: var(--gaming-gradient); }
+        .filter-btn.food { --gradient: var(--food-gradient); }
+        
+        /* Quiz Grid */
+        .quiz-grid {
+            position: relative;
+            z-index: 10;
+            padding: 0 2rem 4rem 2rem;
+        }
+        
+        .quiz-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .quiz-card {
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .quiz-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--category-gradient);
+            z-index: 1;
+        }
+        
+        .quiz-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .quiz-card.pop-culture { --category-gradient: var(--pop-culture-gradient); }
+        .quiz-card.sports { --category-gradient: var(--sports-gradient); }
+        .quiz-card.gaming { --category-gradient: var(--gaming-gradient); }
+        .quiz-card.food { --category-gradient: var(--food-gradient); }
+        
+        .quiz-image {
+            height: 200px;
+            background: var(--category-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quiz-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+        }
+        
+        .quiz-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .quiz-category {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: var(--category-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        
+        .quiz-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        
+        .quiz-description {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        
+        .quiz-stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .quiz-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .quiz-cta {
+            background: var(--category-gradient);
+            border: none;
+            border-radius: 12px;
+            padding: 1rem 2rem;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: block;
+        }
+        
+        .quiz-cta:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Funnel CTAs */
+        .funnel-section {
+            position: relative;
+            z-index: 10;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .funnel-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .funnel-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .funnel-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .funnel-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .funnel-btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .funnel-btn.primary {
+            background: var(--pop-culture-gradient);
+            color: white;
+        }
+        
+        .funnel-btn.secondary {
+            background: var(--gaming-gradient);
+            color: white;
+        }
+        
+        .funnel-btn:hover {
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Filter Animation */
+        .quiz-card.filtered-out {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .filter-container {
+                padding: 6px;
+                gap: 2px;
+            }
+            
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+            
+            .quiz-grid {
+                padding: 0 1rem 2rem 1rem;
+            }
+            
+            .funnel-section {
+                padding: 2rem 1rem;
+            }
+            
+            .funnel-container {
+                padding: 2rem;
+            }
+            
+            .funnel-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .funnel-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="background-animation" id="backgroundAnimation"></div>
+    
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container-fluid">
+            <img src="../assets/dorklogo.png" alt="Logo" class="logo">
+            <h1 class="hero-title">Quiz Central</h1>
+            <p class="hero-subtitle">Discover your perfect match across pop culture, sports, gaming, and food! Take our fun personality quizzes and see what makes you unique.</p>
+        </div>
+    </header>
+    
+    <!-- Category Filter -->
+    <section class="category-filter">
+        <div class="filter-container">
+            <button class="filter-btn all active" data-category="all">
+                <i class="bi bi-grid-3x3-gap me-2"></i>All Quizzes
+            </button>
+            <button class="filter-btn pop-culture" data-category="pop-culture">
+                <i class="bi bi-star me-2"></i>Pop Culture
+            </button>
+            <button class="filter-btn sports" data-category="sports">
+                <i class="bi bi-trophy me-2"></i>Sports
+            </button>
+            <button class="filter-btn gaming" data-category="gaming">
+                <i class="bi bi-controller me-2"></i>Gaming
+            </button>
+            <button class="filter-btn food" data-category="food">
+                <i class="bi bi-cup-hot me-2"></i>Food
+            </button>
+        </div>
+    </section>
+    
+    <!-- Quiz Grid -->
+    <section class="quiz-grid">
+        <div class="quiz-container">
+            <div class="row" id="quizGrid">
+                
+                <!-- Hogwarts House Quiz -->
+                <div class="col-lg-4 col-md-6 quiz-item" data-category="pop-culture">
+                    <div class="quiz-card pop-culture">
+                        <div class="quiz-image">⚡</div>
+                        <div class="quiz-content">
+                            <div class="quiz-category">Pop Culture</div>
+                            <h3 class="quiz-title">Hogwarts House Sorting</h3>
+                            <p class="quiz-description">Discover which Hogwarts house truly reflects your personality, values, and magical potential. Are you brave, wise, loyal, or ambitious?</p>
+                            <div class="quiz-stats">
+                                <div class="quiz-stat">
+                                    <i class="bi bi-clock"></i>
+                                    <span>3-4 min</span>
+                                </div>
+                                <div class="quiz-stat">
+                                    <i class="bi bi-people"></i>
+                                    <span>4 Houses</span>
+                                </div>
+                            </div>
+                            <a href="entertainment/hogwarts-house.html" class="quiz-cta">
+                                Get Sorted <i class="bi bi-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cobra Kai Quiz -->
+                <div class="col-lg-4 col-md-6 quiz-item" data-category="pop-culture">
+                    <div class="quiz-card pop-culture">
+                        <div class="quiz-image">🥋</div>
+                        <div class="quiz-content">
+                            <div class="quiz-category">Pop Culture</div>
+                            <h3 class="quiz-title">Cobra Kai Dojo Selector</h3>
+                            <p class="quiz-description">Which dojo philosophy aligns with your fighting spirit? Discover if you're Cobra Kai, Miyagi-Do, Eagle Fang, or All Valley Unity.</p>
+                            <div class="quiz-stats">
+                                <div class="quiz-stat">
+                                    <i class="bi bi-clock"></i>
+                                    <span>3-4 min</span>
+                                </div>
+                                <div class="quiz-stat">
+                                    <i class="bi bi-people"></i>
+                                    <span>4 Dojos</span>
+                                </div>
+                            </div>
+                            <a href="entertainment/cobra-kai.html" class="quiz-cta">
+                                Find Your Dojo <i class="bi bi-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Star Wars Quiz -->
+                <div class="col-lg-4 col-md-6 quiz-item" data-category="pop-culture">
+                    <div class="quiz-card pop-culture">
+                        <div class="quiz-image">⭐</div>
+                        <div class="quiz-content">
+                            <div class="quiz-category">Pop Culture</div>
+                            <h3 class="quiz-title">Star Wars Path Quiz</h3>
+                            <p class="quiz-description">Discover your Star Wars destiny! Are you a noble Jedi, powerful Sith, balanced Gray Jedi, or free-spirited Smuggler?</p>
+                            <div class="quiz-stats">
+                                <div class="quiz-stat">
+                                    <i class="bi bi-clock"></i>
+                                    <span>4-5 min</span>
+                                </div>
+                                <div class="quiz-stat">
+                                    <i class="bi bi-people"></i>
+                                    <span>4 Paths</span>
+                                </div>
+                            </div>
+                            <a href="entertainment/star-wars.html" class="quiz-cta">
+                                Choose Your Path <i class="bi bi-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sports Personality Quiz -->
+                <div class="col-lg-4 col-md-6 quiz-item" data-category="sports">
+                    <div class="quiz-card sports">
+                        <div class="quiz-image">🏆</div>
+                        <div class="quiz-content">
+                            <div class="quiz-category">Sports</div>
+                            <h3 class="quiz-title">Sports Personality Quiz</h3>
+                            <p class="quiz-description">Find your athletic calling! Discover if you're suited for team sports, individual competition, extreme sports, or precision athletics.</p>
+                            <div class="quiz-stats">
+                                <div class="quiz-stat">
+                                    <i class="bi bi-clock"></i>
+                                    <span>3-4 min</span>
+                                </div>
+                                <div class="quiz-stat">
+                                    <i class="bi bi-people"></i>
+                                    <span>4 Types</span>
+                                </div>
+                            </div>
+                            <a href="sports/personality.html" class="quiz-cta">
+                                Find Your Sport <i class="bi bi-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- OKC Thunder Quiz -->
+                <div class="col-lg-4 col-md-6 quiz-item" data-category="sports">
+                    <div class="quiz-card sports">
+                        <div class="quiz-image">⚡</div>
+                        <div class="quiz-content">
+                            <div class="quiz-category">Sports</div>
+                            <h3 class="quiz-title">OKC Thunder Player Quiz</h3>
+                            <p class="quiz-description">Which OKC Thunder player matches your style? Find out if you're a scoring superstar, defensive anchor, playmaker, or versatile role player!</p>
+                            <div class="quiz-stats">
+                                <div class="quiz-stat">
+                                    <i class="bi bi-clock"></i>
+                                    <span>3-4 min</span>
+                                </div>
+                                <div class="quiz-stat">
+                                    <i class="bi bi-people"></i>
+                                    <span>4 Players</span>
+                                </div>
+                            </div>
+                            <a href="sports/okc-thunder.html" class="quiz-cta">
+                                Find Your Player <i class="bi bi-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Guess Your Sport Quiz -->
+                <div class="col-lg-4 col-md-6 quiz-item" data-category="sports">
+                    <div class="quiz-card sports">
+                        <div class="quiz-image">🎯</div>
+                        <div class="quiz-content">
+                            <div class="quiz-category">Sports</div>
+                            <h3 class="quiz-title">Guess Your Sport</h3>
+                            <p class="quiz-description">Answer personality questions and we'll guess which sport you love! From basketball to swimming, can we read your athletic mind?</p>
+                            <div class="quiz-stats">
+                                <div class="quiz-stat">
+                                    <i class="bi bi-clock"></i>
+                                    <span>2-3 min</span>
+                                </div>
+                                <div class="quiz-stat">
+                                    <i class="bi bi-people"></i>
+                                    <span>8 Sports</span>
+                                </div>
+                            </div>
+                            <a href="sports/guess-your-sport.html" class="quiz-cta">
+                                Test Us <i class="bi bi-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fable Quiz -->
+                <div class="col-lg-4 col-md-6 quiz-item" data-category="gaming">
+                    <div class="quiz-card gaming">
+                        <div class="quiz-image">🗡️</div>
+                        <div class="quiz-content">
+                            <div class="quiz-category">Gaming</div>
+                            <h3 class="quiz-title">Fable Character Quiz</h3>
+                            <p class="quiz-description">What's your Fable destiny? Discover if you're a noble hero, cunning rogue, powerful mage, or chaotic neutral wanderer in Albion!</p>
+                            <div class="quiz-stats">
+                                <div class="quiz-stat">
+                                    <i class="bi bi-clock"></i>
+                                    <span>4-5 min</span>
+                                </div>
+                                <div class="quiz-stat">
+                                    <i class="bi bi-people"></i>
+                                    <span>4 Paths</span>
+                                </div>
+                            </div>
+                            <a href="gaming/fable.html" class="quiz-cta">
+                                Choose Your Path <i class="bi bi-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mario Quiz -->
+                <div class="col-lg-4 col-md-6 quiz-item" data-category="gaming">
+                    <div class="quiz-card gaming">
+                        <div class="quiz-image">🍄</div>
+                        <div class="quiz-content">
+                            <div class="quiz-category">Gaming</div>
+                            <h3 class="quiz-title">Mario Character Quiz</h3>
+                            <p class="quiz-description">Which Super Mario character are you? Find out if you're brave like Mario, smart like Luigi, royal like Peach, or mischievous like Bowser!</p>
+                            <div class="quiz-stats">
+                                <div class="quiz-stat">
+                                    <i class="bi bi-clock"></i>
+                                    <span>3-4 min</span>
+                                </div>
+                                <div class="quiz-stat">
+                                    <i class="bi bi-people"></i>
+                                    <span>6 Characters</span>
+                                </div>
+                            </div>
+                            <a href="gaming/mario.html" class="quiz-cta">
+                                Start Quiz <i class="bi bi-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Board Game Quiz -->
+                <div class="col-lg-4 col-md-6 quiz-item" data-category="gaming">
+                    <div class="quiz-card gaming">
+                        <div class="quiz-image">🎲</div>
+                        <div class="quiz-content">
+                            <div class="quiz-category">Gaming</div>
+                            <h3 class="quiz-title">Board Game Personality</h3>
+                            <p class="quiz-description">What board game matches your personality? Strategy master, party game enthusiast, cooperative player, or competitive champion?</p>
+                            <div class="quiz-stats">
+                                <div class="quiz-stat">
+                                    <i class="bi bi-clock"></i>
+                                    <span>3-4 min</span>
+                                </div>
+                                <div class="quiz-stat">
+                                    <i class="bi bi-people"></i>
+                                    <span>4 Types</span>
+                                </div>
+                            </div>
+                            <a href="gaming/board-game.html" class="quiz-cta">
+                                Find Your Game <i class="bi bi-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Culinary Personality Quiz -->
+                <div class="col-lg-4 col-md-6 quiz-item" data-category="food">
+                    <div class="quiz-card food">
+                        <div class="quiz-image">👨‍</div>
+                        <div class="quiz-content">
+                            <div class="quiz-category">Food</div>
+                            <h3 class="quiz-title">Culinary Personality Quiz</h3>
+                            <p class="quiz-description">What's your cooking style? Are you an experimental chef, traditional home cook, fast food aficionado, or gourmet food enthusiast?</p>
+                            <div class="quiz-stats">
+                                <div class="quiz-stat">
+                                    <i class="bi bi-clock"></i>
+                                    <span>3-4 min</span>
+                                </div>
+                                <div class="quiz-stat">
+                                    <i class="bi bi-people"></i>
+                                    <span>4 Types</span>
+                                </div>
+                            </div>
+                            <a href="food/culinary-personality.html" class="quiz-cta">
+                                Discover Your Style <i class="bi bi-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Favorite Food Quiz -->
+                <div class="col-lg-4 col-md-6 quiz-item" data-category="food">
+                    <div class="quiz-card food">
+                        <div class="quiz-image">🍕</div>
+                        <div class="quiz-content">
+                            <div class="quiz-category">Food</div>
+                            <h3 class="quiz-title">Favorite Food Predictor</h3>
+                            <p class="quiz-description">Answer fun questions and we'll guess your favorite food! From pizza to sushi, tacos to pasta - can we read your taste buds?</p>
+                            <div class="quiz-stats">
+                                <div class="quiz-stat">
+                                    <i class="bi bi-clock"></i>
+                                    <span>2-3 min</span>
+                                </div>
+                                <div class="quiz-stat">
+                                    <i class="bi bi-people"></i>
+                                    <span>8 Foods</span>
+                                </div>
+                            </div>
+                            <a href="food/favorite-food.html" class="quiz-cta">
+                                Surprise Me <i class="bi bi-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Restaurant Choice Quiz -->
+                <div class="col-lg-4 col-md-6 quiz-item" data-category="food">
+                    <div class="quiz-card food">
+                        <div class="quiz-image">🍽️</div>
+                        <div class="quiz-content">
+                            <div class="quiz-category">Food</div>
+                            <h3 class="quiz-title">Restaurant Choice Quiz</h3>
+                            <p class="quiz-description">What type of dining experience suits you? Fine dining, casual comfort, fast casual, or food truck adventure - find your perfect spot!</p>
+                            <div class="quiz-stats">
+                                <div class="quiz-stat">
+                                    <i class="bi bi-clock"></i>
+                                    <span>3-4 min</span>
+                                </div>
+                                <div class="quiz-stat">
+                                    <i class="bi bi-people"></i>
+                                    <span>4 Types</span>
+                                </div>
+                            </div>
+                            <a href="food/restaurant-choice.html" class="quiz-cta">
+                                Find Your Vibe <i class="bi bi-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    
+    <!-- Funnel Section -->
+    <section class="funnel-section">
+        <div class="funnel-container">
+            <h2 class="funnel-title">Want More Content?</h2>
+            <p class="funnel-subtitle">
+                Enjoyed our quizzes? Discover more amazing content! Check out Vieve's gaming and pop culture blog for the latest trends, or explore DorklyAI's business solutions to grow your ventures.
+            </p>
+            <div class="funnel-buttons">
+                <a href="../blog/vieve.html" class="funnel-btn primary">
+                    <i class="bi bi-controller"></i>
+                    Vieve Gaming Blog
+                </a>
+                <a href="../" class="funnel-btn secondary">
+                    <i class="bi bi-rocket-takeoff"></i>
+                    DorklyAI Solutions
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Create animated background
+        function createAnimatedBackground() {
+            const background = document.getElementById('backgroundAnimation');
+            const colors = [
+                'rgba(255, 107, 157, 0.1)',  // Pink
+                'rgba(67, 233, 123, 0.1)',   // Green
+                'rgba(102, 126, 234, 0.1)',  // Blue
+                'rgba(253, 116, 108, 0.1)',  // Red
+                'rgba(255, 255, 255, 0.05)'  // White
+            ];
+            
+            for (let i = 0; i < 80; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                
+                const size = Math.random() * 120 + 20;
+                element.style.width = size + 'px';
+                element.style.height = size + 'px';
+                element.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                element.style.left = Math.random() * 100 + '%';
+                element.style.top = Math.random() * 100 + '%';
+                
+                element.style.animationDelay = Math.random() * 20 + 's';
+                element.style.animationDuration = (Math.random() * 20 + 30) + 's';
+                
+                background.appendChild(element);
+            }
+        }
+        
+        // Category filtering
+        function initCategoryFilter() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const quizItems = document.querySelectorAll('.quiz-item');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Update active filter
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    const category = btn.dataset.category;
+                    
+                    // Filter quizzes
+                    quizItems.forEach(item => {
+                        if (category === 'all' || item.dataset.category === category) {
+                            item.classList.remove('filtered-out');
+                            item.style.display = 'block';
+                        } else {
+                            item.classList.add('filtered-out');
+                            setTimeout(() => {
+                                if (item.classList.contains('filtered-out')) {
+                                    item.style.display = 'none';
+                                }
+                            }, 300);
+                        }
+                    });
+                });
+            });
+        }
+        
+        // Analytics tracking
+        function trackQuizClick(quizName, category) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'quiz_started', {
+                    'quiz_name': quizName,
+                    'quiz_category': category,
+                    'source': 'quiz_central'
+                });
+            }
+        }
+        
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            createAnimatedBackground();
+            initCategoryFilter();
+            
+            // Add click tracking to quiz CTAs
+            document.querySelectorAll('.quiz-cta').forEach(cta => {
+                cta.addEventListener('click', (e) => {
+                    const card = e.target.closest('.quiz-card');
+                    const title = card.querySelector('.quiz-title').textContent;
+                    const category = card.querySelector('.quiz-category').textContent.toLowerCase();
+                    trackQuizClick(title, category);
+                });
+            });
+            
+            // Funnel button tracking
+            document.querySelectorAll('.funnel-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const destination = btn.href.includes('vieve') ? 'vieve_blog' : 'dorkly_home';
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'funnel_click', {
+                            'destination': destination,
+                            'source': 'quiz_central'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
