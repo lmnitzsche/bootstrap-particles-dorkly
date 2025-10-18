@@ -709,6 +709,72 @@
         </div>
     </section>
 
+    <!-- Investment Calculator Ad Section -->
+    <section class="container my-5">
+        <div class="row align-items-center" style="background: linear-gradient(135deg, var(--blyss-gray) 0%, var(--blyss-black) 100%); border-radius: 20px; padding: 3.5rem 2rem; border: 1px solid rgba(13, 110, 253, 0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+            <div class="col-lg-7 mb-4 mb-lg-0">
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 2.3rem; font-weight: 700; color: var(--blyss-white); margin-bottom: 1.5rem;">
+                    <i class="bi bi-calculator" style="margin-right: 10px; color: var(--blyss-blue);"></i>
+                    Free Investment Calculator & Portfolio Analysis
+                </h2>
+                <p style="color: var(--blyss-text); font-size: 1.1rem; margin-bottom: 1.5rem; line-height: 1.7;">
+                    Calculate compound interest, backtest <strong style="color: var(--blyss-blue);">50 years of stock market data</strong>, and build custom portfolios with our powerful free tool.
+                </p>
+                <ul style="color: var(--blyss-text); font-size: 1rem; line-height: 2; list-style: none; padding: 0; margin-bottom: 2rem;">
+                    <li><i class="bi bi-check-circle-fill me-2" style="color: var(--blyss-blue);"></i> Compound Interest Calculator</li>
+                    <li><i class="bi bi-check-circle-fill me-2" style="color: var(--blyss-blue);"></i> Historical Backtesting (SPY, QQQ, VTI & 17+ ETFs)</li>
+                    <li><i class="bi bi-check-circle-fill me-2" style="color: var(--blyss-blue);"></i> CAGR Performance Analysis</li>
+                    <li><i class="bi bi-check-circle-fill me-2" style="color: var(--blyss-blue);"></i> Custom Portfolio Builder</li>
+                </ul>
+                <a href="../investcalcfunnel/index.html" class="btn btn-invest-calc" style="background: linear-gradient(135deg, var(--blyss-blue) 0%, #0056d2 100%); color: white; padding: 1rem 2.5rem; border-radius: 50px; font-weight: 700; font-size: 1.2rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 8px 25px rgba(13, 110, 253, 0.3); transition: all 0.3s ease;">
+                    <i class="bi bi-graph-up-arrow" style="font-size: 1.4rem;"></i>
+                    Try Calculator Free
+                </a>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const investBtn = document.querySelector('.btn-invest-calc');
+                        if (investBtn) {
+                            investBtn.addEventListener('mouseenter', function() {
+                                this.style.transform = 'translateY(-3px) scale(1.05)';
+                                this.style.boxShadow = '0 12px 35px rgba(13, 110, 253, 0.5)';
+                            });
+                            investBtn.addEventListener('mouseleave', function() {
+                                this.style.transform = 'translateY(0) scale(1)';
+                                this.style.boxShadow = '0 8px 25px rgba(13, 110, 253, 0.3)';
+                            });
+                        }
+                    });
+                </script>
+            </div>
+            <div class="col-lg-5 text-center">
+                <div style="background: rgba(13, 110, 253, 0.1); backdrop-filter: blur(10px); border-radius: 15px; padding: 2rem; border: 1px solid rgba(13, 110, 253, 0.3);">
+                    <div style="font-size: 4rem; color: var(--blyss-blue); margin-bottom: 1rem;">
+                        <i class="bi bi-graph-up"></i>
+                    </div>
+                    <h3 style="color: var(--blyss-white); font-weight: 700; margin-bottom: 1rem; font-size: 1.5rem;">Real-Time Market Data</h3>
+                    <p style="color: var(--blyss-text); font-size: 1rem; margin-bottom: 1rem;">
+                        Powered by Yahoo Finance API
+                    </p>
+                    <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+                        <span style="background: rgba(13, 110, 253, 0.2); padding: 0.5rem 1rem; border-radius: 20px; color: var(--blyss-blue); font-weight: 600; font-size: 0.9rem; border: 1px solid rgba(13, 110, 253, 0.3);">SPY</span>
+                        <span style="background: rgba(13, 110, 253, 0.2); padding: 0.5rem 1rem; border-radius: 20px; color: var(--blyss-blue); font-weight: 600; font-size: 0.9rem; border: 1px solid rgba(13, 110, 253, 0.3);">QQQ</span>
+                        <span style="background: rgba(13, 110, 253, 0.2); padding: 0.5rem 1rem; border-radius: 20px; color: var(--blyss-blue); font-weight: 600; font-size: 0.9rem; border: 1px solid rgba(13, 110, 253, 0.3);">VTI</span>
+                        <span style="background: rgba(13, 110, 253, 0.2); padding: 0.5rem 1rem; border-radius: 20px; color: var(--blyss-blue); font-weight: 600; font-size: 0.9rem; border: 1px solid rgba(13, 110, 253, 0.3);">SCHD</span>
+                        <span style="background: rgba(13, 110, 253, 0.2); padding: 0.5rem 1rem; border-radius: 20px; color: var(--blyss-blue); font-weight: 600; font-size: 0.9rem; border: 1px solid rgba(13, 110, 253, 0.3);">+14 More</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Topics -->
+    <section class="container my-5">
+        <h2 class="section-header">Trending Topics</h2>
+        <div class="row g-4" id="trending-articles-grid">
+            <!-- Articles will be loaded dynamically -->
+        </div>
+    </section>
+
     <!-- Newsletter Section -->
     <section class="newsletter-section">
         <div class="container text-center">
@@ -725,44 +791,84 @@
         </div>
     </section>
 
-    <!-- Trending Topics -->
+    <!-- DorklyAI Lead Generation Section -->
     <section class="container my-5">
-        <h2 class="section-header">Trending Topics</h2>
-        <div class="row g-4" id="trending-articles-grid">
-            <!-- Articles will be loaded dynamically -->
+        <div class="row align-items-center" style="background: linear-gradient(135deg, #1a1a1a 0%, #0d1929 100%); border-radius: 20px; padding: 4rem 2rem; border: 2px solid rgba(13, 110, 253, 0.3);">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--blyss-white); margin-bottom: 1.5rem;">
+                    Are You Losing 20+ Hours Per Week?
+                </h2>
+                <p style="color: var(--blyss-text); font-size: 1.1rem; margin-bottom: 1.5rem; line-height: 1.7;">
+                    Most businesses waste <strong>15-25 hours weekly</strong> on tasks that could be automated. That's <strong>$52,000+ in lost productivity</strong> every year.
+                </p>
+                <p style="color: var(--blyss-text); font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.7;">
+                    Take our <strong>free 2-minute "How Dorkly is Your Business?" quiz</strong> to discover exactly where you're losing time and money—plus get a personalized automation roadmap.
+                </p>
+                <div class="d-flex flex-column flex-sm-row gap-3">
+                    <a href="../quizfunnel/index.html" class="btn btn-quiz-cta" style="background: linear-gradient(135deg, var(--blyss-blue) 0%, #0056d2 100%); color: white; padding: 1rem 2rem; border-radius: 50px; font-weight: 700; font-size: 1.1rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 6px 20px rgba(13, 110, 253, 0.4); transition: all 0.3s ease;">
+                        <i class="bi bi-clipboard-check" style="font-size: 1.3rem;"></i>
+                        Take the Free Quiz
+                    </a>
+                    <a href="https://calendly.com/dorklyai/consultation" target="_blank" class="btn btn-courses-cta" style="background: transparent; border: 2px solid var(--blyss-blue); color: var(--blyss-blue); padding: 1rem 2rem; border-radius: 50px; font-weight: 700; font-size: 1.1rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease;">
+                        <i class="bi bi-calendar-check" style="font-size: 1.3rem;"></i>
+                        Free Consultation
+                    </a>
+                </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const quizBtn = document.querySelector('.btn-quiz-cta');
+                        const coursesBtn = document.querySelector('.btn-courses-cta');
+                        
+                        quizBtn.addEventListener('mouseenter', function() {
+                            this.style.transform = 'translateY(-3px) scale(1.05)';
+                            this.style.boxShadow = '0 10px 30px rgba(13, 110, 253, 0.6)';
+                        });
+                        quizBtn.addEventListener('mouseleave', function() {
+                            this.style.transform = 'translateY(0) scale(1)';
+                            this.style.boxShadow = '0 6px 20px rgba(13, 110, 253, 0.4)';
+                        });
+                        
+                        coursesBtn.addEventListener('mouseenter', function() {
+                            this.style.background = 'var(--blyss-blue)';
+                            this.style.color = 'white';
+                            this.style.transform = 'translateY(-3px)';
+                        });
+                        coursesBtn.addEventListener('mouseleave', function() {
+                            this.style.background = 'transparent';
+                            this.style.color = 'var(--blyss-blue)';
+                            this.style.transform = 'translateY(0)';
+                        });
+                    });
+                </script>
+            </div>
             <div class="col-lg-6">
-                <div class="article-card">
-                    <img src="https://images.unsplash.com/photo-1559526324-593bc073d938?w=800&h=400&fit=crop" alt="Article" class="article-image">
-                    <div class="article-content">
-                        <span class="article-category">Technology</span>
-                        <h3 class="article-title">The Metaverse Economy: Real Value in Virtual Worlds</h3>
-                        <p class="article-excerpt">Understanding the business models powering virtual reality platforms and digital asset marketplaces.</p>
-                        <div class="article-meta">
-                            <span>Oct 9, 2025</span>
-                            <span class="read-time">
-                                <i class="bi bi-clock"></i> 12 min
-                            </span>
-                        </div>
+                <div style="background: rgba(13, 110, 253, 0.1); border: 2px solid var(--blyss-blue); border-radius: 15px; padding: 2rem;">
+                    <h3 style="color: var(--blyss-white); font-weight: 700; margin-bottom: 1.5rem; font-size: 1.3rem;">
+                        <i class="bi bi-graph-up-arrow me-2" style="color: var(--blyss-blue);"></i>
+                        What You'll Discover:
+                    </h3>
+                    <ul style="color: var(--blyss-text); font-size: 1rem; line-height: 2; list-style: none; padding: 0;">
+                        <li style="margin-bottom: 1rem;"><i class="bi bi-check-circle-fill me-2" style="color: var(--blyss-blue);"></i> Your exact time-wasting score (0-100%)</li>
+                        <li style="margin-bottom: 1rem;"><i class="bi bi-check-circle-fill me-2" style="color: var(--blyss-blue);"></i> Hidden productivity gaps in your workflow</li>
+                        <li style="margin-bottom: 1rem;"><i class="bi bi-check-circle-fill me-2" style="color: var(--blyss-blue);"></i> Personalized automation recommendations</li>
+                        <li style="margin-bottom: 1rem;"><i class="bi bi-check-circle-fill me-2" style="color: var(--blyss-blue);"></i> Potential ROI from automation tools</li>
+                        <li><i class="bi bi-check-circle-fill me-2" style="color: var(--blyss-blue);"></i> Free consultation with our experts</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(13, 110, 253, 0.3);">
+                        <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; margin: 0;">
+                            <strong style="color: var(--blyss-blue);">500+ businesses</strong> have already discovered their automation potential
+                        </p>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="col-lg-6">
-                <div class="article-card">
-                    <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&h=400&fit=crop" alt="Article" class="article-image">
-                    <div class="article-content">
-                        <span class="article-category">Philosophy</span>
-                        <h3 class="article-title">The Examined Life in the Digital Age</h3>
-                        <p class="article-excerpt">Socratic wisdom meets modern technology: finding meaning in an era of infinite information.</p>
-                        <div class="article-meta">
-                            <span>Oct 8, 2025</span>
-                            <span class="read-time">
-                                <i class="bi bi-clock"></i> 11 min
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- All Stories Grid -->
+    <section class="container my-5" id="all-articles">
+        <h2 class="section-header">All Stories</h2>
+        <div class="row g-4" id="all-articles-grid">
+            <!-- Articles will be loaded dynamically -->
         </div>
     </section>
 
@@ -789,6 +895,12 @@
                     <a href="#" class="footer-link">Technology</a>
                     <a href="#" class="footer-link">Philosophy</a>
                     <a href="#" class="footer-link">Theology</a>
+                </div>
+                <div class="col-lg-2 col-6 mb-4">
+                    <h5 style="color: var(--blyss-white); font-weight: 600; margin-bottom: 1rem;">More Content</h5>
+                    <a href="../quizzes/" class="footer-link">Free Quizzes</a>
+                    <a href="vieve.html" class="footer-link">Vieve Blog</a>
+                    <a href="../" class="footer-link">DorklyAI</a>
                 </div>
                 <div class="col-lg-2 col-6 mb-4">
                     <h5 style="color: var(--blyss-white); font-weight: 600; margin-bottom: 1rem;">Company</h5>
@@ -826,6 +938,7 @@
         // Load dynamic content
         document.addEventListener('DOMContentLoaded', function() {
             loadFeaturedArticle();
+            loadAllArticles();
             loadLatestArticles();
             loadTrendingArticles();
         });
@@ -852,9 +965,38 @@
             `;
         }
 
-        // Load latest articles
-        function loadLatestArticles() {
-            const articles = getAllArticles().slice(1, 7); // Skip featured, get next 6
+        // Load all articles (for "All Stories" section)
+        function loadAllArticles(category = 'all') {
+            const articles = category === 'all' ? getAllArticles() : getArticlesByCategory(category);
+            const container = document.querySelector('#all-articles-grid');
+            
+            container.innerHTML = articles.map(article => `
+                <div class="col-lg-4 col-md-6">
+                    <a href="article.html?article=${article.slug}" style="text-decoration: none;">
+                        <div class="article-card">
+                            <img src="${article.image}" alt="${article.title}" class="article-image">
+                            <div class="article-content">
+                                <span class="article-category">${article.category}</span>
+                                <h3 class="article-title">${article.title}</h3>
+                                <p class="article-excerpt">${article.excerpt}</p>
+                                <div class="article-meta">
+                                    <span>${formatDate(article.date)}</span>
+                                    <span class="read-time">
+                                        <i class="bi bi-clock"></i> ${article.readTime}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `).join('');
+        }
+
+        // Load latest articles (max 6, filtered by category)
+        function loadLatestArticles(category = 'all') {
+            const articles = category === 'all' 
+                ? getAllArticles().slice(0, 6) 
+                : getArticlesByCategory(category).slice(0, 6);
             const container = document.querySelector('#latest-articles-grid');
             
             container.innerHTML = articles.map(article => `
@@ -879,14 +1021,10 @@
             `).join('');
         }
 
-        // Load trending articles
+        // Load trending articles (last 6 featured articles)
         function loadTrendingArticles() {
-            // Change these numbers to control which articles appear as trending:
-            // .slice(0, 2) = First 2 articles (IDs 101 & 100)
-            // .slice(1, 3) = Articles 2-3 (IDs 100 & 1)
-            // .slice(2, 4) = Articles 3-4 (IDs 1 & 2)
-            // To show specific articles, you can also filter by ID or slug
-            const trending = getAllArticles().slice(0, 2); // Shows newest 2 articles
+            const featuredArticles = blyssArticles.filter(article => article.featured);
+            const trending = featuredArticles.slice(-6); // Get last 6 featured
             const container = document.querySelector('#trending-articles-grid');
             
             container.innerHTML = trending.map(article => `
@@ -909,6 +1047,14 @@
                     </a>
                 </div>
             `).join('');
+            
+            // Hide trending section if no featured articles available
+            const trendingSection = container.closest('section');
+            if (trending.length === 0) {
+                trendingSection.style.display = 'none';
+            } else {
+                trendingSection.style.display = 'block';
+            }
         }
 
         // Category filter functionality
@@ -920,7 +1066,10 @@
                 this.classList.add('active');
                 
                 currentCategory = this.dataset.category;
-                filterArticles(currentCategory);
+                
+                // Update all sections based on category
+                loadAllArticles(currentCategory);
+                loadLatestArticles(currentCategory);
             });
         });
 
@@ -937,46 +1086,32 @@
                     targetPill.classList.add('active');
                 }
                 
-                // Filter articles
+                // Update articles
                 currentCategory = category;
-                filterArticles(category);
+                loadAllArticles(category);
+                loadLatestArticles(category);
                 
-                // Smooth scroll to articles section
-                document.querySelector('#latest-articles').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Smooth scroll to all articles section
+                document.querySelector('#all-articles').scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
-        function filterArticles(category) {
-            const articles = category === 'all' ? getAllArticles().slice(1, 7) : getArticlesByCategory(category).slice(0, 6);
-            const container = document.querySelector('#latest-articles-grid');
+        // Check if sections have content and show "no articles" message
+        function checkEmptySection(category) {
+            const articles = category === 'all' ? getAllArticles() : getArticlesByCategory(category);
             
-            container.innerHTML = articles.map(article => `
-                <div class="col-lg-4 col-md-6">
-                    <a href="article.html?article=${article.slug}" style="text-decoration: none;">
-                        <div class="article-card">
-                            <img src="${article.image}" alt="${article.title}" class="article-image">
-                            <div class="article-content">
-                                <span class="article-category">${article.category}</span>
-                                <h3 class="article-title">${article.title}</h3>
-                                <p class="article-excerpt">${article.excerpt}</p>
-                                <div class="article-meta">
-                                    <span>${formatDate(article.date)}</span>
-                                    <span class="read-time">
-                                        <i class="bi bi-clock"></i> ${article.readTime}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            `).join('');
-
-            // Show message if no articles in category
             if (articles.length === 0) {
-                container.innerHTML = `
+                document.querySelector('#all-articles-grid').innerHTML = `
                     <div class="col-12 text-center">
                         <p style="color: var(--blyss-text); padding: 3rem;">
-                            No articles found in this category. Check back soon!
+                            No articles found in this category yet. Check back soon for fresh content!
+                        </p>
+                    </div>
+                `;
+                document.querySelector('#latest-articles-grid').innerHTML = `
+                    <div class="col-12 text-center">
+                        <p style="color: var(--blyss-text); padding: 3rem;">
+                            No articles found in this category yet. Check back soon for fresh content!
                         </p>
                     </div>
                 `;
