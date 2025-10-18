@@ -15,6 +15,7 @@ Disallow: /blog/*-data.js
 # Allow important pages
 Allow: /investcalcfunnel/
 Allow: /quizfunnel/
+Allow: /quizzes/
 Allow: /blog/blyss.html
 Allow: /blog/vieve.html
 Allow: /courses/
