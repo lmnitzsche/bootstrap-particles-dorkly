@@ -143,16 +143,25 @@
     
     <style>
         :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --pop-culture-gradient: linear-gradient(135deg, #ff6b9d 0%, #c44569 50%, #f8b500 100%);
-            --sports-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-            --gaming-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            --food-gradient: linear-gradient(135deg, #fd746c 0%, #ff9068 50%, #fdc830 100%);
-            --surface: rgba(255, 255, 255, 0.95);
-            --surface-dark: rgba(0, 0, 0, 0.1);
-            --text-primary: #2d3748;
-            --text-secondary: #718096;
-            --border-light: rgba(255, 255, 255, 0.2);
+            --vieve-dark: #0f0f0f;
+            --vieve-purple: #9333ea;
+            --vieve-pink: #ec4899;
+            --vieve-cyan: #06b6d4;
+            --vieve-orange: #f97316;
+            --vieve-green: #10b981;
+            --vieve-white: #ffffff;
+            --vieve-gray: #1a1a1a;
+            --vieve-text: #e5e7eb;
+            --primary-gradient: linear-gradient(135deg, #9333ea 0%, #ec4899 100%);
+            --pop-culture-gradient: linear-gradient(135deg, #ec4899 0%, #f97316 50%, #fbbf24 100%);
+            --sports-gradient: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+            --gaming-gradient: linear-gradient(135deg, #9333ea 0%, #a855f7 50%, #ec4899 100%);
+            --food-gradient: linear-gradient(135deg, #f97316 0%, #fb923c 50%, #fbbf24 100%);
+            --surface: rgba(26, 26, 26, 0.95);
+            --surface-dark: rgba(0, 0, 0, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #e5e7eb;
+            --border-light: rgba(147, 51, 234, 0.3);
         }
         
         * {
@@ -163,7 +172,7 @@
         
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            background: linear-gradient(135deg, var(--vieve-dark) 0%, #1a0033 50%, var(--vieve-dark) 100%);
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
@@ -184,7 +193,7 @@
             position: absolute;
             border-radius: 50%;
             animation: float 20s infinite ease-in-out;
-            opacity: 0.1;
+            opacity: 0.08;
         }
         
         @keyframes float {
@@ -208,7 +217,9 @@
             z-index: 10;
             padding: 2.5rem 0 3rem 0;
             text-align: center;
-            background: linear-gradient(180deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+            background: linear-gradient(180deg, rgba(15,15,15,0.8) 0%, rgba(15,15,15,0.4) 50%, transparent 100%);
+            border-bottom: 2px solid;
+            border-image: linear-gradient(90deg, var(--vieve-purple), var(--vieve-pink), var(--vieve-cyan)) 1;
         }
         
         .header-content {
@@ -219,37 +230,38 @@
         
         .brand-tag {
             display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--vieve-purple) 0%, var(--vieve-pink) 100%);
             color: white;
             padding: 0.4rem 1.2rem;
             border-radius: 50px;
             font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            font-weight: 700;
+            letter-spacing: 1px;
             margin-bottom: 1.5rem;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
             text-decoration: none;
             transition: all 0.3s ease;
+            text-transform: uppercase;
         }
         
         .brand-tag:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.5);
             color: white;
         }
         
         .hero-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            color: #1a202c;
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 400;
+            color: var(--vieve-white);
             margin-bottom: 1rem;
-            letter-spacing: -1px;
-            line-height: 1.1;
+            letter-spacing: 3px;
+            line-height: 1;
         }
         
         .hero-title-gradient {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--vieve-purple) 0%, var(--vieve-pink) 50%, var(--vieve-cyan) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -257,7 +269,7 @@
         
         .hero-subtitle {
             font-size: clamp(1.05rem, 2vw, 1.25rem);
-            color: #4a5568;
+            color: var(--vieve-text);
             font-weight: 400;
             margin-bottom: 0;
             line-height: 1.6;
@@ -290,16 +302,18 @@
         
         .filter-btn {
             padding: 12px 24px;
-            border: none;
+            border: 2px solid transparent;
             border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-weight: 700;
+            font-size: 0.85rem;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            background: transparent;
-            color: var(--text-secondary);
+            background: rgba(147, 51, 234, 0.1);
+            color: var(--vieve-text);
             position: relative;
             overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .filter-btn::before {
@@ -317,7 +331,8 @@
         
         .filter-btn:hover {
             color: white;
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.05);
+            border-color: var(--vieve-pink);
         }
         
         .filter-btn:hover::before {
@@ -327,7 +342,8 @@
         .filter-btn.active {
             color: white;
             background: var(--gradient);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 25px rgba(147, 51, 234, 0.4);
+            border-color: transparent;
         }
         
         .filter-btn.all { --gradient: var(--primary-gradient); }
@@ -351,8 +367,8 @@
         .quiz-card {
             background: var(--surface);
             backdrop-filter: blur(20px);
-            border: 1px solid var(--border-light);
-            border-radius: 24px;
+            border: 2px solid var(--border-light);
+            border-radius: 20px;
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             height: 100%;
@@ -374,8 +390,9 @@
         }
         
         .quiz-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(147, 51, 234, 0.4);
+            border-color: var(--vieve-pink);
         }
         
         .quiz-card.pop-culture { --category-gradient: var(--pop-culture-gradient); }
@@ -412,10 +429,10 @@
         }
         
         .quiz-category {
-            font-size: 0.8rem;
-            font-weight: 600;
+            font-size: 0.75rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             background: var(--category-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -424,11 +441,13 @@
         }
         
         .quiz-title {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.8rem;
+            font-weight: 400;
             color: var(--text-primary);
             margin-bottom: 1rem;
-            line-height: 1.3;
+            line-height: 1.2;
+            letter-spacing: 1px;
         }
         
         .quiz-description {
@@ -436,6 +455,7 @@
             margin-bottom: 2rem;
             line-height: 1.6;
             flex-grow: 1;
+            font-size: 0.95rem;
         }
         
         .quiz-stats {
@@ -455,22 +475,24 @@
         .quiz-cta {
             background: var(--category-gradient);
             border: none;
-            border-radius: 12px;
+            border-radius: 50px;
             padding: 1rem 2rem;
             color: white;
-            font-weight: 600;
-            font-size: 1rem;
+            font-weight: 700;
+            font-size: 0.95rem;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
             text-align: center;
             display: block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .quiz-cta:hover {
             color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.5);
         }
         
         /* Funnel CTAs */
@@ -495,8 +517,9 @@
         .funnel-title {
             font-family: 'Bebas Neue', cursive;
             font-size: 2.5rem;
-            color: var(--text-primary);
+            color: var(--vieve-white);
             margin-bottom: 1rem;
+            letter-spacing: 2px;
         }
         
         .funnel-subtitle {
@@ -516,8 +539,8 @@
         .funnel-btn {
             padding: 1rem 2rem;
             border: none;
-            border-radius: 12px;
-            font-weight: 600;
+            border-radius: 50px;
+            font-weight: 700;
             font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -525,22 +548,26 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .funnel-btn.primary {
-            background: var(--pop-culture-gradient);
+            background: linear-gradient(135deg, var(--vieve-purple), var(--vieve-pink));
             color: white;
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3);
         }
         
         .funnel-btn.secondary {
-            background: var(--gaming-gradient);
+            background: linear-gradient(135deg, var(--vieve-pink), var(--vieve-cyan));
             color: white;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
         }
         
         .funnel-btn:hover {
             color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.5);
         }
         
         /* FAQ Section */
@@ -553,12 +580,13 @@
         }
         
         .faq-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3rem;
+            font-weight: 400;
             text-align: center;
-            color: var(--text-primary);
+            color: var(--vieve-white);
             margin-bottom: 2rem;
+            letter-spacing: 2px;
         }
         
         .faq-container {
@@ -570,13 +598,15 @@
         .faq-item {
             background: var(--surface);
             border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
             overflow: hidden;
+            border: 2px solid rgba(147, 51, 234, 0.2);
         }
         
         .faq-item:hover {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 4px 20px rgba(147, 51, 234, 0.4);
+            border-color: var(--vieve-pink);
         }
         
         .faq-question {
@@ -593,14 +623,14 @@
         }
         
         .faq-question:hover {
-            background: rgba(102, 126, 234, 0.05);
+            background: rgba(147, 51, 234, 0.1);
         }
         
         .faq-question h3 {
             font-family: 'Poppins', sans-serif;
             font-size: 1.1rem;
             font-weight: 600;
-            color: var(--text-primary);
+            color: var(--vieve-white);
             margin: 0;
             padding-right: 1rem;
             flex: 1;
@@ -608,7 +638,7 @@
         
         .faq-icon {
             font-size: 1.25rem;
-            color: #667eea;
+            color: var(--vieve-pink);
             transition: transform 0.3s ease;
             flex-shrink: 0;
         }
@@ -1178,11 +1208,11 @@
         function createAnimatedBackground() {
             const background = document.getElementById('backgroundAnimation');
             const colors = [
-                'rgba(255, 107, 157, 0.1)',  // Pink
-                'rgba(67, 233, 123, 0.1)',   // Green
-                'rgba(102, 126, 234, 0.1)',  // Blue
-                'rgba(253, 116, 108, 0.1)',  // Red
-                'rgba(255, 255, 255, 0.05)'  // White
+                'rgba(147, 51, 234, 0.15)',  // Vieve Purple
+                'rgba(236, 72, 153, 0.15)',  // Vieve Pink
+                'rgba(6, 182, 212, 0.12)',   // Vieve Cyan
+                'rgba(249, 115, 22, 0.1)',   // Vieve Orange
+                'rgba(168, 85, 247, 0.1)'    // Light Purple
             ];
             
             for (let i = 0; i < 80; i++) {
