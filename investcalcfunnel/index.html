@@ -920,13 +920,23 @@
         .compact-ad-strip {
             background: linear-gradient(135deg, #0d6efd 0%, #4d94ff 100%);
             color: white;
-            padding: 30px 40px;
+            padding: 40px 50px;
             text-align: center;
-            border-radius: 16px;
-            margin: 40px 0;
-            box-shadow: 0 15px 40px rgba(13, 110, 253, 0.3);
+            border-radius: 20px;
+            margin: 50px 0;
+            box-shadow: 
+                0 20px 60px rgba(13, 110, 253, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
             position: relative;
             overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .compact-ad-strip:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 25px 70px rgba(13, 110, 253, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.2) inset;
         }
 
         .compact-ad-strip::before {
@@ -936,7 +946,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
             animation: slide 3s infinite;
         }
 
@@ -947,35 +957,69 @@
 
         .compact-ad-strip h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 10px;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .compact-ad-strip .ad-quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin: 15px 0;
+            opacity: 0.95;
+            font-weight: 300;
         }
 
         .compact-ad-strip p {
-            font-size: 1rem;
-            margin-bottom: 15px;
+            font-size: 1.15rem;
+            margin-bottom: 20px;
             opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .compact-ad-strip .ad-highlight {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 15px 0;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .compact-ad-btn {
             background: white;
             color: #0d6efd;
-            font-size: 1rem;
-            font-weight: 700;
-            padding: 12px 30px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            padding: 16px 45px;
             border: none;
             border-radius: 50px;
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
         }
 
         .compact-ad-btn:hover {
-            transform: scale(1.05) translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            transform: scale(1.08) translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.35);
             color: #0d6efd;
+        }
+
+        .compact-ad-btn::after {
+            content: ' →';
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .compact-ad-btn:hover::after {
+            transform: translateX(5px);
         }
 
         @media (max-width: 768px) {
@@ -1077,13 +1121,6 @@
 
                 </article>
                 
-                <!-- Compact Ad Strip 1: Courses -->
-                <aside class="compact-ad-strip" role="complementary">
-                    <h3>Build Lasting Wealth with Smart Investing</h3>
-                    <p>Master financial literacy, buy & hold strategies, credit optimization, and more with our proven courses</p>
-                    <a href="https://dorklyai.com/courses" class="compact-ad-btn" target="_blank" rel="noopener">View Courses →</a>
-                </aside>
-                
                 <!-- Historical Backtesting Section -->
                 <section class="calculator-container" aria-labelledby="backtesting-heading">
                     <h2 id="backtesting-heading" class="section-title">Historical Stock Backtesting (Up to 50 Years)</h2>
@@ -1152,9 +1189,12 @@
                 
                 <!-- Compact Ad Strip 2: Investment Insights -->
                 <aside class="compact-ad-strip" role="complementary">
-                    <h3>Learn from Legendary Investors</h3>
-                    <p>Discover timeless investment wisdom and financial strategies on our Blyss blog</p>
-                    <a href="../blog/blyss.html" class="compact-ad-btn">Read Investment Insights →</a>
+                    <h3>The 8th Wonder of the World</h3>
+                    <div class="ad-quote">
+                        "Compound interest is the eighth wonder of the world. He who understands it, earns it; he who doesn't, pays it." — Albert Einstein
+                    </div>
+                    <p>Discover timeless investment wisdom from Einstein, Buffett, and legendary investors. Learn the strategies that create generational wealth.</p>
+                    <a href="../blog/blyss.html" class="compact-ad-btn">Read Blyss Insights</a>
                 </aside>
                 
                 <!-- CAGR Performance Analysis Section -->
@@ -1221,9 +1261,12 @@
                 
                 <!-- Compact Ad Strip 3: Business Services -->
                 <aside class="compact-ad-strip" role="complementary">
-                    <h3>Transform Your Business with AI</h3>
-                    <p>Custom AI agents, automation, web development, SEO & digital marketing solutions</p>
-                    <a href="https://dorklyai.com" class="compact-ad-btn" target="_blank" rel="noopener">Explore Services →</a>
+                    <h3>Scale Your Business Smarter</h3>
+                    <div class="ad-highlight">
+                        AI Solutions • Web Development • SEO • Digital Marketing
+                    </div>
+                    <p>From custom AI agents and automation to cutting-edge websites and marketing that converts—we help businesses dominate their market. Get the competitive edge you need.</p>
+                    <a href="https://dorklyai.com" class="compact-ad-btn" target="_blank" rel="noopener">Transform Your Business</a>
                 </aside>
                 
                 <!-- Portfolio Builder Section -->
@@ -1269,7 +1312,7 @@
                                 <div class="portfolio-stat-value" id="totalAllocation">0%</div>
                             </div>
                             
-                            <div class="portfolio-stat-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <div class="portfolio-stat-box" style="background: linear-gradient(135deg, #0d6efd 0%, #4d94ff 100%);">
                                 <div class="portfolio-stat-label" style="color: rgba(255,255,255,0.9);"><span id="portfolioYearLabel">30</span>-Year Weighted CAGR</div>
                                 <div style="font-size: 2.5rem; font-weight: 800; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important;" id="portfolioCAGR">-%</div>
                             </div>
