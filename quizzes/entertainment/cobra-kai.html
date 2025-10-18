@@ -54,7 +54,7 @@
         .cobra-kai-theme {
             --dojo-gradient: linear-gradient(135deg, #000000 0%, #FFD700 50%, #FF0000 100%);
             --dojo-primary: #000000;
-            --dojo-secondary: #FFD700;
+            --dojo-secondary: #00ff00;
         }
         
         .miyagi-do-theme {
@@ -69,10 +69,10 @@
             --dojo-secondary: #DAA520;
         }
         
-        .all-valley-theme {
-            --dojo-gradient: linear-gradient(135deg, #4B0082 0%, #800080 50%, #FF69B4 100%);
-            --dojo-primary: #4B0082;
-            --dojo-secondary: #800080;
+        .iron-dragons-theme {
+            --dojo-gradient: linear-gradient(135deg, #1a1a1a 0%, #00ff00 50%, #39ff14 100%);
+            --dojo-primary: #1a1a1a;
+            --dojo-secondary: #ff1900;
         }
         
         .dojo-themed .result-title {
@@ -137,7 +137,7 @@
         // Cobra Kai Dojo Quiz Configuration
         const cobraKaiQuizConfig = {
             title: "Cobra Kai Dojo Selector",
-            description: "Which dojo philosophy matches your fighting spirit? Discover whether you align with Cobra Kai's aggression, Miyagi-Do's balance, Eagle Fang's adaptation, or forge your own path in the All Valley.",
+            description: "Which dojo philosophy matches your fighting spirit? Discover whether you align with Cobra Kai's aggression, Miyagi-Do's balance, Eagle Fang's adaptation, or the Iron Dragons' innovation.",
             quizType: "cobra-kai-dojo",
             theme: "cobrakai",
             estimatedTime: "3-4",
@@ -171,9 +171,9 @@
                             description: "Be flexible and creative in your approach"
                         },
                         {
-                            value: "all-valley",
-                            text: "Combine all strategies as needed",
-                            description: "Use the best elements from all philosophies"
+                            value: "iron-dragons",
+                            text: "Analyze patterns and execute with precision",
+                            description: "Use strategy and calculated moves"
                         }
                     ]
                 },
@@ -197,9 +197,9 @@
                             description: "Keep your opponent guessing"
                         },
                         {
-                            value: "all-valley",
-                            text: "Personal growth through the experience",
-                            description: "Competition makes you better"
+                            value: "iron-dragons",
+                            text: "Strategic superiority and innovation",
+                            description: "Outsmart and outmaneuver your opponent"
                         }
                     ]
                 },
@@ -223,9 +223,9 @@
                             description: "Failure is data for improvement"
                         },
                         {
-                            value: "all-valley",
-                            text: "Accept it gracefully but prepare for next time",
-                            description: "Defeat is part of the journey"
+                            value: "iron-dragons",
+                            text: "Study the data and optimize your strategy",
+                            description: "Every loss provides tactical insights"
                         }
                     ]
                 },
@@ -249,9 +249,9 @@
                             description: "Combine different martial arts styles"
                         },
                         {
-                            value: "all-valley",
-                            text: "Balanced approach with all techniques",
-                            description: "Master both offense and defense"
+                            value: "iron-dragons",
+                            text: "Precise strikes with technological analysis",
+                            description: "Use data-driven fighting techniques"
                         }
                     ]
                 },
@@ -275,9 +275,9 @@
                             description: "Enjoy the process of getting better"
                         },
                         {
-                            value: "all-valley",
-                            text: "Through respect for the art itself",
-                            description: "Honor the tradition of martial arts"
+                            value: "iron-dragons",
+                            text: "Through measurable progress and innovation",
+                            description: "Track your improvement with precision"
                         }
                     ]
                 },
@@ -301,9 +301,9 @@
                             description: "Team up while being yourself"
                         },
                         {
-                            value: "all-valley",
-                            text: "Unite different perspectives for common goals",
-                            description: "Diversity makes the team stronger"
+                            value: "iron-dragons",
+                            text: "Coordinate like a well-oiled machine",
+                            description: "Strategic teamwork through precision"
                         }
                     ]
                 },
@@ -327,9 +327,9 @@
                             description: "Good opponents make you better"
                         },
                         {
-                            value: "all-valley",
-                            text: "Potential allies with different methods",
-                            description: "Former enemies can become friends"
+                            value: "iron-dragons",
+                            text: "Data points to analyze and overcome",
+                            description: "Study patterns to gain advantages"
                         }
                     ]
                 },
@@ -353,9 +353,14 @@
                             description: "Training should be enjoyable"
                         },
                         {
-                            value: "all-valley",
-                            text: "Protecting those you care about",
-                            description: "Strength to defend others"
+                            value: "eagle-fang",
+                            text: "The joy of mastering new techniques",
+                            description: "Learning is its own reward"
+                        },
+                        {
+                            value: "iron-dragons",
+                            text: "Achieving peak performance through science",
+                            description: "Optimize every aspect of combat"
                         }
                     ]
                 },
@@ -379,9 +384,9 @@
                             description: "Pressure makes things interesting"
                         },
                         {
-                            value: "all-valley",
-                            text: "Use it as fuel for focused determination",
-                            description: "Pressure reveals true character"
+                            value: "iron-dragons",
+                            text: "Calculate optimal responses under stress",
+                            description: "Pressure demands precision and strategy"
                         }
                     ]
                 },
@@ -405,9 +410,9 @@
                             description: "Never stop learning and adapting"
                         },
                         {
-                            value: "all-valley",
-                            text: "To unite all styles in perfect harmony",
-                            description: "Bring peace to the karate community"
+                            value: "iron-dragons",
+                            text: "To perfect the science of combat",
+                            description: "Achieve martial arts mastery through innovation"
                         }
                     ]
                 }
@@ -447,12 +452,12 @@
                         url: "../"
                     }
                 },
-                "all-valley": {
-                    title: "All Valley Unity",
-                    subtitle: "Bringing All Dojos Together",
-                    icon: "🏆",
-                    description: "You represent the ultimate harmony of all martial arts philosophies! You understand that each dojo has valuable lessons to offer, and true mastery comes from integrating different approaches. Your philosophy focuses on unity, growth, and using martial arts to build bridges rather than walls. You see the bigger picture beyond individual dojo rivalries.",
-                    traits: ["Unifying", "Diplomatic", "Open-minded", "Wise", "Peaceful", "Inclusive"],
+                "iron-dragons": {
+                    title: "Iron Dragons",
+                    subtitle: "Innovation Through Discipline and Technology",
+                    icon: "🐉",
+                    description: "You embody the cutting-edge philosophy of the Iron Dragons! You believe in combining traditional martial arts discipline with modern innovation and technology. Your approach is strategic, calculated, and always evolving. You value precision, adaptability, and staying ahead of the competition through continuous improvement and tactical superiority.",
+                    traits: ["Innovative", "Strategic", "Disciplined", "Tactical", "Tech-Savvy", "Evolving"],
                     actionButton: {
                         text: "Explore More Quizzes",
                         url: "../"
@@ -529,7 +534,7 @@
                 'cobra-kai': { gradient: 'linear-gradient(135deg, #000000 0%, #FFD700 50%, #FF0000 100%)' },
                 'miyagi-do': { gradient: 'linear-gradient(135deg, #0066CC 0%, #FFFFFF 50%, #87CEEB 100%)' },
                 'eagle-fang': { gradient: 'linear-gradient(135deg, #8B4513 0%, #DAA520 50%, #FFA500 100%)' },
-                'all-valley': { gradient: 'linear-gradient(135deg, #4B0082 0%, #800080 50%, #FF69B4 100%)' }
+                'iron-dragons': { gradient: 'linear-gradient(135deg, #1a1a1a 0%, #00ff00 50%, #39ff14 100%)' }
             };
             
             if (dojos[resultKey]) {
