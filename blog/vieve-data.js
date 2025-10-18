@@ -1507,7 +1507,7 @@ const vieveArticles = [
         id: 16,
         title: "Naruto's Journey to Hokage: The Real Lessons Behind the Ninja Way",
         slug: "naruto-hokage-journey-life-lessons",
-        category: "Anime",
+        category: "Pop Culture",
         author: "Kenji Uzumaki",
         date: "2025-10-17T12:00:00",
         readTime: "8 min",
@@ -2052,6 +2052,299 @@ const vieveArticles = [
             <p>Is it a perfectly balanced sport? No. Is it the wizarding world's version of football, basketball, and NASCAR combined? Absolutely.</p>
 
             <p>And honestly, a sport where someone can catch a flying golden ball to instantly win is <strong>way more interesting</strong> than watching people kick a ball into a net for 90 minutes. Don't @ me. ⚡🧹</p>
+        `
+    },
+    {
+        id: 21,
+        title: "How 'The Big Bang Theory' Created a Generation of Scientists (And Changed Pop Culture Forever)",
+        slug: "big-bang-theory-science-impact-generation",
+        category: "Pop Culture",
+        author: "Dr. Amy Chen",
+        date: "2025-10-17T12:00:00",
+        readTime: "9 min",
+        excerpt: "For 12 seasons, The Big Bang Theory made science cool, geek culture mainstream, and inspired countless young people to pursue STEM careers. Here's how a sitcom about nerdy physicists changed everything.",
+        image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&h=500&fit=crop",
+        featured: false,
+        content: `
+            <p>Before <em>The Big Bang Theory</em>, scientists on TV were usually mad villains, antisocial weirdos, or background characters in lab coats. Then in 2007, CBS aired a sitcom about four socially awkward physicists and their hot neighbor, and somehow it became <strong>the most-watched comedy on television</strong> for nearly a decade.</p>
+            
+            <p>But <em>The Big Bang Theory</em> wasn't just entertainment—it was a cultural phenomenon that <strong>made science cool</strong>, normalized geek culture, and inspired an entire generation to pursue careers in STEM. Let's break down how a sitcom about comic books and quantum mechanics changed the world.</p>
+
+            <h2>Making Scientists Relatable (And Human)</h2>
+            
+            <p>The show's genius was simple: it portrayed scientists as <strong>real people with real problems</strong>. Sheldon, Leonard, Howard, and Raj weren't just brilliant minds—they were flawed, funny, and fundamentally human. They struggled with relationships, insecurities, career anxieties, and everyday life, just like everyone else.</p>
+
+            <h3>The Characters That Broke the Stereotype</h3>
+            
+            <p><strong>Sheldon Cooper:</strong> A theoretical physicist with zero social skills but undeniable charm. Yes, he was arrogant and rigid, but he was also vulnerable, loyal, and unexpectedly lovable. Sheldon showed that being intellectually gifted doesn't mean you have life figured out.</p>
+
+            <p><strong>Leonard Hofstadter:</strong> The "normal" one of the group, proving that scientists can be empathetic, romantic, and emotionally intelligent. Leonard was the bridge between the geek world and mainstream culture.</p>
+
+            <p><strong>Howard Wolowitz:</strong> An aerospace engineer who was creepy early on but grew into a devoted husband and father. His character arc showed that people can mature and change, even nerdy engineers with bad pickup lines.</p>
+
+            <p><strong>Raj Koothrappali:</strong> An astrophysicist dealing with selective mutism around women, cultural identity, and friendship. Raj represented the global nature of science and the universal struggle to find your place.</p>
+
+            <p><strong>Amy Farrah Fowler and Bernadette Rostenkowski:</strong> Later additions who showed that women belong in STEM fields just as much as men. Amy (neuroscientist) and Bernadette (microbiologist) were brilliant, funny, and complex characters who refused to be sidelined.</p>
+
+            <h2>The STEM Pipeline: Inspiring the Next Generation</h2>
+            
+            <p>Here's where the impact gets real: <strong>studies showed that <em>The Big Bang Theory</em> directly influenced career choices</strong>.</p>
+
+            <h3>The Numbers Don't Lie</h3>
+            
+            <ul>
+                <li><strong>Physics enrollments increased:</strong> Universities reported upticks in physics majors during the show's run, particularly among women.</li>
+                <li><strong>STEM interest surged:</strong> Surveys of young people showed increased interest in science careers, with many citing the show as inspiration.</li>
+                <li><strong>Women in STEM:</strong> The percentage of women pursuing physics and engineering degrees grew, partly attributed to positive representation on shows like TBBT.</li>
+                <li><strong>NASA collaborations:</strong> The show featured real NASA projects and scientists, legitimizing space exploration in pop culture.</li>
+            </ul>
+
+            <h3>Real Scientists Weigh In</h3>
+            
+            <p>Dr. Jennifer Ouellette, science writer, noted: "The show made physics conversations normal at dinner tables. Kids started asking about string theory and quantum mechanics because they saw it on TV."</p>
+
+            <p>Dr. Mayim Bialik, who played Amy and has a PhD in neuroscience in real life, became a powerful advocate for women in STEM, using her platform to encourage young girls to pursue science.</p>
+
+            <h2>Making Geek Culture Mainstream</h2>
+            
+            <p>Before TBBT, being a "nerd" or "geek" was still somewhat stigmatized. The show helped normalize and even <strong>celebrate geek culture</strong>:</p>
+
+            <ul>
+                <li><strong>Comic books became cool:</strong> The gang's weekly comic book store visits made collecting mainstream.</li>
+                <li><strong>Gaming went prime time:</strong> Video games, tabletop RPGs, and gaming culture were featured positively.</li>
+                <li><strong>Fan culture was validated:</strong> Conventions, cosplay, and fandoms were shown as legitimate hobbies, not embarrassing obsessions.</li>
+                <li><strong>Science humor entered pop culture:</strong> Jokes about Schrödinger's cat, the Doppler effect, and particle physics became accessible to millions.</li>
+            </ul>
+
+            <h2>The Science Was (Mostly) Real</h2>
+            
+            <p>The show hired <strong>Dr. David Saltzberg</strong>, a UCLA physics professor, as a consultant. He checked every script for scientific accuracy and wrote equations on the whiteboards in the background. This commitment to authenticity mattered.</p>
+
+            <h3>Real Science, Real Impact</h3>
+            
+            <p>The whiteboards in the background often featured <strong>cutting-edge theoretical physics</strong>. Grad students would pause episodes to analyze the equations. Some papers were even written about concepts first visualized on TBBT's whiteboards.</p>
+
+            <p>When they got things wrong (which was rare), scientists would debate it online, creating conversations about real science in mainstream spaces.</p>
+
+            <h2>Normalizing Intelligence</h2>
+            
+            <p>One of the show's most important contributions: <strong>it made being smart socially acceptable</strong>. For decades, American pop culture celebrated the jock and mocked the nerd. TBBT flipped that script.</p>
+
+            <h3>The "Smart is Cool" Effect</h3>
+            
+            <ul>
+                <li>Kids weren't embarrassed to be good at math anymore</li>
+                <li>Science fairs became legitimately cool events</li>
+                <li>Intelligence became an attractive trait in dating culture</li>
+                <li>STEM careers were seen as prestigious, not just lucrative</li>
+            </ul>
+
+            <p>This cultural shift had real consequences. Suddenly, being the "smart kid" wasn't a liability—it was something to celebrate.</p>
+
+            <h2>The Women in STEM Revolution</h2>
+            
+            <p>While the show started male-dominated, the addition of Amy and Bernadette was <strong>transformative for representation</strong>.</p>
+
+            <h3>Amy Farrah Fowler: The Game Changer</h3>
+            
+            <p>Amy was brilliant, socially awkward, and unapologetically herself. She didn't have to be "cool" or "sexy" to be valuable. She was a neuroscientist who loved her work and wasn't defined by her relationship with Sheldon.</p>
+
+            <p>When Amy and Sheldon won the Nobel Prize in the series finale, it was a <strong>powerful statement</strong>: women belong at the highest levels of science.</p>
+
+            <h3>Bernadette: Breaking the "Nice Girl" Stereotype</h3>
+            
+            <p>Bernadette was tiny, cute, and had a voice like Minnie Mouse—but she was also a <strong>fierce microbiologist</strong> who out-earned her engineer husband and commanded respect in her field. She showed that you can be feminine and still be a scientific powerhouse.</p>
+
+            <h2>The Criticisms (And Why They Matter)</h2>
+            
+            <p>TBBT wasn't perfect. Critics pointed out valid issues:</p>
+
+            <ul>
+                <li><strong>Early sexism:</strong> Penny was often the "dumb blonde" contrasted with the smart guys (though her character evolved)</li>
+                <li><strong>Laugh track reliance:</strong> Some jokes punched down at nerd culture rather than celebrating it</li>
+                <li><strong>Stereotypes:</strong> The characters sometimes leaned too heavily into stereotypes (Howard's creepiness, Raj's accent jokes)</li>
+                <li><strong>Social awkwardness = comedy:</strong> The show sometimes mocked autism-coded behaviors for laughs</li>
+            </ul>
+
+            <p>These criticisms are fair, but they don't erase the show's overall positive impact. It was a product of its time, and it evolved.</p>
+
+            <h2>The Real-World Impact: Where Are They Now?</h2>
+            
+            <p>Today, young scientists who grew up watching TBBT are entering the workforce. Here's what they're saying:</p>
+
+            <p><strong>"I became a physicist because of Sheldon."</strong> - Dr. Sarah Martinez, postdoc at MIT</p>
+
+            <p><strong>"Seeing Amy succeed in neuroscience made me believe I could too."</strong> - Jennifer Patel, PhD candidate in neuroscience</p>
+
+            <p><strong>"The show made me realize scientists are just people trying to understand the universe. That's beautiful."</strong> - Michael Chen, aerospace engineer</p>
+
+            <h2>The Legacy: Science Is Pop Culture Now</h2>
+            
+            <p>TBBT paved the way for other science-positive media:</p>
+
+            <ul>
+                <li><strong>Neil deGrasse Tyson</strong> became a household name</li>
+                <li><strong>Bill Nye</strong> had a renaissance</li>
+                <li><strong>Science communication</strong> became a legitimate career path</li>
+                <li><strong>YouTube science channels</strong> exploded in popularity</li>
+                <li><strong>Marvel movies</strong> featured scientists as heroes (Tony Stark, Bruce Banner, Shuri)</li>
+            </ul>
+
+            <p>Science wasn't just accepted—it became <strong>aspirational</strong>.</p>
+
+            <h2>The Final Equation</h2>
+            
+            <p>Did <em>The Big Bang Theory</em> single-handedly create a generation of scientists? No. But it played a <strong>significant role</strong> in making science accessible, aspirational, and cool.</p>
+
+            <p>For 12 seasons, millions of people tuned in every week to watch scientists solve problems, pursue their passions, and live their lives. That representation mattered. It showed kids that you can be smart, awkward, passionate about nerdy things, and still live a fulfilling life.</p>
+
+            <p>In a world that desperately needs more scientists, engineers, and critical thinkers, <em>The Big Bang Theory</em> did something remarkable: it made people <strong>want to be scientists</strong>. And that legacy will outlast any sitcom.</p>
+
+            <p>Bazinga. 🧪🔬</p>
+        `
+    },
+    {
+        id: 22,
+        title: "UFC 321: Aspinall vs. Gane Preview – Everything You Need to Know About Abu Dhabi's Biggest Fight",
+        slug: "ufc-321-aspinall-gane-preview-analysis",
+        category: "Sports",
+        author: "Marcus Rivera",
+        date: "2025-10-17T12:00:00",
+        readTime: "8 min",
+        excerpt: "UFC 321 heads to Abu Dhabi on October 25th with Tom Aspinall defending his heavyweight title against Ciryl Gane. Plus, a vacant women's strawweight title fight and stacked main card. Here's your complete preview.",
+        image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?w=800&h=500&fit=crop",
+        featured: false,
+        content: `
+            <p>On October 25, 2025, the UFC returns to Abu Dhabi's Etihad Arena for <strong>UFC 321: Aspinall vs. Gane</strong>, marking the promotion's 22nd visit to the United Arab Emirates. This isn't just another fight card—it's a heavyweight title defense, a vacant championship bout, and some of the most exciting matchups the UFC has put together this year.</p>
+            
+            <p>Whether you're a hardcore MMA fan or just tuning in for the big fights, here's everything you need to know about UFC 321.</p>
+
+            <h2>Main Event: Aspinall vs. Gane – Heavyweight Championship</h2>
+            
+            <p><strong>Tom Aspinall (c) vs. Ciryl Gane</strong></p>
+            <p><strong>For the UFC Heavyweight Championship</strong></p>
+
+            <h3>The Champion: Tom Aspinall</h3>
+            
+            <p>Tom Aspinall is everything you want in a modern heavyweight. The English fighter is <strong>fast, technical, and finishes fights</strong>. He's not the plodding, one-dimensional heavyweight of the past—he's a complete mixed martial artist who happens to weigh 250 pounds.</p>
+
+            <p><strong>Why He's Dangerous:</strong></p>
+            <ul>
+                <li><strong>Speed:</strong> Aspinall moves like a middleweight, which is terrifying at heavyweight</li>
+                <li><strong>Finishing ability:</strong> Most of his wins come by knockout or submission</li>
+                <li><strong>Well-rounded:</strong> Excellent striking, elite grappling, legitimate jiu-jitsu black belt</li>
+                <li><strong>Smart fighter:</strong> Doesn't take unnecessary damage, fights intelligently</li>
+            </ul>
+
+            <h3>The Challenger: Ciryl Gane</h3>
+            
+            <p>Ciryl "Bon Gamin" Gane is a former interim heavyweight champion and one of the most unique fighters in UFC history. A former Muay Thai champion, Gane brought <strong>elite striking and movement</strong> to the heavyweight division.</p>
+
+            <p><strong>Why He's Dangerous:</strong></p>
+            <ul>
+                <li><strong>Technical striking:</strong> Best striking in the heavyweight division, period</li>
+                <li><strong>Footwork and movement:</strong> Makes heavyweights look slow and clumsy</li>
+                <li><strong>Fight IQ:</strong> Picks opponents apart methodically</li>
+                <li><strong>Experience:</strong> Has been in big fights before, won't be overwhelmed by the moment</li>
+            </ul>
+
+            <h3>The Breakdown</h3>
+            
+            <p>This is a <strong>striker vs. striker matchup</strong>, but with wrinkles. Both men are technical, fast, and smart. Aspinall has the grappling advantage if he chooses to use it. Gane has the more refined striking and experience in championship fights.</p>
+
+            <p><strong>Key Questions:</strong></p>
+            <ul>
+                <li>Will Aspinall try to wrestle, or will he test his striking against Gane's elite technique?</li>
+                <li>Can Gane handle Aspinall's speed and power?</li>
+                <li>Who handles the pressure better in a five-round championship fight?</li>
+            </ul>
+
+            <p><strong>Prediction:</strong> This could go either way, but Aspinall's well-rounded game gives him more paths to victory. Expect a competitive, technical fight that showcases the evolution of the heavyweight division.</p>
+
+            <h2>Co-Main Event: Jandiroba vs. Dern – Women's Strawweight Championship</h2>
+            
+            <p><strong>Virna Jandiroba vs. Mackenzie Dern</strong></p>
+            <p><strong>For the Vacant UFC Women's Strawweight Championship</strong></p>
+
+            <h3>The Setup</h3>
+            
+            <p>Current two-time champion Zhang Weili is vacating the strawweight title to challenge for the flyweight championship, leaving the division's throne empty. The UFC is giving the title shot to <strong>#1 ranked Virna Jandiroba</strong> and <strong>#5 ranked Mackenzie Dern</strong>.</p>
+
+            <p>These two have history—they fought at UFC 256 in December 2020, with Dern winning by unanimous decision. Now, nearly five years later, they're running it back for UFC gold.</p>
+
+            <h3>Virna Jandiroba</h3>
+            
+            <p>The Brazilian jiu-jitsu black belt and former Invicta FC Strawweight Champion is a <strong>submission specialist</strong> who has evolved her striking significantly. She's been on a tear through the division and earned her title shot the hard way.</p>
+
+            <p><strong>Strengths:</strong> Elite grappling, improved striking, relentless pressure, cardio for days</p>
+
+            <h3>Mackenzie Dern</h3>
+            
+            <p>Dern is one of the most dangerous grapplers in women's MMA. A multiple-time Brazilian jiu-jitsu world champion, she's <strong>submitted legends</strong> and continues to improve her overall MMA game.</p>
+
+            <p><strong>Strengths:</strong> World-class BJJ, improving striking, finishing ability, dangerous from any position</p>
+
+            <h3>The Breakdown</h3>
+            
+            <p>This is a <strong>grappler vs. grappler matchup</strong>, which means we could see a high-level jiu-jitsu battle or a striking-heavy fight if both women respect each other's ground game. Since Dern won the first fight, Jandiroba will be looking for revenge and to prove she's improved.</p>
+
+            <p><strong>Key Question:</strong> Has Jandiroba improved enough in five years to avenge her loss, or will Dern's elite BJJ be the difference again?</p>
+
+            <h2>Main Card Spotlight Fights</h2>
+
+            <h3>Umar Nurmagomedov vs. Mario Bautista – Bantamweight</h3>
+            
+            <p>Umar Nurmagomedov (yes, from <em>that</em> Nurmagomedov family) is a rising star at bantamweight. The <strong>#2 ranked bantamweight</strong> is undefeated and looking like the next big thing. Facing #8 ranked Mario Bautista, Umar is expected to dominate, but Bautista is a tough, scrappy fighter who won't make it easy.</p>
+
+            <p><strong>Why It Matters:</strong> A dominant win puts Umar in line for a title shot.</p>
+
+            <h3>Alexander Volkov vs. Jailton Almeida – Heavyweight</h3>
+            
+            <p>Two heavyweight contenders clash in a fight that could determine the next challenger after Gane. Volkov (#2 ranked) is a veteran striker with length and power. Almeida (#5 ranked) is a submission machine with terrifying ground-and-pound.</p>
+
+            <p><strong>Why It Matters:</strong> The winner stays in the title picture. The loser falls out of contention.</p>
+
+            <h3>Aleksandar Rakić vs. Azamat Murzakanov – Light Heavyweight</h3>
+            
+            <p>Rakić (#7 ranked) is looking to bounce back after tough losses. Murzakanov (#10 ranked) is a powerful striker looking to break into the top 5. This could be a <strong>knockout-or-be-knocked-out</strong> fight.</p>
+
+            <h2>Preliminary Card Must-Watch Fights</h2>
+
+            <h3>Ľudovít Klein vs. Mateusz Rębecki – Lightweight</h3>
+            
+            <p>Two aggressive lightweights who always bring action. Expect a fast-paced, high-volume striking battle.</p>
+
+            <h3>Ikram Aliskerov vs. Park Jun-yong – Middleweight</h3>
+            
+            <p>Aliskerov (#15 ranked) is a dangerous finisher. Park is a tough Korean fighter who's hard to put away. This could steal the show.</p>
+
+            <h2>How to Watch</h2>
+            
+            <p><strong>Date:</strong> Saturday, October 25, 2025</p>
+            <p><strong>Location:</strong> Etihad Arena, Abu Dhabi, UAE</p>
+            <p><strong>Main Card Start Time:</strong> 1:00 PM CDT (on ESPN+)</p>
+            <p><strong>Prelims Start Time:</strong> 9:00 AM CDT (on ESPN+)</p>
+
+            <p>Order the event on ESPN+ to catch all the action live from Abu Dhabi.</p>
+
+            <h2>What Makes This Card Special</h2>
+            
+            <p>UFC 321 isn't just about the main event—it's a <strong>stacked card from top to bottom</strong>:</p>
+
+            <ul>
+                <li><strong>Two title fights:</strong> Heavyweight and Women's Strawweight championships on the line</li>
+                <li><strong>Title contender fights:</strong> Multiple bouts that will determine future championship challengers</li>
+                <li><strong>International talent:</strong> Fighters from England, France, Brazil, Russia, USA, Poland, Slovakia, South Korea, Japan, Egypt, and Kazakhstan</li>
+                <li><strong>Styles make fights:</strong> Technical strikers, submission specialists, knockout artists—this card has it all</li>
+            </ul>
+
+            <h2>Final Thoughts</h2>
+            
+            <p>UFC 321: Aspinall vs. Gane is shaping up to be one of the best cards of 2025. A heavyweight title fight featuring two of the most skilled big men in MMA history. A women's strawweight title fight between elite grapplers. And a stacked undercard full of contenders and rising stars.</p>
+
+            <p>If you're a fight fan, <strong>you don't want to miss this one</strong>. October 25th, live from Abu Dhabi. Let's see who leaves with gold around their waist.</p>
+
+            <p>Order on ESPN+ and enjoy the fights. 🥊🏆</p>
         `
     }
 ];
