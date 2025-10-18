@@ -3,6 +3,256 @@
 
 const vieveArticles = [
     {
+        id: 12,
+        title: "Thunder Rolling: Why OKC Is Built to Win Back-to-Back Championships",
+        slug: "okc-thunder-championship-dynasty-2026",
+        category: "Sports",
+        author: "Jordan Hayes",
+        date: "2025-10-17",
+        readTime: "15 min",
+        excerpt: "The youngest team in the league just won a title. Now they're better. With SGA entering his MJ phase, Chet anchoring an elite defense, and Mark Daigneault coaching at an All-Timer level, the Thunder aren't just contenders—they're building a dynasty.",
+        image: "https://images.unsplash.com/photo-1504450758481-7338eba7524a?w=800&h=500&fit=crop",
+        featured: true,
+        content: `
+            <p>The Oklahoma City Thunder just shocked the world. The youngest No. 1 seed in NBA history went through the playoffs, won a championship, and did it with a squad that isn't even in their prime yet. Now, with training camp about to start and the roster basically intact, the real question isn't <em>if</em> they can repeat—it's how dominant they'll be.</p>
+            
+            <p>This wasn't a Cinderella story. This was inevitability. The Thunder didn't luck into a championship—they <em>built</em> one. And now, with championship experience in their DNA and every key piece returning, OKC isn't just positioned to repeat. They're positioned to <strong>dominate</strong>.</p>
+
+            <h2>The Big Three: SGA, Dub, and Chet</h2>
+            
+            <h3>Shai Gilgeous-Alexander: The Jordan Comparisons Aren't Insane Anymore</h3>
+            
+            <p>Let's address the elephant in the room: comparing anyone to Michael Jordan is sacrilege. But at 26 years old, Shai Gilgeous-Alexander is doing things that make the comparison impossible to ignore.</p>
+            
+            <p><strong>Last Season's Numbers:</strong> SGA put up 30.1 PPG, 6.2 APG, 5.5 RPG, and 2.0 SPG on 53/35/88 shooting splits in the regular season. His True Shooting percentage (63.2%) was elite. He finished 2nd in MVP voting and made All-NBA First Team.</p>
+            
+            <p>But here's where it gets spooky: Jordan at age 26 (1989-90 season) averaged 33.6 PPG, 6.9 APG, 6.3 RPG, and 2.8 SPG on 52.6% shooting. The stats are eerily similar. But the <em>impact</em> is what matters.</p>
+            
+            <p><strong>The Intangibles:</strong> SGA plays both ends at an All-Defense level (made All-Defense 2nd Team last year). He was clutch in the playoffs—averaging 28.8 PPG in the Finals while guarding the opponent's best player. He doesn't hunt stats—he hunts <em>wins</em>. That's Jordan's DNA.</p>
+            
+            <p>MJ had Pippen. SGA has something arguably better: a complete <em>system</em> around him. And he's only getting better.</p>
+
+            <h3>Jalen Williams: The Silent Assassin</h3>
+            
+            <p>If you're not watching Jalen Williams ("J-Dub"), you're missing one of the most complete two-way wings in basketball. Last season at 23 years old, Williams averaged 19.1 PPG, 4.0 RPG, 4.5 APG on 54/43/78 splits. Let me repeat that three-point percentage: <strong>43%</strong>.</p>
+            
+            <p>But numbers don't capture his value. Williams is OKC's Swiss Army knife:</p>
+            <ul>
+                <li><strong>Defensively versatile:</strong> Guards 1-4, switches everything, made All-Defense 2nd Team</li>
+                <li><strong>Offensive creator:</strong> Can initiate, post up, or play off-ball seamlessly</li>
+                <li><strong>High IQ decision-making:</strong> Led all forwards in AST/TO ratio</li>
+                <li><strong>Clutch gene:</strong> Shot 61% in 4th quarters of playoff games</li>
+            </ul>
+            
+            <p>Williams is entering Year 4 and he's still ascending. He's not a sidekick—he's a co-star. And at 23 years old, he hasn't even scratched his ceiling yet. That's terrifying for the rest of the league.</p>
+
+            <h3>Chet Holmgren: The Unicorn Becomes Reality</h3>
+            
+            <p>Remember when people said Chet was "too thin" for the NBA? That he'd get bullied in the paint? That his body wouldn't hold up?</p>
+            
+            <p>Yeah, about that.</p>
+            
+            <p>In his sophomore season, Chet averaged 16.5 PPG, 7.9 RPG, <strong>2.9 BPG</strong>, and 0.9 SPG while shooting 53% from the field and 39% from three. He finished 3rd in Defensive Player of the Year voting and was a walking mismatch nightmare in the playoffs.</p>
+            
+            <p><strong>The Defensive Anchor:</strong> Chet protected the rim at an elite level—his 2.9 blocks per game led all players under 23 years old. But unlike traditional rim protectors, Chet can switch onto guards. He blocked threes at the perimeter, erased layups at the rim, and altered everything in between. OKC's defensive rating with Chet on the floor (102.8) was historically good.</p>
+            
+            <p><strong>The Offensive Weapon:</strong> At 7'1", Chet can:</p>
+            <ul>
+                <li>Pop out and hit threes (39% on 3.8 attempts per game)</li>
+                <li>Face up and drive against slower bigs</li>
+                <li>Roll hard to the rim (shot 71% at the rim last season)</li>
+                <li>Post up smaller defenders with finesse</li>
+            </ul>
+            
+            <p>He's what everyone hoped Kristaps Porzingis would be. But better. Because Chet plays <em>winning basketball</em>. And at 22 years old, he's just getting started.</p>
+
+            <h2>The Defensive Death Squad</h2>
+            
+            <p>OKC's defense last season wasn't just good—it was <strong>historically elite</strong>. They finished 1st in defensive rating (108.4), 1st in opponent FG%, 2nd in steals, and 1st in blocks. This wasn't by accident.</p>
+
+            <h3>The Five-Man Wrecking Crew: SGA, J-Dub, Chet, Caruso, and Wallace</h3>
+            
+            <p><strong>Alex Caruso:</strong> The greatest role player in basketball. Caruso's defensive metrics last season were bonkers—opponents shot 5.8% worse when he was on the floor. He averaged 1.7 SPG while playing smart, winning basketball. He's the vocal leader of the defense, calling switches and orchestrating rotations like a quarterback.</p>
+            
+            <p><strong>Cason Wallace:</strong> The 21-year-old (now 22) defensive savant emerged as one of the league's best perimeter stoppers. At 6'4" with a 6'9" wingspan, Wallace can shadow point guards or match up with bigger wings. He shot 42% from three last season in limited attempts and showed he belongs in high-leverage playoff minutes.</p>
+            
+            <p>Last season, OKC's five-man lineup of SGA, J-Dub, Caruso, Wallace, and Chet posted a defensive rating of <strong>99.8</strong> in 287 playoff minutes. That's video game numbers. That's 2004 Pistons energy.</p>
+            
+            <p><strong>Why It Works:</strong></p>
+            <ul>
+                <li><strong>Switching everything:</strong> No mismatches, no easy shots</li>
+                <li><strong>Length everywhere:</strong> 6'6", 6'6", 6'5", 6'4", 7'1" with insane wingspans</li>
+                <li><strong>Communication:</strong> Championship experience breeds trust</li>
+                <li><strong>Effort:</strong> Every possession matters to this group</li>
+            </ul>
+            
+            <p>Teams shot just 42.1% against OKC's starting lineup in the playoffs. That's suffocating. That's championship-caliber defense. And everyone's back.</p>
+
+            <h2>The Championship Roster: Depth Won That Chip</h2>
+            
+            <p>Championships aren't won with just a Big Three. They're won with depth, versatility, and guys who know their roles. OKC's championship roster proved that:</p>
+
+            <h3>Last Year's Starting Lineup:</h3>
+            <ul>
+                <li><strong>PG: Shai Gilgeous-Alexander</strong> – 30.1 PPG, All-NBA First Team, MVP runner-up</li>
+                <li><strong>SG: Jalen Williams</strong> – 19.1 PPG on 54/43/78 splits, All-Defense 2nd Team</li>
+                <li><strong>SF: Luguentz Dort</strong> – The bulldog, 38% from three in playoffs, shutdown defender</li>
+                <li><strong>PF: Jalen Williams</strong> – Versatile two-way wing, could guard 1-4</li>
+                <li><strong>C: Chet Holmgren</strong> – 16.5 PPG, 7.9 RPG, 2.9 BPG, 3rd in DPOY voting</li>
+            </ul>
+
+            <h3>The Championship Bench Mob:</h3>
+            <ul>
+                <li><strong>Alex Caruso</strong> – Defensive savant, opponents shot 5.8% worse with him on floor</li>
+                <li><strong>Cason Wallace</strong> – Emerging two-way guard, 42% from three in playoffs</li>
+                <li><strong>Isaiah Joe</strong> – Microwave scorer, 41% from deep in regular season</li>
+                <li><strong>Aaron Wiggins</strong> – Versatile wing, solid defender, clutch in playoffs</li>
+                <li><strong>Jaylin Williams</strong> – High IQ backup big, playoff-ready</li>
+                <li><strong>Ousmane Dieng</strong> – 6'10" developmental piece with championship experience</li>
+            </ul>
+
+            <p><strong>What Made This Roster Championship-Caliber:</strong></p>
+            <ol>
+                <li><strong>Shooting everywhere:</strong> Team shot 38.5% from three in playoffs</li>
+                <li><strong>Defensive versatility:</strong> Could switch 1-5 in multiple lineups</li>
+                <li><strong>Youth + Health:</strong> Core stayed healthy through 98-game season</li>
+                <li><strong>No weak links:</strong> Every rotation player could defend and space the floor</li>
+            </ol>
+
+            <h2>Why Back-to-Back Could Actually Happen</h2>
+            
+            <p>Repeat champions are rare. Since 2000, only five teams have won back-to-back: Lakers (2x), Heat, Warriors, and Bucks. Can OKC join that list? Here's the case:</p>
+
+            <h3>1. The Core Is Young and Still Improving</h3>
+            <p>SGA is 26. Chet is 22. J-Dub is 23. Most championship cores are peaking or declining. OKC's is still <em>ascending</em>. If they're this good now, imagine them with another year of experience and development. That's dynasty fuel.</p>
+
+            <h3>2. The Supporting Cast Already Proved It Fits</h3>
+            <p>Caruso, Dort, Joe, Wallace—these guys aren't just good role players. They're <em>championship-proven</em> role players who know what it takes. In a league where chemistry matters, that continuity is massive.</p>
+
+            <h3>3. No Roster Turnover Expected</h3>
+            <p>Everyone's under contract. No major free agency decisions. Chemistry is intact. There's no adjustment period, no learning curve. They can pick up exactly where they left off—holding the trophy.</p>
+
+            <h3>4. They Know How to Manage the Grind</h3>
+            <p>Last season, OKC was smart about resting players. SGA missed some regular season games strategically. Chet's minutes were monitored. They learned that winning 65 games doesn't matter—being fresh in June does.</p>
+
+            <h3>5. The Competition Has Question Marks</h3>
+            <p>Boston lost key pieces. Denver's getting older. The Lakers have injury concerns. Phoenix has depth issues. Minnesota is still figuring it out. OKC already beat all of them last year. Why can't they do it again?</p>
+
+            <h2>Mark Daigneault: From Overlooked to Coach of the Year?</h2>
+            
+            <p>Mark Daigneault won a championship at age 39. He's now 40, in his prime, and coaching the best team in basketball. The question isn't <em>if</em> he'll win Coach of the Year—it's <em>when</em>.</p>
+
+            <h3>Current Odds (via DraftKings, October 2025):</h3>
+            <ul>
+                <li>Joe Mazzulla (Celtics): +350</li>
+                <li>Michael Malone (Nuggets): +500</li>
+                <li><strong>Mark Daigneault (Thunder): +650</strong></li>
+                <li>Erik Spoelstra (Heat): +700</li>
+                <li>Steve Kerr (Warriors): +900</li>
+            </ul>
+
+            <h3>The Historical Precedent: Breakout Seasons After Championships</h3>
+            
+            <p>Here's the blueprint: <strong>When a young championship team comes back hungrier and better, the coach wins COTY.</strong></p>
+
+            <h4>Steve Kerr (Warriors, 2015-16):</h4>
+            <ul>
+                <li>Won championship in Year 1 (2014-15)</li>
+                <li>Came back, went 73-9</li>
+                <li><strong>Won Coach of the Year</strong></li>
+            </ul>
+
+            <h4>Tom Thibodeau (Bulls, 2010-11):</h4>
+            <ul>
+                <li>Bulls won 62 games in his first season</li>
+                <li>Rose won MVP, team was 1-seed</li>
+                <li><strong>Thibodeau won Coach of the Year</strong></li>
+            </ul>
+
+            <p>The pattern? <strong>Young teams with elite defenses that exceed expectations post-success.</strong> That's OKC right now.</p>
+
+            <h3>Why Daigneault Deserves It:</h3>
+            
+            <p><strong>1. Defensive Mastermind:</strong> OKC's switching, help-and-recover system is the best in basketball. It's coordinated chaos that confuses offenses nightly.</p>
+            
+            <p><strong>2. Player Development:</strong> Chet, J-Dub, and Wallace have all made massive leaps under his coaching. That's not coincidence—it's culture.</p>
+            
+            <p><strong>3. Tactical Flexibility:</strong> Daigneault adjusts on the fly better than anyone. His ATO plays are lethal. His timeout management is elite. He doesn't get rattled.</p>
+            
+            <p><strong>4. The Narrative:</strong> If OKC goes 60+ wins and cruises through the playoffs, voters will reward the young genius who built a dynasty from scratch. He's already proven it wasn't a fluke.</p>
+
+            <h3>The Breakout Season Thesis:</h3>
+            
+            <p>Championship teams that come back stronger <em>always</em> get recognition. The Warriors after 2015. The Spurs after 2003. The Bulls in the 90s. When you win, then dominate, the narrative shifts from "can they do it?" to "how good can they be?"</p>
+            
+            <p>If OKC comes out and dominates—let's say they win 60+ games, have the league's best defense again, and cruise through the playoffs—Daigneault <strong>could</strong> win COTY. The odds (+650) suggest it's possible. And given his track record, it wouldn't be surprising.</p>
+
+            <h2>The Dynasty Blueprint</h2>
+            
+            <p>Let's be honest: OKC isn't just trying to repeat. They're positioned to build the next great dynasty. And they have all the pieces:</p>
+
+            <ul>
+                <li><strong>Superstar entering his prime:</strong> SGA is 26—right in the sweet spot</li>
+                <li><strong>Young All-Stars ascending:</strong> Chet and J-Dub are 22-23 with championships already</li>
+                <li><strong>Elite role players:</strong> Caruso, Dort, Wallace, Joe all proved themselves in the Finals</li>
+                <li><strong>Championship DNA:</strong> They've been there—they know what it takes now</li>
+                <li><strong>Smart front office:</strong> Sam Presti is a genius GM who drafted this entire core</li>
+                <li><strong>Elite coaching:</strong> Daigneault is arguably a top-5 coach in the league</li>
+                <li><strong>Cap flexibility:</strong> No bad contracts, room to add pieces if needed</li>
+                <li><strong>Home-court advantage:</strong> Paycom Center was nearly impossible to win in last playoffs (12-2 at home)</li>
+            </ul>
+
+            <p>The Warriors went 73-9 and lost in the Finals. The Spurs won five championships in 15 years. The Bulls went 72-10 and won six rings. The common thread? <strong>Sustained excellence with a young, hungry core.</strong></p>
+            
+            <p>OKC has that. They're not satisfied with one ring. They want banners. They want to be remembered. And they have the roster, the coaching, and the culture to do it.</p>
+
+            <h2>The Obstacles</h2>
+            
+            <p>No path to glory is without hurdles. OKC will face real challenges this season:</p>
+
+            <h3>1. The West Is Still Deep</h3>
+            <p>Denver has Jokić (still the best player in the world). Minnesota has Ant (who's only getting better). Dallas has Luka and Kyrie. The Lakers, if healthy, have LeBron and AD. Phoenix has talent. The West gauntlet remains brutal.</p>
+
+            <h3>2. Injury Luck Can't Last Forever</h3>
+            <p>Last year, OKC stayed remarkably healthy through 98 games. That's rare. One SGA ankle sprain or Chet knee issue could change everything. Depth helps, but stars win titles. They'll need health luck again.</p>
+
+            <h3>3. Playoff Adjustments Coming</h3>
+            <p>Every team in the league studied that Finals run. Playoff basketball slows down. Teams will pack the paint against OKC. Can they score consistently in halfcourt settings when defenses are locked in? Last year proved they can—but they'll need to do it again.</p>
+
+            <h3>4. Championship Hangover Is Real</h3>
+            <p>The hardest thing in sports is staying hungry after you've won. Will this young core maintain that killer intensity? History says teams often regress emotionally after a title. The target is on their backs now. Everyone wants to be the team that beats the champs.</p>
+
+            <h2>The Verdict: OKC Should Be the Favorite</h2>
+            
+            <p>Here's the reality: The Oklahoma City Thunder just won a championship with the youngest core in NBA history. SGA is 26 and entering his absolute prime. Chet is 22. J-Dub is 23. They're not declining—they're <em>improving</em>.</p>
+            
+            <p>They have championship experience now. They know what it takes. The roster is intact. The chemistry is proven. The coaching is elite. And most importantly, they have that hunger that only young champions possess—the desire to prove it wasn't a fluke.</p>
+            
+            <p><strong>Championship Odds (via DraftKings, October 2025):</strong></p>
+            <ul>
+                <li>OKC Thunder: +320 (CO-FAVORITE)</li>
+                <li>Boston Celtics: +450</li>
+                <li>Denver Nuggets: +600</li>
+                <li>Minnesota Timberwolves: +800</li>
+                <li>Phoenix Suns: +1000</li>
+            </ul>
+
+            <p>The betting markets clearly think OKC is one of the top contenders. And it's hard to argue against that logic.</p>
+
+            <h2>The Final Word</h2>
+            
+            <p>In five years, we might look back at last season as the start of something special. Sam Presti drafted perfectly. Mark Daigneault coached a masterclass. SGA became a legitimate superstar. Chet proved the unicorn label wasn't hype. J-Dub established himself as one of the league's best young two-way players.</p>
+            
+            <p>This offseason, nothing changed. Everyone's back. The hunger should still be there. The talent is undeniable. The window isn't just open—it's <em>widening</em>.</p>
+            
+            <p>Will they repeat? Nobody knows. But they have as good a chance as anyone. And in a league where championship windows close fast, OKC's is just beginning.</p>
+            
+            <p>Back-to-back isn't guaranteed. But it's absolutely possible. And that alone makes this season must-watch basketball.</p>
+            
+            <p><strong>Thunder up. 🌩️</strong></p>
+        `
+    },
+    {
         id: 11,
         title: "Fable Returns: Everything We Know About Albion's Long-Awaited Comeback",
         slug: "fable-reboot-albion-returns-2026",
