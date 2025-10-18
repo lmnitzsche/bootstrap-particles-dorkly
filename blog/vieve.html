@@ -104,39 +104,6 @@
             transform: translateY(-2px);
         }
 
-        /* Blyss Switch Button */
-        .blyss-switch {
-            background: linear-gradient(135deg, #0a0a0a 0%, #0d6efd 100%);
-            color: white !important;
-            border: 2px solid #0d6efd;
-            border-radius: 25px;
-            padding: 0.5rem 1.2rem;
-            font-weight: 700;
-            font-size: 1rem;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(13, 110, 253, 0.4);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-        }
-
-        .blyss-switch:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 6px 25px rgba(13, 110, 253, 0.6);
-            color: white !important;
-            background: linear-gradient(135deg, #0d6efd 0%, #0056d2 100%);
-            border-color: #4d94ff;
-        }
-
-        .blyss-switch i {
-            font-size: 1.1rem;
-        }
-
         /* Hero Section */
         .hero-section {
             position: relative;
@@ -513,11 +480,6 @@
                 padding: 0.6rem 1.2rem;
                 font-size: 0.75rem;
             }
-
-            /* Hide blog switcher buttons on mobile */
-            .blyss-switch {
-                display: none !important;
-            }
         }
     </style>
 </head>
@@ -534,10 +496,6 @@
                     <a href="#latest-articles" class="nav-link nav-category-link" data-category="food">Food</a>
                 </div>
                 <div class="d-flex align-items-center gap-3">
-                    <a href="blyss.html" class="blyss-switch">
-                        <i class="bi bi-journal-text"></i>
-                        <span>Blyss</span>
-                    </a>
                     <a href="../index.html" class="btn btn-sm" style="background: linear-gradient(135deg, var(--vieve-purple), var(--vieve-pink)); color: white; font-weight: 700; border-radius: 25px; padding: 0.5rem 1.2rem; font-size: 1rem; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3);">
                         <i class="bi bi-arrow-left-circle-fill" style="font-size: 1.1rem;"></i>
                         <span>DorklyAI</span>
@@ -608,6 +566,19 @@
         </div>
     </section>
 
+        <!-- Quiz Platform Section -->
+    <section class="newsletter-section">
+        <div class="container text-center">
+            <h2 class="newsletter-title">DISCOVER YOUR PERSONALITY</h2>
+            <p class="mb-4" style="color: var(--vieve-text);">Which character are you? Free quizzes • No signup • Instant results</p>
+            <div class="newsletter-form">
+                <a href="../quizzes/" class="btn newsletter-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;">
+                    Take a Quiz <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="vieve-footer">
         <div class="container">
@@ -630,6 +601,12 @@
                     <a href="#" class="footer-link">Sports</a>
                     <a href="#" class="footer-link">Pop Culture</a>
                     <a href="#" class="footer-link">Food</a>
+                </div>
+                <div class="col-lg-2 col-6 mb-4">
+                    <h5 style="color: var(--vieve-white); font-weight: 700; margin-bottom: 1rem; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">More Content</h5>
+                    <a href="../quizzes/" class="footer-link">Free Quizzes</a>
+                    <a href="blyss.html" class="footer-link">Blyss Blog</a>
+                    <a href="../" class="footer-link">DorklyAI</a>
                 </div>
                 <div class="col-lg-2 col-6 mb-4">
                     <h5 style="color: var(--vieve-white); font-weight: 700; margin-bottom: 1rem; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Company</h5>

@@ -248,7 +248,7 @@ const vieveArticles = [
         date: "2025-10-14",
         readTime: "8 min",
         excerpt: "Din Djarin's journey continues. Here's every confirmed detail, credible leak, and fan theory for the upcoming season.",
-        image: "https://images.unsplash.com/photo-1608889476561-6242cfdbf622?w=800&h=500&fit=crop",
+        image: "https://images.unsplash.com/photo-1579566346927-c68383817a25?w=800&h=500&fit=crop",
         featured: false,
         content: `
             <p>After the shocking cliffhanger of Season 3, Mandalorian fans have been starving for information. With filming wrapped and a release date confirmed (November 2025), let's break down everything we know about Din Djarin's next adventure.</p>
@@ -356,7 +356,7 @@ const vieveArticles = [
         date: "2025-10-11",
         readTime: "8 min",
         excerpt: "F1's radical 2026 regulation changes will transform the sport. Here's what's coming and why teams are worried.",
-        image: "https://images.unsplash.com/photo-1547949003-9792a18a2601?w=800&h=500&fit=crop",
+        image: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=800&h=500&fit=crop",
         featured: false,
         content: `
             <p>Formula 1's 2026 technical regulations represent the biggest shake-up since the hybrid era began in 2014. The FIA is betting big on sustainable racing, and teams are scrambling to adapt. Here's everything changing.</p>
@@ -508,7 +508,7 @@ const vieveArticles = [
         date: "2025-10-07",
         readTime: "8 min",
         excerpt: "Fourth-down conversions, two-point attempts, and fake punts—analytics are making football more aggressive and way more entertaining.",
-        image: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&h=500&fit=crop",
+        image: "https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=800&h=500&fit=crop",
         featured: false,
         content: `
             <p>Remember when kicking a field goal on 4th-and-2 was automatic? Those days are dead. NFL coaches are finally embracing analytics, and it's making games exponentially more exciting. Here's how math conquered football's old guard.</p>
