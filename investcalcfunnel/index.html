@@ -80,7 +80,7 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            background: #000000;
             min-height: 100vh;
             padding: 0;
             font-family: 'Inter', sans-serif;
@@ -95,10 +95,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(99, 125, 255, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 40% 90%, rgba(162, 155, 254, 0.2) 0%, transparent 50%);
+            background: transparent;
             pointer-events: none;
             z-index: 0;
         }
@@ -141,14 +138,11 @@
             font-size: 2.5rem;
             font-weight: 900;
             margin-bottom: 10px;
+            color: #ffffff;
             text-shadow: 
-                0 0 20px rgba(13, 110, 253, 0.5),
+                0 0 20px rgba(13, 110, 253, 0.8),
+                0 0 40px rgba(13, 110, 253, 0.5),
                 0 4px 6px rgba(0,0,0,0.4);
-            background: linear-gradient(135deg, #fff 0%, #0d6efd 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: glow 3s ease-in-out infinite;
         }
 
         .dorkly-badge {
@@ -194,6 +188,7 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
             font-weight: 300;
             letter-spacing: 0.5px;
+            color: #ffffff;
         }
 
         .hero-section .subtitle {
@@ -201,6 +196,7 @@
             margin-top: 10px;
             opacity: 0.9;
             font-style: italic;
+            color: #ffffff;
         }
 
         .section-title {
@@ -345,14 +341,14 @@
         }
         
         .cta-section {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, #0d6efd 0%, #4d94ff 100%);
             color: white;
             padding: 80px 40px;
             text-align: center;
             border-radius: 24px;
             margin-top: 50px;
             box-shadow: 
-                0 30px 90px rgba(245, 87, 108, 0.4),
+                0 30px 90px rgba(13, 110, 253, 0.4),
                 0 0 1px rgba(255, 255, 255, 0.1) inset;
             position: relative;
             overflow: hidden;
@@ -394,7 +390,7 @@
         
         .cta-button {
             background: white;
-            color: #f5576c;
+            color: #0d6efd;
             font-size: 1.5rem;
             font-weight: 800;
             padding: 20px 60px;
@@ -411,17 +407,17 @@
         .cta-button:hover {
             transform: scale(1.1) translateY(-5px);
             box-shadow: 0 15px 50px rgba(0,0,0,0.4);
-            color: #f5576c;
+            color: #0d6efd;
         }
 
         .warren-buffett-section {
-            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            background: linear-gradient(135deg, #0d6efd 0%, #4d94ff 100%);
             color: white;
             padding: 60px 40px;
             text-align: center;
             border-radius: 24px;
             margin-top: 40px;
-            box-shadow: 0 20px 60px rgba(25, 84, 123, 0.4);
+            box-shadow: 0 20px 60px rgba(13, 110, 253, 0.4);
             border: 2px solid rgba(255, 255, 255, 0.2);
         }
 
@@ -445,7 +441,7 @@
 
         .warren-link {
             background: white;
-            color: #19547b;
+            color: #0d6efd;
             font-size: 1.3rem;
             font-weight: 700;
             padding: 18px 50px;
@@ -459,7 +455,7 @@
 
         .warren-link:hover {
             transform: scale(1.05);
-            color: #19547b;
+            color: #0d6efd;
             box-shadow: 0 15px 40px rgba(0,0,0,0.4);
         }
         
@@ -920,6 +916,68 @@
             color: #0d6efd;
         }
 
+        /* Compact Ad Strip Styles */
+        .compact-ad-strip {
+            background: linear-gradient(135deg, #0d6efd 0%, #4d94ff 100%);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+            border-radius: 16px;
+            margin: 40px 0;
+            box-shadow: 0 15px 40px rgba(13, 110, 253, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .compact-ad-strip::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: slide 3s infinite;
+        }
+
+        .compact-ad-strip > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .compact-ad-strip h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .compact-ad-strip p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            opacity: 0.95;
+        }
+
+        .compact-ad-btn {
+            background: white;
+            color: #0d6efd;
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .compact-ad-btn:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            color: #0d6efd;
+        }
+
         @media (max-width: 768px) {
             .hero-section h1 {
                 font-size: 2.5rem;
@@ -1019,6 +1077,13 @@
 
                 </article>
                 
+                <!-- Compact Ad Strip 1: Courses -->
+                <aside class="compact-ad-strip" role="complementary">
+                    <h3>Build Lasting Wealth with Smart Investing</h3>
+                    <p>Master financial literacy, buy & hold strategies, credit optimization, and more with our proven courses</p>
+                    <a href="https://dorklyai.com/courses" class="compact-ad-btn" target="_blank" rel="noopener">View Courses →</a>
+                </aside>
+                
                 <!-- Historical Backtesting Section -->
                 <section class="calculator-container" aria-labelledby="backtesting-heading">
                     <h2 id="backtesting-heading" class="section-title">Historical Stock Backtesting (Up to 50 Years)</h2>
@@ -1085,6 +1150,13 @@
 
                 </section>
                 
+                <!-- Compact Ad Strip 2: Investment Insights -->
+                <aside class="compact-ad-strip" role="complementary">
+                    <h3>Learn from Legendary Investors</h3>
+                    <p>Discover timeless investment wisdom and financial strategies on our Blyss blog</p>
+                    <a href="../blog/blyss.html" class="compact-ad-btn">Read Investment Insights →</a>
+                </aside>
+                
                 <!-- CAGR Performance Analysis Section -->
                 <section class="calculator-container" style="background: white;" aria-labelledby="cagr-heading">
                     <h2 id="cagr-heading" class="section-title">ETF Performance Analysis - CAGR Calculator</h2>
@@ -1147,6 +1219,13 @@
             </div>
                 </section>
                 
+                <!-- Compact Ad Strip 3: Business Services -->
+                <aside class="compact-ad-strip" role="complementary">
+                    <h3>Transform Your Business with AI</h3>
+                    <p>Custom AI agents, automation, web development, SEO & digital marketing solutions</p>
+                    <a href="https://dorklyai.com" class="compact-ad-btn" target="_blank" rel="noopener">Explore Services →</a>
+                </aside>
+                
                 <!-- Portfolio Builder Section -->
                 <section class="calculator-container" style="background: white; border: 2px solid #667eea;" aria-labelledby="portfolio-heading">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
@@ -1202,28 +1281,6 @@
                     </div>
                     </div>
                 </section>
-
-                <!-- Einstein Investment Wisdom Section -->
-                <aside class="warren-buffett-section" role="complementary" aria-label="Investment wisdom and education">
-                    <h3>Einstein's Investment Wisdom</h3>
-                    <blockquote cite="https://en.wikipedia.org/wiki/Albert_Einstein">
-                        "Compound interest is the eighth wonder of the world. He who understands it, earns it; he who doesn't, pays it."
-                        <footer class="mt-3" style="font-size: 1rem; opacity: 0.9;">— Albert Einstein</footer>
-                    </blockquote>
-                    <p class="lead mb-4">Discover timeless investment wisdom, financial strategies, and market insights from legendary investors and thinkers</p>
-                    <a href="../blog/blyss.html" class="warren-link" aria-label="Read more investment insights on Blyss blog">
-                        Read Investment Insights on Blyss →
-                    </a>
-                </aside>
-
-                <!-- DorklyAI CTA Section -->
-                <aside class="cta-section" role="complementary" aria-label="DorklyAI call to action">
-                    <h2>Ready to Build Real Wealth?</h2>
-                    <p class="lead mb-4">Learn the exact strategies successful investors use to grow their portfolios</p>
-                    <p class="mb-4" style="font-size: 1.2rem;">Join DorklyAI's proven courses on financial literacy, buy & hold investing, credit optimization, affiliate marketing, and sales mastery. Transform your financial future with step-by-step guidance.</p>
-                    <a href="https://dorklyai.com/courses" class="cta-button" target="_blank" rel="noopener" aria-label="Explore Our Courses - opens in new tab">Explore Our Courses →</a>
-                    <p class="mt-4" style="font-size: 1rem; opacity: 0.95;">Join students building lasting wealth through education and smart investing</p>
-                </aside>
             </main>
             
             <!-- Footer -->
