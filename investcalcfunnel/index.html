@@ -79,6 +79,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background: #000000;
             min-height: 100vh;
@@ -1022,6 +1026,121 @@
             transform: translateX(5px);
         }
 
+        /* Tool Navigation Styles */
+        .tool-nav {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 25px 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(13, 110, 253, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .tool-nav h4 {
+            color: #1a1a2e;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .tool-nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .tool-nav-btn {
+            background: linear-gradient(135deg, #0d6efd 0%, #4d94ff 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(13, 110, 253, 0.2);
+            display: block;
+        }
+
+        .tool-nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(13, 110, 253, 0.4);
+            color: white;
+        }
+
+        .tool-nav-btn i {
+            margin-right: 8px;
+        }
+
+        /* Algo Trading Section Styles */
+        .algo-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #0d6efd;
+            transition: all 0.3s ease;
+        }
+
+        .algo-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 30px rgba(13, 110, 253, 0.2);
+        }
+
+        .algo-card h4 {
+            color: #0d6efd;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .algo-card .algo-type {
+            display: inline-block;
+            background: linear-gradient(135deg, #0d6efd 0%, #4d94ff 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .algo-card p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .algo-card .algo-pros {
+            background: rgba(40, 167, 69, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .algo-card .algo-cons {
+            background: rgba(220, 53, 69, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .algo-card .algo-pros strong,
+        .algo-card .algo-cons strong {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .algo-card .algo-pros {
+            color: #155724;
+        }
+
+        .algo-card .algo-cons {
+            color: #721c24;
+        }
+
         @media (max-width: 768px) {
             .hero-section h1 {
                 font-size: 2.5rem;
@@ -1046,14 +1165,26 @@
             <!-- Hero Section -->
             <header class="hero-section" role="banner">
                 <a href="https://dorklyai.com" target="_blank" class="dorkly-badge" rel="noopener" aria-label="Powered by DorklyAI - Visit DorklyAI website">Powered by DorklyAI</a>
-                <h1>Investment Calculator</h1>
+                <h1>Investment Tools</h1>
                 <p style="font-size: 1.1rem; font-weight: 300; margin-top: 5px;">Backtest 50 years of market data & build custom portfolios</p>
             </header>
 
             <!-- Main Content -->
             <main id="main-content" role="main">
+                <!-- Tool Navigation -->
+                <nav class="tool-nav" role="navigation" aria-label="Investment tools navigation">
+                    <h4>Jump to Tool</h4>
+                    <div class="tool-nav-grid">
+                        <a href="#compound-calculator" class="tool-nav-btn">📊 Compound Interest Calculator</a>
+                        <a href="#backtesting" class="tool-nav-btn">📈 Historical Backtesting</a>
+                        <a href="#cagr-analysis" class="tool-nav-btn">📉 CAGR Performance</a>
+                        <a href="#portfolio-builder" class="tool-nav-btn">💼 Portfolio Builder</a>
+                        <a href="#algo-trading" class="tool-nav-btn">🤖 Trading Algorithms</a>
+                    </div>
+                </nav>
+
                 <!-- Compound Interest Calculator Section -->
-                <article class="calculator-container">
+                <article id="compound-calculator" class="calculator-container">
                     <h2 class="section-title">Compound Interest Calculator</h2>
                     <p class="text-muted mb-4">Discover the power of compound interest - Einstein's "8th wonder of the world" - and plan your financial future</p>
                 
@@ -1122,7 +1253,7 @@
                 </article>
                 
                 <!-- Historical Backtesting Section -->
-                <section class="calculator-container" aria-labelledby="backtesting-heading">
+                <section id="backtesting" class="calculator-container" aria-labelledby="backtesting-heading">
                     <h2 id="backtesting-heading" class="section-title">Historical Stock Backtesting (Up to 50 Years)</h2>
                     <p class="text-muted mb-4">See how your investment strategy would have performed with <strong>real historical market data</strong> from SPY, QQQ, VTI, and 17+ major ETFs and assets</p>
                 
@@ -1198,7 +1329,7 @@
                 </aside>
                 
                 <!-- CAGR Performance Analysis Section -->
-                <section class="calculator-container" style="background: white;" aria-labelledby="cagr-heading">
+                <section id="cagr-analysis" class="calculator-container" style="background: white;" aria-labelledby="cagr-heading">
                     <h2 id="cagr-heading" class="section-title">ETF Performance Analysis - CAGR Calculator</h2>
                     <p class="text-muted mb-4">Analyze historical Compound Annual Growth Rate (CAGR) for 18+ ETFs including SPY, QQQ, VTI, SCHD, bonds, gold, and international markets</p>
                 
@@ -1270,7 +1401,7 @@
                 </aside>
                 
                 <!-- Portfolio Builder Section -->
-                <section class="calculator-container" style="background: white; border: 2px solid #667eea;" aria-labelledby="portfolio-heading">
+                <section id="portfolio-builder" class="calculator-container" style="background: white; border: 2px solid #667eea;" aria-labelledby="portfolio-heading">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
                         <div>
                             <h2 id="portfolio-heading" class="section-title" style="margin-bottom: 10px;">Custom Portfolio Builder with Weighted CAGR</h2>
@@ -1322,6 +1453,104 @@
                             </div>
                         </div>
                     </div>
+                    </div>
+                </section>
+
+                <!-- Algorithmic Trading Section -->
+                <section id="algo-trading" class="calculator-container" style="background: white;" aria-labelledby="algo-heading">
+                    <h2 id="algo-heading" class="section-title">Machine Learning Algorithmic Trading</h2>
+                    <p class="text-muted mb-4">Explore practical machine learning approaches widely used in quantitative trading and algorithmic finance</p>
+                    
+                    <div class="algo-card">
+                        <span class="algo-type">Regression</span>
+                        <h4>Linear Regression</h4>
+                        <p>The foundational ML technique that models the relationship between input features (technical indicators, volume, etc.) and price movements using a linear equation. Despite its simplicity, it's often used as a baseline and can be surprisingly effective for trend prediction and feature importance analysis.</p>
+                        <div class="algo-pros">
+                            <strong>✓ Advantages:</strong>
+                            Extremely fast to train and deploy, highly interpretable coefficients show feature importance, works well as baseline, low computational requirements, no risk of overfitting with proper regularization (Ridge/Lasso)
+                        </div>
+                        <div class="algo-cons">
+                            <strong>✗ Drawbacks:</strong>
+                            Assumes linear relationships which rarely exist in markets, sensitive to outliers, cannot capture complex interactions, poor with non-stationary data, limited predictive power for volatile markets
+                        </div>
+                    </div>
+
+                    <div class="algo-card">
+                        <span class="algo-type">Tree-Based</span>
+                        <h4>Decision Trees</h4>
+                        <p>Creates a tree-like model of decisions based on feature thresholds. For trading, it might split on rules like "If RSI > 70 AND volume > average, then SELL". Highly interpretable and forms the foundation for more powerful ensemble methods.</p>
+                        <div class="algo-pros">
+                            <strong>✓ Advantages:</strong>
+                            Easy to visualize and interpret, no feature scaling needed, handles non-linear relationships naturally, captures feature interactions, can model complex decision boundaries, works with mixed data types
+                        </div>
+                        <div class="algo-cons">
+                            <strong>✗ Drawbacks:</strong>
+                            Prone to overfitting without pruning, unstable (small data changes create different trees), not ideal for extrapolation, biased toward features with many levels, poor with imbalanced datasets
+                        </div>
+                    </div>
+
+                    <div class="algo-card">
+                        <span class="algo-type">Support Vector Machine</span>
+                        <h4>SVM (Support Vector Machines)</h4>
+                        <p>Finds the optimal hyperplane that separates different market states (bull/bear, buy/sell signals). Using kernel tricks, SVMs can model complex non-linear boundaries, making them excellent for classification tasks like predicting whether a stock will rise or fall.</p>
+                        <div class="algo-pros">
+                            <strong>✓ Advantages:</strong>
+                            Excellent for binary classification, effective in high-dimensional spaces, robust against overfitting with proper regularization, kernel trick allows non-linear decision boundaries, works well with limited data
+                        </div>
+                        <div class="algo-cons">
+                            <strong>✗ Drawbacks:</strong>
+                            Computationally expensive for large datasets, requires careful hyperparameter tuning, difficult to interpret, sensitive to feature scaling, slow training time, choosing right kernel is challenging
+                        </div>
+                    </div>
+
+                    <div class="algo-card">
+                        <span class="algo-type">Ensemble Learning</span>
+                        <h4>Random Forest</h4>
+                        <p>Combines hundreds of decision trees trained on random subsets of data and features. Each tree "votes" on the prediction, reducing overfitting and improving accuracy. Widely used in trading for classification and regression tasks due to its robustness and reliability.</p>
+                        <div class="algo-pros">
+                            <strong>✓ Advantages:</strong>
+                            Reduces overfitting compared to single trees, provides feature importance rankings, handles missing data well, works out-of-the-box with minimal tuning, robust to outliers, parallelizable for speed
+                        </div>
+                        <div class="algo-cons">
+                            <strong>✗ Drawbacks:</strong>
+                            Less interpretable than single tree, can be memory intensive, slower predictions than simpler models, may not capture temporal dependencies well, requires many trees for stability
+                        </div>
+                    </div>
+
+                    <div class="algo-card">
+                        <span class="algo-type">Gradient Boosting</span>
+                        <h4>XGBoost (Extreme Gradient Boosting)</h4>
+                        <p>Industry-standard boosting algorithm that builds trees sequentially, with each new tree correcting errors from previous ones. Dominates Kaggle competitions and is heavily used by quantitative hedge funds. Offers superior performance on tabular financial data compared to most deep learning approaches.</p>
+                        <div class="algo-pros">
+                            <strong>✓ Advantages:</strong>
+                            State-of-the-art performance on structured data, fast training with optimized implementation, built-in regularization prevents overfitting, handles missing values, feature importance, works exceptionally well for trading signals
+                        </div>
+                        <div class="algo-cons">
+                            <strong>✗ Drawbacks:</strong>
+                            Many hyperparameters to tune, can overfit if not properly regularized, sequential training (not parallelizable), requires careful feature engineering, computationally expensive for very large datasets
+                        </div>
+                    </div>
+
+                    <div class="algo-card">
+                        <span class="algo-type">Deep Learning</span>
+                        <h4>LSTM (Long Short-Term Memory) Networks</h4>
+                        <p>A specialized recurrent neural network designed for time-series data. LSTMs excel at learning patterns in sequential stock price movements, capturing long-term dependencies that traditional models miss. Used by sophisticated quant funds for price prediction and pattern recognition.</p>
+                        <div class="algo-pros">
+                            <strong>✓ Advantages:</strong>
+                            Excellent for sequential/time-series data, captures long-term dependencies, learns complex patterns automatically, handles variable-length sequences, can model temporal dynamics in markets
+                        </div>
+                        <div class="algo-cons">
+                            <strong>✗ Drawbacks:</strong>
+                            Requires massive amounts of data, computationally expensive to train, black-box predictions are hard to interpret, prone to overfitting, needs extensive hyperparameter tuning, requires GPU for practical use
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(13, 110, 253, 0.1); border-left: 4px solid #0d6efd; border-radius: 8px; padding: 20px; margin-top: 30px;">
+                        <p style="margin: 0; color: #1a1a2e;"><strong>💡 Pro Tip:</strong> Most successful trading algorithms start with Linear Regression and XGBoost before jumping to deep learning. These simpler models are faster to iterate, easier to debug, and often outperform complex neural networks when properly engineered. Always start simple and add complexity only when needed.</p>
+                    </div>
+
+                    <div style="background: rgba(13, 110, 253, 0.1); border-left: 4px solid #0d6efd; border-radius: 8px; padding: 20px; margin-top: 20px;">
+                        <p style="margin: 0; color: #1a1a2e;"><strong>⚠️ Important Note:</strong> Machine learning trading strategies require extensive backtesting, proper validation, and robust risk management. Past performance does not guarantee future results. Always paper trade and thoroughly validate before deploying with real capital.</p>
                     </div>
                 </section>
             </main>
