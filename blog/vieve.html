@@ -579,6 +579,14 @@
         </div>
     </section>
 
+    <!-- All Stories Grid -->
+    <section class="container my-5" id="all-articles">
+        <h2 class="section-header">All Stories</h2>
+        <div class="row g-4" id="all-articles-grid">
+            <!-- Articles will be loaded dynamically -->
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="vieve-footer">
         <div class="container">
@@ -644,6 +652,7 @@
         // Load dynamic content
         document.addEventListener('DOMContentLoaded', function() {
             loadFeaturedArticle();
+            loadAllArticles();
             loadLatestArticles();
             loadTrendingArticles();
         });
@@ -670,9 +679,38 @@
             `;
         }
 
-        // Load latest articles
-        function loadLatestArticles() {
-            const articles = getAllArticles().slice(1, 7); // Skip featured, get next 6
+        // Load all articles (for "All Stories" section)
+        function loadAllArticles(category = 'all') {
+            const articles = category === 'all' ? getAllArticles() : getArticlesByCategory(category);
+            const container = document.querySelector('#all-articles-grid');
+            
+            container.innerHTML = articles.map(article => `
+                <div class="col-lg-4 col-md-6">
+                    <a href="vieve-article.html?article=${article.slug}" style="text-decoration: none;">
+                        <div class="article-card">
+                            <img src="${article.image}" alt="${article.title}" class="article-image">
+                            <div class="article-content">
+                                <span class="article-category">${article.category}</span>
+                                <h3 class="article-title">${article.title}</h3>
+                                <p class="article-excerpt">${article.excerpt}</p>
+                                <div class="article-meta">
+                                    <span>${formatDate(article.date)}</span>
+                                    <span class="read-time">
+                                        <i class="bi bi-clock"></i> ${article.readTime}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `).join('');
+        }
+
+        // Load latest articles (max 6, filtered by category)
+        function loadLatestArticles(category = 'all') {
+            const articles = category === 'all' 
+                ? getAllArticles().slice(0, 6) 
+                : getArticlesByCategory(category).slice(0, 6);
             const container = document.querySelector('#latest-articles-grid');
             
             container.innerHTML = articles.map(article => `
@@ -697,9 +735,10 @@
             `).join('');
         }
 
-        // Load trending articles
+        // Load trending articles (last 6 featured articles)
         function loadTrendingArticles() {
-            const trending = getAllArticles().slice(7, 9); // Get 2 more articles
+            const featuredArticles = vieveArticles.filter(article => article.featured);
+            const trending = featuredArticles.slice(-6); // Get last 6 featured
             const container = document.querySelector('#trending-articles-grid');
             
             container.innerHTML = trending.map(article => `
@@ -722,6 +761,14 @@
                     </a>
                 </div>
             `).join('');
+            
+            // Hide trending section if less than 6 featured articles available
+            const trendingSection = document.querySelector('#trending-articles');
+            if (trending.length === 0) {
+                trendingSection.style.display = 'none';
+            } else {
+                trendingSection.style.display = 'block';
+            }
         }
 
         // Category filter functionality
@@ -733,7 +780,10 @@
                 this.classList.add('active');
                 
                 currentCategory = this.dataset.category;
-                filterArticles(currentCategory);
+                
+                // Update all sections based on category
+                loadAllArticles(currentCategory);
+                loadLatestArticles(currentCategory);
             });
         });
 
@@ -750,43 +800,29 @@
                     targetPill.classList.add('active');
                 }
                 
-                // Filter articles
+                // Update articles
                 currentCategory = category;
-                filterArticles(category);
+                loadAllArticles(category);
+                loadLatestArticles(category);
                 
-                // Smooth scroll to articles section
-                document.querySelector('#latest-articles').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Smooth scroll to all articles section
+                document.querySelector('#all-articles').scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
-        function filterArticles(category) {
-            const articles = category === 'all' ? getAllArticles().slice(1, 7) : getArticlesByCategory(category).slice(0, 6);
-            const container = document.querySelector('#latest-articles-grid');
+        // Check if sections have content and show "no articles" message
+        function checkEmptySection(category) {
+            const articles = category === 'all' ? getAllArticles() : getArticlesByCategory(category);
             
-            container.innerHTML = articles.map(article => `
-                <div class="col-lg-4 col-md-6">
-                    <a href="vieve-article.html?article=${article.slug}" style="text-decoration: none;">
-                        <div class="article-card">
-                            <img src="${article.image}" alt="${article.title}" class="article-image">
-                            <div class="article-content">
-                                <span class="article-category">${article.category}</span>
-                                <h3 class="article-title">${article.title}</h3>
-                                <p class="article-excerpt">${article.excerpt}</p>
-                                <div class="article-meta">
-                                    <span>${formatDate(article.date)}</span>
-                                    <span class="read-time">
-                                        <i class="bi bi-clock"></i> ${article.readTime}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            `).join('');
-
-            // Show message if no articles in category
             if (articles.length === 0) {
-                container.innerHTML = `
+                document.querySelector('#all-articles-grid').innerHTML = `
+                    <div class="col-12 text-center">
+                        <p style="color: var(--vieve-text); padding: 3rem;">
+                            No articles found in this category yet. Check back soon for fresh content!
+                        </p>
+                    </div>
+                `;
+                document.querySelector('#latest-articles-grid').innerHTML = `
                     <div class="col-12 text-center">
                         <p style="color: var(--vieve-text); padding: 3rem;">
                             No articles found in this category yet. Check back soon for fresh content!
