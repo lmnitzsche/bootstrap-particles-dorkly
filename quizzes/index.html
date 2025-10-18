@@ -570,6 +570,50 @@
             box-shadow: 0 10px 30px rgba(236, 72, 153, 0.5);
         }
         
+        /* Newsletter/Ad Section */
+        .newsletter-section {
+            background: linear-gradient(135deg, var(--vieve-gray) 0%, #1a0033 100%);
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+            border-radius: 20px;
+            border: 2px solid;
+            border-image: linear-gradient(135deg, var(--vieve-purple), var(--vieve-pink)) 1;
+            position: relative;
+            z-index: 10;
+        }
+
+        .newsletter-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--vieve-white);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .newsletter-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter-btn {
+            background: linear-gradient(135deg, var(--vieve-purple) 0%, var(--vieve-pink) 100%);
+            color: var(--vieve-white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            border: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .newsletter-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+            color: var(--vieve-white);
+        }
+
         /* FAQ Section */
         .faq-section {
             position: relative;
@@ -725,6 +769,20 @@
                 justify-content: center;
             }
             
+            .newsletter-section {
+                padding: 3rem 1.5rem;
+                margin: 2rem 0;
+            }
+
+            .newsletter-title {
+                font-size: 2rem;
+            }
+
+            .newsletter-btn {
+                padding: 0.85rem 2rem;
+                font-size: 0.9rem;
+            }
+
             .faq-section {
                 padding: 2rem 1rem;
             }
@@ -1110,6 +1168,19 @@
         </div>
     </main>
     
+    <!-- Vieve Blog Ad Section -->
+    <section class="newsletter-section">
+        <div class="container text-center">
+            <h2 class="newsletter-title">LOVED THE QUIZ? READ THE DEEP DIVE</h2>
+            <p class="mb-4" style="color: var(--vieve-text);">Your favorite characters, teams & games—dissected. Gaming breakdowns • Sports analytics • Pop culture hot takes • Food adventures</p>
+            <div class="newsletter-form">
+                <a href="../blog/vieve.html" class="btn newsletter-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;">
+                    Explore Vieve <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- FAQ Section -->
     <section class="faq-section" role="region" aria-label="Frequently asked questions">
         <div class="container">
@@ -1180,21 +1251,34 @@
         </div>
     </section>
     
-    <!-- Funnel Section -->
+    <!-- DorklyAI Solutions Ad Section -->
+    <section class="newsletter-section">
+        <div class="container text-center">
+            <h2 class="newsletter-title">READY TO LEVEL UP YOUR BUSINESS?</h2>
+            <p class="mb-4" style="color: var(--vieve-text);">Turn clicks into customers. AI-powered marketing • Sales funnels that convert • Lead gen on autopilot • Data-driven decisions</p>
+            <div class="newsletter-form">
+                <a href="../" class="btn newsletter-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;">
+                    Start Growing <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- More Content Section -->
     <section class="funnel-section" role="complementary" aria-label="Related content">
         <div class="funnel-container">
-            <h2 class="funnel-title">Want More Content?</h2>
+            <h2 class="funnel-title">SHARPEN YOUR EDGE</h2>
             <p class="funnel-subtitle">
-                Enjoyed our quizzes? Discover more amazing content! Check out Vieve's gaming and pop culture blog for the latest trends, or explore DorklyAI's business solutions to grow your ventures.
+                Deep dives into business strategy, financial wisdom, cutting-edge tech, philosophy & theology—or crunch the numbers with pro-grade investment tools.
             </p>
             <div class="funnel-buttons">
-                <a href="../blog/vieve.html" class="funnel-btn primary" aria-label="Visit Vieve gaming and pop culture blog">
-                    <i class="bi bi-controller" aria-hidden="true"></i>
-                    Vieve Blog
+                <a href="../blog/blyss.html" class="funnel-btn primary" aria-label="Read Blyss strategic insights blog">
+                    <i class="bi bi-lightbulb me-2"></i>
+                    Blyss Insights
                 </a>
-                <a href="../" class="funnel-btn secondary" aria-label="Explore DorklyAI business solutions">
-                    <i class="bi bi-rocket-takeoff" aria-hidden="true"></i>
-                    DorklyAI Solutions
+                <a href="../investcalcfunnel/" class="funnel-btn secondary" aria-label="Access investment calculator tools">
+                    <i class="bi bi-calculator me-2"></i>
+                    Investment Calculators
                 </a>
             </div>
         </div>
