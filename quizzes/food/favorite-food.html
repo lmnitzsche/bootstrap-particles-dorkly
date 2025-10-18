@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Food Predictor | Can We Guess Your Favorite Food? | DorklyAI</title>
+    <meta name="description" content="Answer personality questions and we'll predict your favorite food! Pizza, Sushi, Tacos, Pasta, Burgers, Salad, Steak, or Ramen?">
+    <link rel="icon" type="image/x-icon" href="../../assets/dorklogo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="../quiz-styles.css" rel="stylesheet">
+    <style>
+        :root { --quiz-gradient: linear-gradient(135deg, #fd746c 0%, #ff9068 50%, #fdc830 100%); }
+    </style>
+</head>
+<body>
+    <div class="background-animation" id="backgroundAnimation"></div>
+    <div class="quiz-container" id="quiz-container"></div>
+    <script src="../quiz-engine.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const favoriteFoodQuizConfig = {
+            title: "Favorite Food Predictor",
+            description: "Answer these fun personality questions and we'll try to guess your favorite food! Can we read your taste buds?",
+            quizType: "favorite-food",
+            estimatedTime: "2-3",
+            scoringMethod: "category",
+            showProgress: true,
+            questions: [
+                { id: 1, question: "Pick a vacation destination:", answers: [
+                    { value: "pizza", text: "Italy - historic and cultural", description: "Classic charm" },
+                    { value: "sushi", text: "Japan - traditional and refined", description: "Elegant precision" },
+                    { value: "tacos", text: "Mexico - vibrant and festive", description: "Colorful celebration" },
+                    { value: "pasta", text: "Tuscany - romantic countryside", description: "Rustic beauty" },
+                    { value: "burgers", text: "USA - classic Americana", description: "All-American" },
+                    { value: "salad", text: "California - health-conscious", description: "Fresh vibes" },
+                    { value: "steak", text: "Texas - bold and hearty", description: "Big and bold" },
+                    { value: "ramen", text: "Tokyo - urban and trendy", description: "Modern culture" }
+                ]},
+                { id: 2, question: "Your personality is:", answers: [
+                    { value: "pizza", text: "Universally loved and adaptable", description: "Crowd pleaser" },
+                    { value: "sushi", text: "Refined and detail-oriented", description: "Precise nature" },
+                    { value: "tacos", text: "Fun-loving and flexible", description: "Go with flow" },
+                    { value: "pasta", text: "Comforting and traditional", description: "Warm soul" },
+                    { value: "burgers", text: "Classic and straightforward", description: "No-nonsense" },
+                    { value: "salad", text: "Health-conscious and fresh", description: "Balanced living" },
+                    { value: "steak", text: "Bold and confident", description: "Strong presence" },
+                    { value: "ramen", text: "Complex and layered", description: "Deep thinker" }
+                ]},
+                { id: 3, question: "Pick a social setting:", answers: [
+                    { value: "pizza", text: "Casual party with lots of friends", description: "Social gathering" },
+                    { value: "sushi", text: "Intimate dinner with close friends", description: "Quality time" },
+                    { value: "tacos", text: "Street food festival", description: "Festive atmosphere" },
+                    { value: "pasta", text: "Family dinner at home", description: "Cozy comfort" },
+                    { value: "burgers", text: "Backyard BBQ", description: "Classic cookout" },
+                    { value: "salad", text: "Health-focused brunch", description: "Wellness gathering" },
+                    { value: "steak", text: "Upscale steakhouse", description: "Premium dining" },
+                    { value: "ramen", text: "Late-night food spot", description: "Urban adventure" }
+                ]},
+                { id: 4, question: "Your ideal meal time:", answers: [
+                    { value: "pizza", text: "Anytime - pizza is always good!", description: "Versatile option" },
+                    { value: "sushi", text: "Lunch or early dinner", description: "Light and fresh" },
+                    { value: "tacos", text: "Taco Tuesday, of course!", description: "Tradition" },
+                    { value: "pasta", text: "Sunday family dinner", description: "Weekend feast" },
+                    { value: "burgers", text: "Saturday afternoon BBQ", description: "Weekend treat" },
+                    { value: "salad", text: "Healthy lunch", description: "Midday refresh" },
+                    { value: "steak", text: "Special occasion dinner", description: "Celebration meal" },
+                    { value: "ramen", text: "Late night comfort food", description: "Night owl fuel" }
+                ]},
+                { id: 5, question: "Pick a music genre:", answers: [
+                    { value: "pizza", text: "Pop - universally appealing", description: "Mainstream favorite" },
+                    { value: "sushi", text: "Jazz - sophisticated and smooth", description: "Refined taste" },
+                    { value: "tacos", text: "Latin - energetic and spicy", description: "Vibrant beats" },
+                    { value: "pasta", text: "Classical - timeless and elegant", description: "Traditional" },
+                    { value: "burgers", text: "Rock - classic and bold", description: "Strong sound" },
+                    { value: "salad", text: "Acoustic - natural and pure", description: "Organic vibes" },
+                    { value: "steak", text: "Country - bold and hearty", description: "Strong character" },
+                    { value: "ramen", text: "Indie - complex and layered", description: "Depth" }
+                ]},
+                { id: 6, question: "Your weekend plans:", answers: [
+                    { value: "pizza", text: "Netflix and chill with friends", description: "Relaxed fun" },
+                    { value: "sushi", text: "Art gallery or museum visit", description: "Cultural experience" },
+                    { value: "tacos", text: "Food truck hopping", description: "Adventure eating" },
+                    { value: "pasta", text: "Cooking for family", description: "Home gathering" },
+                    { value: "burgers", text: "Sports game or BBQ", description: "Classic activities" },
+                    { value: "salad", text: "Farmers market and yoga", description: "Wellness day" },
+                    { value: "steak", text: "Fine dining experience", description: "Upscale evening" },
+                    { value: "ramen", text: "City exploring and discovering", description: "Urban adventure" }
+                ]},
+                { id: 7, question: "Pick a texture preference:", answers: [
+                    { value: "pizza", text: "Cheesy and gooey", description: "Melty comfort" },
+                    { value: "sushi", text: "Smooth and delicate", description: "Refined texture" },
+                    { value: "tacos", text: "Crunchy and varied", description: "Mixed textures" },
+                    { value: "pasta", text: "Soft and creamy", description: "Smooth comfort" },
+                    { value: "burgers", text: "Juicy and hearty", description: "Satisfying bite" },
+                    { value: "salad", text: "Crisp and fresh", description: "Clean crunch" },
+                    { value: "steak", text: "Tender and rich", description: "Premium quality" },
+                    { value: "ramen", text: "Slurpy and warm", description: "Comforting warmth" }
+                ]},
+                { id: 8, question: "Your ideal temperature:", answers: [
+                    { value: "pizza", text: "Hot and steamy", description: "Fresh from oven" },
+                    { value: "sushi", text: "Cool and refreshing", description: "Perfectly chilled" },
+                    { value: "tacos", text: "Warm and toasty", description: "Freshly made" },
+                    { value: "pasta", text: "Piping hot", description: "Comfort warmth" },
+                    { value: "burgers", text: "Hot off the grill", description: "BBQ fresh" },
+                    { value: "salad", text: "Cool and crisp", description: "Refreshing cold" },
+                    { value: "steak", text: "Perfectly seared", description: "Ideal temp" },
+                    { value: "ramen", text: "Steaming hot", description: "Soul warming" }
+                ]}
+            ],
+            results: {
+                "pizza": { title: "Pizza", subtitle: "The Universal Favorite", icon: "🍕",
+                    description: "We guessed Pizza! You're universally loved, adaptable, and always satisfying. Like pizza, you bring people together and work in any situation. You're reliable, crowd-pleasing, and have layers of personality. Whether it's a party or quiet night, you're the perfect choice!",
+                    traits: ["Versatile", "Popular", "Comforting", "Social", "Reliable", "Classic"],
+                    actionButton: { text: "Explore More Quizzes", url: "../" }
+                },
+                "sushi": { title: "Sushi", subtitle: "The Refined Choice", icon: "🍣",
+                    description: "We guessed Sushi! You're refined, health-conscious, and appreciate quality. Like sushi, you're fresh, clean, and precisely put together. You value tradition, craftsmanship, and attention to detail. You're sophisticated and cultured!",
+                    traits: ["Refined", "Fresh", "Precise", "Healthy", "Cultured", "Elegant"],
+                    actionButton: { text: "Explore More Quizzes", url: "../" }
+                },
+                "tacos": { title: "Tacos", subtitle: "The Fun Favorite", icon: "🌮",
+                    description: "We guessed Tacos! You're fun-loving, flexible, and full of flavor. Like tacos, you're customizable, adventurous, and bring joy to any occasion. You're the life of the party with a spicy personality!",
+                    traits: ["Fun", "Versatile", "Spicy", "Festive", "Adventurous", "Flavorful"],
+                    actionButton: { text: "Explore More Quizzes", url: "../" }
+                },
+                "pasta": { title: "Pasta", subtitle: "The Comfort Classic", icon: "🍝",
+                    description: "We guessed Pasta! You're comforting, traditional, and full of warmth. Like pasta, you're satisfying, versatile, and bring people together. You're a classic soul who values family and tradition!",
+                    traits: ["Comforting", "Traditional", "Warm", "Family-Oriented", "Satisfying", "Classic"],
+                    actionButton: { text: "Explore More Quizzes", url: "../" }
+                },
+                "burgers": { title: "Burgers", subtitle: "The All-American Classic", icon: "🍔",
+                    description: "We guessed Burgers! You're classic, straightforward, and reliably satisfying. Like a burger, you're bold, hearty, and unapologetically yourself. You're an All-American favorite!",
+                    traits: ["Classic", "Bold", "Hearty", "Straightforward", "Satisfying", "Iconic"],
+                    actionButton: { text: "Explore More Quizzes", url: "../" }
+                },
+                "salad": { title: "Salad", subtitle: "The Fresh Choice", icon: "🥗",
+                    description: "We guessed Salad! You're health-conscious, fresh, and balanced. Like salad, you're light, refreshing, and full of natural goodness. You value wellness and clean living!",
+                    traits: ["Healthy", "Fresh", "Balanced", "Natural", "Clean", "Conscious"],
+                    actionButton: { text: "Explore More Quizzes", url: "../" }
+                },
+                "steak": { title: "Steak", subtitle: "The Premium Choice", icon: "🥩",
+                    description: "We guessed Steak! You're bold, confident, and appreciate quality. Like steak, you're premium, rich, and make a statement. You're strong, decisive, and unapologetically excellent!",
+                    traits: ["Bold", "Premium", "Confident", "Strong", "Quality", "Rich"],
+                    actionButton: { text: "Explore More Quizzes", url: "../" }
+                },
+                "ramen": { title: "Ramen", subtitle: "The Complex Comfort", icon: "🍜",
+                    description: "We guessed Ramen! You're complex, comforting, and full of depth. Like ramen, you have layers, warmth, and satisfy on multiple levels. You're trendy, adaptable, and deeply satisfying!",
+                    traits: ["Complex", "Comforting", "Layered", "Warm", "Trendy", "Deep"],
+                    actionButton: { text: "Explore More Quizzes", url: "../" }
+                }
+            }
+        };
+        quiz = new QuizEngine(favoriteFoodQuizConfig);
+        function createFoodBackground() {
+            const bg = document.getElementById('backgroundAnimation');
+            for (let i = 0; i < 50; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.width = p.style.height = Math.random() * 12 + 4 + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.top = Math.random() * 100 + '%';
+                p.style.animationDelay = Math.random() * 20 + 's';
+                p.style.animationDuration = Math.random() * 10 + 15 + 's';
+                bg.appendChild(p);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', createFoodBackground);
+    </script>
+</body>
+</html>

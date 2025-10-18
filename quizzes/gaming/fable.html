@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Fable Character Quiz | What's Your Albion Destiny? | DorklyAI</title>
+    <meta name="title" content="Fable Character Quiz | What's Your Albion Destiny?">
+    <meta name="description" content="Discover your Fable destiny! Are you a Noble Hero, Cunning Rogue, Powerful Mage, or Chaotic Neutral wanderer? Your choices define your path!">
+    <meta name="keywords" content="Fable quiz, RPG personality quiz, Albion quiz, video game quiz, moral choice quiz">
+    <meta name="author" content="DorklyAI">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dorklyai.com/quizzes/gaming/fable.html">
+    <meta property="og:title" content="Fable Character Quiz - What's Your Destiny?">
+    <meta property="og:description" content="Discover your path in Albion! Hero, Rogue, Mage, or Chaotic?">
+    <meta property="og:image" content="https://dorklyai.com/assets/dorklogo.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://dorklyai.com/quizzes/gaming/fable.html">
+    <meta property="twitter:title" content="Fable Character Quiz">
+    <meta property="twitter:description" content="What's your Albion destiny?">
+    <meta property="twitter:image" content="https://dorklyai.com/assets/dorklogo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://dorklyai.com/quizzes/gaming/fable.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/dorklogo.png">
+    
+    <!-- Bootstrap 5.3.0 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    
+    <!-- Quiz Styles -->
+    <link href="../quiz-styles.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --quiz-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            --quiz-primary: #667eea;
+            --quiz-secondary: #764ba2;
+        }
+        
+        .magic-sparkle {
+            position: absolute;
+            font-size: 1.2rem;
+            animation: sparkle 3s infinite ease-in-out;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1) rotate(180deg);
+            }
+        }
+        
+        .sword-icon {
+            position: absolute;
+            font-size: 2rem;
+            animation: swing 4s infinite ease-in-out;
+            pointer-events: none;
+            opacity: 0.2;
+        }
+        
+        @keyframes swing {
+            0%, 100% {
+                transform: rotate(-20deg);
+            }
+            50% {
+                transform: rotate(20deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="background-animation" id="backgroundAnimation"></div>
+    
+    <!-- Quiz Container -->
+    <div class="quiz-container" id="quiz-container">
+        <!-- Quiz content will be inserted here by the quiz engine -->
+    </div>
+    
+    <!-- Quiz Engine -->
+    <script src="../quiz-engine.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        const fableQuizConfig = {
+            title: "Fable Character Quiz",
+            description: "Your choices define your destiny in Albion! Will you walk the path of a Noble Hero, a Cunning Rogue, a Powerful Mage, or embrace the Chaotic Neutral way? Discover your Fable character archetype!",
+            quizType: "fable-character",
+            theme: "fable",
+            estimatedTime: "4-5",
+            scoringMethod: "category",
+            showProgress: true,
+            allowBack: false,
+            shuffleQuestions: false,
+            shuffleAnswers: false,
+            showResults: true,
+            enableLeadCapture: true,
+            disclaimer: "This quiz is for entertainment purposes and is not affiliated with Lionhead Studios, Microsoft, or the Fable franchise.",
+            
+            questions: [
+                {
+                    id: 1,
+                    question: "A beggar asks you for gold. What do you do?",
+                    answers: [
+                        {
+                            value: "hero",
+                            text: "Give generously and wish them well",
+                            description: "Help those in need"
+                        },
+                        {
+                            value: "rogue",
+                            text: "Pretend to help, then pickpocket them",
+                            description: "Turn the situation to your advantage"
+                        },
+                        {
+                            value: "mage",
+                            text: "Ignore them and focus on your studies",
+                            description: "Time is too valuable"
+                        },
+                        {
+                            value: "chaotic",
+                            text: "Give them gold, then immediately steal it back for fun",
+                            description: "Just for the chaos of it"
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    question: "You discover a powerful but cursed weapon. What do you do?",
+                    answers: [
+                        {
+                            value: "hero",
+                            text: "Destroy it to protect others from its evil",
+                            description: "Prevent future harm"
+                        },
+                        {
+                            value: "rogue",
+                            text: "Sell it to the highest bidder",
+                            description: "Profit from someone else's problem"
+                        },
+                        {
+                            value: "mage",
+                            text: "Study it to understand its magic",
+                            description: "Knowledge above all else"
+                        },
+                        {
+                            value: "chaotic",
+                            text: "Use it despite the curse, just to see what happens",
+                            description: "Embrace the unknown"
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    question: "How do you handle conflicts?",
+                    answers: [
+                        {
+                            value: "hero",
+                            text: "Face them head-on with honor and courage",
+                            description: "Stand up for what's right"
+                        },
+                        {
+                            value: "rogue",
+                            text: "Manipulate others to fight for me",
+                            description: "Work from the shadows"
+                        },
+                        {
+                            value: "mage",
+                            text: "Use overwhelming magical force",
+                            description: "Power solves problems"
+                        },
+                        {
+                            value: "chaotic",
+                            text: "Make it worse just to entertain myself",
+                            description: "Chaos is fun"
+                        }
+                    ]
+                },
+                {
+                    id: 4,
+                    question: "A merchant is overcharging villagers. What do you do?",
+                    answers: [
+                        {
+                            value: "hero",
+                            text: "Convince them to lower prices fairly",
+                            description: "Protect the innocent"
+                        },
+                        {
+                            value: "rogue",
+                            text: "Steal the goods and resell them cheaper",
+                            description: "Robin Hood approach"
+                        },
+                        {
+                            value: "mage",
+                            text: "Nothing - economics don't interest me",
+                            description: "Not my concern"
+                        },
+                        {
+                            value: "chaotic",
+                            text: "Buy everything and throw it in the river",
+                            description: "Watch the world burn"
+                        }
+                    ]
+                },
+                {
+                    id: 5,
+                    question: "You find a book of forbidden magic. What do you do?",
+                    answers: [
+                        {
+                            value: "hero",
+                            text: "Turn it over to the authorities",
+                            description: "Some knowledge is too dangerous"
+                        },
+                        {
+                            value: "rogue",
+                            text: "Learn a few useful spells, then sell it",
+                            description: "Knowledge and profit"
+                        },
+                        {
+                            value: "mage",
+                            text: "Study it completely, regardless of consequences",
+                            description: "All knowledge is valuable"
+                        },
+                        {
+                            value: "chaotic",
+                            text: "Try random spells without reading them first",
+                            description: "What could go wrong?"
+                        }
+                    ]
+                },
+                {
+                    id: 6,
+                    question: "What's your preferred combat style?",
+                    answers: [
+                        {
+                            value: "hero",
+                            text: "Sword and shield - noble and protective",
+                            description: "Classic warrior"
+                        },
+                        {
+                            value: "rogue",
+                            text: "Daggers and stealth - quick and deadly",
+                            description: "Strike from shadows"
+                        },
+                        {
+                            value: "mage",
+                            text: "Pure magic - devastating and elegant",
+                            description: "Arcane supremacy"
+                        },
+                        {
+                            value: "chaotic",
+                            text: "Whatever's nearby - improvise and surprise",
+                            description: "Unpredictable chaos"
+                        }
+                    ]
+                },
+                {
+                    id: 7,
+                    question: "You're offered rulership of a town. What do you do?",
+                    answers: [
+                        {
+                            value: "hero",
+                            text: "Accept and rule with justice and fairness",
+                            description: "Benevolent leadership"
+                        },
+                        {
+                            value: "rogue",
+                            text: "Accept and milk it for all it's worth",
+                            description: "Power equals profit"
+                        },
+                        {
+                            value: "mage",
+                            text: "Decline - too much responsibility",
+                            description: "Freedom to pursue knowledge"
+                        },
+                        {
+                            value: "chaotic",
+                            text: "Accept and create absurd laws for entertainment",
+                            description: "Chaos governance"
+                        }
+                    ]
+                },
+                {
+                    id: 8,
+                    question: "How do you earn money?",
+                    answers: [
+                        {
+                            value: "hero",
+                            text: "Honest work and heroic quests",
+                            description: "Earn with honor"
+                        },
+                        {
+                            value: "rogue",
+                            text: "Theft, blackmail, and shady deals",
+                            description: "Take what you want"
+                        },
+                        {
+                            value: "mage",
+                            text: "Selling magical services and potions",
+                            description: "Monetize knowledge"
+                        },
+                        {
+                            value: "chaotic",
+                            text: "Gambling and ridiculous schemes",
+                            description: "High risk, high reward... maybe"
+                        }
+                    ]
+                },
+                {
+                    id: 9,
+                    question: "A dark force threatens the realm. Your response?",
+                    answers: [
+                        {
+                            value: "hero",
+                            text: "Rally allies and lead the charge against it",
+                            description: "Unite against darkness"
+                        },
+                        {
+                            value: "rogue",
+                            text: "See if I can profit from both sides",
+                            description: "Never waste a crisis"
+                        },
+                        {
+                            value: "mage",
+                            text: "Research it to find its weakness",
+                            description: "Knowledge defeats evil"
+                        },
+                        {
+                            value: "chaotic",
+                            text: "Join it temporarily just to betray it later",
+                            description: "Double-crossing is fun"
+                        }
+                    ]
+                },
+                {
+                    id: 10,
+                    question: "What's your ultimate goal in Albion?",
+                    answers: [
+                        {
+                            value: "hero",
+                            text: "Become a legendary hero of pure goodness",
+                            description: "Be remembered as a savior"
+                        },
+                        {
+                            value: "rogue",
+                            text: "Amass wealth and power through any means",
+                            description: "Money and influence"
+                        },
+                        {
+                            value: "mage",
+                            text: "Master all forms of magic and Will",
+                            description: "Ultimate arcane power"
+                        },
+                        {
+                            value: "chaotic",
+                            text: "Just have fun and see what happens",
+                            description: "Enjoy the chaos"
+                        }
+                    ]
+                }
+            ],
+            
+            results: {
+                "hero": {
+                    title: "The Noble Hero",
+                    subtitle: "Champion of Light and Justice",
+                    icon: "⚔️",
+                    description: "You walk the path of the Noble Hero! Your moral compass always points to good, and you dedicate yourself to protecting the innocent and vanquishing evil. Like the legendary Heroes of Albion, you value honor, courage, and selflessness above all else. Your destiny is to be remembered as a savior who stood against darkness, even when it cost you dearly. The people sing songs of your heroic deeds!",
+                    traits: ["Honorable", "Courageous", "Selfless", "Just", "Protective", "Legendary"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                "rogue": {
+                    title: "The Cunning Rogue",
+                    subtitle: "Master of Shadows and Coin",
+                    icon: "🗡️",
+                    description: "You embody the Cunning Rogue! You operate in the shadows, using wit, stealth, and opportunism to get what you want. While you may not be purely evil, you certainly put your own interests first. You're the type to steal from the rich, keep most of it for yourself, and maybe toss a few coins to the poor if you're feeling generous. In Albion, you're known as someone who can get things done - for the right price!",
+                    traits: ["Cunning", "Stealthy", "Opportunistic", "Clever", "Self-Interested", "Resourceful"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                "mage": {
+                    title: "The Powerful Mage",
+                    subtitle: "Wielder of Arcane Mysteries",
+                    icon: "🔮",
+                    description: "You are the Powerful Mage! Your pursuit of magical knowledge and power transcends simple notions of good and evil. You see Will energy as the ultimate force in Albion, and you'll master it at any cost. Whether benevolent or destructive, your magic is devastating and awe-inspiring. You care more about unlocking the secrets of the universe than petty mortal concerns. Your power is legendary, and even other heroes fear what you might become!",
+                    traits: ["Powerful", "Knowledgeable", "Focused", "Mysterious", "Devastating", "Transcendent"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                "chaotic": {
+                    title: "The Chaotic Neutral",
+                    subtitle: "Agent of Unpredictable Mayhem",
+                    icon: "🎭",
+                    description: "You embrace the Chaotic Neutral path! You're neither hero nor villain - you're pure entertainment value. You make choices based on what seems most interesting or amusing in the moment, regardless of morality. You might save a village just to burn it down later, or befriend a merchant just to prank them spectacularly. In Albion, nobody knows what you'll do next - including you! Your unpredictability makes you the most interesting character in any story!",
+                    traits: ["Unpredictable", "Amusing", "Free-Spirited", "Chaotic", "Entertaining", "Wild Card"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                }
+            }
+        };
+        
+        // Initialize the quiz
+        quiz = new QuizEngine(fableQuizConfig);
+        
+        // Create Fable themed background
+        function createFableBackground() {
+            const background = document.getElementById('backgroundAnimation');
+            const particleCount = 50;
+            
+            // Regular particles with purple/magical hues
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 12 + 4;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                
+                // Magical colors
+                const colors = [
+                    'rgba(102, 126, 234, 0.3)',
+                    'rgba(118, 75, 162, 0.3)',
+                    'rgba(240, 147, 251, 0.3)'
+                ];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                background.appendChild(particle);
+            }
+            
+            // Add magical sparkles
+            for (let i = 0; i < 15; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'magic-sparkle';
+                sparkle.innerHTML = '✨';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 3 + 's';
+                background.appendChild(sparkle);
+            }
+            
+            // Add sword icons
+            const weapons = ['⚔️', '🗡️', '🏹', '🛡️'];
+            for (let i = 0; i < 10; i++) {
+                const sword = document.createElement('div');
+                sword.className = 'sword-icon';
+                sword.innerHTML = weapons[Math.floor(Math.random() * weapons.length)];
+                sword.style.left = Math.random() * 100 + '%';
+                sword.style.top = Math.random() * 100 + '%';
+                sword.style.animationDelay = Math.random() * 4 + 's';
+                background.appendChild(sword);
+            }
+        }
+        
+        // Initialize Fable background when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createFableBackground();
+        });
+    </script>
+</body>
+</html>

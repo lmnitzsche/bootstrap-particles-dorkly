@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Guess Your Sport Quiz | Can We Predict Your Favorite Sport? | DorklyAI</title>
+    <meta name="title" content="Guess Your Sport Quiz | Can We Predict Your Favorite Sport?">
+    <meta name="description" content="Answer personality questions and we'll guess your favorite sport! Basketball, football, soccer, tennis, swimming, and more. Can we read your mind?">
+    <meta name="keywords" content="sports quiz, favorite sport quiz, personality sport quiz, sports personality test">
+    <meta name="author" content="DorklyAI">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dorklyai.com/quizzes/sports/guess-your-sport.html">
+    <meta property="og:title" content="Guess Your Sport Quiz - Can We Predict It?">
+    <meta property="og:description" content="Take our quiz and see if we can guess your favorite sport!">
+    <meta property="og:image" content="https://dorklyai.com/assets/dorklogo.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://dorklyai.com/quizzes/sports/guess-your-sport.html">
+    <meta property="twitter:title" content="Guess Your Sport Quiz">
+    <meta property="twitter:description" content="Can we guess your favorite sport?">
+    <meta property="twitter:image" content="https://dorklyai.com/assets/dorklogo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://dorklyai.com/quizzes/sports/guess-your-sport.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/dorklogo.png">
+    
+    <!-- Bootstrap 5.3.0 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    
+    <!-- Quiz Styles -->
+    <link href="../quiz-styles.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --quiz-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --quiz-primary: #43e97b;
+            --quiz-secondary: #38f9d7;
+        }
+        
+        .sport-icon {
+            position: absolute;
+            font-size: 2rem;
+            animation: spin 10s infinite linear;
+            pointer-events: none;
+            opacity: 0.15;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="background-animation" id="backgroundAnimation"></div>
+    
+    <!-- Quiz Container -->
+    <div class="quiz-container" id="quiz-container">
+        <!-- Quiz content will be inserted here by the quiz engine -->
+    </div>
+    
+    <!-- Quiz Engine -->
+    <script src="../quiz-engine.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        const guessYourSportQuizConfig = {
+            title: "Guess Your Sport",
+            description: "Answer these personality and preference questions, and we'll try to guess which sport you love the most! From basketball to swimming, can we read your athletic mind?",
+            quizType: "guess-your-sport",
+            theme: "sports",
+            estimatedTime: "2-3",
+            scoringMethod: "category",
+            showProgress: true,
+            allowBack: false,
+            shuffleQuestions: false,
+            shuffleAnswers: false,
+            showResults: true,
+            enableLeadCapture: true,
+            
+            questions: [
+                {
+                    id: 1,
+                    question: "What's your ideal weekend activity?",
+                    answers: [
+                        {
+                            value: "basketball",
+                            text: "Hanging out with friends and staying active",
+                            description: "Social and energetic"
+                        },
+                        {
+                            value: "football",
+                            text: "Strategy games and team challenges",
+                            description: "Tactical and competitive"
+                        },
+                        {
+                            value: "soccer",
+                            text: "Outdoor adventures with constant movement",
+                            description: "Endurance and flow"
+                        },
+                        {
+                            value: "baseball",
+                            text: "Relaxed activities with bursts of excitement",
+                            description: "Patience and precision"
+                        },
+                        {
+                            value: "tennis",
+                            text: "One-on-one competitions or small groups",
+                            description: "Individual excellence"
+                        },
+                        {
+                            value: "swimming",
+                            text: "Solo activities that challenge myself",
+                            description: "Personal achievement"
+                        },
+                        {
+                            value: "track",
+                            text: "Speed challenges and racing",
+                            description: "Pure athleticism"
+                        },
+                        {
+                            value: "volleyball",
+                            text: "Beach or pool parties with friends",
+                            description: "Fun and social"
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    question: "How do you handle pressure?",
+                    answers: [
+                        {
+                            value: "basketball",
+                            text: "Quick decisions and fast action",
+                            description: "Think fast, act faster"
+                        },
+                        {
+                            value: "football",
+                            text: "Follow the game plan and execute",
+                            description: "Trust the strategy"
+                        },
+                        {
+                            value: "soccer",
+                            text: "Stay composed and keep moving",
+                            description: "Flow through it"
+                        },
+                        {
+                            value: "baseball",
+                            text: "Take my time and focus on my technique",
+                            description: "Precision over speed"
+                        },
+                        {
+                            value: "tennis",
+                            text: "Rely on my skills and preparation",
+                            description: "Self-reliance"
+                        },
+                        {
+                            value: "swimming",
+                            text: "Block everything out and focus on myself",
+                            description: "Internal focus"
+                        },
+                        {
+                            value: "track",
+                            text: "Channel it into explosive energy",
+                            description: "Adrenaline boost"
+                        },
+                        {
+                            value: "volleyball",
+                            text: "Keep the energy high and stay positive",
+                            description: "Enthusiasm wins"
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    question: "What type of athlete are you?",
+                    answers: [
+                        {
+                            value: "basketball",
+                            text: "Athletic and versatile",
+                            description: "Do a bit of everything"
+                        },
+                        {
+                            value: "football",
+                            text: "Strong and powerful",
+                            description: "Physical dominance"
+                        },
+                        {
+                            value: "soccer",
+                            text: "Endurance and agility focused",
+                            description: "Never stop moving"
+                        },
+                        {
+                            value: "baseball",
+                            text: "Skilled and strategic",
+                            description: "Technique and timing"
+                        },
+                        {
+                            value: "tennis",
+                            text: "Quick reflexes and footwork",
+                            description: "Fast and precise"
+                        },
+                        {
+                            value: "swimming",
+                            text: "Disciplined and technique-driven",
+                            description: "Perfect form"
+                        },
+                        {
+                            value: "track",
+                            text: "Pure speed and explosiveness",
+                            description: "Raw athleticism"
+                        },
+                        {
+                            value: "volleyball",
+                            text: "Jumping ability and coordination",
+                            description: "Vertical and timing"
+                        }
+                    ]
+                },
+                {
+                    id: 4,
+                    question: "Pick your ideal practice environment:",
+                    answers: [
+                        {
+                            value: "basketball",
+                            text: "Indoor gym with hardwood floors",
+                            description: "Classic court setting"
+                        },
+                        {
+                            value: "football",
+                            text: "Grass field with marked lines",
+                            description: "The gridiron"
+                        },
+                        {
+                            value: "soccer",
+                            text: "Open field with goals",
+                            description: "Beautiful game space"
+                        },
+                        {
+                            value: "baseball",
+                            text: "Diamond with bases and a mound",
+                            description: "Traditional ballpark"
+                        },
+                        {
+                            value: "tennis",
+                            text: "Court with a net",
+                            description: "Defined boundaries"
+                        },
+                        {
+                            value: "swimming",
+                            text: "Pool with lanes",
+                            description: "Water sanctuary"
+                        },
+                        {
+                            value: "track",
+                            text: "Running track or open road",
+                            description: "Path to speed"
+                        },
+                        {
+                            value: "volleyball",
+                            text: "Sandy beach or indoor court",
+                            description: "Net and sand or hardwood"
+                        }
+                    ]
+                },
+                {
+                    id: 5,
+                    question: "What role do you prefer in a team?",
+                    answers: [
+                        {
+                            value: "basketball",
+                            text: "Playmaker who involves everyone",
+                            description: "Facilitate and score"
+                        },
+                        {
+                            value: "football",
+                            text: "Key position player with specific role",
+                            description: "Specialist excellence"
+                        },
+                        {
+                            value: "soccer",
+                            text: "Midfielder controlling the flow",
+                            description: "Connect all parts"
+                        },
+                        {
+                            value: "baseball",
+                            text: "Clutch hitter or reliable fielder",
+                            description: "Dependable performer"
+                        },
+                        {
+                            value: "tennis",
+                            text: "Individual star who carries the team",
+                            description: "Personal excellence"
+                        },
+                        {
+                            value: "swimming",
+                            text: "Focused individual contributor",
+                            description: "Solo responsibility"
+                        },
+                        {
+                            value: "track",
+                            text: "Relay runner or individual racer",
+                            description: "Speed specialist"
+                        },
+                        {
+                            value: "volleyball",
+                            text: "Setter or energetic rotational player",
+                            description: "Team connector"
+                        }
+                    ]
+                },
+                {
+                    id: 6,
+                    question: "What's your ideal game pace?",
+                    answers: [
+                        {
+                            value: "basketball",
+                            text: "Fast-paced with constant action",
+                            description: "Up and down nonstop"
+                        },
+                        {
+                            value: "football",
+                            text: "Controlled with explosive moments",
+                            description: "Strategic then intense"
+                        },
+                        {
+                            value: "soccer",
+                            text: "Continuous flow with building pressure",
+                            description: "Steady with crescendos"
+                        },
+                        {
+                            value: "baseball",
+                            text: "Leisurely with intense moments",
+                            description: "Patience then excitement"
+                        },
+                        {
+                            value: "tennis",
+                            text: "Rally-based with momentum swings",
+                            description: "Back and forth battle"
+                        },
+                        {
+                            value: "swimming",
+                            text: "Short bursts of maximum effort",
+                            description: "Intense focused races"
+                        },
+                        {
+                            value: "track",
+                            text: "All-out sprint or sustained speed",
+                            description: "Pure racing"
+                        },
+                        {
+                            value: "volleyball",
+                            text: "Quick points with exciting rallies",
+                            description: "Fast rotations"
+                        }
+                    ]
+                },
+                {
+                    id: 7,
+                    question: "What kind of equipment excites you?",
+                    answers: [
+                        {
+                            value: "basketball",
+                            text: "Basketball and sneakers",
+                            description: "Simple and essential"
+                        },
+                        {
+                            value: "football",
+                            text: "Pads, helmet, and full gear",
+                            description: "Protective and powerful"
+                        },
+                        {
+                            value: "soccer",
+                            text: "Cleats and a ball",
+                            description: "Minimalist freedom"
+                        },
+                        {
+                            value: "baseball",
+                            text: "Bat, glove, and cap",
+                            description: "Classic and traditional"
+                        },
+                        {
+                            value: "tennis",
+                            text: "Racket and perfect shoes",
+                            description: "Precision tools"
+                        },
+                        {
+                            value: "swimming",
+                            text: "Goggles and streamlined suit",
+                            description: "Minimal resistance"
+                        },
+                        {
+                            value: "track",
+                            text: "Running spikes and light gear",
+                            description: "Built for speed"
+                        },
+                        {
+                            value: "volleyball",
+                            text: "Knee pads and volleyball",
+                            description: "Ready to dive"
+                        }
+                    ]
+                },
+                {
+                    id: 8,
+                    question: "What's your favorite weather for sports?",
+                    answers: [
+                        {
+                            value: "basketball",
+                            text: "Any weather - I play indoors!",
+                            description: "Climate controlled"
+                        },
+                        {
+                            value: "football",
+                            text: "Cool autumn afternoons",
+                            description: "Perfect football weather"
+                        },
+                        {
+                            value: "soccer",
+                            text: "Mild and sunny",
+                            description: "Pleasant outdoor conditions"
+                        },
+                        {
+                            value: "baseball",
+                            text: "Summer days and warm nights",
+                            description: "Classic baseball weather"
+                        },
+                        {
+                            value: "tennis",
+                            text: "Dry and slightly cool",
+                            description: "Ideal court conditions"
+                        },
+                        {
+                            value: "swimming",
+                            text: "Hot days perfect for the pool",
+                            description: "Refreshing water time"
+                        },
+                        {
+                            value: "track",
+                            text: "Clear skies, any temperature",
+                            description: "Running conditions"
+                        },
+                        {
+                            value: "volleyball",
+                            text: "Sunny beach weather",
+                            description: "Warm and bright"
+                        }
+                    ]
+                }
+            ],
+            
+            results: {
+                "basketball": {
+                    title: "Basketball",
+                    subtitle: "Fast-Paced Court Action",
+                    icon: "🏀",
+                    description: "We guessed Basketball! You love the fast-paced, high-energy nature of the game. You thrive in social settings, enjoy constant action, and appreciate the perfect blend of individual skill and team play. The sound of sneakers squeaking on hardwood and the swish of a perfect shot get your heart pumping!",
+                    traits: ["Fast-Paced", "Social", "Athletic", "Team Player", "Versatile", "Energetic"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                "football": {
+                    title: "Football",
+                    subtitle: "Strategic Power and Teamwork",
+                    icon: "🏈",
+                    description: "We guessed Football! You appreciate strategy, teamwork, and the chess-like nature of the game. You love the combination of physical power and mental preparation. The camaraderie of a team working together toward a common goal, with each player having a specific role, resonates with you deeply!",
+                    traits: ["Strategic", "Team-Oriented", "Physical", "Disciplined", "Competitive", "Tactical"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                "soccer": {
+                    title: "Soccer",
+                    subtitle: "The Beautiful Game",
+                    icon: "⚽",
+                    description: "We guessed Soccer! You love the continuous flow, endurance, and global appeal of the beautiful game. You appreciate sports that require constant movement, tactical awareness, and the ability to create magic with minimal equipment. The passion and worldwide community of soccer fans speaks to your soul!",
+                    traits: ["Endurance", "Global", "Flowing", "Agile", "Passionate", "Creative"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                "baseball": {
+                    title: "Baseball",
+                    subtitle: "America's Pastime",
+                    icon: "⚾",
+                    description: "We guessed Baseball! You appreciate the tradition, patience, and strategic depth of America's pastime. You love sports where individual moments of brilliance can change everything, where technique and timing matter more than constant action. The crack of the bat and the smell of fresh-cut grass are music to your ears!",
+                    traits: ["Strategic", "Patient", "Precise", "Traditional", "Clutch", "Skilled"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                "tennis": {
+                    title: "Tennis",
+                    subtitle: "Individual Excellence and Finesse",
+                    icon: "🎾",
+                    description: "We guessed Tennis! You love the one-on-one competition and the mental chess match of each point. You appreciate sports where individual skill, strategy, and mental toughness determine the outcome. The elegance of a perfect serve and the satisfaction of winning through your own excellence drives you!",
+                    traits: ["Individual", "Elegant", "Strategic", "Quick", "Mental", "Precise"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                "swimming": {
+                    title: "Swimming",
+                    subtitle: "Discipline in the Water",
+                    icon: "🏊",
+                    description: "We guessed Swimming! You appreciate the pure, individual challenge of racing against the clock and yourself. You love the meditative quality of being in the water, the technical perfection required, and the personal achievement of beating your own times. The pool is your sanctuary!",
+                    traits: ["Disciplined", "Individual", "Technical", "Focused", "Meditative", "Determined"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                "track": {
+                    title: "Track & Field",
+                    subtitle: "Pure Speed and Athletics",
+                    icon: "🏃",
+                    description: "We guessed Track & Field! You love the pure, unadulterated test of athletic ability. Whether it's explosive sprinting or sustained endurance, you appreciate sports that strip away complexity and focus on raw human performance. The simplicity and honesty of racing appeals to your competitive spirit!",
+                    traits: ["Fast", "Competitive", "Pure", "Athletic", "Explosive", "Determined"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                "volleyball": {
+                    title: "Volleyball",
+                    subtitle: "Energy and Team Coordination",
+                    icon: "🏐",
+                    description: "We guessed Volleyball! You love the high-energy teamwork and the perfect blend of indoor competition and beach fun. You appreciate sports that require constant communication, timing, and coordination with teammates. The excitement of a perfect set leading to a powerful spike gets your adrenaline pumping!",
+                    traits: ["Energetic", "Team Player", "Coordinated", "Fun", "Social", "Athletic"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                }
+            }
+        };
+        
+        // Initialize the quiz
+        quiz = new QuizEngine(guessYourSportQuizConfig);
+        
+        // Create sports themed background
+        function createSportsBackground() {
+            const background = document.getElementById('backgroundAnimation');
+            const particleCount = 50;
+            
+            // Regular particles
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 12 + 4;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                
+                background.appendChild(particle);
+            }
+            
+            // Add sport icons
+            const sportIcons = ['🏀', '🏈', '⚽', '⚾', '🎾', '🏊', '🏃', '🏐', '🏆', '🥇'];
+            for (let i = 0; i < 20; i++) {
+                const icon = document.createElement('div');
+                icon.className = 'sport-icon';
+                icon.innerHTML = sportIcons[Math.floor(Math.random() * sportIcons.length)];
+                icon.style.left = Math.random() * 100 + '%';
+                icon.style.top = Math.random() * 100 + '%';
+                icon.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                background.appendChild(icon);
+            }
+        }
+        
+        // Initialize sports background when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createSportsBackground();
+        });
+    </script>
+</body>
+</html>

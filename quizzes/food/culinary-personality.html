@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culinary Personality Quiz | What's Your Cooking Style? | DorklyAI</title>
+    <meta name="description" content="Discover your culinary personality! Experimental Chef, Traditional Home Cook, Fast Food Aficionado, or Gourmet Enthusiast?">
+    <link rel="icon" type="image/x-icon" href="../../assets/dorklogo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="../quiz-styles.css" rel="stylesheet">
+    <style>
+        :root { --quiz-gradient: linear-gradient(135deg, #fd746c 0%, #ff9068 50%, #fdc830 100%); }
+        .food-float { position: absolute; font-size: 2rem; animation: float 15s infinite; pointer-events: none; opacity: 0.2; }
+    </style>
+</head>
+<body>
+    <div class="background-animation" id="backgroundAnimation"></div>
+    <div class="quiz-container" id="quiz-container"></div>
+    <script src="../quiz-engine.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const culinaryQuizConfig = {
+            title: "Culinary Personality Quiz",
+            description: "What's your cooking style? Are you an adventurous Experimental Chef, a comforting Traditional Home Cook, a convenient Fast Food Aficionado, or a refined Gourmet Enthusiast?",
+            quizType: "culinary",
+            estimatedTime: "3-4",
+            scoringMethod: "category",
+            showProgress: true,
+            questions: [
+                { id: 1, question: "How do you approach cooking?", answers: [
+                    { value: "experimental", text: "Mix unusual ingredients and try new techniques", description: "Creative fusion" },
+                    { value: "traditional", text: "Follow family recipes and time-tested methods", description: "Classic comfort" },
+                    { value: "fastfood", text: "Quick, easy, and convenient", description: "No-fuss meals" },
+                    { value: "gourmet", text: "Premium ingredients with refined presentation", description: "Culinary art" }
+                ]},
+                { id: 2, question: "What's in your spice rack?", answers: [
+                    { value: "experimental", text: "Exotic spices from around the world", description: "Global flavors" },
+                    { value: "traditional", text: "Salt, pepper, garlic - the essentials", description: "Simple classics" },
+                    { value: "fastfood", text: "Pre-mixed seasonings and sauces", description: "Convenience packs" },
+                    { value: "gourmet", text: "Premium herbs and artisanal blends", description: "Curated selection" }
+                ]},
+                { id: 3, question: "Your ideal meal takes how long to prepare?", answers: [
+                    { value: "experimental", text: "2-3 hours of culinary experimentation", description: "Time for creativity" },
+                    { value: "traditional", text: "1-2 hours of careful cooking", description: "Made with love" },
+                    { value: "fastfood", text: "15-30 minutes or less", description: "Quick and easy" },
+                    { value: "gourmet", text: "However long perfection requires", description: "No rushing art" }
+                ]},
+                { id: 4, question: "What's your cooking inspiration?", answers: [
+                    { value: "experimental", text: "Fusion cuisine and molecular gastronomy", description: "Push boundaries" },
+                    { value: "traditional", text: "Grandma's recipes and comfort food", description: "Heritage cooking" },
+                    { value: "fastfood", text: "Restaurant favorites recreated fast", description: "Quick cravings" },
+                    { value: "gourmet", text: "Michelin-starred restaurants", description: "Elite standards" }
+                ]},
+                { id: 5, question: "How do you handle kitchen mistakes?", answers: [
+                    { value: "experimental", text: "Turn it into a new experiment!", description: "Happy accidents" },
+                    { value: "traditional", text: "Start over and do it right", description: "Tradition matters" },
+                    { value: "fastfood", text: "Order delivery instead", description: "Plan B ready" },
+                    { value: "gourmet", text: "Meticulously fix every detail", description: "Perfection only" }
+                ]},
+                { id: 6, question: "What's your kitchen equipment like?", answers: [
+                    { value: "experimental", text: "Unusual gadgets and modern tools", description: "Innovative gear" },
+                    { value: "traditional", text: "Cast iron and wooden spoons", description: "Timeless tools" },
+                    { value: "fastfood", text: "Microwave and air fryer", description: "Speed machines" },
+                    { value: "gourmet", text: "Professional-grade equipment", description: "Chef quality" }
+                ]},
+                { id: 7, question: "How do you shop for ingredients?", answers: [
+                    { value: "experimental", text: "International markets and specialty stores", description: "Seek the unique" },
+                    { value: "traditional", text: "Regular grocery store staples", description: "Reliable sources" },
+                    { value: "fastfood", text: "Pre-packaged and ready-to-eat", description: "Convenience aisle" },
+                    { value: "gourmet", text: "Farmers markets and artisan shops", description: "Premium quality" }
+                ]},
+                { id: 8, question: "What's your signature dish?", answers: [
+                    { value: "experimental", text: "Fusion tacos or deconstructed classics", description: "Reinvented food" },
+                    { value: "traditional", text: "Meatloaf or chicken pot pie", description: "Comfort classics" },
+                    { value: "fastfood", text: "Perfect grilled cheese or nachos", description: "Easy favorites" },
+                    { value: "gourmet", text: "Beef Wellington or soufflé", description: "Sophisticated fare" }
+                ]},
+                { id: 9, question: "How do you plate your food?", answers: [
+                    { value: "experimental", text: "Artistic and unconventional", description: "Food as art" },
+                    { value: "traditional", text: "Hearty portions, family-style", description: "Generous servings" },
+                    { value: "fastfood", text: "Plate? More like bowl or takeout box", description: "Casual dining" },
+                    { value: "gourmet", text: "Elegant with garnishes and precision", description: "Restaurant worthy" }
+                ]},
+                { id: 10, question: "What's your cooking philosophy?", answers: [
+                    { value: "experimental", text: "Break rules and create new flavors", description: "Innovation first" },
+                    { value: "traditional", text: "Preserve heritage and family traditions", description: "Honored recipes" },
+                    { value: "fastfood", text: "Life's too short for complicated cooking", description: "Practical eating" },
+                    { value: "gourmet", text: "Food is art and deserves perfection", description: "Culinary excellence" }
+                ]}
+            ],
+            results: {
+                "experimental": {
+                    title: "Experimental Chef",
+                    subtitle: "The Culinary Innovator",
+                    icon: "🧪",
+                    description: "You're an Experimental Chef! You love pushing boundaries, mixing unusual ingredients, and creating fusion dishes that surprise and delight. You're not afraid to fail because that's how you discover new flavors. Your kitchen is a laboratory, and every meal is an adventure. You're the person who puts pineapple on pizza and makes it work!",
+                    traits: ["Creative", "Adventurous", "Innovative", "Bold", "Experimental", "Unique"],
+                    actionButton: { text: "Explore More Quizzes", url: "../" }
+                },
+                "traditional": {
+                    title: "Traditional Home Cook",
+                    subtitle: "The Comfort Food Master",
+                    icon: "👨‍🍳",
+                    description: "You're a Traditional Home Cook! You value time-tested recipes, family traditions, and the comfort of familiar flavors. You believe good food comes from love and patience, not fancy techniques. Your cooking brings people together and reminds them of home. You're the keeper of family recipes and the heart of the kitchen!",
+                    traits: ["Comforting", "Reliable", "Warm", "Traditional", "Family-Oriented", "Nurturing"],
+                    actionButton: { text: "Explore More Quizzes", url: "../" }
+                },
+                "fastfood": {
+                    title: "Fast Food Aficionado",
+                    subtitle: "The Convenience Connoisseur",
+                    icon: "🍔",
+                    description: "You're a Fast Food Aficionado! You appreciate quick, convenient meals that satisfy your cravings without the hassle. You know the best drive-thrus, have favorite takeout spots, and aren't ashamed of it. You value your time and believe food should be easy and enjoyable. You're practical, efficient, and unapologetically convenience-focused!",
+                    traits: ["Practical", "Efficient", "No-Nonsense", "Convenient", "Modern", "Realistic"],
+                    actionButton: { text: "Explore More Quizzes", url: "../" }
+                },
+                "gourmet": {
+                    title: "Gourmet Enthusiast",
+                    subtitle: "The Refined Epicurean",
+                    icon: "🍷",
+                    description: "You're a Gourmet Enthusiast! You appreciate fine dining, premium ingredients, and culinary artistry. You believe food should be an experience, not just fuel. You seek out the best restaurants, know your wines, and can discuss flavor profiles with sophistication. Your palate is refined, and your standards are high. You're a true epicurean!",
+                    traits: ["Refined", "Sophisticated", "Discerning", "Cultured", "Artistic", "Perfectionist"],
+                    actionButton: { text: "Explore More Quizzes", url: "../" }
+                }
+            }
+        };
+        quiz = new QuizEngine(culinaryQuizConfig);
+        function createFoodBackground() {
+            const bg = document.getElementById('backgroundAnimation');
+            for (let i = 0; i < 50; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.width = p.style.height = Math.random() * 12 + 4 + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.top = Math.random() * 100 + '%';
+                p.style.animationDelay = Math.random() * 20 + 's';
+                p.style.animationDuration = Math.random() * 10 + 15 + 's';
+                p.style.background = ['rgba(253, 116, 108, 0.3)', 'rgba(255, 144, 104, 0.3)', 'rgba(253, 200, 48, 0.3)'][Math.floor(Math.random() * 3)];
+                bg.appendChild(p);
+            }
+            const foods = ['🍕', '🍔', '🍣', '🍝', '🥗', '🥩', '🍰', '🍜'];
+            for (let i = 0; i < 15; i++) {
+                const f = document.createElement('div');
+                f.className = 'food-float';
+                f.innerHTML = foods[Math.floor(Math.random() * foods.length)];
+                f.style.left = Math.random() * 100 + '%';
+                f.style.top = Math.random() * 100 + '%';
+                bg.appendChild(f);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', createFoodBackground);
+    </script>
+</body>
+</html>

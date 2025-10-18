@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board Game Personality Quiz | What's Your Board Game Style? | DorklyAI</title>
+    <meta name="description" content="Discover your board game personality! Strategy Master, Party Game Enthusiast, Cooperative Player, or Competitive Champion?">
+    <link rel="icon" type="image/x-icon" href="../../assets/dorklogo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="../quiz-styles.css" rel="stylesheet">
+    <style>
+        :root {
+            --quiz-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        }
+        .dice-roll { position: absolute; font-size: 2rem; animation: roll 3s infinite; pointer-events: none; opacity: 0.2; }
+        @keyframes roll { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="background-animation" id="backgroundAnimation"></div>
+    <div class="quiz-container" id="quiz-container"></div>
+    <script src="../quiz-engine.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const boardGameQuizConfig = {
+            title: "Board Game Personality Quiz",
+            description: "What board game personality are you? Strategic mastermind, party game enthusiast, cooperative team player, or competitive champion? Roll the dice and find out!",
+            quizType: "board-game",
+            theme: "boardgame",
+            estimatedTime: "3-4",
+            scoringMethod: "category",
+            showProgress: true,
+            questions: [
+                { id: 1, question: "What's most important in a game?",
+                    answers: [
+                        { value: "strategy", text: "Deep thinking and long-term planning", description: "Chess-like complexity" },
+                        { value: "party", text: "Laughter and social interaction", description: "Fun with friends" },
+                        { value: "cooperative", text: "Everyone working together", description: "Team success" },
+                        { value: "competitive", text: "Winning and proving superiority", description: "Victory is everything" }
+                    ]
+                },
+                { id: 2, question: "How long should a game last?",
+                    answers: [
+                        { value: "strategy", text: "2-4 hours for deep strategic gameplay", description: "Time for complexity" },
+                        { value: "party", text: "15-30 minutes for quick fun rounds", description: "Short and sweet" },
+                        { value: "cooperative", text: "1-2 hours for team building", description: "Enough time to bond" },
+                        { value: "competitive", text: "However long it takes to dominate", description: "Until I win" }
+                    ]
+                },
+                { id: 3, question: "Pick your ideal game night setup:",
+                    answers: [
+                        { value: "strategy", text: "Quiet room, focused players, intense concentration", description: "Serious gaming" },
+                        { value: "party", text: "Big group, loud music, snacks everywhere", description: "Party atmosphere" },
+                        { value: "cooperative", text: "Team discussion, collaborative planning", description: "Working together" },
+                        { value: "competitive", text: "Head-to-head showdown, trash talk allowed", description: "Battle mode" }
+                    ]
+                },
+                { id: 4, question: "How do you feel about luck in games?",
+                    answers: [
+                        { value: "strategy", text: "Minimize it - skill should determine outcome", description: "Pure strategy" },
+                        { value: "party", text: "Love it - keeps things unpredictable and fun", description: "Random is exciting" },
+                        { value: "cooperative", text: "Some luck adds challenge for the team", description: "Overcome together" },
+                        { value: "competitive", text: "I make my own luck through skill", description: "Skill > Luck" }
+                    ]
+                },
+                { id: 5, question: "What's your reaction when you lose?",
+                    answers: [
+                        { value: "strategy", text: "Analyze what went wrong strategically", description: "Learn and improve" },
+                        { value: "party", text: "Laugh it off and play again", description: "Fun matters most" },
+                        { value: "cooperative", text: "Reflect on how team could improve", description: "Grow together" },
+                        { value: "competitive", text: "Determined to win next time", description: "Rematch now!" }
+                    ]
+                },
+                { id: 6, question: "Choose your favorite game mechanic:",
+                    answers: [
+                        { value: "strategy", text: "Resource management and planning", description: "Strategic depth" },
+                        { value: "party", text: "Acting, drawing, or word games", description: "Creative expression" },
+                        { value: "cooperative", text: "Team roles and combined abilities", description: "Synergy power" },
+                        { value: "competitive", text: "Direct confrontation and bidding", description: "Head-to-head" }
+                    ]
+                },
+                { id: 7, question: "What size group do you prefer?",
+                    answers: [
+                        { value: "strategy", text: "2-4 players for focused strategy", description: "Intimate and tactical" },
+                        { value: "party", text: "6+ players for maximum chaos", description: "More the merrier" },
+                        { value: "cooperative", text: "3-5 players for balanced teamwork", description: "Perfect team size" },
+                        { value: "competitive", text: "Any size as long as I can compete", description: "Bring it on" }
+                    ]
+                },
+                { id: 8, question: "Pick your board game aesthetic:",
+                    answers: [
+                        { value: "strategy", text: "Complex boards with lots of components", description: "Intricate design" },
+                        { value: "party", text: "Colorful, simple, and silly", description: "Fun visuals" },
+                        { value: "cooperative", text: "Thematic and immersive artwork", description: "Story-driven" },
+                        { value: "competitive", text: "Clean and competitive-focused", description: "Function over form" }
+                    ]
+                },
+                { id: 9, question: "How do you learn new games?",
+                    answers: [
+                        { value: "strategy", text: "Read the full rulebook thoroughly", description: "Master the rules" },
+                        { value: "party", text: "Jump in and learn as we play", description: "Learning by doing" },
+                        { value: "cooperative", text: "Have someone explain while we set up", description: "Collaborative learning" },
+                        { value: "competitive", text: "Learn just enough to start winning", description: "Fast track to victory" }
+                    ]
+                },
+                { id: 10, question: "What's your ultimate board game goal?",
+                    answers: [
+                        { value: "strategy", text: "Master complex strategies and tactics", description: "Become a grandmaster" },
+                        { value: "party", text: "Create memorable moments and laughs", description: "Fun memories" },
+                        { value: "cooperative", text: "Build strong bonds through teamwork", description: "Unity and friendship" },
+                        { value: "competitive", text: "Dominate and build a winning record", description: "Champion status" }
+                    ]
+                }
+            ],
+            results: {
+                "strategy": {
+                    title: "Strategy Master",
+                    subtitle: "The Tactical Genius",
+                    icon: "♟️",
+                    description: "You're a Strategy Master! You love complex games that require deep thinking, long-term planning, and tactical brilliance. Games like Catan, Ticket to Ride, and Chess are your domain. You appreciate elegant game design and the satisfaction of executing a perfect strategy. Your friends respect your analytical mind and strategic prowess!",
+                    traits: ["Analytical", "Patient", "Strategic", "Focused", "Tactical", "Intellectual"],
+                    actionButton: { text: "Explore More Quizzes", url: "../" }
+                },
+                "party": {
+                    title: "Party Game Enthusiast",
+                    subtitle: "The Social Butterfly",
+                    icon: "🎉",
+                    description: "You're a Party Game Enthusiast! You love games that bring laughter, creativity, and social interaction. Games like Codenames, Cards Against Humanity, and Pictionary are perfect for you. You prioritize fun and memorable moments over competition. Your energy and enthusiasm make every game night a blast!",
+                    traits: ["Social", "Fun-Loving", "Creative", "Energetic", "Lighthearted", "Entertaining"],
+                    actionButton: { text: "Explore More Quizzes", url: "../" }
+                },
+                "cooperative": {
+                    title: "Cooperative Player",
+                    subtitle: "The Team Builder",
+                    icon: "🤝",
+                    description: "You're a Cooperative Player! You love games where everyone works together toward a common goal. Games like Pandemic, Forbidden Island, and Spirit Island are your favorites. You value teamwork, communication, and shared victories. Your collaborative spirit and leadership make you an essential team member!",
+                    traits: ["Collaborative", "Supportive", "Communicative", "Team-Oriented", "United", "Strategic"],
+                    actionButton: { text: "Explore More Quizzes", url: "../" }
+                },
+                "competitive": {
+                    title: "Competitive Champion",
+                    subtitle: "The Victory Seeker",
+                    icon: "🏆",
+                    description: "You're a Competitive Champion! You love games that test your skills against others and crown a definitive winner. Games like Risk, Monopoly, and any head-to-head game excite you. You play to win and bring intensity to every match. Your competitive drive pushes everyone to play their best!",
+                    traits: ["Competitive", "Driven", "Intense", "Focused", "Winner", "Determined"],
+                    actionButton: { text: "Explore More Quizzes", url: "../" }
+                }
+            }
+        };
+        quiz = new QuizEngine(boardGameQuizConfig);
+        function createBoardGameBackground() {
+            const bg = document.getElementById('backgroundAnimation');
+            for (let i = 0; i < 50; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.width = p.style.height = Math.random() * 12 + 4 + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.top = Math.random() * 100 + '%';
+                p.style.animationDelay = Math.random() * 20 + 's';
+                p.style.animationDuration = Math.random() * 10 + 15 + 's';
+                bg.appendChild(p);
+            }
+            const dice = ['🎲', '♠️', '♥️', '♣️', '♦️'];
+            for (let i = 0; i < 15; i++) {
+                const d = document.createElement('div');
+                d.className = 'dice-roll';
+                d.innerHTML = dice[Math.floor(Math.random() * dice.length)];
+                d.style.left = Math.random() * 100 + '%';
+                d.style.top = Math.random() * 100 + '%';
+                bg.appendChild(d);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', createBoardGameBackground);
+    </script>
+</body>
+</html>

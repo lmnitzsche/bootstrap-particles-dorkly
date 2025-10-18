@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>OKC Thunder Player Quiz | Which Thunder Player Are You? | DorklyAI</title>
+    <meta name="title" content="OKC Thunder Player Quiz | Which Thunder Player Are You?">
+    <meta name="description" content="Discover which OKC Thunder player matches your basketball style! Are you SGA, Jalen Williams, Chet Holmgren, or Josh Giddey?">
+    <meta name="keywords" content="OKC Thunder quiz, Thunder player quiz, SGA quiz, basketball personality quiz, NBA quiz">
+    <meta name="author" content="DorklyAI">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dorklyai.com/quizzes/sports/okc-thunder.html">
+    <meta property="og:title" content="OKC Thunder Player Quiz - Which Player Are You?">
+    <meta property="og:description" content="Discover which Thunder player matches your basketball style!">
+    <meta property="og:image" content="https://dorklyai.com/assets/dorklogo.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://dorklyai.com/quizzes/sports/okc-thunder.html">
+    <meta property="twitter:title" content="OKC Thunder Player Quiz">
+    <meta property="twitter:description" content="Which Thunder player matches your style?">
+    <meta property="twitter:image" content="https://dorklyai.com/assets/dorklogo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://dorklyai.com/quizzes/sports/okc-thunder.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/dorklogo.png">
+    
+    <!-- Bootstrap 5.3.0 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    
+    <!-- Quiz Styles -->
+    <link href="../quiz-styles.css" rel="stylesheet">
+    
+    <style>
+        /* OKC Thunder theme */
+        :root {
+            --quiz-gradient: linear-gradient(135deg, #007ac1 0%, #ef3b24 50%, #fdbb30 100%);
+            --quiz-primary: #007ac1;
+            --quiz-secondary: #ef3b24;
+        }
+        
+        .thunder-bolt {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: bolt 2s infinite ease-in-out;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+        
+        @keyframes bolt {
+            0%, 100% { 
+                opacity: 0.2; 
+                transform: translateY(0) scale(1);
+            }
+            50% { 
+                opacity: 0.6; 
+                transform: translateY(-20px) scale(1.2);
+            }
+        }
+        
+        .basketball-bounce {
+            position: absolute;
+            font-size: 2rem;
+            animation: bounce 3s infinite ease-in-out;
+            pointer-events: none;
+            opacity: 0.15;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg);
+            }
+            50% { 
+                transform: translateY(-50px) rotate(180deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="background-animation" id="backgroundAnimation"></div>
+    
+    <!-- Quiz Container -->
+    <div class="quiz-container" id="quiz-container">
+        <!-- Quiz content will be inserted here by the quiz engine -->
+    </div>
+    
+    <!-- Quiz Engine -->
+    <script src="../quiz-engine.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // OKC Thunder Player Quiz Configuration
+        const thunderQuizConfig = {
+            title: "OKC Thunder Player Quiz",
+            description: "Which OKC Thunder player matches your basketball style? Discover if you're a scoring superstar like SGA, a two-way force like Jalen Williams, a defensive anchor like Chet Holmgren, or a playmaking maestro like Josh Giddey!",
+            quizType: "okc-thunder-player",
+            theme: "thunder",
+            estimatedTime: "3-4",
+            scoringMethod: "category",
+            showProgress: true,
+            allowBack: false,
+            shuffleQuestions: false,
+            shuffleAnswers: false,
+            showResults: true,
+            enableLeadCapture: true,
+            disclaimer: "This quiz is for entertainment purposes and is not affiliated with the Oklahoma City Thunder, NBA, or any players.",
+            
+            questions: [
+                {
+                    id: 1,
+                    question: "What's your role on the basketball court?",
+                    answers: [
+                        {
+                            value: "sga",
+                            text: "Primary scorer and closer",
+                            description: "I take over in crucial moments"
+                        },
+                        {
+                            value: "jalen",
+                            text: "Versatile two-way player",
+                            description: "I contribute on both ends of the floor"
+                        },
+                        {
+                            value: "chet",
+                            text: "Defensive anchor and rim protector",
+                            description: "I control the paint and alter shots"
+                        },
+                        {
+                            value: "giddey",
+                            text: "Playmaker and facilitator",
+                            description: "I make everyone around me better"
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    question: "How do you approach a close game?",
+                    answers: [
+                        {
+                            value: "sga",
+                            text: "Give me the ball, I'll handle it",
+                            description: "Confidence and killer instinct"
+                        },
+                        {
+                            value: "jalen",
+                            text: "Make winning plays on both ends",
+                            description: "Do whatever the team needs"
+                        },
+                        {
+                            value: "chet",
+                            text: "Lock down defensively and protect the rim",
+                            description: "Defense wins championships"
+                        },
+                        {
+                            value: "giddey",
+                            text: "Find the hot hand and set them up",
+                            description: "Get teammates involved"
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    question: "What's your signature move?",
+                    answers: [
+                        {
+                            value: "sga",
+                            text: "Step-back midrange jumper",
+                            description: "Smooth, crafty, unstoppable"
+                        },
+                        {
+                            value: "jalen",
+                            text: "Aggressive drive and finish",
+                            description: "Attacking the basket fearlessly"
+                        },
+                        {
+                            value: "chet",
+                            text: "Weak-side block or three-pointer",
+                            description: "Versatility on both ends"
+                        },
+                        {
+                            value: "giddey",
+                            text: "No-look pass for an easy bucket",
+                            description: "Creating for teammates"
+                        }
+                    ]
+                },
+                {
+                    id: 4,
+                    question: "What motivates you most?",
+                    answers: [
+                        {
+                            value: "sga",
+                            text: "Being the best player on the court",
+                            description: "Elite mentality and dominance"
+                        },
+                        {
+                            value: "jalen",
+                            text: "Earning respect through hard work",
+                            description: "Proving doubters wrong"
+                        },
+                        {
+                            value: "chet",
+                            text: "Changing the game with my unique skills",
+                            description: "Redefining what's possible"
+                        },
+                        {
+                            value: "giddey",
+                            text: "Team success and winning together",
+                            description: "Collective achievement"
+                        }
+                    ]
+                },
+                {
+                    id: 5,
+                    question: "How do you handle adversity?",
+                    answers: [
+                        {
+                            value: "sga",
+                            text: "Stay calm and take over the game",
+                            description: "Ice in my veins"
+                        },
+                        {
+                            value: "jalen",
+                            text: "Work harder and stay aggressive",
+                            description: "Never back down"
+                        },
+                        {
+                            value: "chet",
+                            text: "Focus on my fundamentals and length",
+                            description: "Trust my unique abilities"
+                        },
+                        {
+                            value: "giddey",
+                            text: "Keep the team together and positive",
+                            description: "Leadership and communication"
+                        }
+                    ]
+                },
+                {
+                    id: 6,
+                    question: "What's your playing style?",
+                    answers: [
+                        {
+                            value: "sga",
+                            text: "Smooth, efficient, and crafty",
+                            description: "Master of deception"
+                        },
+                        {
+                            value: "jalen",
+                            text: "Athletic, aggressive, and fearless",
+                            description: "High-energy two-way force"
+                        },
+                        {
+                            value: "chet",
+                            text: "Long, skilled, and disruptive",
+                            description: "Unicorn-like versatility"
+                        },
+                        {
+                            value: "giddey",
+                            text: "Unselfish, smart, and floor general",
+                            description: "High basketball IQ"
+                        }
+                    ]
+                },
+                {
+                    id: 7,
+                    question: "What stat matters most to you?",
+                    answers: [
+                        {
+                            value: "sga",
+                            text: "Points per game",
+                            description: "Scoring is my calling card"
+                        },
+                        {
+                            value: "jalen",
+                            text: "Plus/minus",
+                            description: "Impact on winning"
+                        },
+                        {
+                            value: "chet",
+                            text: "Blocks and defensive rating",
+                            description: "Defensive dominance"
+                        },
+                        {
+                            value: "giddey",
+                            text: "Assists and team field goal percentage",
+                            description: "Making others better"
+                        }
+                    ]
+                },
+                {
+                    id: 8,
+                    question: "How do you prepare for a big game?",
+                    answers: [
+                        {
+                            value: "sga",
+                            text: "Study film and work on my scoring moves",
+                            description: "Meticulous preparation"
+                        },
+                        {
+                            value: "jalen",
+                            text: "Extra conditioning and aggressiveness drills",
+                            description: "Physical and mental readiness"
+                        },
+                        {
+                            value: "chet",
+                            text: "Practice shooting and rim protection",
+                            description: "Versatility on both ends"
+                        },
+                        {
+                            value: "giddey",
+                            text: "Review opponent tendencies and team plays",
+                            description: "Strategic thinking"
+                        }
+                    ]
+                },
+                {
+                    id: 9,
+                    question: "What's your leadership style?",
+                    answers: [
+                        {
+                            value: "sga",
+                            text: "Lead by example through performance",
+                            description: "Actions speak louder than words"
+                        },
+                        {
+                            value: "jalen",
+                            text: "Energy and intensity setter",
+                            description: "Ignite the team's fire"
+                        },
+                        {
+                            value: "chet",
+                            text: "Quiet confidence and consistency",
+                            description: "Steady presence"
+                        },
+                        {
+                            value: "giddey",
+                            text: "Vocal communicator and connector",
+                            description: "Keep everyone involved"
+                        }
+                    ]
+                },
+                {
+                    id: 10,
+                    question: "What's your ultimate basketball goal?",
+                    answers: [
+                        {
+                            value: "sga",
+                            text: "Win MVP and championship",
+                            description: "Be the best in the world"
+                        },
+                        {
+                            value: "jalen",
+                            text: "All-Star and All-Defensive selections",
+                            description: "Elite two-way recognition"
+                        },
+                        {
+                            value: "chet",
+                            text: "Defensive Player of the Year",
+                            description: "Revolutionize rim protection"
+                        },
+                        {
+                            value: "giddey",
+                            text: "Lead team to championship",
+                            description: "Team success above all"
+                        }
+                    ]
+                }
+            ],
+            
+            results: {
+                "sga": {
+                    title: "Shai Gilgeous-Alexander",
+                    subtitle: "The Crafty Superstar Closer",
+                    icon: "⭐",
+                    description: "You embody SGA's elite scoring ability and clutch gene! You're smooth, crafty, and have an incredible ability to get to your spots and score efficiently. Like Shai, you excel in isolation situations, have a killer midrange game, and thrive in pressure moments. Your combination of skill, poise, and competitive fire makes you a true superstar in the making.",
+                    traits: ["Elite Scorer", "Clutch", "Crafty", "Efficient", "Composed", "Star Player"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                "jalen": {
+                    title: "Jalen Williams",
+                    subtitle: "The Versatile Two-Way Force",
+                    icon: "🔥",
+                    description: "You match Jalen Williams' incredible two-way versatility! You're aggressive, fearless, and impact the game on both ends of the floor. Like J-Dub, you're not afraid to attack the rim, make winning plays, and guard multiple positions. Your combination of athleticism, work ethic, and basketball IQ makes you an invaluable player who can do it all.",
+                    traits: ["Versatile", "Two-Way Player", "Aggressive", "Athletic", "Fearless", "Hard Worker"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                "chet": {
+                    title: "Chet Holmgren",
+                    subtitle: "The Unicorn Rim Protector",
+                    icon: "🦄",
+                    description: "You align with Chet's unique blend of size, skill, and defensive prowess! Like Chet, you're a game-changer with your length and versatility. You can protect the rim, stretch the floor with your shooting, and make plays that defy your position. Your combination of defensive excellence and offensive skill makes you a truly special player who redefines traditional basketball.",
+                    traits: ["Rim Protector", "Versatile", "Long", "Skilled", "Defensive Anchor", "Unicorn"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                },
+                "giddey": {
+                    title: "Josh Giddey",
+                    subtitle: "The Playmaking Floor General",
+                    icon: "🎯",
+                    description: "You embody Giddey's exceptional playmaking and basketball IQ! Like Josh, you're unselfish, have incredible vision, and make everyone around you better. You excel at reading the game, finding the open man, and orchestrating the offense. Your combination of court vision, passing ability, and leadership makes you the perfect floor general who prioritizes team success.",
+                    traits: ["Playmaker", "High IQ", "Unselfish", "Floor General", "Great Vision", "Team-First"],
+                    actionButton: {
+                        text: "Explore More Quizzes",
+                        url: "../"
+                    }
+                }
+            }
+        };
+        
+        // Initialize the quiz
+        quiz = new QuizEngine(thunderQuizConfig);
+        
+        // Create Thunder themed background
+        function createThunderBackground() {
+            const background = document.getElementById('backgroundAnimation');
+            const particleCount = 50;
+            
+            // Regular particles (Thunder colors)
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 12 + 4;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                
+                // Thunder colors: blue, orange, yellow
+                const colors = [
+                    'rgba(0, 122, 193, 0.3)',
+                    'rgba(239, 59, 36, 0.3)',
+                    'rgba(253, 187, 48, 0.3)'
+                ];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                background.appendChild(particle);
+            }
+            
+            // Add thunder bolts
+            for (let i = 0; i < 12; i++) {
+                const bolt = document.createElement('div');
+                bolt.className = 'thunder-bolt';
+                bolt.innerHTML = '⚡';
+                bolt.style.left = Math.random() * 100 + '%';
+                bolt.style.top = Math.random() * 100 + '%';
+                bolt.style.animationDelay = Math.random() * 3 + 's';
+                background.appendChild(bolt);
+            }
+            
+            // Add basketballs
+            for (let i = 0; i < 8; i++) {
+                const ball = document.createElement('div');
+                ball.className = 'basketball-bounce';
+                ball.innerHTML = '🏀';
+                ball.style.left = Math.random() * 100 + '%';
+                ball.style.top = Math.random() * 100 + '%';
+                ball.style.animationDelay = Math.random() * 4 + 's';
+                background.appendChild(ball);
+            }
+        }
+        
+        // Initialize Thunder background when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createThunderBackground();
+        });
+    </script>
+</body>
+</html>

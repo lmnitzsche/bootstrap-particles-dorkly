@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Choice Quiz | What's Your Dining Style? | DorklyAI</title>
+    <meta name="description" content="Discover your ideal dining experience! Fine Dining, Casual Comfort, Fast Casual, or Food Truck Adventure?">
+    <link rel="icon" type="image/x-icon" href="../../assets/dorklogo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="../quiz-styles.css" rel="stylesheet">
+    <style>
+        :root { --quiz-gradient: linear-gradient(135deg, #fd746c 0%, #ff9068 50%, #fdc830 100%); }
+    </style>
+</head>
+<body>
+    <div class="background-animation" id="backgroundAnimation"></div>
+    <div class="quiz-container" id="quiz-container"></div>
+    <script src="../quiz-engine.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const restaurantQuizConfig = {
+            title: "Restaurant Choice Quiz",
+            description: "What type of dining experience suits you best? Discover if you're a Fine Dining enthusiast, Casual Comfort lover, Fast Casual fan, or Food Truck adventurer!",
+            quizType: "restaurant",
+            estimatedTime: "3-4",
+            scoringMethod: "category",
+            showProgress: true,
+            questions: [
+                { id: 1, question: "What's your ideal Friday night?", answers: [
+                    { value: "fine", text: "Dress up for an elegant dinner", description: "Sophisticated evening" },
+                    { value: "casual", text: "Familiar restaurant with comfort food", description: "Cozy and relaxed" },
+                    { value: "fastcasual", text: "Quick quality meal on the go", description: "Efficient dining" },
+                    { value: "foodtruck", text: "Exploring new street food", description: "Adventure eating" }
+                ]},
+                { id: 2, question: "Pick your ideal ambiance:", answers: [
+                    { value: "fine", text: "Dim lighting, soft music, elegant decor", description: "Refined atmosphere" },
+                    { value: "casual", text: "Warm, welcoming, family-friendly", description: "Comfortable vibe" },
+                    { value: "fastcasual", text: "Clean, modern, efficient layout", description: "Contemporary design" },
+                    { value: "foodtruck", text: "Outdoor, trendy, Instagram-worthy", description: "Urban cool" }
+                ]},
+                { id: 3, question: "Your budget for dinner:", answers: [
+                    { value: "fine", text: "$100+ per person for excellence", description: "Premium investment" },
+                    { value: "casual", text: "$20-40 for good value", description: "Reasonable pricing" },
+                    { value: "fastcasual", text: "$10-20 for quality convenience", description: "Affordable quality" },
+                    { value: "foodtruck", text: "$8-15 for unique experience", description: "Budget-friendly" }
+                ]},
+                { id: 4, question: "Service style preference:", answers: [
+                    { value: "fine", text: "Attentive servers, sommelier, multiple courses", description: "Full service" },
+                    { value: "casual", text: "Friendly waitstaff who remember you", description: "Personal touch" },
+                    { value: "fastcasual", text: "Order at counter, fast delivery", description: "Self-service hybrid" },
+                    { value: "foodtruck", text: "Order window, casual pickup", description: "Ultra casual" }
+                ]},
+                { id: 5, question: "Menu complexity:", answers: [
+                    { value: "fine", text: "Seasonal tasting menu with wine pairings", description: "Chef's choice" },
+                    { value: "casual", text: "Familiar favorites I can count on", description: "Tried and true" },
+                    { value: "fastcasual", text: "Customizable with fresh ingredients", description: "Build your own" },
+                    { value: "foodtruck", text: "Short menu of unique specialties", description: "Focused expertise" }
+                ]},
+                { id: 6, question: "Dress code:", answers: [
+                    { value: "fine", text: "Suit or cocktail dress required", description: "Formal attire" },
+                    { value: "casual", text: "Business casual or nice jeans", description: "Comfortable dressy" },
+                    { value: "fastcasual", text: "Whatever I'm wearing works", description: "Come as you are" },
+                    { value: "foodtruck", text: "Sneakers and street style", description: "Super casual" }
+                ]},
+                { id: 7, question: "Meal duration:", answers: [
+                    { value: "fine", text: "2-3 hours to savor the experience", description: "Leisurely dining" },
+                    { value: "casual", text: "1-1.5 hours for relaxed meal", description: "Comfortable pace" },
+                    { value: "fastcasual", text: "30-45 minutes efficient dining", description: "Quick but quality" },
+                    { value: "foodtruck", text: "15-20 minutes grab and go", description: "Fast and mobile" }
+                ]},
+                { id: 8, question: "Social setting:", answers: [
+                    { value: "fine", text: "Romantic date or special celebration", description: "Intimate occasions" },
+                    { value: "casual", text: "Family dinner or friend gathering", description: "Group friendly" },
+                    { value: "fastcasual", text: "Lunch meeting or solo meal", description: "Flexible dining" },
+                    { value: "foodtruck", text: "Food festival with friends", description: "Social adventure" }
+                ]},
+                { id: 9, question: "What excites you most?", answers: [
+                    { value: "fine", text: "Michelin stars and chef reputation", description: "Culinary prestige" },
+                    { value: "casual", text: "Consistency and reliability", description: "Dependable quality" },
+                    { value: "fastcasual", text: "Fresh ingredients and customization", description: "Healthy options" },
+                    { value: "foodtruck", text: "Unique flavors and discovery", description: "Novel experience" }
+                ]},
+                { id: 10, question: "Ideal location:", answers: [
+                    { value: "fine", text: "Downtown in a landmark building", description: "Prestigious address" },
+                    { value: "casual", text: "Neighborhood spot near home", description: "Local favorite" },
+                    { value: "fastcasual", text: "Shopping center or business district", description: "Convenient location" },
+                    { value: "foodtruck", text: "Rotating spots or food truck parks", description: "Mobile and trendy" }
+                ]}
+            ],
+            results: {
+                "fine": {
+                    title: "Fine Dining",
+                    subtitle: "The Refined Epicurean",
+                    icon: "🍽️",
+                    description: "You're a Fine Dining enthusiast! You appreciate culinary artistry, impeccable service, and elegant ambiance. For you, dining is an experience to be savored, not just a meal. You value quality ingredients, expert preparation, and the ritual of a multi-course meal. You know your wines, appreciate presentation, and believe that some occasions deserve the very best!",
+                    traits: ["Sophisticated", "Refined", "Cultured", "Discerning", "Elegant", "Appreciative"],
+                    actionButton: { text: "Explore More Quizzes", url: "../" }
+                },
+                "casual": {
+                    title: "Casual Comfort",
+                    subtitle: "The Cozy Regular",
+                    icon: "🏠",
+                    description: "You're a Casual Comfort lover! You appreciate good food in a welcoming atmosphere where you can relax and be yourself. You have your favorite spots where they know your order, and you value consistency, comfort, and quality. You believe the best meals are shared with loved ones in a warm, unpretentious setting. You're loyal to places that feel like home!",
+                    traits: ["Comfortable", "Loyal", "Warm", "Family-Oriented", "Reliable", "Welcoming"],
+                    actionButton: { text: "Explore More Quizzes", url: "../" }
+                },
+                "fastcasual": {
+                    title: "Fast Casual",
+                    subtitle: "The Efficient Foodie",
+                    icon: "🥙",
+                    description: "You're a Fast Casual fan! You want quality food without the wait or fuss. You appreciate fresh ingredients, customization options, and modern efficiency. You're health-conscious, value your time, and believe you shouldn't have to sacrifice quality for convenience. You're the perfect blend of foodie and pragmatist - you want it good, and you want it now!",
+                    traits: ["Efficient", "Health-Conscious", "Modern", "Practical", "Busy", "Quality-Focused"],
+                    actionButton: { text: "Explore More Quizzes", url: "../" }
+                },
+                "foodtruck": {
+                    title: "Food Truck Adventure",
+                    subtitle: "The Urban Explorer",
+                    icon: "🚚",
+                    description: "You're a Food Truck adventurer! You love discovering unique flavors, supporting small businesses, and being part of the food scene. You're spontaneous, trendy, and enjoy the hunt for the best hidden gems. You believe some of the best food comes from passionate creators working out of a mobile kitchen. You're adventurous, Instagram-ready, and always know where the hottest trucks are parked!",
+                    traits: ["Adventurous", "Trendy", "Spontaneous", "Supportive", "Social", "Discoverer"],
+                    actionButton: { text: "Explore More Quizzes", url: "../" }
+                }
+            }
+        };
+        quiz = new QuizEngine(restaurantQuizConfig);
+        function createRestaurantBackground() {
+            const bg = document.getElementById('backgroundAnimation');
+            for (let i = 0; i < 50; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.width = p.style.height = Math.random() * 12 + 4 + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.top = Math.random() * 100 + '%';
+                p.style.animationDelay = Math.random() * 20 + 's';
+                p.style.animationDuration = Math.random() * 10 + 15 + 's';
+                bg.appendChild(p);
+            }
+            const icons = ['🍽️', '🏠', '🥙', '🚚', '🍴', '🥘', '☕'];
+            for (let i = 0; i < 15; i++) {
+                const icon = document.createElement('div');
+                icon.className = 'food-float';
+                icon.style.position = 'absolute';
+                icon.style.fontSize = '2rem';
+                icon.style.animation = 'float 15s infinite';
+                icon.style.pointerEvents = 'none';
+                icon.style.opacity = '0.2';
+                icon.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+                icon.style.left = Math.random() * 100 + '%';
+                icon.style.top = Math.random() * 100 + '%';
+                bg.appendChild(icon);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', createRestaurantBackground);
+    </script>
+</body>
+</html>
